@@ -99,3 +99,204 @@ export const Data = [
  
   
 ];
+
+
+export const Course = [
+  
+  {
+    index: 1,
+    
+    name: 'Diagnóstico financeiro e compreendendo o mercado financeiro',
+    lessons: [
+      {
+        name: 'Estrategia de orçamentação',
+        
+        
+      },
+      
+      {
+        name: 'Definição do perfil de investidor',
+        
+        
+      },
+      {
+        name: 'Controle e gestão de dívidas',
+        
+        
+      },
+      {
+        name: 'Como usar o dinheiro como marionete',
+        
+        
+      }
+    ]
+  },
+  {
+    index: 2,
+    
+    name: 'Investir em Angola: Renda fixa',
+    lessons: [
+      {
+        name: 'Como funciona o sistema financeiro',
+        
+        },
+      
+      {
+        name: 'Reservas financeiros como estrategia de investimento bem sucedido',
+        
+        
+      },
+      {
+        name: 'Estudo profundo da inflação e seus efeitos no seu dinheiro',
+        
+        
+      },
+      {
+        name: 'O poder dos juros compostos',
+        
+        
+      }
+    ]
+  },
+  {
+    index: 3,
+    
+    name: 'Investir em Angola: Renda variavel',
+    lessons: [
+      {
+        name: 'Fundos de investimentos em valores mobiliários',
+        
+        },
+      
+      {
+        name: 'Fundos de investimento imobiliários',
+        
+        
+      },
+      {
+        name: 'Ações angolanas e activos futuros',
+        
+        
+      },
+      {
+        name: 'A estratégia de investimento Hat-trick (montagem da carteira em Angola)',
+        
+        
+      }
+    ]
+  },
+  {
+    index: 4,
+    name: 'Ações internacionais e valuation de empresas na bolsa',
+    lessons: [
+      {
+        name: 'Como funciona o mercado de ações',
+        },
+      
+      {
+        name: 'Index funds, ETFs e Mutual funds',
+        
+      },
+      {
+        name: 'Análise fundamentalista de ações',
+        
+      },
+      {
+        name: 'Como funciona o mercado de ações',
+        
+      },
+      {
+        name: 'Index funds, ETFs e Mutual funds',
+      },
+      {
+        name: 'Análise fundamentalista de ações',
+        
+      }
+    ]
+  
+  },
+  {
+    index: 5,
+    name: 'Análise técnica de ações',
+    lessons: [
+      {
+        name: 'Subscrição em correctoras em 3 internacionais (passo à passo) e abertura de conta no estrangeiro',
+        },
+      
+      {
+        name: 'dentificação e entendimento os principais indicadores técnicos',
+        
+      },
+      {
+        name: 'Usando indicadores na prática',
+        
+      },
+    ]
+  
+  },
+  {
+    index: 6,
+    name: 'REITS (Real Estate Investment Trust - Fundos imobiliários)',
+    lessons: [
+      {
+        name: 'Como funcionam e suas diferenças com as empresas comuns',
+        },
+      
+      {
+        name: 'Análise de fundos imobiliários',
+        
+      },
+      {
+        name: 'Screening (seleção) de fundos imobiliários',
+        
+      },
+      {
+        name: 'Estrategia de investimento em dividendos com REITs',
+        
+      }
+    ]
+  
+  },
+  {
+    index: 7,
+    name: 'Alocação de ativos e a montagem da carteira de investimentos',
+    lessons: [
+      {
+        name: 'Stock Screening',
+        },
+      
+      {
+        name: 'Montagem final da carteira (no estrangeiro)',
+        
+      },
+    ]
+  
+  },
+  {
+    index: 8,
+    name: 'Renda extra e negócios',
+    lessons: [
+      {
+        name: 'Pensamento criativo e geração de ideias de valor',
+        },
+      
+      {
+        name: 'Business Model Canvas',
+        
+      },
+      {
+        name: '7 dominios – Análise SWOT',
+        
+      },
+      {
+        name: 'Factores críticos de sucesso',
+        
+      },
+      {
+        name: 'Definição de mercado  Custo de oportunidade – Análise da competição',
+        
+      }
+    ]
+  
+  },
+] 

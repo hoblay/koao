@@ -1,33 +1,32 @@
 "use client";
-import { HomeIcon, CardStackIcon, DashboardIcon, CubeIcon, GearIcon, ExitIcon, BackpackIcon, MixerHorizontalIcon } from "@radix-ui/react-icons"
+import { HomeIcon, CardStackIcon, DashboardIcon, CubeIcon, GearIcon, ExitIcon, BackpackIcon, MixerHorizontalIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons"
 import { SideBar } from "../components/SideBar"
 import Link from "next/link";
 import { Search } from "../components/Search/Index";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
+import { Dropdown } from "../components/Dropdown";
+import { DropdownContext } from "../components/Dropdown/DropdownRoot";
 
-export default function LandingLayout({
+export default function AppLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const [isDropdownOpen, setisDropdownOpen] = useState<boolean>(false);
-  const ref = useRef(null);
+  
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;
 
-  const handleDropdown = () => {
-    setisDropdownOpen(!isDropdownOpen);
-  };
-
-  const closeDropdown = () => {
-    setisDropdownOpen(false);
-  };
+  // reference for the implementation of the function below 
+  const ref = useRef(null);
+/** 
+ *TODO: When Zustand: 
+        Create an event listener function to close the User Dropdown whenever you click outside of the component.  
 
   useEffect(() => {
     const handleOutSideClick = (event:any) => {
       if (!ref.current?.contains(event.target)) {
-        closeDropdown()
+        setcloseDropdown(false)
       }
     };
 
@@ -37,7 +36,7 @@ export default function LandingLayout({
       window.removeEventListener("mousedown", handleOutSideClick);
     };
   }, [ref]);
-
+*/
   return (
     <div className="relative flex">
       <aside className="sticky mt-5 top-5 left-5 h-[100%] md:flex overscroll-y-none overscroll-x-none ">
@@ -74,50 +73,26 @@ export default function LandingLayout({
           </Search.Root>
 
           <div className="items-center my-auto ml-auto relative space-x-4 " ref={ref}>
-            <span className="inline-flex items-center justify-center size-[46px] text-sm font-semibold leading-none rounded-full bg-purple-100 text-purple-800 dark:bg-purple-800/30 dark:text-purple-500 select-none cursor-pointer" onClick={handleDropdown}
-            
-            >
-              WM
-            </span>
-            <div className={`absolute mt-2 -right-1 z-10 bg-white divide-y divide-zinc-100 rounded-lg w-44 dark:bg-zinc-900 dark:divide-zinc-700 shadow  ${!isDropdownOpen ? 'hidden' : ''}`} >
-              <div className="px-4 py-3 text-sm text-zinc-700 dark:text-zinc-100 ">
-                <div className="">Winslet Mateus</div>
-                <div className=" text-zinc-600 dark:text-zinc-400 truncate lowercase">winsletmateus@hoblay.com</div>
-              </div>
-              <ul className="py-2 text-sm text-zinc-700 dark:text-zinc-200">
-                <li>
-                  <Link href="#" className="flex space-x-2 px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 dark:hover:text-zinc-100">
-                    <MixerHorizontalIcon className="my-auto"/> 
-                    <span>Painel de controle</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="flex space-x-2 px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 dark:hover:text-zinc-100">
-                    <GearIcon className="my-auto"/> 
-                    <span>Definições</span>
-                </Link>
-                </li>
-                <li>
-                  <Link href="#" className="flex space-x-2 px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 dark:hover:text-zinc-100">
-                    <BackpackIcon className="my-auto"/> 
-                    <span>Ganhos</span>
-                  </Link>
-                </li>
-              </ul>
-              <div className="flex px-2 py-3 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800">
-                <label className="inline-flex items-center w-full cursor-pointer">
-                  <input type="checkbox" value="" checked={theme == "dark"} className="sr-only peer" onClick={() => theme == "dark"? setTheme('light'): setTheme("dark")}/>
-                  <div className="relative w-9 h-5 bg-zinc-200 peer-focus:outline-none rounded-full peer dark:bg-zinc-600 peer-checked:after:translate-x-full rtl:peer-checked:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-zinc-100 after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-zinc-500 peer-checked:bg-purple-600"></div>
-                  <span className="ms-3 text-sm text-zinc-700 dark:text-zinc-100">Modo escuro</span>
-                </label>
-              </div>
-              <div className="py-2">
-                <Link href="#" className="flex space-x-2 px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 dark:text-zinc-200 dark:hover:text-zinc-100">
-                  <ExitIcon className="my-auto"/> 
-                  <span>Encerrar sessão</span>
-                </Link>
-              </div>
-          </div>
+            <Dropdown.Root>
+              <Dropdown.Trigger>
+                <span className="inline-flex items-center justify-center size-[46px] text-sm font-semibold leading-none rounded-full bg-purple-100 text-purple-800 dark:bg-purple-800/30 dark:text-purple-500 select-none cursor-pointer" >
+                  WM
+                </span>
+              </Dropdown.Trigger>
+              <Dropdown.Menu>
+                <Dropdown.Section>
+                  <Dropdown.Item title={"Winslet Mateus"} description="hoblayrecords@gmail.com"/>
+                  <Dropdown.Item title={"Painel de control"} startContent={ <MixerHorizontalIcon/>}/>
+                  <Dropdown.Item title={"Definições"} startContent={<GearIcon/>}/>
+                  <Dropdown.Item title={"Ganhos"} startContent={<BackpackIcon/>}/>
+                  <Dropdown.Item title={theme === "dark" ? "Modo escuro" : "Modo claro"} shortcut description="Trocar o tema" startContent={theme === "dark" ? <MoonIcon/> : <SunIcon/>} onClick={() => theme == "dark"? setTheme('light'): setTheme("dark")}/>
+                </Dropdown.Section>
+                <Dropdown.Section showDivider>
+                  
+                  <Dropdown.Item title="Sair" description="Encerrar sessão" startContent={ <ExitIcon/>}/>
+                </Dropdown.Section>
+              </Dropdown.Menu> 
+            </Dropdown.Root>
           </div>
 
         </div>

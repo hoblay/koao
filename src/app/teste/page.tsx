@@ -1,6 +1,8 @@
 "use client";
 
+import { GearIcon } from "@radix-ui/react-icons";
 import { Accordion } from "../components/Accordion";
+import { Dropdown } from "../components/Dropdown";
 
 
 export default function Home() {
@@ -38,6 +40,12 @@ export default function Home() {
         
         
       </Accordion.Root>
+
+      <div className="p-20">
+        <div className="w-36">
+        
+        </div>
+      </div>
     </div>
   );
 }

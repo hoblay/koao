@@ -14,7 +14,7 @@ export function SideBarSection({ children, className, first, title }:SideBarSect
   let { open } = useContext(SidebarContext);
   return(
     <ul className={`space-y-2 font-medium ${className} ${!first ? "pt-4 mt-4 border-t border-zinc-200 dark:border-zinc-700" : ""}`}>
-      {title && (<span className={`px-4 text-sm text-zinc-500 dark:text-zinc-400 ${!open ? 'hidden': ''}`}>{title}</span>)}
+      {title && (<span className={`px-4 text-sm text-zinc-500 dark:text-zinc-400 ${!open ? 'opacity-0 hidden': 'opacity-100'}`}>{title}</span>)}
       
       {children}
     </ul>

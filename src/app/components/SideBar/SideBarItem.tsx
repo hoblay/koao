@@ -39,7 +39,7 @@ export function SideBarItem({ children, className, parent, icon: Icon, title, hr
           )}
         </Link>
         {parent &&  (
-          <ul className={`overflow-hidden space-y-2 transition-[max-height] duration-300 ease-in-out ${isOpen && open ? 'max-h-40' : 'max-h-0'}`}>
+          <ul className={`overflow-hidden space-y-2 transition-[max-height] duration-300 ease-in-out ${isOpen && open ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
           {children} 
           </ul>
       )}
