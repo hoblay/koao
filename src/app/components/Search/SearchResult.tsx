@@ -1,5 +1,5 @@
 
-import { ArchiveIcon, PlusIcon, ResetIcon } from "@radix-ui/react-icons";
+import { ArchiveIcon, FileIcon, PlusIcon, ResetIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { ElementType, ReactNode, useState } from "react";
 import { useContext } from 'react';
@@ -35,7 +35,7 @@ export function SearchResult({ children, className, icon: Icon, name, type, user
 
       {(type === "file" && (
         <div className="flex items-center space-x-2 relative px-4 py-3 rounded-xl hover:bg-zinc-100 hover:cursor-pointer dark:text-zinc-50 dark:bg-zinc-900 dark:hover:bg-zinc-800">
-          <ArchiveIcon className=" w-4 h-4"/>
+          <FileIcon className=" w-4 h-4"/>
           <span className="text-sm text-zinc-700 dark:text-zinc-100">{name}</span>
           <ResetIcon className="w-4 h-4 right-3 absolute"/>
         </div>
