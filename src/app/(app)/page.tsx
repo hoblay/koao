@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Course from "../components/Course/Index";
+import Course from "../components/Course";
 import { Search } from "../components/Search/Index";
 
 import { Data } from "../Data/Courses";
@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="px-9"> 
       
-      <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
+      <div className="pb-5 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
         {Data.map((course, index) => (
           <>
             <Course

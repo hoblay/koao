@@ -15,7 +15,7 @@ interface CourseProps{
 
 }
 
-function Course({ className, progress, img, name, price, modules }:CourseProps) {
+function Courseiii({ className, progress, img, name, price, modules }:CourseProps) {
   const pp = `w-[${progress}%]`;
   return ( 
     <Link href="/course" className=''>
@@ -68,4 +68,4 @@ function Course({ className, progress, img, name, price, modules }:CourseProps) 
   )
 }
 
-export default Course;
+export default Courseiii;

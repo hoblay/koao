@@ -4,10 +4,10 @@ import { ReactNode, HTMLAttributeAnchorTarget } from "react";
 import { tv } from "tailwind-variants";
 
 const dropdownItemStyle = tv({
-  base: '',
+  base: 'flex group gap-3 items-center justify-between relative px-2 py-1.5 w-full h-full box-border rounded-lg subpixel-antialiased cursor-pointer outline-none border-transparent  hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:transition-colors hover:text-default-foreground',
   variants: {
-    active: {
-      true: '',
+    variant: {
+      bordered: 'border-[2px] hover:border-zinc-200  dark:hover:border-zinc-700',
       
     },
     done: {
@@ -38,7 +38,7 @@ interface DropdownItemProps{
 export default function DropdownItem({children, title, description, shortcut, startContent, endContent, href, target, isDisabled, onClick}:DropdownItemProps) {
   return (
     <Link href={`${href ? href : '#' }`} target={target} className="flex gap-3" onClick={onClick}>
-    <li className="flex group gap-3 items-center justify-between relative px-2 py-1.5 w-full h-full box-border rounded-lg subpixel-antialiased cursor-pointer outline-none border-[2px] border-transparent hover:border-zinc-200  dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:transition-colors hover:text-default-foreground">
+    <li className={dropdownItemStyle({})}>
       
         { startContent && 
           <div className='dark:text-zinc-400 dark:group-hover:text-zinc-50 text-xl pointer-events-none flex-shrink-0'>
