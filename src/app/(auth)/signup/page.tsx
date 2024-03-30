@@ -1,24 +1,25 @@
 "use client";
 
-import { RegisterSchema, RegisterSchemaType, mappedPlans } from "@/schemas";
+import { SignUpSchema, TSignUpSchema, mappedPlans } from "@/schemas";
 import { fields } from "@hookform/resolvers/ajv/src/__tests__/__fixtures__/data.js";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import {  FormProvider, useForm } from "react-hook-form";
 
 import {Form} from '@/app/components/Form'
+import CardWrapper from "@/app/components/auth/CardWrapper";
 
 
 
 
 
-export default function Register() {
-  const [output , setOutput] = useState('')
+export default function SignUp() {
 
-  const registerForm = useForm<RegisterSchemaType>({
-    resolver: zodResolver(RegisterSchema),
+  const registerForm = useForm<TSignUpSchema>({
+    resolver: zodResolver(SignUpSchema),
   })
-  const {register, handleSubmit,watch, formState: {errors, isSubmitting}, reset} = registerForm; 
+  
+  const {handleSubmit,watch, formState: {isSubmitting}, reset} = registerForm; 
 
   const userPassword = watch('password')
   const isPasswordStrong = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])').test(userPassword)
@@ -28,13 +29,18 @@ export default function Register() {
     <option value={key} key={key}>{value} </option>
   ))
 
-  const registerUser = (data:RegisterSchemaType) => {
-    setOutput(JSON.stringify(data, null, 2));
+  const registerUser = (data:TSignUpSchema) => {
     reset()
   }
 
   return (
-    <div className="p-20">
+    <CardWrapper
+    headerLabel='Cria uma conta '
+    backButonLabel="Já tens uma conta?"
+    backButtonHref='/signin'
+    showSocial
+  >
+    <div className="">
       <FormProvider {...registerForm}>
         <form 
           onSubmit={handleSubmit(registerUser)}
@@ -106,8 +112,9 @@ export default function Register() {
 
 
          
-      <pre className="p-10">{output}</pre>
+      
     </div>
+  </CardWrapper>
   );
 }
 

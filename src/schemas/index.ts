@@ -1,11 +1,14 @@
 import * as z from 'zod';
 
 
-export const LoginSchema = z.object({
-  email: z.string().email(),
+export const SignInSchema = z.object({
+  email: z.string().email({
+    message: 'Por favor insira um email valido'
+  }),
   password: z.string()
 });
 
+export type TSignInSchema = z.infer<typeof SignInSchema>
 const plans = ['free', 'basic', 'pro', 'premium'] as const
 
 export type Plans = (typeof plans)[number]
@@ -17,7 +20,7 @@ export const mappedPlans: {[key in Plans]: string} = {
   premium: 'Premium'
 }
 
-export const RegisterSchema = z.object({
+export const SignUpSchema = z.object({
   name: z.string().min(3, {
     message: 'O nome tem que ser maior a 3 carateres.'
   }).max(200, {
@@ -44,4 +47,5 @@ export const RegisterSchema = z.object({
   path: ['confirmPassword']
 });
 
-export type RegisterSchemaType = z.infer<typeof RegisterSchema>
+
+export type TSignUpSchema = z.infer<typeof SignUpSchema>

@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="px-9"> 
       
-      <div className="w-[1022px] h-[601px] bg-zinc-950">
+      <div className="w-[1022px] h-[601px] rounded-xl bg-zinc-950">
         
       </div>
       <div className="py-4 max-w-[1022px]">
