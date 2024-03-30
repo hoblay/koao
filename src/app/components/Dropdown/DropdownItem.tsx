@@ -3,6 +3,7 @@ import React from 'react'
 import { ReactNode, HTMLAttributeAnchorTarget } from "react";
 import { tv } from "tailwind-variants";
 
+
 const dropdownItemStyle = tv({
   base: 'flex group gap-3 items-center justify-between relative px-2 py-1.5 w-full h-full box-border rounded-lg subpixel-antialiased cursor-pointer outline-none border-transparent  hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:transition-colors hover:text-default-foreground',
   variants: {
@@ -53,7 +54,7 @@ export default function DropdownItem({children, title, description, shortcut, st
         { endContent && endContent }
         {shortcut && 
           <div className="">
-            <kbd className="  px-1 py-0.5 rounded-md font-sans text-zinc-700 dark:text-zinc-500 text-xs bg-purple-300 dark:bg-zinc-800 group-hover:bg-purple-300 dark:group-hover:bg-zinc-400 group-hover:text-zinc-800">⌘T</kbd>
+            <span className="  px-1 py-0.5 rounded-md font-sans text-zinc-700 dark:text-zinc-500 text-xs bg-purple-300 dark:bg-zinc-800 group-hover:bg-purple-300 dark:group-hover:bg-zinc-400 group-hover:text-zinc-800">⌘T</span>
           </div>
         }
         

@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 import ClassContent from "../components/ClassContent/ClassContent";
 import { Dropdown } from "../components/Dropdown";
+import { IconMoonStars, IconSun } from "@tabler/icons-react";
 
 export default function ClassLayout({
   children,
@@ -58,7 +59,7 @@ export default function ClassLayout({
                   <Dropdown.Item title={"Painel de control"} startContent={ <MixerHorizontalIcon/>}/>
                   <Dropdown.Item title={"Definições"} startContent={<GearIcon/>}/>
                   <Dropdown.Item title={"Ganhos"} startContent={<BackpackIcon/>}/>
-                  <Dropdown.Item title={theme === "dark" ? "Modo escuro" : "Modo claro"} shortcut description="Trocar o tema" startContent={theme === "dark" ? <MoonIcon/> : <SunIcon/>} onClick={() => theme == "dark"? setTheme('light'): setTheme("dark")}/>
+                  <Dropdown.Item title={`${theme === "dark" ? "Modo escuro" : "Modo claro"}`} shortcut description="Trocar o tema" startContent={theme === "dark" ? <IconMoonStars className="w-4 h-4"/> : <IconSun className="w-4 h-4"/>} onClick={() => theme == "dark"? setTheme('light'): setTheme("dark")}/>
                 </Dropdown.Section>
                 <Dropdown.Section showDivider>
                   

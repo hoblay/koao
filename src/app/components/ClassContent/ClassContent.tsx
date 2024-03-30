@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { PauseIcon, Pencil1Icon } from '@radix-ui/react-icons';
 
 import { Course } from '@/app/Data/Courses';
+import { IconEye, IconPlayerPause, IconPlayerPauseFilled } from '@tabler/icons-react';
 
 const moduleCircle = tv({
   base: ' w-9 h-9 rounded-full p-1 border-2 border-zinc-300 text-zinc-600 dark:text-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 items-center justify-center',
@@ -158,7 +159,7 @@ function ClassContent() {
             <>
               <Accordion.Item startContent={
                 <div className={moduleCircle({active: (index === indexActive), done: (checkDoneModule(item,index))})}>
-                  <div className='flex items-center text-center justify-center'>{(index === indexActive ? <PauseIcon className='m-1 w-4 h-4'/> : item.index)}</div>
+                  <div className='flex items-center text-center justify-center'>{(index === indexActive ? <IconPlayerPause className='m-1 w-4 h-4'/> : item.index)}</div>
                 </div>
                 } index={item.index} title={item.name}>
                 <div className="py-0 px-7" ref={listItems}>
@@ -168,7 +169,7 @@ function ClassContent() {
                       <li className= {`pb-4 p-1  border-s-2 pl-7 -ml-[2px] pt-3 ${checkDoneLesson(index, i) ? 'border-purple-500 dark:border-purple-700 ' : 'border-zinc-200 dark:border-zinc-700'}`} >
                         <span className={lessonStyle({active: (i === lesseonIndexActive && index === indexActive), done: (checkDoneLesson(index, i))})} onClick={() => markAsDone({index: item.index, lessons: [1+i]})}>
                             <span className="text-xs text-purple-800 dark:text-zinc-50" >
-                                {(i === lesseonIndexActive && index === indexActive) ? <Pencil1Icon className='w-3 h-3'/> : i + 1}
+                                {(i === lesseonIndexActive && index === indexActive) ? <IconEye className='w-3 h-3'/> : i + 1}
                             </span>
                         </span>
                         <Link href={'#'} className="">

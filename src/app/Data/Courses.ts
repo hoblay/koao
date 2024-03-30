@@ -6,6 +6,7 @@ export const Data = [
     modules: 15,
     price: 0,
     progress: 0,
+    category: "Programação"
   },
   {
     name: "Prisma & Free Databases (MySQL, Postgres & Mongo)",
@@ -14,6 +15,7 @@ export const Data = [
     modules: 32,
     price: 0,
     progress: 0,
+    category: "Design"
   },
   {
     name: "Full Stack E-Commerce + Dashboard & CMS",
@@ -22,6 +24,7 @@ export const Data = [
     modules: 23,
     price: 0,
     progress: 0,
+    category: "Programação"
   },
   {
     name: "Prisma & Free Databases (MySQL, Postgres & Mongo)",
@@ -30,6 +33,7 @@ export const Data = [
     modules: 5,
     price: 0,
     progress: 0,
+    category: "Programação"
   },
   {
     name: "Building a full stack Notion clone.",
@@ -38,6 +42,7 @@ export const Data = [
     modules: 12,
     price: 0,
     progress: 0,
+    category: "Design"
   },
   {
     name: "Building a full stack Notion clone.",
@@ -46,6 +51,7 @@ export const Data = [
     modules: 25,
     price: 0,
     progress: 15,
+    category: "Arte"
   },
   {
     name: "Building a full stack Notion clone.",
@@ -54,6 +60,7 @@ export const Data = [
     modules: 9,
     price: 0,
     progress: 0,
+    category: "Programação"
   },
   {
     name: "Building a full stack Notion clone.",
@@ -62,6 +69,7 @@ export const Data = [
     modules: 10,
     price: 0,
     progress: 67,
+    category: "Culinaria"
   },
   {
     name: "Building a full stack Notion clone.",
@@ -70,6 +78,7 @@ export const Data = [
     modules: 6,
     price: 0,
     progress: 0,
+    category: "Produção musical"
   },
   {
     name: "Building a full stack Notion clone.",
@@ -78,6 +87,7 @@ export const Data = [
     modules: 17,
     price: 0,
     progress: 100,
+    category: "Produção musical"
   },
   {
     name: "Building a full stack Notion clone.",
@@ -86,6 +96,7 @@ export const Data = [
     modules: 15,
     price: 0,
     progress: 0,
+    category: "Produção musical"
   },
   {
     name: "Building a full stack Notion clone.",
@@ -94,6 +105,7 @@ export const Data = [
     modules: 20,
     price: 0,
     progress: 0,
+    category: "Design"
   },
 
  

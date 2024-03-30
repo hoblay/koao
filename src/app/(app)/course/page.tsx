@@ -3,6 +3,7 @@
 import { Card } from "@/app/components/Card";
 import { Search } from "@/app/components/Search/Index";
 import { CardStackIcon, EraserIcon, CodeIcon, ChevronDownIcon, LaptopIcon, ArrowTopRightIcon, ResumeIcon, VideoIcon } from "@radix-ui/react-icons";
+import { IconPlayerPlay, IconPlayerPlayFilled } from "@tabler/icons-react";
 import Link from "next/link";
 
 
@@ -45,8 +46,8 @@ export default function Home() {
           <button type="button" className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-purple-700 hover:enabled:bg-purple-800 text-white px-8 py-3 text-2xl w-full">
             <div className="flex flex-1 justify-center items-center gap-2">
               <span className="text-base leading-6">Continuar a assistir</span>
-              <ResumeIcon />
-            </div>
+              <IconPlayerPlay />
+            </div> 
           </button>
         </Link>
         </div>

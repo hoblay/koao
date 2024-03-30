@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import { Providers } from "./providers";
+import "@/styles/globals.css";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,11 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full" suppressHydrationWarning>
+    <html lang="en" className="h-full" suppressHydrationWarning={true}>
       <body className={`${inter.className} dark:bg-[#101012] h-full w-full`}>
-        <Providers>
+        <ThemeProvider>
           {children}
-        </Providers>
+        </ThemeProvider>
         
       </body>
     </html>

@@ -1,11 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import Course from "../components/Course";
-import { Search } from "../components/Search/Index";
 
 import { Data } from "../Data/Courses";
-import { GearIcon, ExitIcon, BackpackIcon, MixerHorizontalIcon } from "@radix-ui/react-icons";
+
 
 export default function Home() {
   return (
@@ -21,6 +19,7 @@ export default function Home() {
               img={course.img}
               modules={course.modules}
               progress={course.progress}
+              category={course.category}
             />
           </>
         ))}  

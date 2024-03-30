@@ -17,6 +17,9 @@ const config: Config = {
   },
   plugins: [],
   darkMode: 'class',
+  compilerOptions: {
+    "strict": true
+  }
 };
 
 

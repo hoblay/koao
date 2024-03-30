@@ -7,6 +7,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 import { Dropdown } from "../components/Dropdown";
 import { DropdownContext } from "../components/Dropdown/DropdownRoot";
+import { IconBooks, IconChalkboard, IconDesk, IconLayoutDashboard, IconLogout, IconMicroscope, IconMoneybag, IconMoonStars, IconPresentation, IconSettings, IconSun, IconWorld } from "@tabler/icons-react";
 
 export default function AppLayout({
   children,
@@ -19,6 +20,7 @@ export default function AppLayout({
 
   // reference for the implementation of the function below 
   const ref = useRef(null);
+ 
 /** 
  *TODO: When Zustand: 
         Create an event listener function to close the User Dropdown whenever you click outside of the component.  
@@ -36,25 +38,28 @@ export default function AppLayout({
       window.removeEventListener("mousedown", handleOutSideClick);
     };
   }, [ref]);
+
 */
+
+
   return (
-    <div className="relative flex">
+    <div className="relative flex" >
       <aside className="sticky mt-5 top-5 left-5 h-[100%] md:flex overscroll-y-none overscroll-x-none ">
       <SideBar.Root logo brand="Logotipo" className=""> 
         <SideBar.Section first>
-          <SideBar.Item title="Inicio" icon={HomeIcon} href="/"/>
-          <SideBar.Item title="Cursos" icon={CardStackIcon} />
-          <SideBar.Item title="Element" icon={CubeIcon}/>
+          <SideBar.Item title="Explorar" icon={IconWorld} href="/"/>
+          <SideBar.Item title="Cursos" icon={IconBooks} />
+          <SideBar.Item title="Aulas" icon={IconPresentation}/>
         </SideBar.Section>
         <SideBar.Section title="Escritorio">
-          <SideBar.Item title="Element" icon={DashboardIcon} parent>
-              <SideBar.Item title="Meus cursos"/>
-              <SideBar.Item title="Aulas"/>
-              <SideBar.Item title="Comunidade"/>
+          <SideBar.Item title="Meus arquivos" icon={IconDesk} parent>
+              <SideBar.Item title="Teste" href="/teste"/>
+              <SideBar.Item title="Login" href="/auth/login"/>
+              <SideBar.Item title="Register" href="/auth/register"/>
           </SideBar.Item>
 
-          <SideBar.Item title="Element" icon={CubeIcon}/>
-          <SideBar.Item title="Element" icon={CubeIcon}/>
+          <SideBar.Item title="Quadro" icon={IconChalkboard}/>
+          <SideBar.Item title="Materia" icon={IconMicroscope}/>
         </SideBar.Section>
       </SideBar.Root>
       </aside>
@@ -72,7 +77,7 @@ export default function AppLayout({
             </Search.Section>
           </Search.Root>
 
-          <div className="items-center my-auto ml-auto relative space-x-4 " ref={ref}>
+          <div className="items-center my-auto ml-auto relative space-x-4 " >
             <Dropdown.Root>
               <Dropdown.Trigger>
                 <span className="inline-flex items-center justify-center size-[46px] text-sm font-semibold leading-none rounded-full bg-purple-100 text-purple-800 dark:bg-purple-800/30 dark:text-purple-500 select-none cursor-pointer" >
@@ -82,14 +87,14 @@ export default function AppLayout({
               <Dropdown.Menu>
                 <Dropdown.Section>
                   <Dropdown.Item title={"Winslet Mateus"} description="hoblayrecords@gmail.com"/>
-                  <Dropdown.Item title={"Painel de control"} startContent={ <MixerHorizontalIcon/>}/>
-                  <Dropdown.Item title={"Definições"} startContent={<GearIcon/>}/>
-                  <Dropdown.Item title={"Ganhos"} startContent={<BackpackIcon/>}/>
-                  <Dropdown.Item title={theme === "dark" ? "Modo escuro" : "Modo claro"} shortcut description="Trocar o tema" startContent={theme === "dark" ? <MoonIcon/> : <SunIcon/>} onClick={() => theme == "dark"? setTheme('light'): setTheme("dark")}/>
+                  <Dropdown.Item title={"Painel de control"} startContent={ <IconLayoutDashboard className="w-4 h-4"/>}/>
+                  <Dropdown.Item title={"Definições"} startContent={<IconSettings  className="w-4 h-4"/>}/>
+                  <Dropdown.Item title={"Ganhos"} startContent={<IconMoneybag className="w-4 h-4"/>}/>
+                  <Dropdown.Item title={`Modo escuro`} shortcut description="Trocar o tema" startContent={<IconMoonStars className="w-4 h-4"/>} onClick={() => theme == "dark"? setTheme('light'): setTheme("dark")} />
                 </Dropdown.Section>
                 <Dropdown.Section showDivider>
                   
-                  <Dropdown.Item title="Sair" description="Encerrar sessão" startContent={ <ExitIcon/>}/>
+                  <Dropdown.Item title="Sair" description="Encerrar sessão" startContent={ <IconLogout  className="w-4 h-4"/>}/>
                 </Dropdown.Section>
               </Dropdown.Menu> 
             </Dropdown.Root>
