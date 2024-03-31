@@ -31,7 +31,7 @@ export const SignUpSchema = z.object({
   }).join(' ')}),
   email: z.string().email({
     message: 'Por favor insira um email valido.'
-  }),
+  }).transform(email => { return email.toLowerCase()}),
   password: z.string().min(6, {
     message: 'A senha tem que ser maior a 6 carateres'
   }),

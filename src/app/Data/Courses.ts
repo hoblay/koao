@@ -54,7 +54,7 @@ export const Data = [
     category: "Arte"
   },
   {
-    name: "Building a full stack Notion clone.",
+    name: "Curso de backend avançado com PHP",
     img:
       "https://www.hostinger.com/tutorials/wp-content/uploads/sites/2/2021/11/php-8-2.webp",
     modules: 9,
@@ -63,7 +63,7 @@ export const Data = [
     category: "Programação"
   },
   {
-    name: "Building a full stack Notion clone.",
+    name: "Curso de culinaria 101, cozinha desde o basico a avançado.",
     img:
       "https://res.cloudinary.com/jerrick/image/upload/v1549397962/vvvqqvhoqrbhmnwtngiu.jpg",
     modules: 10,
@@ -72,7 +72,7 @@ export const Data = [
     category: "Culinaria"
   },
   {
-    name: "Building a full stack Notion clone.",
+    name: "Curso a arte da mistura e masterização - Parte 2",
     img:
       "https://process.fs.teachablecdn.com/ADNupMnWyR7kCWRvm76Laz/resize=width:705/https://www.filepicker.io/api/file/5pi1gJUPR0iRn4mruCBo",
     modules: 6,
@@ -81,7 +81,7 @@ export const Data = [
     category: "Produção musical"
   },
   {
-    name: "Building a full stack Notion clone.",
+    name: "Curso a arte da mistura e masterização - Parte 1",
     img:
       "https://www.filepicker.io/api/file/OTjVSdC5TxvppATpCNUI",
     modules: 17,
@@ -90,7 +90,7 @@ export const Data = [
     category: "Produção musical"
   },
   {
-    name: "Building a full stack Notion clone.",
+    name: "Curso de introdução à produção musical - Nivel 1",
     img:
       "https://d3f1iyfxxz8i1e.cloudfront.net/courses/course_image/efcc58be65d1.jpeg",
     modules: 15,
@@ -99,7 +99,7 @@ export const Data = [
     category: "Produção musical"
   },
   {
-    name: "Building a full stack Notion clone.",
+    name: "Curso de photoshop para iniciantes: Do zero a avançado. ",
     img:
       "https://miro.medium.com/v2/resize:fit:750/0*hqGL67SSwgLfr3j9.jpg",
     modules: 20,

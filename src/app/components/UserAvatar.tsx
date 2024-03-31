@@ -9,10 +9,8 @@ interface UserAvatarProps{
   setTheme: Function
 }
 
-
-async function UserAvatar({theme, setTheme}: UserAvatarProps) {
-  const session = await getServerSession(authOptions);
-  console.log(session)
+ function UserAvatar({theme, setTheme}: UserAvatarProps) {
+    
   return (
     <div className="items-center my-auto ml-auto relative space-x-4 " >
         <Dropdown.Root>
