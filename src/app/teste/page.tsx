@@ -1,5 +1,6 @@
 "use client";
 
+import {Input} from "@/app/components/Input/Input";
 import Prova from "../components/Avatar/Prova";
 import LoginButton from "../components/auth/loginButton";
 
@@ -18,7 +19,7 @@ export default function Home() {
         <button>APERTAR</button>
       </LoginButton>    
       <div className="p-20">
-        <Prova />
+        <Input />
       </div>
     </div>
   );

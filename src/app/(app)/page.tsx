@@ -1,11 +1,15 @@
-"use client";
 
+
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 import Course from "../components/Course";
 
 import { Data } from "../Data/Courses";
 
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+  console.log(session)
   return (
     <div className="px-9"> 
       
@@ -13,7 +17,7 @@ export default function Home() {
         {Data.map((course, index) => (
           <>
             <Course
-              key={course.name}
+              key={course.name+ ' '+ course.progress + ' '+ course.category}
               name={course.name}
               price={course.price}
               img={course.img}

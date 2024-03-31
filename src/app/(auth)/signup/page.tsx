@@ -8,12 +8,14 @@ import {  FormProvider, useForm } from "react-hook-form";
 
 import {Form} from '@/app/components/Form'
 import CardWrapper from "@/app/components/auth/CardWrapper";
+import { useRouter } from "next/navigation";
 
 
 
 
 
 export default function SignUp() {
+  const router = useRouter();
 
   const registerForm = useForm<TSignUpSchema>({
     resolver: zodResolver(SignUpSchema),
@@ -29,8 +31,29 @@ export default function SignUp() {
     <option value={key} key={key}>{value} </option>
   ))
 
-  const registerUser = (data:TSignUpSchema) => {
-    reset()
+  const registerUser = async (data:TSignUpSchema) => {
+    const response = await fetch('api/auth/user', {
+      method: 'POST',
+      headers: {
+        'contentType': 'aplication/json'
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        plan: data.plan,
+        dateOfBirth: data.dateOfBirth,
+        password: data.password,
+        confirmPassword: data.confirmPassword
+
+      })
+    })
+
+    if (response.ok){
+      router.push('/signin')
+      reset()
+     }
+    else console.error('something went wrong', {response})
+   
   }
 
   return (
@@ -48,9 +71,9 @@ export default function SignUp() {
         >
           <Form.Field>
             <Form.Label htmlFor="name">
-              Nome
+              Nome completo
             </Form.Label>
-            <Form.Input type="text" name="name" />
+            <Form.Input placeholder="João Lourenço" type="text" name="name" />
             <Form.ErrorMessage field="name" />
           </Form.Field>
 
@@ -58,7 +81,7 @@ export default function SignUp() {
             <Form.Label htmlFor="email">
               E-mail
             </Form.Label>
-            <Form.Input type="email" name="email" />
+            <Form.Input placeholder="example@email.com" type="email" name="email" />
             <Form.ErrorMessage field="email" />
           </Form.Field>
           <Form.Field>
@@ -69,21 +92,21 @@ export default function SignUp() {
                 ? <span className="text-xs text-emerald-600">Senha forte</span>
                 : <span className="text-xs text-red-500">Senha fraca</span>)}
             </Form.Label>
-            <Form.Input type="password" name="password" />
+            <Form.Input placeholder="Palavra-passe" type="password" name="password" />
             <Form.ErrorMessage field="password" />
           </Form.Field>
           <Form.Field>
-            <Form.Label htmlFor="confirmPasword">
+            <Form.Label htmlFor="confirmPassword">
               Confirme a palavra-passe
             </Form.Label>
-            <Form.Input type="password" name="confirmPassword" />
+            <Form.Input placeholder="Palavra-passe" type="password" name="confirmPassword" />
             <Form.ErrorMessage field="confirmPassword" />
           </Form.Field>
           <Form.Field>
             <Form.Label htmlFor="dateOfBirth">
               Data de nascimento
             </Form.Label>
-            <Form.Input type="date" name="dateOfBirth" />
+            <Form.Input type="date" name="dateOfBirth" placeholder="07/01/2001" />
             <Form.ErrorMessage field="dateOfBirth" />
           </Form.Field>
           <Form.Field>
@@ -98,9 +121,9 @@ export default function SignUp() {
           <button 
             type="submit" 
             disabled={isSubmitting}
-            className="bg-violet-500 text-white rounded px-3 h-10 font-semibold text-sm hover:bg-violet-600"
+            className="bg-purple-500 text-white rounded px-3 h-10 font-semibold text-sm hover:bg-purple-600"
           >
-            Salvar
+            Criar conta
           </button>
         </form>
       </FormProvider>
