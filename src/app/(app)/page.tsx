@@ -4,7 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import Course from "../components/Course";
 
-import { Data } from "../Data/Courses";
+import { Data } from "../Data/Courses"
 
 
 export default async function Home() {
@@ -12,7 +12,8 @@ export default async function Home() {
   console.log(session)
   return (
     <div className="px-9"> 
-      
+           
+ 
       <div className="pb-5 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
         {Data.map((course, index) => (
           <>

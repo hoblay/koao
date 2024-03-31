@@ -9,6 +9,7 @@ interface AccordionProps {
   children?: ReactNode | ReactNode[],
   isDisabled?: boolean,
   selectionMode?: 	'none' | 'single' | 'multiple',
+  className?: string
 }
 
 const Accordion = tv({
@@ -38,14 +39,14 @@ interface AccContext{
 export const AccordionContext = createContext({});
 
 
-function AccordionRoot({children, isDisabled, selectionMode}:AccordionProps) {
+function AccordionRoot({children, isDisabled, selectionMode, className}:AccordionProps) {
   const [indexopen, setIndexOpen] = useState<number>(99999);
 
   const handleClick = (index: number) => {
     setIndexOpen(index === indexopen ? 99999 : index);
   };
   return (
-    <div className={Accordion({isDisabled, selectionMode})}>
+    <div className={Accordion({isDisabled, selectionMode, class: className})}>
       <AccordionContext.Provider value={{ indexopen, onClick: handleClick }}>
         {children}
       </AccordionContext.Provider>

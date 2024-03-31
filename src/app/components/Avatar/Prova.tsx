@@ -18,21 +18,25 @@ const AvatarStyle= tv({
     }
   },
   defaultVariants: {
-    active: false,
+    color: 'purple',
     done: false
   }
 });
 
 
 interface AvatarProps{
-  name?: string,
-  surname?: string,
-  img?: string, 
-  color: 'purple' | 'blue' | 'zinc' | 'green' | 'emerald'
+  user?: User
 }
-function Prova({name, surname, img, color}:AvatarProps) {
+
+interface User{
+  name: string,
+  email: string,
+  img?: string,
+}
+
+function Prova({ user }:AvatarProps) {
   return (
-    <span className={AvatarStyle({color})}>
+    <span className={AvatarStyle({color: 'purple'})}>
       WM
     </span>
 

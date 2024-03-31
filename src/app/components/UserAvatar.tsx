@@ -1,9 +1,8 @@
 import { IconLayoutDashboard, IconSettings, IconMoneybag, IconMoonStars, IconLogout, IconSun } from '@tabler/icons-react'
 import React from 'react'
 import { Dropdown } from './Dropdown'
-import { authOptions } from '@/lib/auth';
-import { getServerSession } from 'next-auth';
-
+import Avatar from '@/app/components/Avatar/Prova'
+ 
 interface UserAvatarProps{
   theme?: string | undefined,
   setTheme: Function
@@ -15,10 +14,8 @@ interface UserAvatarProps{
     <div className="items-center my-auto ml-auto relative space-x-4 " >
         <Dropdown.Root>
           <Dropdown.Trigger>
-            <span className="inline-flex items-center justify-center size-[46px] text-sm font-semibold leading-none rounded-full bg-purple-100 text-purple-800 dark:bg-purple-800/30 dark:text-purple-500 select-none cursor-pointer" >
-              WM
-            </span>
-          </Dropdown.Trigger>
+            <Avatar/>
+         </Dropdown.Trigger>
           <Dropdown.Menu>
             <Dropdown.Section>
               <Dropdown.Item title={"Winslet Mateus"} description="hoblayrecords@gmail.com"/>

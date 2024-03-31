@@ -153,7 +153,7 @@ function ClassContent() {
       
       
       <div className="bg-zinc-100 dark:bg-zinc-950/25 p-2">
-        <Accordion.Root>
+        <Accordion.Root className=''>
           {Course.map((item, index) => (
             
             <>

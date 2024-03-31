@@ -25,7 +25,7 @@ export function FormInput(props: InputProps) {
               
               <input id={props.name}  {...register(props.name)} 
               {...props}
-                className={`w-full font-normal relative max-w-[350px] flex items-center shadow-sm px-3 gap-3 dark:bg-zinc-800 dark:hover:bg-zinc-900 dark:focus:bg-zinc-900 h-10 min-h-12 rounded-md transition-[background] motion-reduce:transition-none !duration-150 outline-none  dark:placeholder:text-zinc-500 focus-visible:outline-none  data-[has-end-content=true]:pe-1.5 text-small dark:text-zinc-100 ${props.type !== 'date' && 'pl-[44px]'}`} />
+                className={`w-full font-normal relative max-w-[350px] flex items-center shadow-sm px-3 gap-3 dark:bg-zinc-800 dark:hover:bg-zinc-900 dark:focus:bg-zinc-900 h-10 min-h-12 rounded-md transition-[background] motion-reduce:transition-none !duration-150 outline-none  dark:placeholder:text-zinc-500 focus-visible:outline-none  data-[has-end-content=true]:pe-1.5 text-small dark:text-zinc-100 ${props.type !== 'date' && 'pl-[44px]'} justify-between`} />
             </div>
         }
   
