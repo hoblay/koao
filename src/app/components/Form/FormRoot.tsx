@@ -1,3 +1,4 @@
+"use client";
 import React, { ReactNode } from 'react'
 import { FormProvider, useFormContext } from 'react-hook-form'
 

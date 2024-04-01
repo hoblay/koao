@@ -1,3 +1,4 @@
+"use client";
 import { ReactNode, useContext } from "react";
 import React from 'react'
 import { tv } from "tailwind-variants";

@@ -1,4 +1,4 @@
-import { type } from "os";
+"use client";
 import { ReactNode, createContext, useEffect, useState } from "react";
 import React from 'react'
 import { tv } from "tailwind-variants";

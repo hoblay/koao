@@ -27,27 +27,22 @@ const AvatarStyle= tv({
 
 
 interface AvatarProps{
-  user?: User,
   initials?: string,
   image?: string
 }
 
-interface User{
-  name: string,
-  email: string,
-  img?: string,
-}
 
-function Prova({ user, initials ,image}:AvatarProps) {
+
+function Avatar({ initials ,image}:AvatarProps) {
   if(image){ 
     return <Image src={image} className=' object-cover rounded-full cursor-pointer hover:opacity-95' width={42} height={42} unoptimized  alt="Avatar"/>
   }
   return (
     <span className={AvatarStyle({color: 'purple'})}>
-      { initials?.toUpperCase()} <IconUserFilled className='z-2 text-purple-800 dark:text-white rounded-full w-6 h-6'/>
+      { initials !== 'sebago' ? initials?.toUpperCase(): <IconUserFilled className='z-2 text-purple-800 dark:text-white rounded-full w-6 h-6'/>} 
     </span>
 
   )
 }
 
-export default Prova
+export default Avatar

@@ -1,3 +1,4 @@
+"use client";
 import { IconCalendarMonth, IconLockSquareRoundedFilled, IconMailFilled, IconSignature } from "@tabler/icons-react";
 import { InputHTMLAttributes, ReactNode } from "react";
 import { useFormContext } from 'react-hook-form'

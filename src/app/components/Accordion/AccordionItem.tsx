@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronLeftIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import React, { ReactNode, useContext } from 'react'
