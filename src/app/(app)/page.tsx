@@ -12,7 +12,7 @@ export default function Home() {
         {Data.map((course, index) => (
           <>
             <Course
-              key={course.name+ ' '+ course.progress + ' '+ course.category}
+              key={course.img}
               name={course.name}
               price={course.price}
               img={course.img}
