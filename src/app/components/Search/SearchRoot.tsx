@@ -31,7 +31,7 @@ export function SearchRoot({ children, className }:SearchProps) {
     setIsTyping(false);
   };
 
-  const type = (e) => {
+  const type = () => {
     setIsTyping(true);
   }
 
@@ -40,7 +40,7 @@ export function SearchRoot({ children, className }:SearchProps) {
 
   return(
     
-    <form className={`relative max-w-lg rounded-xl ${className} ${isFocus ? 'shadow-sm ' : ''}`}  onFocus={() => handleFocus()} onBlur={() => handleBlur()} autoComplete="off"> 
+    <form className={`hidden sm:block relative max-w-lg rounded-xl ${className} ${isFocus ? 'shadow-sm ' : ''}`}  onFocus={() => handleFocus()} onBlur={() => handleBlur()} autoComplete="off"> 
         <label className="mb-2 text-sm font-medium text-zinc-900 sr-only dark:text-white">Pesquisar</label>
         <div className="relative">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -49,9 +49,9 @@ export function SearchRoot({ children, className }:SearchProps) {
                 </div>
             </div>
             <input type="search" className={`peer block w-full p-4 ps-10 text-sm text-zinc-600 placeholder:text-zinc-500 bg-zinc-50 outline-none  dark:bg-zinc-900 dark:border-zinc-800 dark:placeholder-zinc-400 dark:text-white  transition-transform ease-in duration-150 ${isFocus ? '  rounded-t-xl': 'rounded-xl' }`} placeholder="Pesquisar cursos, docentes, colegas, materia..."
-            onChange={e => type(e)}
+            onChange={e => type()}
             />
-            <div className="absolute z-40 inset-y-0 end-4 flex items-center ps-3 pointer-events-none hover:text-zinc-600 hover:cursor-pointer hidden">
+            <div className="absolute z-40 inset-y-0 end-4 items-center ps-3 pointer-events-none hover:text-zinc-600 hover:cursor-pointer hidden">
               <Cross1Icon className="w-4 h-4 text-zinc-500 dark:text-zinc-400 "/>
             </div>
         </div>

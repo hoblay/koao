@@ -9,6 +9,7 @@ import { useState } from "react";
 import CardWrapper from "@/app/components/auth/CardWrapper";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { IconLoader3 } from "@tabler/icons-react";
 
 
 
@@ -35,7 +36,7 @@ const logInUser = async (data:TSignInSchema) => {
   else {
     reset();
     router.refresh();
-    router.back();
+    router.push('/');
   }
 }
 
@@ -61,9 +62,9 @@ const logInUser = async (data:TSignInSchema) => {
          <button 
             type="submit" 
             disabled={isSubmitting}
-            className="bg-purple-500 text-white rounded px-3 h-10 font-semibold text-sm hover:bg-purple-600"
+            className="bg-purple-500 text-white rounded px-3 h-10 font-semibold text-sm hover:bg-purple-600 flex justify-center items-center disabled:bg-purple-950"
           >
-            Acessar
+            {isSubmitting ? <IconLoader3 className=" animate-spin text-zinc-200/60"/> : <span className="text-base">Acessar</span> }
           </button> 
         </form>
       </FormProvider>

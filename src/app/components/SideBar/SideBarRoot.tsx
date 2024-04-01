@@ -41,13 +41,13 @@ export function SideBarRoot({ children, className, logo, brand }:SideBarProps) {
 
   return(
     
-    <div className={`h-[calc(100vh-40px)] overscroll-x-none overscroll-y-none  ${className}`} onMouseEnter={() => handleHover()} onMouseLeave={() => hideButton()}>
-      <button type="button" className="inline-flex items-center p-2 mt-2 text-sm rounded-lg ms-3 text-zinc-500 sm:hidden hover:bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-zinc-200 dark:text-zinc-400 dark:hover:bg-zinc-700 dark:focus:ring-zinc-600">
+    <div className={`md:h-[calc(100vh-40px)] sm:sticky absolute overscroll-x-none overscroll-y-none  ${className}`} onMouseEnter={() => handleHover()} onMouseLeave={() => hideButton()}>
+      <button type="button" className="inline-flex items-center p-2 mt-2 text-sm rounded-lg ms-3 text-zinc-500 md:hidden hover:bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-zinc-200 dark:text-zinc-400 dark:hover:bg-zinc-700 dark:focus:ring-zinc-600">
           <span className="sr-only">Open sidebar</span>
           <HamburgerMenuIcon className='w-6 h-6' />
         </button>
 
-        <aside className={` h-[calc(100vh-40px)] overscroll-x-none overscroll-y-none transition-all ease-in-out duration-300 ${open ? 'w-[216px]  ' : 'w-[76px]'}` }>
+        <aside className={`hidden md:block h-[calc(100vh-40px)] overscroll-x-none overscroll-y-none transition-all ease-in-out duration-300 ${open ? 'w-[216px]  ' : 'w-[76px]'}` }>
 
         <button className={` absolute -right-3 top-7 p-1 bg-purple-300 hover:bg-purple-400 dark:bg-purple-700 rounded-full shadow-sm dark:hover:bg-purple-800 dark:text-white ${isHidden ? 'hidden' : ''}`} onClick={shrinkBar}> <IconLayoutSidebarLeftExpand className="w-4 h-4"/></button>
           <div className="h-[calc(100vh-40px)] overscroll-x-none overscroll-y-none rounded-xl px-3 py-4 overflow-y-auto bg-zinc-50 dark:bg-zinc-900">

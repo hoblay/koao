@@ -18,13 +18,13 @@ function CardWrapper({children, headerLabel, backButonLabel, backButtonHref, sho
       <Card.Body  className='px-10 py-4'>
         {children}
       </Card.Body>
-      <Card.Footer className=''>
+      <Card.Footer className='py-4'>
         <p className='text-center p-4'>Ou se preferir</p>
         <div className="items-center justify-center px-5 flex gap-2">
-          <button className="py-3 px-16 items-center justify-center bg-purple-500 hover:bg-purple-600 text-zinc-100 flex rounded-xl">
+          <button className="py-2 px-16 items-center justify-center bg-zinc-700 hover:bg-zinc-800 text-zinc-100 flex rounded-md">
             <IconBrandGoogleFilled />
           </button>
-          <button className="py-3 px-16 items-center justify-center bg-purple-500 hover:bg-purple-600 text-zinc-100 flex rounded-xl">
+          <button className="py-2 px-16 items-center justify-center bg-zinc-700 hover:bg-zinc-800 text-zinc-100 flex rounded-md">
             <IconBrandGithubFilled />
           </button>
         </div>

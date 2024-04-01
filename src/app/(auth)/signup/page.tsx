@@ -1,14 +1,14 @@
 "use client";
 
 import { SignUpSchema, TSignUpSchema, mappedPlans } from "@/schemas";
-import { fields } from "@hookform/resolvers/ajv/src/__tests__/__fixtures__/data.js";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 import {  FormProvider, useForm } from "react-hook-form";
 
 import {Form} from '@/app/components/Form'
 import CardWrapper from "@/app/components/auth/CardWrapper";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
+import { IconLoader, IconLoader3 } from "@tabler/icons-react";
 
 
 
@@ -49,7 +49,12 @@ export default function SignUp() {
     })
 
     if (response.ok){
-      router.push('/signin')
+      await signIn('credentials', {
+        email: data.email,
+        password: data.password,
+        redirect: false
+      })
+      router.push('/')
       reset()
      }
     else console.error('something went wrong', {response})
@@ -121,9 +126,11 @@ export default function SignUp() {
           <button 
             type="submit" 
             disabled={isSubmitting}
-            className="bg-purple-500 text-white rounded px-3 h-10 font-semibold text-sm hover:bg-purple-600"
-          >
-            Criar conta
+            className="bg-purple-500 text-white rounded px-3 h-10 font-semibold text-sm hover:bg-purple-600 flex justify-center items-center  disabled:bg-purple-950"
+            >   
+            {isSubmitting ? <IconLoader3 className=" animate-spin text-zinc-200/60"/> 
+            : <span className="text-base">Criar conta</span> }
+            
           </button>
         </form>
       </FormProvider>

@@ -5,6 +5,7 @@ import React from 'react'
 import { Card } from './Card';
 import { IconDeviceSpeaker, IconNotebook, IconStarFilled } from '@tabler/icons-react';
 import Tag from './Tag/Tag';
+import Image from 'next/image';
 
 interface CourseProps{
   className?: string,
@@ -25,7 +26,7 @@ function Course({ className, progress, img, name, price, modules, category }:Cou
     <Link href="/course" className=''>
       <Card.Root>
       <Card.Body className='relative'>
-        <img src={img} className="object-cover rounded-xl w-full md:max-h-[172px]"/>
+        <Image src={img} className="object-cover rounded-xl w-full md:max-h-[172px] h-[100%]" alt='course' width={311} height={172} unoptimized/>
         
         <div
           className="hidden absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-tr from-transparent via-transparent to-zinc-900/60">

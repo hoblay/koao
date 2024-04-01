@@ -16,7 +16,7 @@ if(session) router.push('/')
   return (
     <div className="relative flex">
      
-      <main className="w-full mt-20">
+      <main className="w-full my-20">
         {children}
       </main>
     </div>
