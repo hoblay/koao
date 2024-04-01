@@ -17,7 +17,7 @@ const dropdownMenuStyle = tv({
     },
     open: {
       true: 'opacity-100',
-      false: 'opacity-0'
+      false: 'opacity-0 -z-20'
       
     },
   },
