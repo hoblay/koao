@@ -11,8 +11,10 @@ const AvatarStyle= tv({
       purple: 'bg-purple-100 text-purple-800 dark:bg-purple-800/30 dark:text-purple-500',
       green: 'bg-green-100 text-green-800 dark:bg-green-800/30 dark:text-green-500',
       blue: 'bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-500',
-      zinc: 'bg-zinc-100 text-zinc-800 dark:bg-zinc-800/30 dark:text-zinc-500',
+      orange: 'bg-orange-100 text-orange-800 dark:bg-orange-800/30 dark:text-orange-500',
       emerald: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-800/30 dark:text-emerald-500',
+      pink: 'bg-pink-100 text-pink-800 dark:bg-pink-800/30 dark:text-pink-500',
+      amber: 'bg-amber-100 text-amber-800 dark:bg-amber-800/30 dark:text-amber-500',
       
     },
     done: {
@@ -28,18 +30,23 @@ const AvatarStyle= tv({
 
 interface AvatarProps{
   initials?: string,
-  image?: string
+  image?: string,
+  color?: "purple" | "green" | "emerald" | "orange" | "pink" | "blue" | "amber"
 }
 
 
 
-function Avatar({ initials ,image}:AvatarProps) {
+function Avatar({ initials ,image, color}:AvatarProps) {
+
+ 
+
+  
   if(image){ 
     return <Image src={image} className=' object-cover rounded-full cursor-pointer hover:opacity-95' width={42} height={42} unoptimized  alt="Avatar"/>
   }
   return (
-    <span className={AvatarStyle({color: 'purple'})}>
-      { initials !== 'sebago' ? initials?.toUpperCase(): <IconUserFilled className='z-2 text-purple-800 dark:text-white rounded-full w-6 h-6'/>} 
+    <span className={AvatarStyle({color: color})}>
+      { initials !== 'sebago' ? initials?.toUpperCase(): <IconUserFilled className={'z-2 text-purple-800 dark:text-white rounded-full w-6 h-6'}/>} 
     </span>
 
   )

@@ -4,6 +4,7 @@ import { Card } from "@/app/components/Card";
 import { Search } from "@/app/components/Search/Index";
 import { CardStackIcon, EraserIcon, CodeIcon, ChevronDownIcon, LaptopIcon, ArrowTopRightIcon, ResumeIcon, VideoIcon } from "@radix-ui/react-icons";
 import { IconPlayerPlay, IconPlayerPlayFilled } from "@tabler/icons-react";
+import Image from "next/image";
 import Link from "next/link";
 
 
@@ -34,11 +35,8 @@ export default function Home() {
         </div>
         <div className="absolute max-w-[345px] right-8 top-8 justify-center items-center pt-4 pb-6 px-4 bg-zinc-50 dark:bg-zinc-900 w-full  rounded-xl shadow-sm flex-col space-y-4">
         <div className="relative rounded-xl">
-        <img
-            src={"https://www.codewithantonio.com/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2F35b3a956-baae-4612-b385-17a835775eed-h7q22q.png&w=3840&q=75"} className="rounded-xl"/>
-        <div
-            className="rounded-xl absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-tr from-transparent via-transparent to-zinc-900/60">
-          </div>
+        <Image src={"https://miro.medium.com/v2/resize:fit:1280/format:webp/1*SL4sWHdjGR3vo0x5ta3xfw.jpeg"} className="rounded-xl" width={313} height={188} alt="course" unoptimized />
+      
         </div>
 
         <div className="px-2">

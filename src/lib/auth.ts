@@ -51,15 +51,21 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
 
     async jwt({token, user, session}){
+      const getRandomBackgroundColor = () => {
+        const colors = ['green', 'purple', 'emerald', 'orange', 'pink', 'blue', 'amber'];
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        return colors[randomIndex];
+      };
+      const color = getRandomBackgroundColor();
       if(user) return {
-        ...token, id: user.id, plan: user.plan
+        ...token, id: user.id, plan: user.plan, color
       }
       return token;
     },
     async session({session, user, token }){
       
       return {
-        ...session, user: {...session.user, id: token.id, plan: token.plan}
+        ...session, user: {...session.user, id: token.id, plan: token.plan, color:token.color}
       }
     }
   }

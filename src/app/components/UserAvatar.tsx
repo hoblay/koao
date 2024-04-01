@@ -14,7 +14,8 @@ interface User{
   name: string,
   email: string,
   image?: string,
-  plan?: string
+  plan?: string,
+  color?: "purple" | "green" | "emerald" | "orange" | "pink" | "blue" | "amber"
 }
  function UserAvatar({user}: UserAvatarProps) {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -22,7 +23,7 @@ interface User{
   const [themeState, setThemeState] = useState<string | undefined>('system');   
 
   const {data: session} = useSession()
-  if(session)user = session.user;
+  if(session) user = session.user;
   let firstName = ' ';
   let lastName = ' '  ;
 
@@ -39,7 +40,7 @@ interface User{
     <div className="items-center my-auto ml-auto relative space-x-4 " >
       <Dropdown.Root>
         <Dropdown.Trigger>
-          <Avatar initials={`${user ? firstName[0]+''+lastName[0] : 'sebago'}`} image={user?.image}/>
+          <Avatar initials={`${user ? firstName[0]+''+lastName[0] : 'sebago'}`} image={user?.image} color={user?.color}/>
         </Dropdown.Trigger>
         <Dropdown.Menu>
           <Dropdown.Section>
