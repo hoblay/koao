@@ -7,16 +7,23 @@ import { useTheme } from "next-themes";
 import ClassContent from "../components/ClassContent/ClassContent";
 import { Dropdown } from "../components/Dropdown";
 import { IconMoonStars, IconSun } from "@tabler/icons-react";
+import UserAvatar from "../components/UserAvatar";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function ClassLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const router = useRouter()
+  const { data: session } = useSession() 
+  if(!session) router.push('/')
+
   const ref = useRef(null);
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;
-
+ 
 
 
   return (
@@ -47,26 +54,7 @@ export default function ClassLayout({
               <span>Voltar pro inicio</span>
             </Link>
           </div>
-            <Dropdown.Root>
-              <Dropdown.Trigger>
-                <span className="inline-flex items-center justify-center size-[46px] text-sm font-semibold leading-none rounded-full bg-purple-100 text-purple-800 dark:bg-purple-800/30 dark:text-purple-500 select-none cursor-pointer" >
-                  WM
-                </span>
-              </Dropdown.Trigger>
-              <Dropdown.Menu>
-                <Dropdown.Section>
-                  <Dropdown.Item title={"Winslet Mateus"} description="hoblayrecords@gmail.com"/>
-                  <Dropdown.Item title={"Painel de control"} startContent={ <MixerHorizontalIcon/>}/>
-                  <Dropdown.Item title={"Definições"} startContent={<GearIcon/>}/>
-                  <Dropdown.Item title={"Ganhos"} startContent={<BackpackIcon/>}/>
-                  <Dropdown.Item title={`${theme === "dark" ? "Modo escuro" : "Modo claro"}`} shortcut description="Trocar o tema" startContent={theme === "dark" ? <IconMoonStars className="w-4 h-4"/> : <IconSun className="w-4 h-4"/>} onClick={() => theme == "dark"? setTheme('light'): setTheme("dark")}/>
-                </Dropdown.Section>
-                <Dropdown.Section showDivider>
-                  
-                  <Dropdown.Item title="Sair" description="Encerrar sessão" startContent={ <ExitIcon/>}/>
-                </Dropdown.Section>
-              </Dropdown.Menu> 
-            </Dropdown.Root>
+          <UserAvatar theme={theme} setTheme={setTheme}/>
           </div>
 
         </div>

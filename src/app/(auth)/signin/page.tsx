@@ -33,8 +33,9 @@ const logInUser = async (data:TSignInSchema) => {
 
   if (signInData?.error) console.error(signInData.error)
   else {
-    reset()
-    router.push('/')
+    reset();
+    router.refresh();
+    router.back();
   }
 }
 

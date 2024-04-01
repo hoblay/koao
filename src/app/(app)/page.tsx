@@ -7,9 +7,7 @@ import Course from "../components/Course";
 import { Data } from "../Data/Courses"
 
 
-export default async function Home() {
-  const session = await getServerSession(authOptions);
-  console.log(session)
+export default function Home() {
   return (
     <div className="px-9"> 
            

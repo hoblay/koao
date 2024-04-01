@@ -1,4 +1,6 @@
 
+import { IconUserCircle, IconUserFilled } from '@tabler/icons-react';
+import Image from 'next/image';
 import React from 'react'
 import { tv } from 'tailwind-variants';
 
@@ -25,7 +27,9 @@ const AvatarStyle= tv({
 
 
 interface AvatarProps{
-  user?: User
+  user?: User,
+  initials?: string,
+  image?: string
 }
 
 interface User{
@@ -34,10 +38,13 @@ interface User{
   img?: string,
 }
 
-function Prova({ user }:AvatarProps) {
+function Prova({ user, initials ,image}:AvatarProps) {
+  if(image){ 
+    return <Image src={image} className=' object-cover rounded-full cursor-pointer hover:opacity-95' width={42} height={42} unoptimized  alt="Avatar"/>
+  }
   return (
     <span className={AvatarStyle({color: 'purple'})}>
-      WM
+      { initials?.toUpperCase()} <IconUserFilled className='z-2 text-purple-800 dark:text-white rounded-full w-6 h-6'/>
     </span>
 
   )

@@ -40,14 +40,29 @@ export const authOptions: NextAuthOptions = {
           name: existingUser.name,
           email: existingUser.email,
           dateOfBirth: existingUser.dateOfBirth,
-          plan: existingUser.plan,
+          plan: `${existingUser.plan}`,
           image: existingUser.image,
         }
 
         }
       }
     
-    )]
+    )],
+  callbacks: {
+
+    async jwt({token, user, session}){
+      if(user) return {
+        ...token, id: user.id, plan: user.plan
+      }
+      return token;
+    },
+    async session({session, user, token }){
+      
+      return {
+        ...session, user: {...session.user, id: token.id, plan: token.plan}
+      }
+    }
+  }
   
 }
 

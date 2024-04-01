@@ -59,8 +59,8 @@ export default function AppLayout({
         <SideBar.Section title="Escritorio">
           <SideBar.Item title="Meus arquivos" icon={IconDesk} parent>
               <SideBar.Item title="Teste" href="/teste"/>
-              <SideBar.Item title="Login" href="/signin"/>
-              <SideBar.Item title="Register" href="/signup"/>
+              <SideBar.Item title="Element" />
+              <SideBar.Item title="Element"/>
           </SideBar.Item>
 
           <SideBar.Item title="Quadro" icon={IconChalkboard}/>

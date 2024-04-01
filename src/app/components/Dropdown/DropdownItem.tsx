@@ -46,7 +46,7 @@ export default function DropdownItem({children, title, description, shortcut, st
             {startContent}
           </div>
         }
-        <div className="w-full flex-1 flex flex-col items-start justify-center">
+        <div className="w-full flex-1 flex flex-col items-start justify-center overflow-x-hidden">
           <span className="flex-1 text-sm truncate text-zinc-600 dark:text-zinc-300 dark:group-hover:text-zinc-50">{title}</span>
           <span className="w-full text-xs text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-700 dark:group-hover:text-zinc-100 truncate">{description}</span>
         </div>
