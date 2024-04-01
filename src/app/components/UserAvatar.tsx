@@ -1,5 +1,5 @@
 import { IconLayoutDashboard, IconSettings, IconMoneybag, IconMoonStars, IconLogout, IconSun, IconLogin } from '@tabler/icons-react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Dropdown } from './Dropdown'
 import Avatar from '@/app/components/Avatar/Prova'
 import { signOut, useSession } from 'next-auth/react'
@@ -10,6 +10,7 @@ interface UserAvatarProps{
 }
 
  function UserAvatar({theme, setTheme}: UserAvatarProps) {
+    const [themeState, setThemeState] = useState('system');   
    const { data: session } = useSession()
    let firstName = ' ';
    let lastName = ' '  ;
@@ -20,6 +21,10 @@ interface UserAvatarProps{
      firstName = name[0]
      lastName = name[name.length - 1]
   } 
+
+  useEffect(() => {
+    setThemeState(theme)
+  },[theme])
   return (
     <div className="items-center my-auto ml-auto relative space-x-4 " >
         <Dropdown.Root>
@@ -40,7 +45,7 @@ interface UserAvatarProps{
               
               }
               <Dropdown.Item title={"Definições"} description="Configurações" startContent={<IconSettings  className="w-4 h-4"/>}/>
-              <Dropdown.Item title={`${theme === 'dark' ? 'Modo escuro' : 'Modo claro' }`} shortcut description="Trocar o tema" startContent={theme === 'dark' ?<IconMoonStars className="w-4 h-4"/> : <IconSun className="w-4 h-4" />} onClick={() => theme == "dark"? setTheme('light'): setTheme("dark")} />
+              <Dropdown.Item title={`${themeState === 'dark' ? 'Modo escuro' : 'Modo claro' }`} shortcut description="Trocar o tema" startContent={themeState === 'dark' ?<IconMoonStars className="w-4 h-4"/> : <IconSun className="w-4 h-4" />} onClick={() => theme == "dark"? setTheme('light'): setTheme("dark")} />
             </Dropdown.Section>
             { session?.user && 
               <Dropdown.Section showDivider>

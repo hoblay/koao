@@ -1,7 +1,3 @@
-
-
-import { authOptions } from "@/lib/auth";
-import { getServerSession } from "next-auth";
 import Course from "../components/Course";
 
 import { Data } from "../Data/Courses"

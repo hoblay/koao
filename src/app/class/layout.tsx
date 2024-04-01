@@ -16,11 +16,6 @@ export default function ClassLayout({
 }: {
   children: React.ReactNode
 }) {
-  const router = useRouter()
-  const { data: session } = useSession() 
-  if(!session) router.push('/')
-
-  const ref = useRef(null);
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;
  
@@ -47,7 +42,7 @@ export default function ClassLayout({
             </Search.Section>
           </Search.Root>
 
-          <div className="flex items-center my-auto ml-auto relative space-x-4 " ref={ref}>
+          <div className="flex items-center my-auto ml-auto relative space-x-4 ">
           <div className="">
             <Link href={'/'} className="py-3 px-4 text-sm rounded-lg bg-zinc-100 dark:bg-zinc-900 dark:hover:bg-zinc-900/50 flex space-x-2 text-center items-center">
               <ArrowLeftIcon />
