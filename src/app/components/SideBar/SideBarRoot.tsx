@@ -4,6 +4,7 @@ import { IconLayoutSidebarLeftExpand } from "@tabler/icons-react";
 import Link from "next/link";
 import { ReactNode, useState } from "react";
 import { createContext, useContext } from 'react';
+import LogoIcon from "../Icons/Logo";
 
 interface SideBarProps{
   children: ReactNode,
@@ -52,8 +53,7 @@ export function SideBarRoot({ children, className, logo, brand }:SideBarProps) {
         <button className={` absolute -right-3 top-7 p-1 bg-purple-300 hover:bg-purple-400 dark:bg-purple-700 rounded-full shadow-sm dark:hover:bg-purple-800 dark:text-white ${isHidden ? 'hidden' : ''}`} onClick={shrinkBar}> <IconLayoutSidebarLeftExpand className="w-4 h-4"/></button>
           <div className="h-[calc(100vh-40px)] overscroll-x-none overscroll-y-none rounded-xl px-3 py-4 overflow-y-auto bg-zinc-50 dark:bg-zinc-900">
             {logo && (
-              <Link href={"/"} className="flex p-2 mb-4 space-x-2">
-                <span className=" bg-zinc-200 dark:bg-zinc-700 w-9 h-9 rounded-2xl p-[18px]" > </span>
+              <Link href={"/"} className="flex p-2 mb-4 space-x-2 items-center"><LogoIcon className="#61459C"/> 
                 <span className={`p-1 text-lg font-semibold text-zinc-700 dark:text-zinc-50 whitespace-nowrap ${!open ? 'hidden' : '' }`}>
                   {brand}
                 </span>

@@ -9,7 +9,7 @@ export const SignInSchema = z.object({
 });
 
 export type TSignInSchema = z.infer<typeof SignInSchema>
-const plans = ['free', 'basic', 'pro', 'premium'] as const
+export const plans = ['free', 'basic', 'pro', 'premium'] as const
 
 export type Plans = (typeof plans)[number]
 

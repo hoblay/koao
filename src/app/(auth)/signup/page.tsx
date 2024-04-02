@@ -9,12 +9,15 @@ import CardWrapper from "@/app/components/auth/CardWrapper";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { IconLoader, IconLoader3 } from "@tabler/icons-react";
+import { trpc } from "@/app/_trpc/client";
 
 
 
 
 
 export default function SignUp() {
+
+  const createUser = trpc.user.create.useMutation()
   const router = useRouter();
 
   const registerForm = useForm<TSignUpSchema>({
@@ -32,23 +35,7 @@ export default function SignUp() {
   ))
 
   const registerUser = async (data:TSignUpSchema) => {
-    const response = await fetch('api/auth/user', {
-      method: 'POST',
-      headers: {
-        'contentType': 'aplication/json'
-      },
-      body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-        plan: data.plan,
-        dateOfBirth: data.dateOfBirth,
-        password: data.password,
-        confirmPassword: data.confirmPassword
-
-      })
-    })
-
-    if (response.ok){
+    const response = await createUser.mutate(data ,{ onSettled: async () => {
       await signIn('credentials', {
         email: data.email,
         password: data.password,
@@ -56,8 +43,8 @@ export default function SignUp() {
       })
       router.push('/')
       reset()
-     }
-    else console.error('something went wrong', {response})
+    }, onError: () => console.error('something went wrong') })
+    
    
   }
 
