@@ -55,7 +55,7 @@ export function SearchRoot({ children, className }:SearchProps) {
               <Cross1Icon className="w-4 h-4 text-zinc-500 dark:text-zinc-400 "/>
             </div>
         </div>
-      <div className={`absolute z-40 md:block hidden overflow-hidden  justify-center subpixel-antialiased outline-none box-border  shadow-md bg-zinc-50 dark:bg-zinc-900 dark:placeholder-zinc-400 dark:text-white w-full rounded-b-xl transition-[max-height] border-purple-400  dark:border-purple-500 duration-150 ease-in-out ${!isFocus ? 'max-h-0' : ' max-h-max pb-1 border-t-2 '}`}>
+      <div className={`absolute z-40 md:block hidden overflow-hidden  justify-center subpixel-antialiased outline-none box-border  shadow-md bg-zinc-50 dark:bg-zinc-900 dark:placeholder-zinc-400 dark:text-white w-full rounded-b-xl transition-[max-height] border-[#256a55]  dark:border-[#015F43] duration-150 ease-in-out ${!isFocus ? 'max-h-0' : ' max-h-max pb-1 border-t-2 '}`}>
       <div className="p-4 space-y-1">
           <span className="text-zinc-500 dark:text-zinc-400 text-sm">Estou a procura de...</span>
           <div className="py-1 space-x-1 flex">

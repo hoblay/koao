@@ -15,7 +15,7 @@ export default async function AppLayout({
     <div className="relative flex" >
       <Aside/>
       <main className="w-full">
-        <div className="flex px-9 pt-5 pb-4">
+        <div className="flex px-9 pt-5 pb-2">
           <Search.Root className="w-[100%]">
             <Search.Section title="Colegas">
               <Search.Result type="user" user={{name: "Winslet Mateus", email: "winsletmateus@gmail.com"}}/>

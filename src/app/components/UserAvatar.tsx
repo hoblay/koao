@@ -1,5 +1,5 @@
 "use client";
-import { IconLayoutDashboard, IconSettings, IconMoneybag, IconMoonStars, IconLogout, IconSun, IconLogin } from '@tabler/icons-react'
+import { IconLayoutDashboard, IconSettings, IconMoneybag, IconMoonStars, IconLogout, IconSun, IconLogin, IconChevronDown } from '@tabler/icons-react'
 import React, { useEffect, useState } from 'react'
 import { Dropdown } from './Dropdown'
 import Avatar from '@/app/components/Avatar/Avatar'
@@ -40,7 +40,14 @@ interface User{
     <div className="items-center my-auto ml-auto relative space-x-4 " >
       <Dropdown.Root>
         <Dropdown.Trigger>
-          <Avatar initials={`${user ? firstName[0]+''+lastName[0] : 'sebago'}`} image={user?.image} color={user?.color}/>
+        <div className="flex gap-3 rounded-xl hover:bg-zinc-50/70 dark:hover:bg-zinc-900/70 py-2 pl-4 pr-2 cursor-pointer max-w-[212px]">
+        <div className="w-full flex-1 flex flex-col items-end justify-center overflow-x-hidden text-end py-1">
+          <span className="w-full flex-1 text-sm truncate text-zinc-600 dark:text-zinc-300 dark:group-hover:text-zinc-50">{user?.name}</span>
+          <span className="w-full text-xs text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-700 dark:group-hover:text-zinc-100 truncate">{user?.email}</span>
+        </div>
+          <div className="min-h-[44px] min-w-[44px]"><Avatar initials={`${user ? firstName[0]+''+lastName[0] : 'sebago'}`} image={user?.image} color={user?.color}/></div>
+          
+        </div>
         </Dropdown.Trigger>
         <Dropdown.Menu>
           <Dropdown.Section>

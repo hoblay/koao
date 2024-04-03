@@ -41,7 +41,7 @@ export default function Home() {
 
         <div className="px-2">
         <Link href="/class" className="">
-          <button type="button" className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-purple-700 hover:enabled:bg-purple-800 text-white px-8 py-3 text-2xl w-full">
+          <button type="button" className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-[#015F43] hover:bg-[#143229] text-white px-8 py-3 text-2xl w-full">
             <div className="flex flex-1 justify-center items-center gap-2">
               <span className="text-base leading-6">Continuar a assistir</span>
               <IconPlayerPlay />
@@ -108,7 +108,7 @@ export default function Home() {
             </div>
             <div className="px-7">
               <Link href="#" className="">
-                <button type="button" className="mt-2 relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-purple-700 hover:enabled:bg-purple-800 text-white px-8 py-3 text-2xl w-full">
+                <button type="button" className="mt-2 relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-[#015F43] hover:bg-[#143229] text-white px-8 py-3 text-2xl w-full">
                   <div className="flex flex-1 justify-center items-center gap-2">
                     <span className="text-base leading-6">Quero assinar</span>
                     <ArrowTopRightIcon />

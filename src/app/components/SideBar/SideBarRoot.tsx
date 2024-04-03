@@ -50,11 +50,12 @@ export function SideBarRoot({ children, className, logo, brand }:SideBarProps) {
 
         <aside className={`hidden md:block h-[calc(100vh-40px)] overscroll-x-none overscroll-y-none transition-all ease-in-out duration-300 ${open ? 'w-[216px]  ' : 'w-[76px]'}` }>
 
-        <button className={` absolute -right-3 top-7 p-1 bg-purple-300 hover:bg-purple-400 dark:bg-purple-700 rounded-full shadow-sm dark:hover:bg-purple-800 dark:text-white ${isHidden ? 'hidden' : ''}`} onClick={shrinkBar}> <IconLayoutSidebarLeftExpand className="w-4 h-4"/></button>
+        <button className={` absolute -right-3 top-7 p-1 bg-[#00B37E] hover:bg-[#00875F] dark:bg-[#015F43] rounded-full shadow-sm dark:hover:bg-[#014430] dark:text-white ${isHidden ? 'hidden' : ''}`} onClick={shrinkBar}> <IconLayoutSidebarLeftExpand className="w-4 h-4"/></button>
           <div className="h-[calc(100vh-40px)] overscroll-x-none overscroll-y-none rounded-xl px-3 py-4 overflow-y-auto bg-zinc-50 dark:bg-zinc-900">
             {logo && (
-              <Link href={"/"} className="flex p-2 mb-4 space-x-2 items-center"><LogoIcon width="40" height="28" className="#61459C"/> 
-                <span className={`p-1 text-lg font-semibold text-zinc-700 dark:text-zinc-50 whitespace-nowrap ${!open ? 'hidden' : '' }`}>
+              <Link href={"/"} className="flex p-2 mb-4 space-x-2 items-center">
+                <div className=""><LogoIcon width="40" height="28" className="#015F43"/> </div>
+                <span className={`p-1 text-lg font-semibold text-zinc-700 dark:text-zinc-50 whitespace-nowrap transition-[opacity] duration-75 ease-in ${!open ? 'opacity-0' : 'opacity-100' }`}>
                   {brand}
                 </span>
               </Link>
