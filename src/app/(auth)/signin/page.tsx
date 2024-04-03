@@ -62,13 +62,13 @@ const logInUser = async (data:TSignInSchema) => {
          <button 
             type="submit" 
             disabled={isSubmitting}
-            className="bg-purple-500 mt-3 text-white rounded px-3 h-[53px] font-semibold text-sm hover:bg-purple-600 flex justify-center items-center disabled:bg-purple-950"
+            className="bg-[#015F43] mt-3 text-white rounded px-3 h-[53px] font-semibold text-sm hover:bg-[#224138] flex justify-center items-center disabled:bg-[#172d26]"
           >
             {isSubmitting 
             ? <div className="flex flex-row gap-2">
-                <div className="w-2 h-2 rounded-full bg-purple-300 animate-bounce"></div>
-                <div className="w-2 h-2 rounded-full bg-purple-300 animate-bounce [animation-delay:-.3s]"></div>
-                <div className="w-2 h-2 rounded-full bg-purple-300 animate-bounce [animation-delay:-.5s]"></div>
+                <div className="w-2 h-2 rounded-full bg-[#015F43] animate-bounce"></div>
+                <div className="w-2 h-2 rounded-full bg-[#015F43] animate-bounce [animation-delay:-.3s]"></div>
+                <div className="w-2 h-2 rounded-full bg-[#015F43] animate-bounce [animation-delay:-.5s]"></div>
               </div>
             : <span className="text-base">Acessar</span> }
           </button> 

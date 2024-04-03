@@ -16,11 +16,7 @@ function CardWrapper({children, headerLabel, backButonLabel, backButtonHref, sho
   return (
     <Card.Root className="max-w-[385px]">
       <Card.Header className='flex flex-col gap-4 py-3'>
-      <Link href={"/"} className="flex gap-2 items-center mb-3"><LogoIcon width='45' height='33' className="#61459C"/> 
-                <span className={` text-xl font-semibold text-zinc-700 dark:text-zinc-50 whitespace-nowrap`}>
-                  Logotipo
-                </span>
-              </Link>
+      
         <h1 className='text-3xl font-semibold'>{headerLabel}</h1>
         <p>Faça login ou registre-se para começar a aprender ainda hoje.</p>
       </Card.Header>
