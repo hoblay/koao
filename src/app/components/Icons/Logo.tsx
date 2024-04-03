@@ -1,11 +1,11 @@
 import React from "react";
 
-function LogoIcon({className}:{className?:string} ) {
+function LogoIcon({className, width, height}:{className?:string, width:string, height:string} ) {
 
  return (
     <svg
-      width="40"
-      height="28"
+      width={width}
+      height={height}
       fill="none"
       viewBox="0 0 40 28"
     >

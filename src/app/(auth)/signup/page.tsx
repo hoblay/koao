@@ -35,15 +35,17 @@ export default function SignUp() {
   ))
 
   const registerUser = async (data:TSignUpSchema) => {
-    const response = await createUser.mutate(data ,{ onSettled: async () => {
-      await signIn('credentials', {
-        email: data.email,
-        password: data.password,
-        redirect: false
-      })
-      router.push('/')
-      reset()
-    }, onError: () => console.error('something went wrong') })
+    createUser.mutate(data, {
+      onSettled: async () => {
+        await signIn('credentials', {
+          email: data.email,
+          password: data.password,
+          redirect: false
+        });
+        router.push('/');
+        reset();
+      }, onError: () => console.error('something went wrong')
+    })
     
    
   }

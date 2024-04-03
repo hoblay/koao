@@ -42,13 +42,13 @@ const logInUser = async (data:TSignInSchema) => {
 
   return (
     <CardWrapper
-    headerLabel='Accesse a sua conta '
-    backButonLabel="Ainda não tens uma conta?"
+    headerLabel='Acesse a plataforma'
+    backButonLabel="Ainda não tem uma conta? Inscreva-se"
     backButtonHref='/signup'
     showSocial
   >
       <FormProvider {...signInForm}>
-        <form onSubmit={handleSubmit( data => logInUser(data))} className="flex flex-col gap-6 w-full max-w-xs">
+        <form onSubmit={handleSubmit( data => logInUser(data))} className="flex flex-col gap-[22px] w-full">
           <Form.Field>
             <Form.Label htmlFor="email">Email</Form.Label>
             <Form.Input type="email" name="email" placeholder="exemplo@email.com"/>
@@ -62,9 +62,15 @@ const logInUser = async (data:TSignInSchema) => {
          <button 
             type="submit" 
             disabled={isSubmitting}
-            className="bg-purple-500 text-white rounded px-3 h-10 font-semibold text-sm hover:bg-purple-600 flex justify-center items-center disabled:bg-purple-950"
+            className="bg-purple-500 mt-3 text-white rounded px-3 h-[53px] font-semibold text-sm hover:bg-purple-600 flex justify-center items-center disabled:bg-purple-950"
           >
-            {isSubmitting ? <IconLoader3 className=" animate-spin text-zinc-200/60"/> : <span className="text-base">Acessar</span> }
+            {isSubmitting 
+            ? <div className="flex flex-row gap-2">
+                <div className="w-2 h-2 rounded-full bg-purple-300 animate-bounce"></div>
+                <div className="w-2 h-2 rounded-full bg-purple-300 animate-bounce [animation-delay:-.3s]"></div>
+                <div className="w-2 h-2 rounded-full bg-purple-300 animate-bounce [animation-delay:-.5s]"></div>
+              </div>
+            : <span className="text-base">Acessar</span> }
           </button> 
         </form>
       </FormProvider>

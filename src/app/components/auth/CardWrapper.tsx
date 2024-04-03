@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react'
 import { Card } from '../Card'
 import { IconBrandGithubFilled, IconBrandGoogleFilled } from '@tabler/icons-react'
 import Link from 'next/link'
+import LogoIcon from '../Icons/Logo'
 
 interface CardWrapperProps{
   children?: ReactNode | ReactNode[],
@@ -13,22 +14,33 @@ interface CardWrapperProps{
 
 function CardWrapper({children, headerLabel, backButonLabel, backButtonHref, showSocial}:CardWrapperProps) {
   return (
-    <Card.Root className="m-auto max-w-96">
-      <Card.Header showDivider className='p-4 text-center'>{headerLabel}</Card.Header>
-      <Card.Body  className='px-10 py-4'>
+    <Card.Root className="max-w-[385px]">
+      <Card.Header className='flex flex-col gap-4 py-3'>
+      <Link href={"/"} className="flex gap-2 items-center mb-3"><LogoIcon width='45' height='33' className="#61459C"/> 
+                <span className={` text-xl font-semibold text-zinc-700 dark:text-zinc-50 whitespace-nowrap`}>
+                  Logotipo
+                </span>
+              </Link>
+        <h1 className='text-3xl font-semibold'>{headerLabel}</h1>
+        <p>Faça login ou registre-se para começar a aprender ainda hoje.</p>
+      </Card.Header>
+      <Card.Body  className=' py-4'>
         {children}
       </Card.Body>
-      <Card.Footer className='py-4'>
-        <p className='text-center p-4'>Ou se preferir</p>
-        <div className="items-center justify-center px-5 flex gap-2">
-          <button className="py-2 px-16 items-center justify-center bg-zinc-700 hover:bg-zinc-800 text-zinc-100 flex rounded-md">
+      <Card.Footer className=''>
+
+        
+        <div className="items-center justify-between mt-8 flex">
+
+        <div className="px-6">
+        <span className='flex text-center  '>Ou se preferir</span>
+        </div>
+          <button className="py-3 w-[60%] items-center justify-center bg-zinc-700 hover:bg-zinc-800 text-zinc-100 flex rounded-md">
             <IconBrandGoogleFilled />
           </button>
-          <button className="py-2 px-16 items-center justify-center bg-zinc-700 hover:bg-zinc-800 text-zinc-100 flex rounded-md">
-            <IconBrandGithubFilled />
-          </button>
+
         </div>
-        <div className="items-center justify-center text-center p-4">
+        <div className=" mt-10">
           
           <button>
             <Link href={backButtonHref}>{backButonLabel}</Link>
