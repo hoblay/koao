@@ -4,7 +4,7 @@ import React, { SyntheticEvent, useState } from 'react'
 import { formatBytes } from "@/utils/format-bytes";
 import { formatSecondsToMinutes } from "@/utils/format-seconds";
 import Tag from '@/app/components/Tag/Tag';
-import { IconTag, IconDots } from '@tabler/icons-react';
+import { IconTag, IconDots, IconTrash, IconEdit } from '@tabler/icons-react';
 import { Dropdown } from '@/app/components/Dropdown';
 
 interface Aula {
@@ -71,10 +71,13 @@ function TableRow({file, onClick}: {file:Aula, onClick: any}) {
       <td className="px-6 py-4 text-right">
         <Dropdown.Root>
           <Dropdown.Trigger>
-            <button className="p-2 border-zinc-800 border rounded-xl hover:bg-zinc-800/10 z-50"><IconDots /></button>
+            <button className="p-2 border-zinc-800 border rounded-xl hover:bg-zinc-800/10"><IconDots /></button>
           </Dropdown.Trigger>
-          <Dropdown.Menu className='left-0'>
-            <Dropdown.Item title="Eliminar" onClick={() => onClick(file.name)}/>
+          <Dropdown.Menu className='right-10'>
+            <Dropdown.Section>
+              <Dropdown.Item title="Editar a aula" description={"Aperte para editar"} startContent={<IconEdit className="text-zinc-600"/>} onClick={() => onClick(file.name)}/>
+              <Dropdown.Item title="Eliminar a aula" description={"Aperte para eliminar"} startContent={<IconTrash className="text-red-500"/>} onClick={() => onClick(file.name)}/>
+            </Dropdown.Section> 
           </Dropdown.Menu>
         </Dropdown.Root>
       </td> 
