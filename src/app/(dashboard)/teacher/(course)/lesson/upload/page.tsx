@@ -1,6 +1,6 @@
 import Tag from "@/app/components/Tag/Tag";
 import { PlusIcon } from "@radix-ui/react-icons";
-import { IconCircleMinus, IconDots, IconTags, IconUpload } from "@tabler/icons-react";
+import { IconCircleMinus, IconDots, IconTag, IconTags, IconUpload } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -49,7 +49,7 @@ export default function Home() {
                           <div className="flex flex-col gap-2 w-full">
                             <input className="max-h-10 text-xs w-full p-3 rounded-lg focus:ring-0 outline-none bg-zinc-100 hover:bg-white focus:bg-white dark:bg-zinc-900 dark:hover:bg-zinc-800/30 dark:focus:bg-zinc-800/30" type="text" name="title" value={"Curso a arte da mistura e masterização - Parte 1"} placeholder="Titulo da aula"/>
                             <div className="flex">
-                              <Tag  name="Categoria" startContent={<IconTags className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/>
+                              <Tag  name="Categoria" startContent={<IconTag className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/>
                             </div>
                           </div>
                         </div>
