@@ -56,8 +56,8 @@ interface User{
             { user ? 
              <>
               <Dropdown.Item title="Meu progresso" description="Veja os seus logros"  startContent={ <IconTrophyFilled className="w-4 h-4"/>}/> 
-              <Dropdown.Item title={"Painel de control"} startContent={ <IconLayoutDashboard className="w-4 h-4"/>}  href='/teacher'/>
-              <Dropdown.Item title={"Ganhos"} startContent={<IconMoneybag className="w-4 h-4"/>}/>
+              <Dropdown.Item title={"Painel de control"} description="Gerencie os seus cursos" startContent={ <IconLayoutDashboard className="w-4 h-4"/>}  href='/teacher'/>
+              
             </>
             : <Dropdown.Item title={'Iniciar sessão' } description={'Criar uma conta'} startContent={ <IconLogin  className="w-4 h-4"/>} href='/signin'/>
               }

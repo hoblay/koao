@@ -3,12 +3,13 @@ import React, { ReactNode } from 'react'
 
 interface TagProps{
   name?: string,
-  startContent?: ReactNode
+  startContent?: ReactNode,
+  className?: string
 }
 
-function Tag({name, startContent}:TagProps) {
+function Tag({name, startContent, className}:TagProps) {
   return (
-    <div className="relative flex gap-1.5 select-none items-center whitespace-nowrap rounded-lg bg-zinc-400/10 dark:bg-zinc-100/10 hover:bg-zinc-500/10 hover:dark:bg-zinc-400/10 py-1.5 px-2 text-xs text-zinc-900 dark:text-zinc-100 cursor-pointer">
+    <div className={`relative flex gap-1.5 select-none items-center whitespace-nowrap rounded-lg bg-zinc-400/10 dark:bg-zinc-100/10 hover:bg-zinc-500/10 hover:dark:bg-zinc-400/10 py-1.5 px-2 text-xs text-zinc-900 dark:text-zinc-100 cursor-pointer ${className}`}>
       {startContent && (
         <div className="h-5 w-5">
           {startContent}
