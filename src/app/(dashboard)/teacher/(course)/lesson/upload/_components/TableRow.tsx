@@ -73,7 +73,7 @@ function TableRow({file, onClick}: {file:Aula, onClick: any}) {
           <Dropdown.Trigger>
             <button className="p-2 border-zinc-800 border rounded-xl hover:bg-zinc-800/10"><IconDots /></button>
           </Dropdown.Trigger>
-          <Dropdown.Menu className='right-10'>
+          <Dropdown.Menu className='right-12'>
             <Dropdown.Section>
               <Dropdown.Item title="Editar a aula" description={"Aperte para editar"} startContent={<IconEdit className="text-zinc-600"/>} onClick={() => onClick(file.name)}/>
               <Dropdown.Item title="Eliminar a aula" description={"Aperte para eliminar"} startContent={<IconTrash className="text-red-500"/>} onClick={() => onClick(file.name)}/>

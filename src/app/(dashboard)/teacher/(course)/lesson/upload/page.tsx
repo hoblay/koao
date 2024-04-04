@@ -1,11 +1,12 @@
 "use client";
 import Tag from "@/app/components/Tag/Tag";
 import { PlusIcon } from "@radix-ui/react-icons";
-import { IconCircleMinus, IconDots, IconFolderSearch, IconTag, IconTags, IconUpload } from "@tabler/icons-react";
+import { IconCircleMinus, IconDots, IconFolderSearch, IconMovie, IconTag, IconTags, IconUpload } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, SyntheticEvent } from "react";
+import { useState, useEffect, SyntheticEvent, useCallback } from "react";
 import TableRow from "./_components/TableRow";
+import {useDropzone} from 'react-dropzone'
 
 
 
@@ -13,27 +14,32 @@ import TableRow from "./_components/TableRow";
 export default function Home() {
   const [files, setFiles] = useState<any[]>([]);
   
+  const onDrop = useCallback(acceptedFiles => {
 
-  const selectFile = (event: React.FormEvent<HTMLInputElement>) => {
-    const target = event.target as HTMLInputElement & {
-      files: FileList
-    } 
-    const selectedFile = target.files?.[0];
+    acceptedFiles.forEach((file) => {
+      const reader = new FileReader()
 
-    const file = new FileReader;
-    file.onload = () => {
-      
-    }
-
-
-    const newFile = {...selectFile,name: selectedFile.name, src: URL.createObjectURL(selectedFile), size: selectedFile.size, type: selectedFile.type, duration: ''}
-    setFiles([...files, newFile])
+      reader.onabort = () => console.log('file reading was aborted')
+      reader.onerror = () => console.log('file reading has failed')
+      reader.onload = () => {
+      // Do whatever you want with the file contents
+        const binaryStr = reader.result
+        console.log(binaryStr)
+        let newFile = {...file,name: file.name, src: URL.createObjectURL(file), size: file.size, type: file.type, duration: ''}
+       setFiles(prev => [...prev, newFile])
+      }
+      reader.readAsArrayBuffer(file)
+    })
+   
+       
+    console.log('fliess', files)
+    
     
 
     
-    
-    file.readAsDataURL(selectedFile)
-  };
+  }, [])
+  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+
 
   const removeFile = (id:string ) => {
     const deletedIndex = files.findIndex(item => item.name === id);
@@ -100,14 +106,24 @@ export default function Home() {
     </div>
       )}
       <div className="rounded-lg mt-2 w-full flex items-center justify-center ">
-          <div className="flex items-center justify-center w-full">
+          <div className="flex items-center justify-center w-full" {...getRootProps()}>
               <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-96 border-2 border-zinc-300 border-dashed rounded-lg cursor-pointer bg-zinc-50 dark:hover:bg-zinc-900 dark:bg-zinc-950 hover:bg-zinc-100 dark:border-zinc-800 dark:hover:border-zinc-700 ">
+                {
+                  !isDragActive ?
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <IconFolderSearch className="w-8 h-8 mb-4 text-zinc-600 dark:text-zinc-300" />
-                      <p className="mb-2 text-sm text-zinc-500 dark:text-zinc-400"><span className="font-semibold">Arraste os videos aqui</span> ou clique para selecionar manualmente</p>
-                      <p className="text-xs text-zinc-500 dark:text-zinc-500">MP4, MOV, AVI, WMV, AVCHD, WebM ou FLV (MAX. 600MB)</p>
-                  </div>
-                  <input id="dropzone-file" type="file" className="hidden" onChange={selectFile} onDrop={selectFile} />
+                    <IconFolderSearch className="w-8 h-8 mb-4 text-zinc-600 dark:text-zinc-300" />
+                    <p className="mb-2 text-sm text-zinc-500 dark:text-zinc-400"><span className="font-semibold">Arraste os videos aqui</span> ou clique para selecionar manualmente</p>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-500">MP4, MOV, AVI, WMV, AVCHD, WebM ou FLV (MAX. 600MB)</p>
+                  </div> 
+                  :
+                  <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                    <IconMovie className="w-8 h-8 mb-4 text-zinc-600 dark:text-zinc-300" />
+                    <p className="mb-2 text-sm text-zinc-500 dark:text-zinc-400"><span className="font-semibold">Large os videos aqui</span></p>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-500"></p>
+                  </div> 
+                }
+                  
+                  <input id="dropzone-file" type="file" className="hidden"{...getInputProps()} accept="video/mp4,video/x-m4v,video/*"  />
               </label>
           </div> 
         
