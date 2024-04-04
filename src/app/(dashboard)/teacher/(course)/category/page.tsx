@@ -1,15 +1,21 @@
+"use client";
+
 import Tag from "@/app/components/Tag/Tag";
-import { PlusIcon } from "@radix-ui/react-icons";
-import { IconBookUpload, IconCircleMinus, IconDots, IconFileExport, IconTagStarred, IconTags, IconUpload } from "@tabler/icons-react";
+import { IconBookUpload, IconCircleMinus, IconDots, IconFileExport, IconNotebook, IconTagStarred, IconTags, IconUpload } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
+  const [modalOpen, setModalOpen] = useState(false)
   return (
     <div className="px-24 py-8 border-t border-t-zinc-900"> 
       <div className="flex items-center justify-between border-b border-b-zinc-900 py-4 px-4">
         <div className="flex gap-3">
-          <h2 className="text-xl">Categorias</h2><Tag  name="Adicionar categoria" startContent={<IconTagStarred className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/>
+          <h2 className="text-xl">Categorias</h2>
+          <div className="" onClick={() => setModalOpen(true)}>
+            <Tag  name="Adicionar categoria" startContent={<IconTagStarred className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/>
+          </div>
         </div> 
         <div className="flex gap-1.5 pl-3 border-l border-l-zinc-900">
         
@@ -20,7 +26,7 @@ export default function Home() {
       </div>
 
 
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
+      <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-4">
           <table className="w-full text-sm text-left rtl:text-right text-zinc-500 dark:text-zinc-400">
               <thead className="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-900 dark:text-zinc-400">
                   <tr>
@@ -60,7 +66,26 @@ export default function Home() {
           </table>
       </div>
 
- 
+      <div className={`${!modalOpen ? 'hidden': '' }`}>
+          <div className="absolute z-30 bg-zinc-950/80 left-0 top-0 w-[100%] h-[100vh]  cursor-pointer" onClick={() => setModalOpen(false)}></div>
+          <div className={`z-40 fixed  w-full top-0 right-0 p-8 h-[100vh] bg-[#080808] border-r border-r-zinc-800 transition-[max-width] duration-500 ease-in ${modalOpen ? 'max-w-[421px]' : 'max-w-0'}`}>
+            
+            <div className="flex flex-col gap-3 p-4">
+              <h2 className="text-2xl font-semibold">Criar um categoria</h2>
+              <span className="text-zinc-500">As categorias servem para catalogar os cursos com conceios similares.</span>
+              <div className="flex flex-col gap-4">
+                <input className="max-h-12 text-sm w-full p-6 rounded-lg focus:ring-0 outline-none bg-zinc-100 hover:bg-white focus:bg-white dark:bg-zinc-900 dark:hover:bg-zinc-800/30 dark:focus:bg-zinc-800/30" type="text" name="title" placeholder="Nome da categoria"/>
+                <input className="max-h-12 text-sm w-full p-6 rounded-lg focus:ring-0 outline-none bg-zinc-100 hover:bg-white focus:bg-white dark:bg-zinc-900 dark:hover:bg-zinc-800/30 dark:focus:bg-zinc-800/30" type="text" name="title" placeholder="Slug"/>
+                <div className="flex justify-end gap-2">
+                  <button className="p-2 items-center justify-center bg-zinc-700 hover:bg-zinc-800 text-zinc-100 flex rounded-md gap-2 text-xs"> <span className="">Cancelar</span>
+                  </button>
+                  <button className="p-2 items-center justify-center text-zinc-100 flex rounded-md gap-2 text-xs bg-[#015F43] hover:bg-[#224138]  disabled:bg-[#172d26]"> <span className="">Adicionar categoria</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       
     </div>
   );

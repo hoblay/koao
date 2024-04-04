@@ -17,7 +17,7 @@ export default async function AppLayout({
   const session = await getServerSession()
 
   return (
-    <div className="relative flex flex-col" >
+    <div className=" flex flex-col" >
       <nav className="px-24 px- pb-4 w-full">
         <div className="flex gap-3">
           <Link href="/teacher/lesson">
