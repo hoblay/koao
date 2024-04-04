@@ -26,7 +26,7 @@ function CardWrapper({children, headerLabel, backButonLabel, backButtonHref, sho
       <Card.Footer className=''>
 
         
-        <div className="items-center justify-between mt-8 flex">
+        <div className="items-center justify-between mt-4 flex">
 
         <div className="px-6">
         <span className='flex text-center  '>Ou se preferir</span>
@@ -36,7 +36,7 @@ function CardWrapper({children, headerLabel, backButonLabel, backButtonHref, sho
           </button>
 
         </div>
-        <div className=" mt-10">
+        <div className=" mt-6">
           
           <button>
             <Link href={backButtonHref}>{backButonLabel}</Link>

@@ -17,7 +17,7 @@ const dropdownMenuStyle = tv({
     },
     open: {
       true: 'opacity-100',
-      false: 'opacity-0 -z-20'
+      false: 'opacity-0 -z-40'
       
     },
   },
@@ -30,13 +30,14 @@ interface DropdownMenuProps {
   children: ReactNode[] | ReactNode,
   variant?: 'solid' | 'bordered' | 'light' | 'flat' | 'faded' | 'shadow',
   color?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger',
+  className?: string
 
 }
 
-export default function DropdownMenu({children, variant, color}: DropdownMenuProps){
+export default function DropdownMenu({children, variant, color, className}: DropdownMenuProps){
   let { isDropdownOpen } = useContext(DropdownContext);
   return (
-    <div className={dropdownMenuStyle({open: isDropdownOpen})}>
+    <div className={dropdownMenuStyle({open: isDropdownOpen, class: className})}>
       <div className="w-full relative flex flex-col gap-1 p-1">
         <ul className="w-full flex flex-col gap-0.5 outline-none">
           {children}
