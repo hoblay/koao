@@ -5,13 +5,13 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="px-9"> 
+    <div className="px-9 border-t border-t-zinc-900"> 
            
  
       <div className="px-16 py-8">
         <div className="flex gap-3">
           <h2 className="text-xl">Cursos</h2>
-          <Link href="/teacher/create"><Tag  name="Criar novo curso " startContent={<PlusIcon className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/></Link>
+          <Link href="/teacher/lesson"><Tag  name="Criar novo curso " startContent={<PlusIcon className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/></Link>
         </div>
         <div className="grid grid-cols-3 py-6 gap-4">
           <div className="max-w-[390px] w-full border border-zinc-900 rounded-2xl">
@@ -25,7 +25,7 @@ export default function Home() {
             <div className="flex py-4 px-5">
               <div className="flex">
               <div className="flex items-center space-x-2 relative ">
-                <span className="bg-zinc-300 w-4 h-4 rounded-full dark:bg-zinc-700"></span>
+                <span className="bg-zinc-300 w-6 h-6 rounded-full dark:bg-zinc-700"></span>
                 <span className="text-xs text-zinc-700 dark:text-zinc-100">Winslet Mateus</span>
                 <span className="text-xs text-zinc-500 dark:text-zinc-400 ">uploaded 3 videos an hour ago</span>
               
