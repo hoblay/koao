@@ -42,9 +42,9 @@ export default function Home() {
           </Card.Root>
           
         </div>
-        <div className={`${!modalOpen ? 'hidden': '' }`}>
-          <div className="absolute z-30 bg-zinc-950/80 left-0 top-0 w-[100%] h-[100vh]  cursor-pointer" onClick={() => setModalOpen(false)}></div>
-          <div className={`z-40 fixed  w-full top-0 right-0 p-8 h-[100vh] bg-[#080808] border-r border-r-zinc-800 transition-[max-width] duration-500 ease-in ${modalOpen ? 'max-w-[421px]' : 'max-w-0'}`}>
+        <div className="">
+          <div className={`${!modalOpen ? 'hidden': '' } absolute z-30 bg-zinc-950/80 left-0 top-0 w-[100%] h-[100vh]  cursor-pointer`} onClick={() => setModalOpen(false)}></div>
+          <div className={`z-40 fixed  w-full top-0 right-0 p-8 h-[100vh] bg-[#080808] border-r border-r-zinc-800 max-w-[421px] transition-all duration-500 transform ${modalOpen ? 'translate-x-0' : 'translate-x-full'}`}>
             
             <div className="flex flex-col gap-3 p-4">
               <h2 className="text-2xl font-semibold">Criar um curso</h2>
