@@ -6,7 +6,7 @@ import LogoIcon from "@/app/components/Icons/Logo";
 import Link from "next/link";
 import Tag from "@/app/components/Tag/Tag";
 import { PlusIcon } from "@radix-ui/react-icons";
-import { IconBook2, IconCloudUpload, IconSettings, IconTags, IconTimeline } from "@tabler/icons-react";
+import { IconBook2, IconBooks, IconCloudUpload, IconSettings, IconTags, IconTimeline } from "@tabler/icons-react";
 
 export default async function AppLayout({
   children,
@@ -21,7 +21,7 @@ export default async function AppLayout({
       <nav className="px-24 px- pb-4 w-full">
         <div className="flex gap-3">
           <Link href="/teacher/lesson">
-            <Tag  name="Aulas" startContent={<IconBook2 className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/>
+            <Tag  name="Aulas" startContent={<IconBooks className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/>
           </Link>
           <Link href="/teacher/category">
             <Tag  name="Categorias" startContent={<IconTags className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/>

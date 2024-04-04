@@ -11,13 +11,13 @@ export default function Home() {
       <div className="px-16 py-8">
         <div className="flex gap-3">
           <h2 className="text-xl">Cursos</h2>
-          <Link href="/teacher/lesson"><Tag  name="Criar novo curso " startContent={<PlusIcon className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/></Link>
+          <Tag  name="Criar novo curso " startContent={<PlusIcon className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/>
         </div>
         <div className="grid grid-cols-3 py-6 gap-4">
           <div className="max-w-[390px] w-full border border-zinc-900 rounded-2xl">
             <div className="dark:bg-zinc-900 p-5 rounded-2xl rounded-b-none flex items-start justify-between gap-3 pb-12">
               <div className="flex flex-col gap-2">
-                <h4>Curso a arte da mistura e masterização - Parte 1</h4>
+                <Link href="/teacher/lesson"><h4>Curso a arte da mistura e masterização - Parte 1</h4></Link>
                 <span className="text-zinc-500">232 videos · 65GB storage</span>
               </div>
               <button className="p-2 border-zinc-800 border rounded-xl hover:bg-zinc-800/10"><IconDots /></button>
