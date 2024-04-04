@@ -77,7 +77,7 @@ export default function Home() {
                 <input className="max-h-12 text-sm w-full p-6 rounded-lg focus:ring-0 outline-none bg-zinc-100 hover:bg-white focus:bg-white dark:bg-zinc-900 dark:hover:bg-zinc-800/30 dark:focus:bg-zinc-800/30" type="text" name="title" placeholder="Nome da categoria"/>
                 <input className="max-h-12 text-sm w-full p-6 rounded-lg focus:ring-0 outline-none bg-zinc-100 hover:bg-white focus:bg-white dark:bg-zinc-900 dark:hover:bg-zinc-800/30 dark:focus:bg-zinc-800/30" type="text" name="title" placeholder="Slug"/>
                 <div className="flex justify-end gap-2">
-                  <button className="p-2 items-center justify-center bg-zinc-700 hover:bg-zinc-800 text-zinc-100 flex rounded-md gap-2 text-xs"> <span className="">Cancelar</span>
+                  <button className="p-2 items-center justify-center bg-zinc-700 hover:bg-zinc-800 text-zinc-100 flex rounded-md gap-2 text-xs" onClick={() => setModalOpen(false)} > <span className="">Cancelar</span>
                   </button>
                   <button className="p-2 items-center justify-center text-zinc-100 flex rounded-md gap-2 text-xs bg-[#015F43] hover:bg-[#224138]  disabled:bg-[#172d26]"> <span className="">Adicionar categoria</span>
                   </button>

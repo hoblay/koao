@@ -35,7 +35,7 @@ export default function SignUp() {
   ))
 
   const registerUser = async (data:TSignUpSchema) => {
-    createUser.mutate(data, {
+    createUser.mutate({...data, dateOfBirth: `${data.dateOfBirth}`}, {
       onSettled: async () => {
         await signIn('credentials', {
           email: data.email,
