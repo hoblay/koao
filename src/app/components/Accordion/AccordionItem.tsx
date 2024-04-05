@@ -8,7 +8,7 @@ import { AccordionContext } from './AccordionRoot';
 
 interface AccordionItemProps{
   children?: ReactNode,
-  index?: number,
+  index: number,
   title: 	ReactNode | string,
   subtitle?: 	ReactNode | string,
   startContent?: ReactNode,
@@ -34,14 +34,14 @@ const Item = tv({
 });
 
 function AccordionItem({children, index, title, subtitle, startContent: StartContent, isDisabled}:AccordionItemProps) {
-
-  let { indexopen, onClick } = useContext(AccordionContext);
-
+  
+  const context = useContext(AccordionContext);
+  if(!context) return null
 
   return (
     <div>
       <h2>
-          <button className={Item({active: (indexopen === index)})} onClick={() => onClick(index)}>
+          <button className={Item({active: (context.indexopen === index)})} onClick={() => context.onClick(index)}>
             <div className="flex-shrink-0">
               {StartContent && StartContent}
             </div>
@@ -49,11 +49,11 @@ function AccordionItem({children, index, title, subtitle, startContent: StartCon
               <span className='line-clamp-2'>{title}</span>
             </div>
             <div className="">
-              <ChevronLeftIcon className={` w-5 h-5 transition-all transform duration-300 ${indexopen === index ? "-rotate-90" : ""}`}/>
+              <ChevronLeftIcon className={` w-5 h-5 transition-all transform duration-300 ${context.indexopen === index ? "-rotate-90" : ""}`}/>
             </div>
           </button>
         </h2>
-        <section className={`overflow-y-hidden will-change-auto transition-all duration-500 ease-in-out   ${indexopen === index ? ' max-h-96 opacity-100' : ' max-h-0 opacity-0'}`}>
+        <section className={`overflow-y-hidden will-change-auto transition-all duration-500 ease-in-out   ${context.indexopen === index ? ' max-h-96 opacity-100' : ' max-h-0 opacity-0'}`}>
           <div className="text-sm">
             {children}
           </div>

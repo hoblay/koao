@@ -33,10 +33,10 @@ const Accordion = tv({
 
 interface AccContext{
   indexopen: number,
-  onClick: void
+  onClick: (index: number) => void
 }
 
-export const AccordionContext = createContext({});
+export const AccordionContext = createContext<AccContext | null>(null);
 
 
 function AccordionRoot({children, isDisabled, selectionMode, className}:AccordionProps) {
