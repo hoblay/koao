@@ -47,7 +47,7 @@ export function SideBarItem({ children, className, parent, icon: Icon, title, hr
           {Icon && (
             <Icon className={` flex-shrink-0 w-5 h-5  transition duration-75 ${isOpen && parent && context.open ? 'text-[#015F43] group-hover:text-[#015F43] dark:group-hover:text-zinc-100 dark:text-zinc-50':'text-zinc-500  group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white'}`}/>
           )}
-          <span className={`flex-1 text-left rtl:text-right whitespace-nowrap ${!open ? 'hidden': ''} ${isOpen && parent && context.open ? 'text-[#015F43] group-hover:text-[#015F43] dark:group-hover:text-zinc-100 dark:text-zinc-50':''}`} >{title}</span>
+          <span className={`flex-1 text-left rtl:text-right whitespace-nowrap ${!context.open ? 'hidden': ''} ${isOpen && parent && context.open ? 'text-[#015F43] group-hover:text-[#015F43] dark:group-hover:text-zinc-100 dark:text-zinc-50':''}`} >{title}</span>
           {(parent && context.open) && (
             <div className="flex">
               <IconChevronDown className={`w-5 h-5  transition-all transform duration-300 ${isOpen ? "rotate-180 text-[#015F43] group-hover:text-[#015F43] dark:group-hover:text-zinc-100 dark:text-zinc-50" : ""}`}/>
