@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import LogoIcon from "../components/Icons/Logo";
 
 
-export default function LandingLayout({
+export default function AuthLayout({
   children,
 }: {
   children: React.ReactNode

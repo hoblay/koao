@@ -26,9 +26,12 @@ interface DropdownTriggerProps{
 }
 
 export default function DropdownTrigger({children}:DropdownTriggerProps){
-  let { handleDropdown } = useContext(DropdownContext);
+  const context  = useContext(DropdownContext);
+
+  if(!context) return null;
+
   return (
-    <div className='flex h-full w-full ' onClick={() => handleDropdown()}>
+    <div className='flex h-full w-full ' onClick={() => context.handleDropdown()}>
       {children}
     </div>
   )

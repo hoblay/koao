@@ -35,9 +35,11 @@ interface DropdownMenuProps {
 }
 
 export default function DropdownMenu({children, variant, color, className}: DropdownMenuProps){
-  let { isDropdownOpen } = useContext(DropdownContext);
+  const context  = useContext(DropdownContext);
+
+  if(!context) return null;
   return (
-    <div className={dropdownMenuStyle({open: isDropdownOpen, class: className})}>
+    <div className={dropdownMenuStyle({open: context.isDropdownOpen, class: className})}>
       <div className="w-full relative flex flex-col gap-1 p-1">
         <ul className="w-full flex flex-col gap-0.5 outline-none">
           {children}

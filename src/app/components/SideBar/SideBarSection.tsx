@@ -11,10 +11,11 @@ interface SideBarSectionProps{
 }
 
 export function SideBarSection({ children, className, first, title }:SideBarSectionProps) {
-  let { open } = useContext(SidebarContext);
+ const context = useContext(SidebarContext);
+ if (!context) return null
   return(
     <ul className={`space-y-2 font-medium ${className} ${!first ? "pt-4 mt-4 border-t border-zinc-200 dark:border-zinc-700" : ""}`}>
-      {title && (<span className={`px-4 text-sm text-zinc-500 dark:text-zinc-400 ${!open ? 'opacity-0 hidden': 'opacity-100'}`}>{title}</span>)}
+      {title && (<span className={`px-4 text-sm text-zinc-500 dark:text-zinc-400 ${!context.open ? 'opacity-0 hidden': 'opacity-100'}`}>{title}</span>)}
       
       {children}
     </ul>

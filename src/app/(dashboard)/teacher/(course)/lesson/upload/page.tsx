@@ -14,7 +14,7 @@ import {useDropzone} from 'react-dropzone'
 export default function Home() {
   const [files, setFiles] = useState<any[]>([]);
   
-  const onDrop = useCallback(acceptedFiles => {
+  const onDrop = useCallback((acceptedFiles:File[]) => {
 
     acceptedFiles.forEach((file) => {
       const reader = new FileReader()
@@ -23,19 +23,13 @@ export default function Home() {
       reader.onerror = () => console.log('file reading has failed')
       reader.onload = () => {
       // Do whatever you want with the file contents
-        const binaryStr = reader.result
-        console.log(binaryStr)
+       
         let newFile = {...file,name: file.name, src: URL.createObjectURL(file), size: file.size, type: file.type, duration: ''}
        setFiles(prev => [...prev, newFile])
       }
       reader.readAsArrayBuffer(file)
     })
    
-       
-    console.log('fliess', files)
-    
-    
-
     
   }, [])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
@@ -62,9 +56,9 @@ export default function Home() {
       <div className="flex items-center justify-between border-b border-b-zinc-900 py-4 px-4">
         <h2 className="text-xl">Adicionar aulas</h2>
         <div className="flex gap-1.5 pl-3 border-l border-l-zinc-900">
-        <Link href="/teacher/create">
+        <button onClick={() => setFiles([])}> 
             <Tag  name="Apagar tudo" startContent={<IconCircleMinus className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/>
-          </Link>
+       </button> 
           <button disabled={(files.length > 0)}
             >
             <Tag  name="Adicionar tudo" startContent={<IconUpload className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/>

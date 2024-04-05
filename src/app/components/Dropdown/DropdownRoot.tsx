@@ -28,9 +28,13 @@ interface DropdownRootProps{
   closeOnSelect?: boolean,
 
 }
+interface DropdownContextProps {
+  isDropdownOpen: boolean,
+  handleDropdown: () => void,
+  closeDropdown: () => void
+}
 
-
-export const DropdownContext = createContext({});
+export const DropdownContext = createContext<DropdownContextProps | null >(null);
 
 function DropdownRoot({children, type, trigger, isDisabled, closeOnSelect,}: DropdownRootProps) {
   const [isDropdownOpen, setisDropdownOpen] = useState<boolean>(false);

@@ -11,7 +11,7 @@ interface SearchProps{
 }
 
 
-export const SearchContext = createContext({});
+export const SearchContext = createContext<{isTyping: boolean} | null>(null);
 
 
 export function SearchRoot({ children, className }:SearchProps) {

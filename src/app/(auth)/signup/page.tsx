@@ -8,7 +8,7 @@ import {Form} from '@/app/components/Form'
 import CardWrapper from "@/app/components/auth/CardWrapper";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-import { IconLoader, IconLoader3 } from "@tabler/icons-react";
+import { IconLoader3 } from "@tabler/icons-react";
 import { trpc } from "@/app/_trpc/client";
 
 

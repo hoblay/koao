@@ -2,7 +2,7 @@
 import { ArrowLeftIcon, ChevronLeftIcon, HamburgerMenuIcon, WidthIcon } from "@radix-ui/react-icons";
 import { IconLayoutSidebarLeftExpand } from "@tabler/icons-react";
 import Link from "next/link";
-import { ReactNode, useState } from "react";
+import { Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { createContext, useContext } from 'react';
 import LogoIcon from "../Icons/Logo";
 
@@ -13,9 +13,12 @@ interface SideBarProps{
   brand?: string,
 }
 
+interface SidebarContextProps {
+  setOpen: Dispatch<SetStateAction<boolean>>,
+  open: boolean
+}
 
-
-export const SidebarContext = createContext({});
+export const SidebarContext = createContext<SidebarContextProps | null>(null);
 
 export function SideBarRoot({ children, className, logo, brand }:SideBarProps) {
   const [open, setOpen] = useState<boolean>(false);
