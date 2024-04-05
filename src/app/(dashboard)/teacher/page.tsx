@@ -55,7 +55,7 @@ export default function Home() {
               <h2 className="text-xl">Adiciona modulos</h2>
               <input className="max-h-12 text-sm w-full p-6 rounded-lg focus:ring-0 outline-none bg-zinc-100 hover:bg-white focus:bg-white dark:bg-zinc-900 dark:hover:bg-zinc-800/30 dark:focus:bg-zinc-800/30" type="text" name="title" placeholder="Titulo do modulo"/>
               <div className="flex justify-end">
-                <button className="p-2 items-center justify-center bg-zinc-700 hover:bg-zinc-800 text-zinc-100 flex rounded-md gap-2 text-xs"> <span className="">Adicionar modulo</span> <IconNotebook className="w-4 h-4" /> 
+                <button className="p-2 items-center justify-center bg-zinc-700 hover:bg-zinc-800 text-zinc-100 flex rounded-md gap-2 text-xs"> <span className="">Adicionar modulos</span> <IconNotebook className="w-4 h-4" /> 
                 </button>
               </div>
             </div>
