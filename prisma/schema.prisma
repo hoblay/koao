@@ -76,8 +76,7 @@ model Course {
   categoryId String?
   category   Category? @relation(fields: [categoryId], references: [id])
 
-  chapters    Chapter[]
-  attachments Attachment[]
+  chapters Chapter[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -96,21 +95,23 @@ model Attachment {
   name String
   url  String @db.Text
 
-  courseId String
-  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessonId String
+  lesson   Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([courseId])
+  @@index([lessonId])
 }
 
 model Chapter {
-  id          String   @id @default(uuid())
+  id          String  @id @default(uuid())
   title       String
-  description String?  @db.Text
+  description String? @db.Text
   courseId    String
-  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course      Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  isPublished Boolean  @default(false)
   lessons     Lesson[]
 }
 
@@ -122,6 +123,8 @@ model Lesson {
   position    Int
   isPublished Boolean @default(false)
   isFree      Boolean @default(false)
+
+  attachments Attachment[]
 
   muxData MuxData?
 
