@@ -7,7 +7,9 @@ declare module "next-auth"{
     email: string,
     image: string,
     plan: string, 
-    color?: "purple" | "green" | "emerald" | "orange" | "pink" | "blue" | "amber"
+    color?: "purple" | "green" | "emerald" | "orange" | "pink" | "blue" | "amber",
+    dateOfBirth?: Date
+
   }
   interface Session{
     user: User & {
