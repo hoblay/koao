@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { tv } from 'tailwind-variants';
 
 const CardRootStyle = tv({
-  base: 'flex flex-col relative overflow-hidden h-auto text-zinc-600 dark:text-zinc-100 box-border outline-none bg-zinc-50 dark:bg-zinc-900 ',
+  base: 'flex flex-col relative h-auto text-zinc-600 dark:text-zinc-100 box-border outline-none bg-zinc-50 dark:bg-zinc-900 ',
   variants: {
     shadow: {
       none: '',

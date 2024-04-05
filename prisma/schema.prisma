@@ -54,6 +54,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
+  Course        Course[]
 }
 
 model VerificationToken {
@@ -76,10 +77,10 @@ model Course {
   categoryId String?
   category   Category? @relation(fields: [categoryId], references: [id])
 
-  chapters Chapter[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  chapters  Chapter[]
+  author    User      @relation(fields: [userId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 
   @@index([categoryId])
 }
@@ -111,6 +112,7 @@ model Chapter {
   courseId    String
   course      Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
+  position    Int
   isPublished Boolean  @default(false)
   lessons     Lesson[]
 }
