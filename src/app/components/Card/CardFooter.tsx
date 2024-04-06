@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { tv } from 'tailwind-variants';
 
 const CardFooterStyle = tv({
-  base: ' overflow-hidden h-auto ',
+  base: '  h-auto ',
   variants: {
     
   },

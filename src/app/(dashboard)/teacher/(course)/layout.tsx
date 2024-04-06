@@ -20,9 +20,6 @@ export default async function AppLayout({
     <div className=" flex flex-col" >
       <nav className="px-24 pb-4 w-full">
         <div className="flex gap-3">
-          <Link href="/teacher/lesson">
-            <Tag  name="Aulas" startContent={<IconBooks className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/>
-          </Link>
           <Link href="/teacher/category">
             <Tag  name="Categorias" startContent={<IconTags className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/>
           </Link>

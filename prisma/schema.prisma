@@ -54,6 +54,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
+  Course        Course[]
 }
 
 model VerificationToken {
@@ -76,11 +77,10 @@ model Course {
   categoryId String?
   category   Category? @relation(fields: [categoryId], references: [id])
 
-  chapters    Chapter[]
-  attachments Attachment[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  chapters  Chapter[]
+  author    User      @relation(fields: [userId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 
   @@index([categoryId])
 }
@@ -96,21 +96,24 @@ model Attachment {
   name String
   url  String @db.Text
 
-  courseId String
-  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessonId String
+  lesson   Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([courseId])
+  @@index([lessonId])
 }
 
 model Chapter {
-  id          String   @id @default(uuid())
+  id          String  @id @default(uuid())
   title       String
-  description String?  @db.Text
+  description String? @db.Text
   courseId    String
-  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course      Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  position    Int
+  isPublished Boolean  @default(false)
   lessons     Lesson[]
 }
 
@@ -122,6 +125,8 @@ model Lesson {
   position    Int
   isPublished Boolean @default(false)
   isFree      Boolean @default(false)
+
+  attachments Attachment[]
 
   muxData MuxData?
 

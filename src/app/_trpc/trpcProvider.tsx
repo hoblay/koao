@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactNode, useState } from "react";
 import { trpc } from "./client";
 import { httpBatchLink } from "@trpc/react-query";
+import { getBaseUrl } from "@/utils/trpc";
 
 
 
@@ -11,7 +12,7 @@ export default function TrpcProvider({children}: {children: ReactNode}){
   const [trpcClient] = useState(() => trpc.createClient({
     links:[
       httpBatchLink({
-        url: `https://koao.vercel.app/api/trpc`
+        url: `${getBaseUrl()}/api/trpc`,
       }),
     ],
   }));
