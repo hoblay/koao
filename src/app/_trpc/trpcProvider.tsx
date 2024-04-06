@@ -12,7 +12,7 @@ export default function TrpcProvider({children}: {children: ReactNode}){
   const [trpcClient] = useState(() => trpc.createClient({
     links:[
       httpBatchLink({
-        url: `https://koao.vercel.app/api/trpc`
+        url: `${getBaseUrl()}/api/trpc`,
       }),
     ],
   }));
