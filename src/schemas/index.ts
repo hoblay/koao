@@ -53,8 +53,8 @@ export type TSignUpSchema = z.infer<typeof SignUpSchema>
 
 
 export const CreateCourseSchema = z.object({
-  title: z.string().min(20, {
-    message: 'O titulo tem que ser maior a 20 carateres.'
+  title: z.string().min(10, {
+    message: 'O titulo tem que ser maior a 10 carateres.'
   })
 });
 
@@ -63,8 +63,8 @@ export type TCreateCourseSchema = z.infer<typeof CreateCourseSchema>
 
 export const CreateChapterSchema = z.object({
   courseId: z.string(),
-  title: z.string().min(20, {
-    message: 'O titulo tem que ser maior a 20 carateres.'
+  title: z.string().min(10, {
+    message: 'O titulo tem que ser maior a 10 carateres.'
   }),
   description: z.string().min(20, {
     message: 'A descriççao tem que ser maior a 20 carateres.'
@@ -76,8 +76,8 @@ export type TCreateChapterschema = z.infer<typeof CreateChapterSchema>
 
 
 export const CreateChapterFront = z.object({
-  title: z.string().min(20, {
-    message: 'O titulo tem que ser maior a 20 carateres.'
+  title: z.string().min(10, {
+    message: 'O titulo tem que ser maior a 10 carateres.'
   }),
   description: z.string().min(20, {
     message: 'A descriççao tem que ser maior a 20 carateres.'
