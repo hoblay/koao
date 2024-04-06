@@ -1,6 +1,6 @@
 "use client";
 import { trpc } from '@/app/_trpc/client';
-import {  CreateChapterSchema, TCreateChapterschema } from '@/schemas';
+import {  CreateChapterFront, CreateChapterSchema, TCreateChaptersFront, TCreateChapterschema } from '@/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useState } from 'react'
 import { Controller, FormProvider, useForm } from 'react-hook-form'
@@ -9,21 +9,21 @@ import { Form } from '@/app/components/Form';
 
 
 
-function CreateChapter() {
+function CreateChapter({courseId}: {courseId:string}) {
   const [modalOpen, setModalOpen] = useState(false)
-  const createChapterForm = useForm<TCreateChapterschema>({
-    resolver: zodResolver(CreateChapterSchema)
+  const createChapterForm = useForm<TCreateChaptersFront>({
+    resolver: zodResolver(CreateChapterFront)
   })
   const {control, register, formState: { isSubmitting}, handleSubmit, reset} = createChapterForm;
 
-  const getCourse = trpc.course.getAllbyUser.useQuery()
+  const getCourse = trpc.course.getById.useQuery(courseId)
   const createChapter = trpc.chapter.create.useMutation({
     onSettled: () => {
       getCourse.refetch()
     },
   })
-  const onSubmit = async (data:TCreateChapterschema) => {
-    createChapter.mutate(data)
+  const onSubmit = async (data:TCreateChaptersFront) => {
+    createChapter.mutate({...data, courseId })
     reset()
 
     
@@ -32,7 +32,6 @@ function CreateChapter() {
   return (
     <div className="flex flex-col mt-6 w-full">
       <div className="flex flex-col gap-4 w-full">
-        <h2 className="text-xl">Adicionar modulo</h2>
         <FormProvider {...createChapterForm}>
           <form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}>
             <Form.Field>
@@ -46,7 +45,7 @@ function CreateChapter() {
               <Form.Label htmlFor='description'>
                 Descriçao
               </Form.Label>
-              <textarea   rows={4}  className=" p-2.5 justify-between w-full font-normal relative flex items-center shadow-sm px-3 gap-3 dark:bg-zinc-800 dark:hover:bg-zinc-950/40 dark:focus:bg-zinc-950/40 min-h-36 rounded-md transition-[background] motion-reduce:transition-none !duration-150 outline-none  dark:placeholder:text-zinc-500 focus-visible:outline-none  data-[has-end-content=true]:pe-1.5 text-small dark:text-zinc-100" placeholder="Write your thoughts here..." />
+              <textarea  id='description'  {...register('description')} rows={4}  className=" p-2.5 justify-between w-full font-normal relative flex items-center shadow-sm px-3 gap-3 dark:bg-zinc-800 dark:hover:bg-zinc-950/40 dark:focus:bg-zinc-950/40 min-h-36 rounded-md transition-[background] motion-reduce:transition-none !duration-150 outline-none  dark:placeholder:text-zinc-500 focus-visible:outline-none  data-[has-end-content=true]:pe-1.5 text-small dark:text-zinc-100" placeholder="Write your thoughts here..." />
               <Form.ErrorMessage field='description'/>
             </Form.Field>
             

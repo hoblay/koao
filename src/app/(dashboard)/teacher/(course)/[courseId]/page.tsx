@@ -1,4 +1,4 @@
-
+"use client"
 import Tag from "@/app/components/Tag/Tag";
 import { authOptions } from "@/server/auth";
 import { db } from "@/server/db";
@@ -7,39 +7,23 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import CreateChapter from "./_components/CreateChapter";
+import { Accordion } from "@/app/components/Accordion";
+import { trpc } from "@/app/_trpc/client";
+import Link from "next/link";
 
-const CourseIdPage = async ({
+const CourseIdPage =  ({
   params
 }: {
   params: { courseId: string }
 }) => {
   
-  const session = await getServerSession(authOptions)
 
 
-  const course = await db.course.findUnique({
-    where: {
-      id: params.courseId,
-      userId: session?.user.id
-    },
-    include: {
-      chapters: {
-        include:{
-          lessons: true
-        }
-      },
-      },
-    },
-  )
+  const course = trpc.course.getById.useQuery(params.courseId) 
 
-  const categories = await db.category.findMany({
-    orderBy: {
-      name: "asc",
-    },
-  });
 
-  if (!course) {
-    return redirect("/teacher");
+  if (!course.data) {
+    return null
   }
 
 
@@ -66,7 +50,7 @@ const CourseIdPage = async ({
         <label className="text-sm text-zinc-600 dark:text-zinc-300 flex items-center justify-between">
           Titulo
         </label>
-        <input className={` justify-between w-full font-normal relative flex items-center shadow-sm px-3 gap-3 dark:bg-zinc-800 dark:hover:bg-zinc-950/40 dark:focus:bg-zinc-950/40 h-[53px] min-h-12 rounded-md transition-[background] motion-reduce:transition-none !duration-150 outline-none  dark:placeholder:text-zinc-500 focus-visible:outline-none  data-[has-end-content=true]:pe-1.5 text-small dark:text-zinc-100`} value={course.title} />
+        <input className={` justify-between w-full font-normal relative flex items-center shadow-sm px-3 gap-3 dark:bg-zinc-800 dark:hover:bg-zinc-950/40 dark:focus:bg-zinc-950/40 h-[53px] min-h-12 rounded-md transition-[background] motion-reduce:transition-none !duration-150 outline-none  dark:placeholder:text-zinc-500 focus-visible:outline-none  data-[has-end-content=true]:pe-1.5 text-small dark:text-zinc-100`} value={course.data.title} />
         </div>
         <div className="relative flex flex-col gap-3">
         <label 
@@ -88,9 +72,24 @@ const CourseIdPage = async ({
         <div className="relative w-full bg-zinc-900 shadow-md p-8 rounded-lg gap-3">
           <Image src={"https://miro.medium.com/v2/resize:fit:1280/format:webp/1*SL4sWHdjGR3vo0x5ta3xfw.jpeg"} className="rounded-xl" width={536} height={408} alt="course" unoptimized />
           
+          
+            <Accordion.Root className="min-w-[530px] mt-4">
+            {course.data.chapters.map((chapter, index) => (
+              <Accordion.Item title={chapter.title} key={chapter.id} index={index}>
+                <div className="p-4">{chapter.description}...
+                  <Link className="text-green-600 p-5 hover:text-green-500" href={`/teacher/${params.courseId}/${chapter.id}`}>Ver mais</Link>
+                </div>
+              </Accordion.Item>
+              
+            ))}
+            <Accordion.Item title="Adicionar modulos" index={99}>
 
-
-          <CreateChapter/>
+              <div className="px-4">
+                <CreateChapter courseId={course.data.id}/>
+              </div>
+            </Accordion.Item>
+          </Accordion.Root>
+          
         </div>
         </div>
         </div>

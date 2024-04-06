@@ -64,7 +64,24 @@ export const courseRouter = router({
       
     } 
   }),
-
+  getById: publicProcedure.input(idSchema).query(async ({input}) => {
+    const session = await getServerSession(authOptions)
+   return await db.course.findUnique({
+      where: {
+        id: input,
+        userId: session?.user.id
+      },
+      include: {
+        chapters: {
+          include:{
+            lessons: true
+          }
+        },
+        },
+      },
+    )
+  }),
+  
   deleteCoruse: publicProcedure
     .input(idSchema)
     .mutation(async ({ input }) => {

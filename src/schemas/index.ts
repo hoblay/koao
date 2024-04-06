@@ -73,3 +73,16 @@ export const CreateChapterSchema = z.object({
 
 
 export type TCreateChapterschema = z.infer<typeof CreateChapterSchema>
+
+
+export const CreateChapterFront = z.object({
+  title: z.string().min(20, {
+    message: 'O titulo tem que ser maior a 20 carateres.'
+  }),
+  description: z.string().min(20, {
+    message: 'A descriççao tem que ser maior a 20 carateres.'
+  })
+});
+
+
+export type TCreateChaptersFront = z.infer<typeof CreateChapterFront>

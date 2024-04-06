@@ -43,7 +43,7 @@ export const chapterRouter = router({
             position: "desc",
           },
         });
-    
+        
         const newPosition = lastChapter ? lastChapter.position + 1 : 1;
     
         const chapter = await db.chapter.create({
@@ -54,6 +54,7 @@ export const chapterRouter = router({
             description
           }
         });
+        console.log(chapter)
         return chapter
       } catch (error) {
         
@@ -83,6 +84,19 @@ export const chapterRouter = router({
       
     } 
   }),
+  getById: publicProcedure.input(idSchema).query(async ({input}) => {
+    const session = await getServerSession(authOptions)
+   return await db.chapter.findUnique({
+      where: {
+        id: input,
+      },
+      include: {
+        lessons: true
+        },
+      },
+    )
+  }),
+  
 
   
 

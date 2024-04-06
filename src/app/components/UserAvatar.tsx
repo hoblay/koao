@@ -55,18 +55,18 @@ interface User{
           <Dropdown.Section>
             { user ? 
              <>
-              <Dropdown.Item title="Meu progresso" description="Veja os seus logros"  startContent={ <IconTrophyFilled className="w-4 h-4"/>}/> 
-              <Dropdown.Item title={"Painel de control"} description="Gerencie os seus cursos" startContent={ <IconLayoutDashboard className="w-4 h-4"/>}  href='/teacher'/>
+              <Dropdown.Item title="Meu progresso" description="Veja os seus logros"  startContent={ <IconTrophyFilled className="w-6 h-6 dark:text-zinc-500 text-zinc-600"/>}/> 
+              <Dropdown.Item title={"Painel de control"} description="Gerencie os seus cursos" startContent={ <IconLayoutDashboard className="w-6 h-6 dark:text-zinc-500 text-zinc-600"/>}  href='/teacher'/>
               
             </>
-            : <Dropdown.Item title={'Iniciar sessão' } description={'Criar uma conta'} startContent={ <IconLogin  className="w-4 h-4"/>} href='/signin'/>
+            : <Dropdown.Item title={'Iniciar sessão' } description={'Criar uma conta'} startContent={ <IconLogin  className="w-6 h-6 dark:text-zinc-500 text-zinc-600"/>} href='/signin'/>
               }
-            <Dropdown.Item title={"Definições"} description="Configurações" startContent={<IconSettings  className="w-4 h-4"/>}/>
-            <Dropdown.Item title={`${themeState === 'dark' ? 'Modo escuro' : 'Modo claro' }`} shortcut description="Trocar o tema" startContent={themeState === 'dark' ?<IconMoonStars className="w-4 h-4"/> : <IconSun className="w-4 h-4" />} onClick={() => theme == "dark"? setTheme('light'): setTheme("dark")} />
+            <Dropdown.Item title={"Definições"} description="Configurações" startContent={<IconSettings  className="w-6 h-6 dark:text-zinc-500 text-zinc-600"/>}/>
+            <Dropdown.Item title={`${themeState === 'dark' ? 'Modo escuro' : 'Modo claro' }`} shortcut description="Trocar o tema" startContent={themeState === 'dark' ?<IconMoonStars className="w-6 h-6 dark:text-zinc-500 text-zinc-600"/> : <IconSun className="w-6 h-6 dark:text-zinc-500 text-zinc-600" />} onClick={() => theme == "dark"? setTheme('light'): setTheme("dark")} />
           </Dropdown.Section>
           {user && 
             <Dropdown.Section showDivider>
-              <Dropdown.Item title="Sair" description="Encerrar sessão" startContent={ <IconLogout  className="w-4 h-4"/>} onClick={() => signOut({redirect: true, callbackUrl: '/'})}/>
+              <Dropdown.Item title="Sair" description="Encerrar sessão" startContent={ <IconLogout  className="w-6 h-6 dark:text-zinc-500 text-zinc-600"/>} onClick={() => signOut({redirect: true, callbackUrl: '/'})}/>
             </Dropdown.Section>
           }
           
