@@ -83,7 +83,6 @@ const CourseIdPage =  ({
               
             ))}
             <Accordion.Item title="Adicionar modulos" index={99}>
-
               <div className="px-4">
                 <CreateChapter courseId={course.data.id}/>
               </div>
