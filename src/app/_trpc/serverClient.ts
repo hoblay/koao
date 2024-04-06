@@ -8,7 +8,7 @@ import { httpBatchLink } from "@trpc/client";
 export const serverClient = appRouter.createCaller({
   links: [
     httpBatchLink({
-      url: `${getBaseUrl()}/api/trpc`,
+      url: `https://koao.vercel.app/api/trpc`
     })
   ]
 })
