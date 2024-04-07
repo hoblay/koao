@@ -11,7 +11,7 @@ import React from 'react'
  function Courses() {
   const courses = trpc.course.getAllbyUser.useQuery()
 
-  const deleteCourse = trpc.course.deleteCoruse.useMutation({
+  const deleteCourse = trpc.course.deleteCourse.useMutation({
     onSettled: () => {
       courses.refetch()
     }

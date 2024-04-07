@@ -1,4 +1,4 @@
-import { CreateCourseSchema, SignUpSchema, TSignUpSchema } from "@/schemas"
+import { CreateChapterSchema, CreateCourseSchema, SignUpSchema, TSignUpSchema } from "@/schemas"
 import { publicProcedure, router } from "@/server/api/trpc"
 import { authOptions } from "@/server/auth";
 import { db } from "@/server/db";
@@ -81,8 +81,27 @@ export const courseRouter = router({
       },
     )
   }),
-  
-  deleteCoruse: publicProcedure
+  updateCourse: publicProcedure.input(CreateChapterSchema).mutation(async ({input}) => {
+   
+    const session = await getServerSession(authOptions)
+    if (!session?.user) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+    
+    const course = await db.course.update({
+      where: {
+        id: input.courseId,
+        userId: session.user.id
+      },
+      data: {
+       description: input.description,
+       title: input.title 
+      }
+    });
+
+    return course;
+  }),
+  deleteCourse: publicProcedure
     .input(idSchema)
     .mutation(async ({ input }) => {
       const session = await getServerSession(authOptions)
