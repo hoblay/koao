@@ -26,11 +26,11 @@ import React from 'react'
   
  
   return (
-    <div className="grid grid-cols-3 py-6 gap-4">
+    <div className="grid lg:grid-cols-3  md:grid-cols-2 py-6 gap-4">
       {courses?.data?.map(course => (
-        <Card.Root key={course.id}  className="max-w-[390px] min-h-[206px] w-full border border-zinc-900 bg-zinc-900/70 rounded-2xl justify-between flex flex-col">
+        <Card.Root key={course.id}  className="min-h-[206px] w-full border border-zinc-900 bg-zinc-900/70 rounded-2xl justify-between flex flex-col">
         <Card.Body className="dark:bg-zinc-900 p-5 rounded-2xl rounded-b-none flex items-start justify-between gap-3">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 overflow-x-hidden">
             <Link href={`/teacher/${course.id}`}><h4>{course.title}</h4></Link>
             <span className="text-zinc-500">{course.chapters.length} modulos · 65GB storage</span>
           </div>

@@ -107,12 +107,11 @@ export default function Home() {
               <p className="text-zinc-700 dark:text-zinc-200 text-center text-xs">Assinando você recebe acesso imediato a todas as formações do zero ao avançado</p>
             </div>
             <div className="px-7">
-              <Link href="#" className="">
-                <button type="button" className="mt-2 relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-[#015F43] hover:bg-[#143229] text-white px-8 py-3 text-2xl w-full">
-                  <div className="flex flex-1 justify-center items-center gap-2">
+              <Link href="#" className="items-center flex justify-center">
+              
+              <button className="rounded-2xl flex border-2 border-dashed border-emerald-950 bg-[#015F43] px-6 py-3 font-semibold uppercase text-white transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_#02533a] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none">
                     <span className="text-base leading-6">Quero assinar</span>
                     <ArrowTopRightIcon />
-                  </div>
                 </button>
               </Link>
             </div>

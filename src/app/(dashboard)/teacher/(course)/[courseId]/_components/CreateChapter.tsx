@@ -10,7 +10,6 @@ import { Form } from '@/app/components/Form';
 
 
 function CreateChapter({courseId}: {courseId:string}) {
-  const [modalOpen, setModalOpen] = useState(false)
   const createChapterForm = useForm<TCreateChaptersFront>({
     resolver: zodResolver(CreateChapterFront)
   })

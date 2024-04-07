@@ -10,6 +10,9 @@ import CreateChapter from "./_components/CreateChapter";
 import { Accordion } from "@/app/components/Accordion";
 import { trpc } from "@/app/_trpc/client";
 import Link from "next/link";
+import { FormProvider, useForm } from "react-hook-form";
+import { TCreateChaptersFront, CreateChapterFront } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const CourseIdPage =  ({
   params
@@ -19,12 +22,29 @@ const CourseIdPage =  ({
   
 
 
-  const course = trpc.course.getById.useQuery(params.courseId) 
+  const onSubmit = async (data:any) => {
+   
+    reset()
 
+    
+  } 
+
+
+  
+  const course = trpc.course.getById.useQuery(params.courseId) 
+  const editCourseForm = useForm({
+    defaultValues: {
+      title: course?.data?.title,
+      description: course.data?.description
+    }
+  })
+
+  const {control, register, formState: { isSubmitting}, handleSubmit, reset} = editCourseForm;
 
   if (!course.data) {
     return null
   }
+
 
 
 
@@ -44,7 +64,8 @@ const CourseIdPage =  ({
         
         </div>
         <div className=" mt-4 flex gap-4  justify-between">
-      <form className=" w-full ">
+        <FormProvider {...editCourseForm}>
+      <form className=" w-full " onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-4 w-full bg-zinc-900 shadow-md p-8 rounded-lg">
         <div className="relative flex flex-col gap-2">
         <label className="text-sm text-zinc-600 dark:text-zinc-300 flex items-center justify-between">
@@ -68,6 +89,7 @@ const CourseIdPage =  ({
         </div>
         </div>
         </form>
+        </FormProvider>
         <div className="flex w-full  ">
         <div className="relative w-full bg-zinc-900 shadow-md p-8 rounded-lg gap-3">
           <Image src={"https://miro.medium.com/v2/resize:fit:1280/format:webp/1*SL4sWHdjGR3vo0x5ta3xfw.jpeg"} className="rounded-xl" width={536} height={408} alt="course" unoptimized />
