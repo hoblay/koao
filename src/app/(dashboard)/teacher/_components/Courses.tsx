@@ -3,7 +3,7 @@ import { serverClient } from '@/app/_trpc/serverClient'
 import { Card } from '@/app/components/Card'
 import { Dropdown } from '@/app/components/Dropdown'
 import { formatTime } from '@/utils/format-time'
-import { IconDots, IconEdit, IconTrash } from '@tabler/icons-react'
+import { IconDots, IconEdit, IconEye, IconTrash } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -40,6 +40,7 @@ import React from 'react'
           </Dropdown.Trigger>
           <Dropdown.Menu className='top-10 -right-4'>
             <Dropdown.Section>
+            <Dropdown.Item title="Previzualizar" description={"Ver o curso "} startContent={<IconEye className="text-zinc-600"/>} href={`/teacher/${course.id}`} />
               <Dropdown.Item title="Editar o curso" description={"Aperte para editar"} startContent={<IconEdit className="text-zinc-600"/>} href={`/teacher/${course.id}`} />
               <Dropdown.Item title="Eliminar o curso" description={"Aperte para eliminar"} startContent={<IconTrash className="text-red-500"/>} onClick={() => removeCourse(course.id)}/>
             </Dropdown.Section> 

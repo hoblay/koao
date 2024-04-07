@@ -50,8 +50,7 @@ function EditCourse({courseId, edit, setEdit}:EditCourseProps) {
 
   if(!edit){
     return (
-      
-      <div className=" w-full ">
+     
         <div className="flex flex-col gap-4 w-full bg-zinc-900 shadow-md p-8 rounded-lg">
         <div className="relative flex flex-col gap-2">
         <label className="text-lg font-semibold text-zinc-600 dark:text-zinc-300 flex items-center justify-between">
@@ -75,7 +74,6 @@ function EditCourse({courseId, edit, setEdit}:EditCourseProps) {
         </div>
        
         </div>
-     </div>
     )
   }
 
