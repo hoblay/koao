@@ -40,7 +40,7 @@ import React from 'react'
           </Dropdown.Trigger>
           <Dropdown.Menu className='top-10 -right-4'>
             <Dropdown.Section>
-              <Dropdown.Item title="Editar o curso" description={"Aperte para editar"} startContent={<IconEdit className="text-zinc-600"/>} onClick={() => console.log('Editar: ', course.title)}/>
+              <Dropdown.Item title="Editar o curso" description={"Aperte para editar"} startContent={<IconEdit className="text-zinc-600"/>} href={`/teacher/${course.id}`} />
               <Dropdown.Item title="Eliminar o curso" description={"Aperte para eliminar"} startContent={<IconTrash className="text-red-500"/>} onClick={() => removeCourse(course.id)}/>
             </Dropdown.Section> 
           </Dropdown.Menu>
