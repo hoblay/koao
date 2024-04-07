@@ -44,7 +44,7 @@ function CreateChapter({courseId}: {courseId:string}) {
               <Form.Label htmlFor='description'>
                 Descriçao
               </Form.Label>
-              <textarea  id='description'  {...register('description')} rows={4}  className=" p-2.5 justify-between w-full font-normal relative flex items-center shadow-sm px-3 gap-3 dark:bg-zinc-800 dark:hover:bg-zinc-950/40 dark:focus:bg-zinc-950/40 min-h-36 rounded-md transition-[background] motion-reduce:transition-none !duration-150 outline-none  dark:placeholder:text-zinc-500 focus-visible:outline-none  data-[has-end-content=true]:pe-1.5 text-small dark:text-zinc-100" placeholder="Write your thoughts here..." />
+              <textarea  id='description'  {...register('description')} rows={4}  className=" p-2.5 justify-between w-full font-normal relative flex items-center shadow-sm px-3 gap-3 dark:bg-zinc-800 dark:hover:bg-zinc-950/40 dark:focus:bg-zinc-950/40 min-h-36 rounded-md transition-[background] motion-reduce:transition-none !duration-150 outline-none  dark:placeholder:text-zinc-500 focus-visible:outline-none  data-[has-end-content=true]:pe-1.5 text-small dark:text-zinc-100" placeholder="Escreva a descriçao..." />
               <Form.ErrorMessage field='description'/>
             </Form.Field>
             

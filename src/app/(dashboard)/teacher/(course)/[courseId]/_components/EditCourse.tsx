@@ -81,8 +81,7 @@ function EditCourse({courseId, edit, setEdit}:EditCourseProps) {
 
 return(
   <FormProvider {...editCourseForm}>
-  <form className=" w-full " onSubmit={handleSubmit(onSubmit)} id='editCourse'>
-    <div className="flex flex-col gap-4 w-full bg-zinc-900 shadow-md p-8 rounded-lg">
+  <form className=" flex flex-col gap-4 w-full bg-zinc-900 shadow-md p-8 rounded-lg" onSubmit={handleSubmit(onSubmit)} id='editCourse'>
       <Form.Field>
         <Form.Label htmlFor='title'>
           Titulo
@@ -103,13 +102,12 @@ return(
         <Form.Label htmlFor='description'>
           Descriçao
         </Form.Label>
-        <textarea  id='description'  {...register('description')} rows={4}  className=" p-2.5 justify-between w-full font-normal relative flex items-center shadow-sm px-3 gap-3 dark:bg-zinc-800 dark:hover:bg-zinc-950/40 dark:focus:bg-zinc-950/40 min-h-[258px] rounded-md transition-[background] motion-reduce:transition-none !duration-150 outline-none  dark:placeholder:text-zinc-500 focus-visible:outline-none  data-[has-end-content=true]:pe-1.5 text-small dark:text-zinc-100" placeholder="Escreva a descriçao" /> 
+        <textarea  id='description'  {...register('description')} rows={4}  className=" p-2.5 justify-between w-full font-normal relative flex items-center shadow-sm px-3 gap-3 dark:bg-zinc-800 dark:hover:bg-zinc-950/40 dark:focus:bg-zinc-950/40 min-h-[358px] rounded-md transition-[background] motion-reduce:transition-none !duration-150 outline-none  dark:placeholder:text-zinc-500 focus-visible:outline-none  data-[has-end-content=true]:pe-1.5 text-small dark:text-zinc-100" placeholder="Escreva a descriçao" /> 
         
         
         <Form.ErrorMessage field='description'/>
       </Form.Field>
      
-    </div>
   </form>
 </FormProvider>
   )
