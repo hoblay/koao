@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -121,14 +115,11 @@ model Lesson {
   id          String  @id @default(uuid())
   title       String
   description String? @db.Text
-  videoUrl    String? @db.Text
   position    Int
   isPublished Boolean @default(false)
   isFree      Boolean @default(false)
 
   attachments Attachment[]
-
-  muxData MuxData?
 
   chapterId String
   chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
@@ -137,17 +128,9 @@ model Lesson {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Video     Video[]
 
   @@index([chapterId])
-}
-
-model MuxData {
-  id         String  @id @default(uuid())
-  assetId    String
-  playbackId String?
-
-  lessonId String @unique
-  lesson   Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 }
 
 model UserProgress {
@@ -164,4 +147,55 @@ model UserProgress {
 
   @@unique([userId, lessonId])
   @@index([lessonId])
+}
+
+model Video {
+  id                  String    @id @default(uuid())
+  uploadBatchId       String?
+  duration            Int
+  sizeInBytes         Int
+  title               String
+  storageKey          String?
+  audioStorageKey     String?
+  subtitlesStorageKey String?
+  description         String?
+  externalProviderId  String?   @unique
+  processedAt         DateTime?
+  commitUrl           String?
+  createdAt           DateTime  @default(now())
+
+  lessonId String
+  lesson   Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  uploadBatch   UploadBatch?   @relation(fields: [uploadBatchId], references: [id], onDelete: SetNull)
+  transcription Transcription?
+
+  @@index([lessonId])
+}
+
+model Transcription {
+  id         String    @id @default(uuid())
+  videoId    String    @unique
+  reviewedAt DateTime?
+  createdAt  DateTime  @default(now())
+
+  video    Video                  @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  segments TranscriptionSegment[]
+}
+
+model TranscriptionSegment {
+  id              String  @id @default(uuid())
+  transcriptionId String
+  start           Decimal @db.Decimal(10, 2)
+  end             Decimal @db.Decimal(10, 2)
+  text            String
+
+  transcription Transcription @relation(fields: [transcriptionId], references: [id], onDelete: Cascade)
+}
+
+model UploadBatch {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  videos Video[]
 }
