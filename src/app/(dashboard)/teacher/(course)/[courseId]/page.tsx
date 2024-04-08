@@ -76,7 +76,7 @@ const handleEdit = (value:boolean) => {
             <h2 className="text-xl font-semibold">Modulos</h2>
             </div>
           
-            <Accordion.Root className="min-w-[546px] px-0 py-0 bg-zinc-800/40 gap-2 flex flex-col divide-y-4 divide-zinc-900">
+            <Accordion.Root className="min-w-[546px] px-0 py-0 bg-zinc-800/40 gap-0 flex flex-col divide-y-4 divide-zinc-900">
             {course.data.chapters.map((chapter, index) => (
               <Accordion.Item title={chapter.title} key={chapter.id} index={index}>
                 <div className="p-4">{chapter.description}...
