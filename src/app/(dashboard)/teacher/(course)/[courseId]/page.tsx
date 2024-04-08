@@ -15,6 +15,7 @@ import { TCreateChaptersFront, CreateChapterFront } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import EditCourse from "./_components/EditCourse";
 import { useState } from "react";
+import AddImage from "./_components/AddImage";
 
 const CourseIdPage =  ({
   params
@@ -66,35 +67,11 @@ const handleEdit = (value:boolean) => {
         </div>
 
         </div>
-        <div className=" mt-4 flex gap-4  justify-between">
+        <div className=" mt-4 lg:flex gap-4  justify-between">
         
         <EditCourse courseId={course.data.id} edit={edit} setEdit={handleEdit}/>
-        <div className="relative w-fit bg-zinc-900 shadow-md p-8 rounded-lg gap-4 flex flex-col">
-        <div className="max-w-[546px] relative">
-           {course.data.imageUrl ? <Image src={course.data.imageUrl} className="rounded-xl object-cover" width={546} height={408} alt="course" unoptimized /> : <div className="min-w-[546px] min-h-[310px]"></div> }
-          
-            
-            {(edit || !course.data.imageUrl) && <div className="rounded-xl mt-2 w-full flex items-center justify-center absolute -top-2">
-              <div className="flex items-center justify-center w-full " >
-                  <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full min-h-[310px] border-2 border-zinc-300 border-dashed rounded-xl cursor-pointer bg-zinc-50 dark:hover:bg-zinc-900/80 dark:bg-zinc-950/80 hover:bg-zinc-100 dark:border-zinc-800 dark:hover:border-zinc-700 ">
-                    
-                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                        <IconPhotoSearch className="w-8 h-8 mb-4 text-zinc-600 dark:text-zinc-300" />
-                        <p className="mb-2 text-sm text-zinc-500 dark:text-zinc-400"><span className="font-semibold">Arraste a imagem aqui</span> ou clique para selecionar manualmente</p>
-                        <p className="text-xs text-zinc-500 dark:text-zinc-500">PNG, JPEG, JPG, ou WEBP (MAX. 30MB)</p>
-                      </div> 
-
-                  
-                      
-                      <input id="dropzone-file" type="file" className="hidden" />
-                  </label>
-              </div> 
-        
-           </div>}
-           
-            
-          
-             </div>
+        <div className="flex-1 relative w-fit bg-zinc-900 shadow-md p-8 rounded-lg gap-4 flex flex-col">
+        <AddImage imageUrl={course.data.imageUrl} edit={edit} courseId={course.data.id}/>
             <div className="flex text-start items-start justify-start mt-4 ">
             <h2 className="text-xl font-semibold">Modulos</h2>
             </div>

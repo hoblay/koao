@@ -154,11 +154,9 @@ model Video {
   uploadBatchId       String?
   duration            Int
   sizeInBytes         Int
-  title               String
   storageKey          String?
   audioStorageKey     String?
   subtitlesStorageKey String?
-  description         String?
   externalProviderId  String?   @unique
   processedAt         DateTime?
   commitUrl           String?
