@@ -44,7 +44,7 @@ function AddImage({imageUrl, edit, courseId}: AddImageProps) {
     })
    
     
-  }, [])
+  }, [addImage, courseId])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
   return (
     <div className="max-w-[546px] relative max-h-[310px]">
