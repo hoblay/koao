@@ -52,7 +52,11 @@ export const courseRouter = router({
       },
       include:{
         author: true,
-        chapters: true
+        chapters: {
+          include:{
+            lessons: true
+          }
+        } 
       }
 
     }) 

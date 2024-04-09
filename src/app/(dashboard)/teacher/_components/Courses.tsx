@@ -23,7 +23,15 @@ import React from 'react'
   }
 
 
-  
+ const lessonsNumber = (chapters:any) => {
+  let nLessons = 0;
+  chapters.map((chapter:any) => {
+    chapter.lessons.map((lesson:any) => {
+      nLessons++
+    })
+  })
+  return nLessons
+ } 
  
   return (
     <div className="grid lg:grid-cols-3  md:grid-cols-2 py-6 gap-4">
@@ -32,7 +40,7 @@ import React from 'react'
         <Card.Body className="dark:bg-zinc-900 p-5 rounded-2xl rounded-b-none flex items-start justify-between gap-3">
           <div className="flex flex-col gap-2 overflow-x-hidden">
             <Link href={`/teacher/${course.id}`}><h4>{course.title}</h4></Link>
-            <span className="text-zinc-500">{course.chapters.length} modulos · 65GB storage</span>
+            <span className="text-zinc-500">{course.chapters.length} modulos · {lessonsNumber(course.chapters)} aulas</span>
           </div>
           <Dropdown.Root>
           <Dropdown.Trigger>

@@ -5,7 +5,7 @@ import { formatBytes } from "@/utils/format-bytes";
 import { formatSecondsToMinutes } from "@/utils/format-seconds";
 import { formatTime } from "@/utils/format-time";
 import { PlusIcon } from "@radix-ui/react-icons";
-import { IconBookUpload, IconCircleMinus, IconDots, IconFileExport, IconTags, IconUpload } from "@tabler/icons-react";
+import { IconBookUpload, IconCircleCheckFilled, IconCircleMinus, IconClockEdit, IconDots, IconFileExport, IconTags, IconUpload } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -78,7 +78,7 @@ export default function ChapterIdPage({
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex">
-                        <Tag  name="Pronto "/>
+                        <Tag startContent={<IconClockEdit className="w-5 h-5 text-amber-950 dark:text-zinc-400"/>}  name="Em andamento" className="bg-amber-200 dark:bg-yellow-950"/>
                       </div>
                     </td>
                     <td className="px-6 py-4">
