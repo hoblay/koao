@@ -61,12 +61,12 @@ export default function ChapterIdPage({
               <tbody>
                   {chapter.data.lessons.map((lesson, index) => (
                     <tr className="bg-zinc-50 border-b dark:bg-zinc-950 dark:border-zinc-900 py-2" key={lesson.id}>
-                    <th scope="row" className="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
+                    <th scope="row" className="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white max-w-96 ">
                       <div className="flex gap-4 items-center">
                       <input type="checkbox" value="" className="w-4 h-4 accent-[#015F43] text-[#015F43] bg-zinc-100 border-zinc-300 rounded focus:ring-[#2e7862] dark:focus:ring-[#015F43] dark:ring-offset-zinc-900 focus:ring-2 dark:bg-zinc-800 dark:border-zinc-700 cursor-pointer"/>
                         <div className="flex flex-col w-full py-4">
-                          <span className="text-base w-full ">{lesson.title}</span>
-                          <span className="text-sm text-zinc-500">{lesson.id}</span>
+                          <span className="text-base w-full truncate overflow-ellipsis">{lesson.title}</span>
+                          <span className="text-sm text-zinc-500 truncate overflow-ellipsis">{lesson.id}</span>
                         </div>
                       </div>
                     </th>
