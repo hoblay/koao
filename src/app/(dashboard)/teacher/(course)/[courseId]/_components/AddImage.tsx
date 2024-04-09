@@ -72,7 +72,7 @@ function AddImage({imageUrl, edit, courseId}: AddImageProps) {
 
     
   }
-,[]) 
+,[courseId]) 
   
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
   return (
