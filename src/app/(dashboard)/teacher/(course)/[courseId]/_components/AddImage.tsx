@@ -62,15 +62,15 @@ function AddImage({imageUrl, edit, courseId}: AddImageProps) {
       throw new Error(signedURLResult.failure)
     }
     const { url } = signedURLResult.success
-    await fetch(url, {
+    const pet = await fetch(url, {
       method: "PUT",
       headers: {
         "Content-Type": file.type,
       },
       body: file,
     })
-    getCourse.refetch()
     
+    if(pet.ok) getCourse.refetch()
   }
 ,[courseId, getCourse]) 
   
