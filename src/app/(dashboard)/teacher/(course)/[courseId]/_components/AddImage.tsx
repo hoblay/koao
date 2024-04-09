@@ -45,7 +45,7 @@ function AddImage({imageUrl, edit, courseId}: AddImageProps) {
       })
     )
       setImage(img[0]);
-      getCourse.refetch()
+      
         
       }
       reader.readAsDataURL(files)
@@ -69,7 +69,7 @@ function AddImage({imageUrl, edit, courseId}: AddImageProps) {
       },
       body: file,
     })
-
+    getCourse.refetch()
     
   }
 ,[courseId]) 
