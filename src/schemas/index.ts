@@ -86,17 +86,3 @@ export const CreateChapterFront = z.object({
 
 
 export type TCreateChaptersFront = z.infer<typeof CreateChapterFront>
-
-const MAX_FILE_SIZE = 50 * 1024 * 1024; // 5mb
-const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
-
-export const UploadImageSchema = z.object({
-  courseId: z.string().min(10, {
-    message: 'O titulo tem que ser maior a 10 carateres.'
-  }),
-  image: z
-  .any()
-});
-
-
-export type TUploadImageSchema = z.infer<typeof UploadImageSchema>

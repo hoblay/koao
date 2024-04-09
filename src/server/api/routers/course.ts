@@ -1,17 +1,10 @@
-import { r2 } from "@/lib/cloudfare-r2";
-import { CreateChapterSchema, CreateCourseSchema, SignUpSchema, TSignUpSchema, UploadImageSchema } from "@/schemas"
+
+import { CreateChapterSchema, CreateCourseSchema } from "@/schemas"
 import { publicProcedure, router } from "@/server/api/trpc"
 import { authOptions } from "@/server/auth";
 import { db } from "@/server/db";
-import { resizeImage } from "@/utils/convert-image";
-import { PutObjectCommand } from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
-import { hash } from "bcrypt";
-import { NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
-import error from "next/error";
 import { NextResponse } from "next/server";
-import { env } from "process";
 import { z } from "zod";
 
 const idSchema =  z.string() 
@@ -105,42 +98,6 @@ export const courseRouter = router({
     });
 
     return course;
-  }),
-  uploadImage: publicProcedure.input(UploadImageSchema).mutation(async({input}) => {
-    const session = await getServerSession(authOptions)
-    if (!session?.user) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
-
-    const convertedImage = await resizeImage(input.image)
-    
-    const signedUrl = await getSignedUrl(
-			r2,
-			new PutObjectCommand({
-				Bucket: process.env.R2_BUCKET_NAME,
-				Key: `${input.courseId}`,
-			}),
-			{ expiresIn: 6000 }
-		)
-    await fetch(signedUrl, {
-      method: "PUT",
-      headers: {
-        "Content-Type": 'image',
-      },
-      body: input.image,
-    })
-    const course = await db.course.update({
-      where: {
-        id: input.courseId,
-        userId: session.user.id
-      },
-      data: {
-       imageUrl: signedUrl
-      }
-    });
-
-    return course;
-
   }),
   deleteCourse: publicProcedure
     .input(idSchema)

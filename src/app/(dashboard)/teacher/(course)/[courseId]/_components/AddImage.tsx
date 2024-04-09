@@ -4,6 +4,7 @@ import { IconPhoto, IconPhotoSearch } from '@tabler/icons-react'
 import Image from 'next/image'
 import React, { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
+import { getSignedURL } from './actions';
 
 interface AddImageProps{
   imageUrl: string | null,
@@ -12,15 +13,22 @@ interface AddImageProps{
 }
 
 
+
+
 function AddImage({imageUrl, edit, courseId}: AddImageProps) {
   const [image, setImage] = useState<{image:File ,preview: string} | null>(null)
   const getCourse = trpc.course.getById.useQuery(courseId)
-  const addImage = trpc.course.uploadImage.useMutation({
-    onSettled: () => {
-      getCourse.refetch()
-    },
-  })
-  const onDrop = useCallback((acceptedFiles:File[]) => {
+
+
+  const computeSHA256 = async (file: File) => {
+    const buffer = await file.arrayBuffer()
+    const hashBuffer = await crypto.subtle.digest("SHA-256", buffer)
+    const hashArray = Array.from(new Uint8Array(hashBuffer))
+    const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("")
+    return hashHex
+  }
+  const onDrop = useCallback(async (acceptedFiles:Array<File>) => {
+    const file = acceptedFiles[0]
 
     acceptedFiles.forEach((files) => {
       const reader = new FileReader()
@@ -28,7 +36,7 @@ function AddImage({imageUrl, edit, courseId}: AddImageProps) {
       reader.onabort = () => console.log('file reading was aborted')
       reader.onerror = () => console.log('file reading has failed')
       reader.onload = () => {
-      // Do whatever you want with the file contents
+      
       const img = acceptedFiles.map((file) =>
       Object.assign(
         {
@@ -37,14 +45,35 @@ function AddImage({imageUrl, edit, courseId}: AddImageProps) {
       })
     )
       setImage(img[0]);
-      addImage.mutate({courseId, image: img[0].image})
+      
         
       }
-      reader.readAsArrayBuffer(files)
+      reader.readAsDataURL(files)
     })
-   
+
     
-  }, [addImage, courseId])
+    const signedURLResult = await getSignedURL({
+      fileSize: file.size,
+      fileType: file.type,
+      checksum: await computeSHA256(file),
+      courseId
+    })
+    if (signedURLResult.failure !== undefined) {
+      throw new Error(signedURLResult.failure)
+    }
+    const { url } = signedURLResult.success
+    await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": file.type,
+      },
+      body: file,
+    })
+
+    
+  }
+,[]) 
+  
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
   return (
     <div className="max-w-[546px] relative max-h-[310px]">

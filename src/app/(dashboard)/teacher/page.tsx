@@ -1,18 +1,14 @@
 "use client";
 
-import { Card } from "@/app/components/Card";
 import Tag from "@/app/components/Tag/Tag";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PlusIcon } from "@radix-ui/react-icons";
-import { IconDots, IconNotebook } from "@tabler/icons-react";
-import Link from "next/link";
-import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Form } from "@/app/components/Form";
-import { z } from "zod";
 import { trpc } from "@/app/_trpc/client";
 import { CreateCourseSchema, TCreateCourseSchema } from "@/schemas";
 import Courses from "./_components/Courses";
+import { useState } from "react";
 
 
 
