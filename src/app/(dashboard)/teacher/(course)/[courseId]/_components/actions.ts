@@ -85,7 +85,7 @@ export const getSignedURL = async ({
       userId: session.user.id
     },
     data: {
-     imageUrl: `https://pub-31ec4c4d831748f1969dfaa1b69a9cc1.r2.dev/${courseId}`
+     imageUrl: `${process.env.R2_DEV_URL}/${courseId}`
     }
   });
 
