@@ -5,6 +5,7 @@ import Image from 'next/image'
 import React, { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { getSignedURL } from './actions';
+import { useRouter } from 'next/navigation';
 
 interface AddImageProps{
   imageUrl: string | null,
@@ -18,6 +19,7 @@ interface AddImageProps{
 function AddImage({imageUrl, edit, courseId}: AddImageProps) {
   const [image, setImage] = useState<{image:File ,preview: string} | null>(null)
   const getCourse = trpc.course.getById.useQuery(courseId)
+  const route = useRouter()
 
 
   const computeSHA256 = async (file: File) => {
@@ -70,7 +72,11 @@ function AddImage({imageUrl, edit, courseId}: AddImageProps) {
       body: file,
     })
     
-    if(pet.ok) getCourse.refetch()
+    if(pet.ok) {
+      getCourse.refetch()
+      route.refresh()
+    }
+
   }
 ,[courseId, getCourse]) 
   
