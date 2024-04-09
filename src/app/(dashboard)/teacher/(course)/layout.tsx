@@ -14,7 +14,7 @@ export default async function AppLayout({
   children: React.ReactNode
 }) {
   
-  const session = await getServerSession()
+
 
   return (
     <div className=" flex flex-col" >

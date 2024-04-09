@@ -29,6 +29,7 @@ function AddImage({imageUrl, edit, courseId}: AddImageProps) {
     const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("")
     return hashHex
   }
+  
   const onDrop = useCallback(async (acceptedFiles:Array<File>) => {
     const file = acceptedFiles[0]
 

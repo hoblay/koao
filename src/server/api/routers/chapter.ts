@@ -91,7 +91,19 @@ export const chapterRouter = router({
         id: input,
       },
       include: {
-        lessons: true
+        course:{
+          include:{
+            author: true
+          }
+        },
+        lessons: {
+          orderBy: {
+            position: 'asc'
+          },
+          include:{
+            video: true
+          }
+        }
         },
       },
     )

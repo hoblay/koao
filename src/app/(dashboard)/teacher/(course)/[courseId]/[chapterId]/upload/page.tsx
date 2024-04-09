@@ -7,17 +7,34 @@ import Link from "next/link";
 import { useState, useEffect, SyntheticEvent, useCallback } from "react";
 import TableRow from "./_components/TableRow";
 import {useDropzone} from 'react-dropzone'
+import { getSignedURL } from "./_components/actions";
 
 
 
 
-export default function Home() {
+export default function Home({params}: {params:{courseId:string, chapterId:string}}) {
   const [files, setFiles] = useState<any[]>([]);
+  const computeSHA256 = async (file: File) => {
+    const buffer = await file.arrayBuffer()
+    const hashBuffer = await crypto.subtle.digest("SHA-256", buffer)
+    const hashArray = Array.from(new Uint8Array(hashBuffer))
+    const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("")
+    return hashHex
+  }
   
   const onDrop = useCallback((acceptedFiles:File[]) => {
-
-    acceptedFiles.forEach((file) => {
+    
+    acceptedFiles.forEach(async (file, index) => {
       const reader = new FileReader()
+
+
+
+      
+
+
+
+
+
 
       reader.onabort = () => console.log('file reading was aborted')
       reader.onerror = () => console.log('file reading has failed')
@@ -28,8 +45,30 @@ export default function Home() {
        setFiles(prev => [...prev, newFile])
       }
       reader.readAsArrayBuffer(file)
+
+
+      const signedURLResult = await getSignedURL({
+        fileSize: file.size,
+        fileType: file.type,
+        checksum: await computeSHA256(file),
+        courseId: params.courseId,
+        chapterId: params.chapterId,
+        title: file.name,
+        duration: 0
+      })
+      if (signedURLResult.failure !== undefined) {
+        throw new Error(signedURLResult.failure)
+      }
+      const { url } = signedURLResult.success
+      const pet = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": file.type,
+        },
+        body: file,
+      })
     })
-   
+    
     
   }, [])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
