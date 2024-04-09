@@ -3,6 +3,7 @@ import { trpc } from "@/app/_trpc/client";
 import Tag from "@/app/components/Tag/Tag";
 import { formatBytes } from "@/utils/format-bytes";
 import { formatSecondsToMinutes } from "@/utils/format-seconds";
+import { formatTime } from "@/utils/format-time";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { IconBookUpload, IconCircleMinus, IconDots, IconFileExport, IconTags, IconUpload } from "@tabler/icons-react";
 import Image from "next/image";
@@ -83,7 +84,7 @@ export default function ChapterIdPage({
                     <td className="px-6 py-4">
                       <div className="flex items-center space-x-2 relative ">
                       <Image unoptimized src={`${chapter.data?.course.author.image}`} width={24} height={24} className="bg-zinc-300 w-6 h-6 rounded-full object-cover dark:bg-zinc-700" alt='foto'/>
-                        <span className="text-xs text-zinc-500 dark:text-zinc-400 ">há 5 dias</span>
+                        <span className="text-xs text-zinc-500 dark:text-zinc-400 ">há {formatTime(new Date(lesson.updatedAt))}</span>
                       
                       </div>
                     </td>
