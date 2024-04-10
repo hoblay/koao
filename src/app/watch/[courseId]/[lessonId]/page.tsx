@@ -1,6 +1,6 @@
 "use client"
 import { trpc } from "@/app/_trpc/client";
-import ReactPlayer from 'react-player'
+import ReactPlayer from "react-player";
 export default function ClassPage({params}:{params:{lessonId:string}}) {
   const lesson = trpc.lesson.getById.useQuery(params.lessonId) 
   if (!lesson.data) {
@@ -10,8 +10,8 @@ export default function ClassPage({params}:{params:{lessonId:string}}) {
   return (
     <div className="px-9"> 
       
-      <div className="flex">
-      <ReactPlayer controls width={1022} height={601} url={lesson.data.video?.commitUrl ? lesson.data.video?.commitUrl : '' } />
+      <div className="flex min-w-[1022px] min-h-[601px]">
+        <ReactPlayer controls width={1022} className="rounded-3xl"  height={601} url={lesson.data.video?.commitUrl ? lesson.data.video?.commitUrl : '' } />
       </div>
 
       <div className="py-4 max-w-[1022px]">

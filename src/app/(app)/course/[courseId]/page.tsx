@@ -46,7 +46,7 @@ export default function Home({params}:{params:{courseId:string}}) {
         </div>
 
       {course?.data?.chapters[0]?.lessons[0] && <div className="px-2">
-        <Link href={`/watch/${course.data.chapters[0].lessons[0].id}`} className="">
+        <Link href={`/watch/${course.data.id}/${course.data.chapters[0].lessons[0].id}`} className="">
           <button type="button" className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-[#015F43] hover:bg-[#143229] text-white px-8 py-3 text-2xl w-full">
             <div className="flex flex-1 justify-center items-center gap-2">
               <span className="text-base leading-6">Continuar a assistir</span>

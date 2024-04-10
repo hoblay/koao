@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import ClassContent from "@/app/components/ClassContent/ClassContent";
 import { Search } from "@/app/components/Search/Index";
 import UserAvatar from "@/app/components/UserAvatar";
+import LogoIcon from "../components/Icons/Logo";
 
 export default async function ClassLayout({
   children, params
@@ -17,12 +18,20 @@ export default async function ClassLayout({
 
 
   return (
-    <div className="relative flex">
-      <aside className="sticky mt-5 top-5 left-5 h-[100%] md:flex overscroll-y-none overscroll-x-none max-w-[350px]">
-        <ClassContent params={params}/>
-      </aside>
-      <main className="w-full">
-        <div className="flex px-9 pt-5">
+    <div className="relative flex ">
+      <main className="">
+      <nav className=" dark:bg-[#101012] w-full z-20  bg-white">
+        <div className="relative flex pr-10 pl-10 gap-48 pt-4 py-2  items-center ">
+          <div className="flex">
+          <Link href={"/"} className="flex p-2 space-x-2 items-center">
+            <div className=""><LogoIcon width="40" height="28" className="#015F43"/> </div>
+            <span className={`p-1 text-lg font-semibold text-zinc-700 dark:text-zinc-50 whitespace-nowrap transition-[opacity] duration-75 ease-in `}>
+              Logotipo
+            </span>
+          </Link>
+          
+          </div>
+          <div className="flex justify-between items-center w-full">
           <Search.Root className="w-[100%]">
             <Search.Section title="Colegas">
               <Search.Result type="user" user={{name: "Winslet Mateus", email: "winsletmateus@gmail.com"}}/>
@@ -34,18 +43,12 @@ export default async function ClassLayout({
               <Search.Result type="file" name="Introdução_EngInf.pdf"/>
             </Search.Section>
           </Search.Root>
-
-          <div className="flex items-center my-auto ml-auto relative space-x-4 ">
-            <div className="">
-              <Link href={'/'} className="py-3 px-4 text-sm rounded-lg bg-zinc-100 dark:bg-zinc-900 dark:hover:bg-zinc-900/50 flex space-x-2 text-center items-center">
-                <ArrowLeftIcon />
-                <span>Voltar pro inicio</span>
-              </Link>
-            </div>
-            <UserAvatar user={session.user}/>
+          <UserAvatar user={session?.user}/>
           </div>
 
         </div>
+        </nav>
+        
         {children}
       </main>
     </div>

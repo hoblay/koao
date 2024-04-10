@@ -52,7 +52,7 @@ interface LessonsDoneProps {
   lessons: {name?: string}[] | number[] 
 }
 
-function ClassContent({params}: {params: {lessonId:string}}) {
+function ClassContent({course}: { course: any}) {
   const [coursePercentage, setCoursePercentage] = useState<number>(0);
   const [lessonsDone, setLessonsDone] = useState<{index:number ,lessons: number[]}[]>([]);
   const [indexActive, setIndexActive] = useState<number>(9999);
@@ -62,8 +62,7 @@ function ClassContent({params}: {params: {lessonId:string}}) {
   const listItems = useRef(null);
 
 
-  const lesson = trpc.lesson.getById.useQuery(params.lessonId) 
-   const course = lesson?.data?.chapter?.course;
+
 
   /* TODO: Make the container scrooll to the lesson when clicked */
 
@@ -148,11 +147,7 @@ function ClassContent({params}: {params: {lessonId:string}}) {
     setCoursePercentage(finalPercentage);
     
   },[lessonsDone, lessonsNumber]);
-  if (!lesson.data) {
-    return null
-  }
 
-  if(!course) return null
   return (
     <div className={`h-[calc(100vh-40px)] overscroll-x-none overscroll-y-none rounded-xl overflow-y-auto overflow-hidden bg-zinc-50 dark:bg-zinc-900 no-scrollbar w-[350px] shadow-sm`}>
       <div className="sticky top-0 bg-zinc-50 dark:bg-zinc-900 z-50 px-8 py-5">
@@ -185,7 +180,7 @@ function ClassContent({params}: {params: {lessonId:string}}) {
                                 {(i === lesseonIndexActive && index === indexActive) ? <IconEye className='w-3 h-3'/> : i + 1}
                             </span>
                         </span>
-                        <Link href={`/watch/${lesson.id}`} className="">
+                        <Link href={`/watch/${course.id}/${lesson.id}`} className="">
                           <h3 className="flex items-center text-sm text-zinc-900 dark:text-white dark:hover:text-zinc-300" onClick={() => markAsActive(index, i)}>
                             {lesson.title}
                           </h3>
