@@ -1,10 +1,8 @@
 "use client";
 import Tag from "@/app/components/Tag/Tag";
-import { PlusIcon } from "@radix-ui/react-icons";
-import { IconCircleMinus, IconDots, IconFolderSearch, IconMovie, IconTag, IconTags, IconUpload } from "@tabler/icons-react";
-import Image from "next/image";
-import Link from "next/link";
-import { useState, useEffect, SyntheticEvent, useCallback } from "react";
+import { IconCircleMinus, IconFolderSearch, IconMovie, IconUpload } from "@tabler/icons-react";
+
+import { useState, useCallback } from "react";
 import TableRow from "./_components/TableRow";
 import {useDropzone} from 'react-dropzone'
 import { getSignedURL } from "./_components/actions";
@@ -24,22 +22,13 @@ export default function Home({params}: {params:{courseId:string, chapterId:strin
   
   const onDrop = useCallback((acceptedFiles:File[]) => {
     
-    acceptedFiles.forEach(async (file, index) => {
+    acceptedFiles.forEach(async (file) => {
       const reader = new FileReader()
-
-
-
-      
-
-
-
-
 
 
       reader.onabort = () => console.log('file reading was aborted')
       reader.onerror = () => console.log('file reading has failed')
       reader.onload = () => {
-      // Do whatever you want with the file contents
        
         let newFile = {...file,name: file.name, src: URL.createObjectURL(file), size: file.size, type: file.type, duration: ''}
        setFiles(prev => [...prev, newFile])
@@ -60,7 +49,7 @@ export default function Home({params}: {params:{courseId:string, chapterId:strin
         throw new Error(signedURLResult.failure)
       }
       const { url } = signedURLResult.success
-      const pet = await fetch(url, {
+      await fetch(url, {
         method: "PUT",
         headers: {
           "Content-Type": file.type,
@@ -70,7 +59,7 @@ export default function Home({params}: {params:{courseId:string, chapterId:strin
     })
     
     
-  }, [])
+  }, [params.chapterId, params.courseId])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
 

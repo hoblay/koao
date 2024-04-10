@@ -163,7 +163,7 @@ model Video {
   createdAt           DateTime  @default(now())
 
   lessonId String @unique
-  lesson   Lesson @relation(fields: [lessonId], references: [id])
+  lesson   Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 
   uploadBatch   UploadBatch?   @relation(fields: [uploadBatchId], references: [id], onDelete: SetNull)
   transcription Transcription?
