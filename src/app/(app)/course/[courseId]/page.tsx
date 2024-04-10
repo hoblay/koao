@@ -41,7 +41,7 @@ export default function Home({params}:{params:{courseId:string}}) {
         </div>
         <div className="absolute max-w-[345px] right-8 top-8 justify-center items-center pt-4 pb-6 px-4 bg-zinc-50 dark:bg-zinc-900 w-full  rounded-xl shadow-sm flex-col space-y-4">
         <div className="relative rounded-xl">
-        <img src={course.data.imageUrl ? course.data.imageUrl  : ''} className="rounded-xl w-[313px] max-h-[176px] object-cover"  alt="course"  />
+        <Image src={course.data.imageUrl ? course.data.imageUrl  : ''} className="rounded-xl w-[313px] max-h-[176px] object-cover"  alt="course"  unoptimized />
       
         </div>
 
