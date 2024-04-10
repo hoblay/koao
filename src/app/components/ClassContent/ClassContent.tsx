@@ -52,19 +52,53 @@ interface LessonsDoneProps {
   lessons: {name?: string}[] | number[] 
 }
 
-function ClassContent({course}: { course: any}) {
+interface Course{
+  id: string,
+  userId: string;
+  title: string;
+  description: string | null;
+  imageUrl: string | null;
+  price: number | null;
+  isPublished: boolean;
+  categoryId: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+  chapters: Chapter[]
+}
+interface Chapter {
+  id: string;
+  title: string;
+  description: string | null;
+  courseId: string;
+  position: number;
+  isPublished: boolean;
+  lessons: Lesson[];
+
+
+}
+
+
+interface Lesson {
+  id: string;
+  title: string;
+  description: string | null;
+  position: number;
+  isPublished: boolean;
+  isFree: boolean;
+  chapterId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+function ClassContent({course}: { course: Course}) {
   const [coursePercentage, setCoursePercentage] = useState<number>(0);
   const [lessonsDone, setLessonsDone] = useState<{index:number ,lessons: number[]}[]>([]);
   const [indexActive, setIndexActive] = useState<number>(9999);
   const [lesseonIndexActive, setlessonIndexActive] = useState<number>(999);
 
 
-  const listItems = useRef(null);
-
-
-
-
   /* TODO: Make the container scrooll to the lesson when clicked */
+  const listItems = useRef(null);
 
 
   const markAsActive = (indexParent: number, indexLesson: number) => {
@@ -112,7 +146,7 @@ function ClassContent({course}: { course: any}) {
   }
 
 
-  const checkDoneModule = (courseModule:LessonsDoneProps, index:number) => {
+  const checkDoneModule = (courseModule:Chapter, index:number) => {
     return ((!!lessonsDone.find(el => el.index === index + 1)) && (lessonsDone.find(ol => ol.index === index + 1))?.lessons.length === courseModule.lessons.length)
   }
 
@@ -122,7 +156,7 @@ function ClassContent({course}: { course: any}) {
     return (lessonModule && !!lessonModule.lessons.find(item => item === index + 1))
   }
 
-  const lessonsNumber = course?.chapters?.length ? course?.chapters?.length : 0;
+  const lessonsNumber = Object.keys(course).length;
   
   useEffect(()=>{
 
@@ -134,8 +168,8 @@ function ClassContent({course}: { course: any}) {
     let finalPercentage = 0
 
     lessonsDone.forEach(lessonModule => {
-      course?.chapters.forEach(courseModule => {
-        if (`${lessonModule.index}` === courseModule.id) {
+      course.chapters.forEach(courseModule => {
+        if (lessonModule.index === courseModule.position) {
 
           percentagePerLesson = percentagePerModule / courseModule.lessons.length * lessonModule.lessons.length
           finalPercentage = finalPercentage + percentagePerLesson;
@@ -162,20 +196,20 @@ function ClassContent({course}: { course: any}) {
       
       <div className="bg-zinc-100 dark:bg-zinc-950/25 p-2">
         <Accordion.Root className=''>
-          {course.chapters.map((item, index) => (
+          {course?.chapters?.map((chapter, index) => (
             
             <>
               <Accordion.Item startContent={
-                <div className={moduleCircle({active: (index === indexActive), done: (checkDoneModule(item.position,index))})}>
-                  <div className='flex items-center text-center justify-center'>{(index === indexActive ? <IconPlayerPause className='m-1 w-4 h-4'/> : item.position)}</div>
+                <div className={moduleCircle({active: (index === indexActive), done: (checkDoneModule(chapter,chapter.position))})}>
+                  <div className='flex items-center text-center justify-center'>{(index === indexActive ? <IconPlayerPause className='m-1 w-4 h-4'/> : chapter.position)}</div>
                 </div>
-                } index={item.position} title={item.title}>
+                } index={chapter.position} title={chapter.title}>
                 <div className="py-0 px-7" ref={listItems}>
                   <ol className="relative">
-                  {item.lessons.map((lesson, i) => ( 
+                  {chapter.lessons.map((lesson, i) => ( 
                     <> 
-                      <li className= {`pb-4 p-1  border-s-2 pl-7 -ml-[2px] pt-3 ${checkDoneLesson(item.position, i) ? 'border-purple-500 dark:border-purple-700 ' : 'border-zinc-200 dark:border-zinc-700'}`} >
-                        <span className={lessonStyle({active: (i === lesseonIndexActive && index === indexActive), done: (checkDoneLesson(index, i))})} onClick={() => markAsDone({index: index, lessons: [1+i]})}>
+                      <li className= {`pb-4 p-1  border-s-2 pl-7 -ml-[2px] pt-3 ${checkDoneLesson(chapter.position, lesson.position) ? 'border-purple-500 dark:border-purple-700 ' : 'border-zinc-200 dark:border-zinc-700'}`} >
+                        <span className={lessonStyle({active: (i === lesseonIndexActive && index === indexActive), done: (checkDoneLesson(chapter.position, lesson.position))})} onClick={() => markAsDone({index:chapter.position, lessons:[lesson.position]})}>
                             <span className="text-xs text-purple-800 dark:text-zinc-50" >
                                 {(i === lesseonIndexActive && index === indexActive) ? <IconEye className='w-3 h-3'/> : i + 1}
                             </span>
