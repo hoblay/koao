@@ -14,16 +14,17 @@ interface CourseProps{
   name: string,
   price: number | 0,
   modules: number,
-  category: string
+  category: string,
+  id: string
 
 
 
 }
 
-function Course({ className, progress, img, name, price, modules, category }:CourseProps) {
+function Course({ className,id, progress, img, name, price, modules, category }:CourseProps) {
   const pp = `w-[${progress}%]`;
   return ( 
-    <Link href="/course" className=''>
+    <Link href={`/course/${id}`} className=''>
       <Card.Root>
       <Card.Body className='relative'>
         <Image src={img} className="object-cover rounded-xl w-full md:max-h-[172px] h-[100%]" alt='course' width={311} height={172} unoptimized/>

@@ -1,5 +1,6 @@
 "use client";
 
+import { trpc } from "@/app/_trpc/client";
 import { Card } from "@/app/components/Card";
 import { Search } from "@/app/components/Search/Index";
 import { CardStackIcon, EraserIcon, CodeIcon, ChevronDownIcon, LaptopIcon, ArrowTopRightIcon, ResumeIcon, VideoIcon } from "@radix-ui/react-icons";
@@ -9,13 +10,18 @@ import Link from "next/link";
 
 
 
-export default function Home() {
+export default function Home({params}:{params:{courseId:string}}) {
+    
+  const course = trpc.course.getById.useQuery(params.courseId) 
+  if (!course.data) {
+    return null
+  }
   return (
     <div className="px-9 "> 
       <div className="relative  flex-col items-start bg-zinc-700 dark:bg-zinc-950 min-h-[252px] md:min-h-[288px] rounded-xl max-h-[343px]">
         <div className="py-20 px-10 space-y-2 max-w-[70%]">
-          <h2 className="text-zinc-100 dark:text-zinc-100 text-xl md:text-4xl font-bold md:leading-[140%] line-clamp-2">Prisma & Free Databases <br/> (MySQL, Postgres & Mongo)</h2>
-          <p className="text-zinc-200 dark:text-zinc-200 text-sm md:text-base line-clamp-2 md:line-clamp-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam alias esse corrupti nesciunt, voluptatem ea libero magnam est odio sunt nihil culpa reiciendis sint voluptatum inventore eveniet cum debitis?</p>
+          <h2 className="text-zinc-100 pr-20 dark:text-zinc-100 text-xl md:text-4xl font-bold md:leading-[140%] line-clamp-2">{course.data.title}</h2>
+          <p className="text-zinc-200 dark:text-zinc-200 text-sm md:text-base line-clamp-2 md:line-clamp-2">{course.data.description}</p>
           <div className="flex gap-3">
           <div className="flex p-2 rounded-xl text-sm text-zinc-50 bg-zinc-50/10 hover:bg-zinc-50/15 dark:text-zinc-50 dark:bg-zinc-50/10 dark:hover:bg-zinc-100/15 space-x-2 text-center items-center hover:cursor-pointer">
               <LaptopIcon className="w-4 h-4 text-zinc-50 dark:text-zinc-400"/>
@@ -35,12 +41,12 @@ export default function Home() {
         </div>
         <div className="absolute max-w-[345px] right-8 top-8 justify-center items-center pt-4 pb-6 px-4 bg-zinc-50 dark:bg-zinc-900 w-full  rounded-xl shadow-sm flex-col space-y-4">
         <div className="relative rounded-xl">
-        <Image src={"https://miro.medium.com/v2/resize:fit:1280/format:webp/1*SL4sWHdjGR3vo0x5ta3xfw.jpeg"} className="rounded-xl" width={313} height={188} alt="course" unoptimized />
+        <img src={course.data.imageUrl ? course.data.imageUrl  : ''} className="rounded-xl w-[313px] max-h-[176px] object-cover"  alt="course"  />
       
         </div>
 
-        <div className="px-2">
-        <Link href="/class" className="">
+      {course?.data?.chapters[0]?.lessons[0] && <div className="px-2">
+        <Link href={`/watch/${course.data.id}/${course.data.chapters[0].lessons[0].id}`} className="">
           <button type="button" className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-[#015F43] hover:bg-[#143229] text-white px-8 py-3 text-2xl w-full">
             <div className="flex flex-1 justify-center items-center gap-2">
               <span className="text-base leading-6">Continuar a assistir</span>
@@ -48,7 +54,7 @@ export default function Home() {
             </div> 
           </button>
         </Link>
-        </div>
+        </div>} 
         </div>
       </div>
       <div className="py-4 flex gap-4">
@@ -70,8 +76,7 @@ export default function Home() {
           </Card.Header>
           <Card.Body className="py-5 px-8">
             <div className="flex flex-col gap-6 leading-[1.6]">
-              <p>Neste curso você irá conhecer os tópicos essenciais de React para Web, se aventurar no ecossistema e aprender na prática todas as possibilidades que essa biblioteca tem para oferecer. O curso começa pela introdução com os três pilares da biblioteca: Estado, Propriedade e Componente e te leva até colocar as aplicações em produção, com testes e deploy automatizados.</p>
-              <p>Com uma abordagem mais prática você irá criar diversos projetos ao longo do curso, desde aplicações mais simples como um feed social simplificado até o desenvolvimento de dashboard de administração de pizzaria, com gerenciamento de pedidos e comunicação com API própria.</p>
+              <p>{course.data.description}</p>
             </div>
           </Card.Body>
         </Card.Root>
@@ -89,7 +94,7 @@ export default function Home() {
                 JF
               </span>
               <div className="flex flex-col align-center justify-center">
-                <span className="text-zinc-800 dark:text-zinc-100 text-base">João Fernandes</span>
+                <span className="text-zinc-800 dark:text-zinc-100 text-base">{course.data.author.name}</span>
                 <span className="text-zinc-600 dark:text-zinc-400 text-sm">Front End Developer</span>
               </div>
               </div>

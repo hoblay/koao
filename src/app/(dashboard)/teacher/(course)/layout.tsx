@@ -18,7 +18,7 @@ export default async function AppLayout({
 
   return (
     <div className=" flex flex-col" >
-      <nav className="px-24 pb-4 w-full">
+      <nav className="md:px-24 px-4 pb-4 w-full">
         <div className="flex gap-3">
           <Link href="/teacher/category">
             <Tag  name="Categorias" startContent={<IconTags className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/>
