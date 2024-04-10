@@ -6,8 +6,10 @@ import { tv } from 'tailwind-variants';
 import Link from 'next/link';
 import { PauseIcon, Pencil1Icon } from '@radix-ui/react-icons';
 
-import { Course } from '@/app/Data/Courses';
+
 import { IconEye, IconPlayerPause, IconPlayerPauseFilled } from '@tabler/icons-react';
+import { trpc } from '@/app/_trpc/client';
+import Course from '../Course';
 
 const moduleCircle = tv({
   base: ' w-9 h-9 rounded-full p-1 border-2 border-zinc-300 text-zinc-600 dark:text-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 items-center justify-center',
@@ -50,15 +52,20 @@ interface LessonsDoneProps {
   lessons: {name?: string}[] | number[] 
 }
 
-function ClassContent() {
+function ClassContent({params}: {params: {lessonId:string}}) {
   const [coursePercentage, setCoursePercentage] = useState<number>(0);
   const [lessonsDone, setLessonsDone] = useState<{index:number ,lessons: number[]}[]>([]);
   const [indexActive, setIndexActive] = useState<number>(9999);
   const [lesseonIndexActive, setlessonIndexActive] = useState<number>(999);
 
 
-  /* TODO: Make the container scrooll to the lesson when clicked */
   const listItems = useRef(null);
+
+
+  const lesson = trpc.lesson.getById.useQuery(params.lessonId) 
+   const course = lesson?.data?.chapter?.course;
+
+  /* TODO: Make the container scrooll to the lesson when clicked */
 
 
   const markAsActive = (indexParent: number, indexLesson: number) => {
@@ -116,7 +123,7 @@ function ClassContent() {
     return (lessonModule && !!lessonModule.lessons.find(item => item === index + 1))
   }
 
-  const lessonsNumber = Object.keys(Course).length;
+  const lessonsNumber = course?.chapters?.length ? course?.chapters?.length : 0;
   
   useEffect(()=>{
 
@@ -128,8 +135,8 @@ function ClassContent() {
     let finalPercentage = 0
 
     lessonsDone.forEach(lessonModule => {
-      Course.forEach(courseModule => {
-        if (lessonModule.index === courseModule.index) {
+      course?.chapters.forEach(courseModule => {
+        if (`${lessonModule.index}` === courseModule.id) {
 
           percentagePerLesson = percentagePerModule / courseModule.lessons.length * lessonModule.lessons.length
           finalPercentage = finalPercentage + percentagePerLesson;
@@ -141,11 +148,15 @@ function ClassContent() {
     setCoursePercentage(finalPercentage);
     
   },[lessonsDone, lessonsNumber]);
+  if (!lesson.data) {
+    return null
+  }
 
+  if(!course) return null
   return (
     <div className={`h-[calc(100vh-40px)] overscroll-x-none overscroll-y-none rounded-xl overflow-y-auto overflow-hidden bg-zinc-50 dark:bg-zinc-900 no-scrollbar w-[350px] shadow-sm`}>
       <div className="sticky top-0 bg-zinc-50 dark:bg-zinc-900 z-50 px-8 py-5">
-        <h2 className="text-lg">Lorem ipsum dolor sit, amet consectetur adipisicing.</h2>
+        <h2 className="text-lg">{course.title}</h2>
         <div className={`mt-3 w-full bg-zinc-200 rounded dark:bg-zinc-700 my-2`} >
           <div className={`bg-purple-300 dark:bg-purple-700 text-xs font-medium text-purple-950 dark:text-zinc-100 text-center p-0.5 leading-none rounded whitespace-nowrap transition-[width] duration-300 ease-in-out`} style={{width: `${coursePercentage}%` }} > 
             {Math.round(coursePercentage)}% Completado
@@ -156,27 +167,27 @@ function ClassContent() {
       
       <div className="bg-zinc-100 dark:bg-zinc-950/25 p-2">
         <Accordion.Root className=''>
-          {Course.map((item, index) => (
+          {course.chapters.map((item, index) => (
             
             <>
               <Accordion.Item startContent={
-                <div className={moduleCircle({active: (index === indexActive), done: (checkDoneModule(item,index))})}>
-                  <div className='flex items-center text-center justify-center'>{(index === indexActive ? <IconPlayerPause className='m-1 w-4 h-4'/> : item.index)}</div>
+                <div className={moduleCircle({active: (index === indexActive), done: (checkDoneModule(item.position,index))})}>
+                  <div className='flex items-center text-center justify-center'>{(index === indexActive ? <IconPlayerPause className='m-1 w-4 h-4'/> : item.position)}</div>
                 </div>
-                } index={item.index} title={item.name}>
+                } index={item.position} title={item.title}>
                 <div className="py-0 px-7" ref={listItems}>
                   <ol className="relative">
                   {item.lessons.map((lesson, i) => ( 
                     <> 
-                      <li className= {`pb-4 p-1  border-s-2 pl-7 -ml-[2px] pt-3 ${checkDoneLesson(index, i) ? 'border-purple-500 dark:border-purple-700 ' : 'border-zinc-200 dark:border-zinc-700'}`} >
-                        <span className={lessonStyle({active: (i === lesseonIndexActive && index === indexActive), done: (checkDoneLesson(index, i))})} onClick={() => markAsDone({index: item.index, lessons: [1+i]})}>
+                      <li className= {`pb-4 p-1  border-s-2 pl-7 -ml-[2px] pt-3 ${checkDoneLesson(item.position, i) ? 'border-purple-500 dark:border-purple-700 ' : 'border-zinc-200 dark:border-zinc-700'}`} >
+                        <span className={lessonStyle({active: (i === lesseonIndexActive && index === indexActive), done: (checkDoneLesson(index, i))})} onClick={() => markAsDone({index: index, lessons: [1+i]})}>
                             <span className="text-xs text-purple-800 dark:text-zinc-50" >
                                 {(i === lesseonIndexActive && index === indexActive) ? <IconEye className='w-3 h-3'/> : i + 1}
                             </span>
                         </span>
-                        <Link href={'#'} className="">
+                        <Link href={`/watch/${lesson.id}`} className="">
                           <h3 className="flex items-center text-sm text-zinc-900 dark:text-white dark:hover:text-zinc-300" onClick={() => markAsActive(index, i)}>
-                            {lesson.name}
+                            {lesson.title}
                           </h3>
                         </Link>
                       </li>

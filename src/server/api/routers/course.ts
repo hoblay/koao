@@ -66,6 +66,31 @@ export const courseRouter = router({
       
     } 
   }),
+  getAll:  publicProcedure.query(async () => {
+    try {
+   
+    
+    
+     const courses = await db.course.findMany({
+      orderBy: {
+        createdAt: 'desc'
+      },
+      include:{
+        author: true,
+        chapters: {
+          include:{
+            lessons: true
+          }
+        } 
+      }
+
+    }) 
+
+    return courses
+    } catch (error) {
+      
+    } 
+  }),
   getById: publicProcedure.input(idSchema).query(async ({input}) => {
     const session = await getServerSession(authOptions)
    return await db.course.findUnique({
@@ -74,6 +99,7 @@ export const courseRouter = router({
         userId: session?.user.id
       },
       include: {
+        author: true,
         chapters: {
           include:{
             lessons: true

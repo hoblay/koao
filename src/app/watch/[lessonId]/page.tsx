@@ -1,16 +1,23 @@
-export default function ClassPage() {
-  
+"use client"
+import { trpc } from "@/app/_trpc/client";
+import ReactPlayer from 'react-player'
+export default function ClassPage({params}:{params:{lessonId:string}}) {
+  const lesson = trpc.lesson.getById.useQuery(params.lessonId) 
+  if (!lesson.data) {
+    return null
+  }
 
   return (
     <div className="px-9"> 
       
-      <div className="w-[1022px] h-[601px] rounded-xl bg-zinc-950">
-        
+      <div className="flex">
+      <ReactPlayer controls width={1022} height={601} url={lesson.data.video?.commitUrl ? lesson.data.video?.commitUrl : '' } />
       </div>
+
       <div className="py-4 max-w-[1022px]">
       <div className="w-full py-5 shadow-sm bg-zinc-50 dark:bg-zinc-900 rounded-xl">
           <div className="flex px-8">
-            <h4 className="w-full text-xl font-semibold text-zinc-600 dark:text-zinc-100">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
+            <h4 className="w-full text-xl font-semibold text-zinc-600 dark:text-zinc-100">{lesson.data.title}</h4>
             <div className="flex items-center gap-3">
               <span className="text-xl font-semibold text-zinc-600 dark:text-zinc-200">4,86</span>
               <div className="flex items-center gap-[.375rem] text-yellow-600 text-xl">
@@ -25,7 +32,7 @@ export default function ClassPage() {
           </div>
           <div className="px-8 pt-5 mt-5 border-t border-zinc-200 dark:border-zinc-800">
             <div className="flex flex-col gap-6 text-base text-zinc-700 dark:text-zinc-200 leading-[1.6]">
-              <p>Neste curso você irá conhecer os tópicos essenciais de React para Web, se aventurar no ecossistema e aprender na prática todas as possibilidades que essa biblioteca tem para oferecer. O curso começa pela introdução com os três pilares da biblioteca: Estado, Propriedade e Componente e te leva até colocar as aplicações em produção, com testes e deploy automatizados.</p>
+              <p>{lesson.data.description}</p>
               <p>Com uma abordagem mais prática você irá criar diversos projetos ao longo do curso, desde aplicações mais simples como um feed social simplificado até o desenvolvimento de dashboard de administração de pizzaria, com gerenciamento de pedidos e comunicação com API própria.</p>
             </div>
           </div>

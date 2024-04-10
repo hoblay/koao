@@ -1,16 +1,16 @@
 
 import { ArrowLeftIcon } from "@radix-ui/react-icons"
 import Link from "next/link";
-import { Search } from "../components/Search/Index";
-import ClassContent from "../components/ClassContent/ClassContent";
-import UserAvatar from "../components/UserAvatar";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
+import ClassContent from "@/app/components/ClassContent/ClassContent";
+import { Search } from "@/app/components/Search/Index";
+import UserAvatar from "@/app/components/UserAvatar";
 
 export default async function ClassLayout({
-  children,
+  children, params
 }: {
-  children: React.ReactNode
+  children: React.ReactNode, params:{lessonId: string}
 }) {
   const session = await getServerSession()
   if(!session?.user) redirect('/')
@@ -19,10 +19,10 @@ export default async function ClassLayout({
   return (
     <div className="relative flex">
       <aside className="sticky mt-5 top-5 left-5 h-[100%] md:flex overscroll-y-none overscroll-x-none max-w-[350px]">
-        <ClassContent/>
+        <ClassContent params={params}/>
       </aside>
       <main className="w-full">
-        <div className="flex px-9 pt-5 pb-4">
+        <div className="flex px-9 pt-5">
           <Search.Root className="w-[100%]">
             <Search.Section title="Colegas">
               <Search.Result type="user" user={{name: "Winslet Mateus", email: "winsletmateus@gmail.com"}}/>
