@@ -36,7 +36,7 @@ export default function Home() {
     <div className="px-9 border-t border-t-zinc-900"> 
            
  
-      <div className="px-16 py-8">
+      <div className="md:px-16 py-8">
         <div className="flex gap-3">
           <h2 className="text-xl">Cursos</h2>
           <div className="" onClick={() => setModalOpen(true)}>
@@ -52,7 +52,7 @@ export default function Home() {
         <div className="">
           <div className={`${!modalOpen ? 'hidden': '' } absolute z-30 bg-zinc-950/80 left-0 top-0 w-[100%] h-[100vh]  cursor-pointer`} onClick={() => setModalOpen(false)}></div>
 
-          <div className={`z-40 fixed  w-full top-0 right-0 p-8 h-[100vh] bg-[#080808] border-r border-r-zinc-800 max-w-[421px] transition-all duration-500 transform ${modalOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+          <div className={`z-40 fixed  w-full top-0 right-0 p-8 h-[100vh] bg-[#080808] border-r border-r-zinc-800 md:max-w-[421px] transition-all duration-500 transform ${modalOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <FormProvider {...createCourseForm}>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-3 p-4">

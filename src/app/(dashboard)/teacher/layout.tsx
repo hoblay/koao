@@ -18,7 +18,7 @@ export default async function AppLayout({
     <div className="relative flex" >
       <main className="w-full flex flex-col mt-24">
         <nav className=" dark:bg-[#101012] fixed w-full z-20 top-0 start-0 bg-white">
-        <div className="relative flex px-[90px] pt-4 py-4  items-center justify-between">
+        <div className="relative flex md:px-[90px] px-6 pt-4 py-4  items-center justify-between">
           <div className="flex">
           <Link href={"/"} className="flex p-2 space-x-2 items-center">
             <div className=""><LogoIcon width="40" height="28" className="#015F43"/> </div>

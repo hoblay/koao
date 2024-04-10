@@ -42,7 +42,7 @@ interface User{
         <Dropdown.Trigger>
           <div className="flex gap-3 rounded-xl hover:bg-zinc-50/60 dark:hover:bg-zinc-900/60 p-2 cursor-pointer max-w-[212px]">
             {user?.name && 
-              <div className="w-full pl-2 flex-1 flex flex-col items-end justify-center overflow-x-hidden text-end py-1">
+              <div className="w-full hidden pl-2 flex-1 md:flex flex-col items-end justify-center overflow-x-hidden text-end py-1">
                 <span className="w-full flex-1 text-sm truncate text-zinc-600 dark:text-zinc-300 dark:group-hover:text-zinc-50">{user?.name}</span>
                 <span className="w-full text-xs text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-700 dark:group-hover:text-zinc-100 truncate">{user?.email}</span>
               </div>

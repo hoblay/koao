@@ -31,7 +31,7 @@ export default async function ClassLayout({
           </Link>
           
           </div>
-          <div className="flex justify-between items-center w-full">
+          <div className="flex justify-between items-center w-full pl-1.5">
           <Search.Root className="w-[100%]">
             <Search.Section title="Colegas">
               <Search.Result type="user" user={{name: "Winslet Mateus", email: "winsletmateus@gmail.com"}}/>
