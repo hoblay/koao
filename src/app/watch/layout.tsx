@@ -1,20 +1,18 @@
-
-import { ArrowLeftIcon } from "@radix-ui/react-icons"
+"use client"
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
-import ClassContent from "@/app/components/ClassContent/ClassContent";
 import { Search } from "@/app/components/Search/Index";
 import UserAvatar from "@/app/components/UserAvatar";
 import LogoIcon from "../components/Icons/Logo";
+import { useSession } from "next-auth/react";
 
-export default async function ClassLayout({
-  children, params
+export default  function ClassLayout({
+  children, 
 }: {
-  children: React.ReactNode, params:{lessonId: string}
+  children: React.ReactNode
 }) {
-  const session = await getServerSession()
-  if(!session?.user) redirect('/')
+  const session = useSession() 
+  if(!session?.data?.user) redirect('/signin')
 
 
   return (
@@ -43,7 +41,7 @@ export default async function ClassLayout({
               <Search.Result type="file" name="Introdução_EngInf.pdf"/>
             </Search.Section>
           </Search.Root>
-          <UserAvatar user={session?.user}/>
+          <UserAvatar user={session?.data.user}/>
           </div>
 
         </div>

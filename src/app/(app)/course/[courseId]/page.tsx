@@ -3,8 +3,9 @@
 import { trpc } from "@/app/_trpc/client";
 import { Card } from "@/app/components/Card";
 import { Search } from "@/app/components/Search/Index";
+import Tag from "@/app/components/Tag/Tag";
 import { CardStackIcon, EraserIcon, CodeIcon, ChevronDownIcon, LaptopIcon, ArrowTopRightIcon, ResumeIcon, VideoIcon } from "@radix-ui/react-icons";
-import { IconPlayerPlay, IconPlayerPlayFilled } from "@tabler/icons-react";
+import { IconNotebook, IconPlayerPlay, IconPlayerPlayFilled } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -18,25 +19,14 @@ export default function Home({params}:{params:{courseId:string}}) {
   }
   return (
     <div className="px-9 "> 
-      <div className="relative  flex-col items-start bg-zinc-700 dark:bg-zinc-950 min-h-[252px] md:min-h-[288px] rounded-xl max-h-[343px]">
-        <div className="py-20 px-10 space-y-2 max-w-[70%]">
-          <h2 className="text-zinc-100 pr-20 dark:text-zinc-100 text-xl md:text-4xl font-bold md:leading-[140%] line-clamp-2">{course.data.title}</h2>
-          <p className="text-zinc-200 dark:text-zinc-200 text-sm md:text-base line-clamp-2 md:line-clamp-2">{course.data.description}</p>
-          <div className="flex gap-3">
-          <div className="flex p-2 rounded-xl text-sm text-zinc-50 bg-zinc-50/10 hover:bg-zinc-50/15 dark:text-zinc-50 dark:bg-zinc-50/10 dark:hover:bg-zinc-100/15 space-x-2 text-center items-center hover:cursor-pointer">
-              <LaptopIcon className="w-4 h-4 text-zinc-50 dark:text-zinc-400"/>
-              <span className=" ">Programação</span>
-            </div>
-            <div className="flex p-2 rounded-xl text-sm text-zinc-50 bg-zinc-50/10 hover:bg-zinc-50/15 dark:text-zinc-50 dark:bg-zinc-100/10 dark:hover:bg-zinc-100/15 space-x-2 text-center items-center hover:cursor-pointer">
-              <span className=" ">Avançado</span>
-            </div>
-            <div className="flex p-2 rounded-xl text-sm text-zinc-50 bg-zinc-50/10 hover:bg-zinc-50/15 dark:text-zinc-50 dark:bg-zinc-100/10 dark:hover:bg-zinc-100/15 space-x-2 text-center items-center hover:cursor-pointer">
-              <span className=" ">Javascript</span>
-            </div>
-            <div className="flex p-2 rounded-xl text-sm text-zinc-50 bg-zinc-50/10 hover:bg-zinc-50/15 dark:text-zinc-50 dark:bg-zinc-100/10 dark:hover:bg-zinc-100/15 space-x-2 text-center items-center hover:cursor-pointer">
-              <span className=" ">Mais</span>
-              <ChevronDownIcon className="w-4 h-4 text-zinc-50 dark:text-zinc-400 "/> 
-            </div>
+      <div className="relative  flex-col items-start bg-zinc-200 dark:bg-zinc-950  dark:bg-dot-white/[0.2] bg-dot-black/[0.2]  min-h-[252px] md:min-h-[288px] rounded-xl max-h-[343px]">
+        <div className="py-16 px-10 space-y-2 max-w-[70%]">
+          <h2 className="text-zinc-700 pr-20 dark:text-zinc-100 text-xl md:text-4xl font-bold md:leading-[140%] line-clamp-2">{course.data.title}</h2>
+          <p className="text-zinc-700 dark:text-zinc-200 text-sm md:text-base line-clamp-2 md:line-clamp-2">{course.data.description}</p>
+          <div className="flex gap-3 py-2">
+            <Tag name={`${course.data.chapters.length} Modulos`} startContent={<IconNotebook  className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/>
+            <Tag name={`Design`}/>  
+            <Tag name={`Mais`}/>  
           </div>
         </div>
         <div className="absolute max-w-[345px] right-8 top-8 justify-center items-center pt-4 pb-6 px-4 bg-zinc-50 dark:bg-zinc-900 w-full  rounded-xl shadow-sm flex-col space-y-4">
