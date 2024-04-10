@@ -147,16 +147,16 @@ function ClassContent({course}: { course: Course}) {
 
 
   const checkDoneModule = (courseModule:Chapter, index:number) => {
-    return ((!!lessonsDone.find(el => el.index === index + 1)) && (lessonsDone.find(ol => ol.index === index + 1))?.lessons.length === courseModule.lessons.length)
+    return ((!!lessonsDone.find(el => el.index === index)) && (lessonsDone.find(ol => ol.index === index))?.lessons.length === courseModule.lessons.length)
   }
 
   const checkDoneLesson = (parentIndex:number, index:number) => {
-    let lessonModule = lessonsDone.find(item => item.index ===parentIndex + 1)
+    let lessonModule = lessonsDone.find(item => item.index ===parentIndex )
 
-    return (lessonModule && !!lessonModule.lessons.find(item => item === index + 1))
+    return (lessonModule && !!lessonModule.lessons.find(item => item === index ))
   }
 
-  const lessonsNumber = Object.keys(course).length;
+  const lessonsNumber = Object.keys(course.chapters).length;
   
   useEffect(()=>{
 
@@ -168,10 +168,10 @@ function ClassContent({course}: { course: Course}) {
     let finalPercentage = 0
 
     lessonsDone.forEach(lessonModule => {
-      course.chapters.forEach(courseModule => {
-        if (lessonModule.index === courseModule.position) {
+      course.chapters.forEach(chapter => {
+        if (lessonModule.index === chapter.position) {
 
-          percentagePerLesson = percentagePerModule / courseModule.lessons.length * lessonModule.lessons.length
+          percentagePerLesson = percentagePerModule / chapter.lessons.length * lessonModule.lessons.length
           finalPercentage = finalPercentage + percentagePerLesson;
 
         }
