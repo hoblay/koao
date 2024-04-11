@@ -19,19 +19,19 @@ export default function Home({params}:{params:{courseId:string}}) {
   }
   return (
     <div className="px-9 "> 
-      <div className="relative  flex-col items-start bg-zinc-200 dark:bg-zinc-950  dark:bg-dot-white/[0.2] bg-dot-black/[0.2]  min-h-[252px] md:min-h-[288px] rounded-xl max-h-[343px]">
+      <div className="relative  flex-col items-start bg-zinc-200 dark:bg-zinc-950  dark:bg-dot-white/[0.2] bg-dot-black/[0.2]  rounded-xl max-h-[343px] min-h-[340px]">
         <div className="py-16 px-10 space-y-2 max-w-[70%]">
           <h2 className="text-zinc-700 pr-20 dark:text-zinc-100 text-xl md:text-4xl font-bold md:leading-[140%] line-clamp-2">{course.data.title}</h2>
           <p className="text-zinc-700 dark:text-zinc-200 text-sm md:text-base line-clamp-2 md:line-clamp-2">{course.data.description}</p>
           <div className="flex gap-3 py-2">
-            <Tag name={`${course.data.chapters.length} Modulos`} startContent={<IconNotebook  className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}/>
-            <Tag name={`Design`}/>  
-            <Tag name={`Mais`}/>  
+            <Tag name={`${course.data.chapters.length} Modulos`} className="bg-zinc-50/70" startContent={<IconNotebook  className="w-5 h-5 text-zinc-500 dark:text-zinc-400"/>}  />
+            <Tag name={`Design`} className="bg-zinc-50/70"/>  
+            <Tag name={`Mais`} className="bg-zinc-50/70"/>  
           </div>
         </div>
-        <div className="absolute max-w-[345px] right-8 top-8 justify-center items-center pt-4 pb-6 px-4 bg-zinc-50 dark:bg-zinc-900 w-full  rounded-xl shadow-sm flex-col space-y-4">
+        <div className="absolute max-w-[345px] right-8 top-8 justify-center items-center pt-4 pb-6 px-4 bg-zinc-50/50 dark:bg-zinc-900/50 w-full  rounded-xl shadow-sm flex-col space-y-4">
         <div className="relative rounded-xl">
-        <Image src={course.data.imageUrl ? course.data.imageUrl  : ''} className="rounded-xl w-[313px] max-h-[176px] object-cover"  alt="course" width={313} height={176}  unoptimized />
+        <Image src={course.data.imageUrl ? course.data.imageUrl  : ''} className="rounded-xl w-[300px] max-h-[160px] object-cover"  alt="course" width={300} height={160}  unoptimized />
       
         </div>
 
