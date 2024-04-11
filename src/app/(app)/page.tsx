@@ -15,7 +15,7 @@ export default function Home() {
   if(!courses.data) return null
   return (
     <div className="px-9 flex flex-col gap-4"> 
-      <div className="relative  flex-col items-start bg-zinc-200 dark:bg-amber-950 dark:bg-grid-small-white/[0.2]  bg-dot-black/[0.2]  rounded-xl max-h-[343px] min-h-[340px]">
+      <div className="relative  flex-col items-start bg-amber-200 dark:bg-amber-950 dark:bg-grid-small-white/[0.2]  bg-dot-black/[0.2]  rounded-xl max-h-[343px] min-h-[340px]">
         <div className="py-16 px-10 space-y-2 max-w-[70%]">
           <h2 className="text-zinc-700 pr-20 dark:text-zinc-100 text-xl md:text-4xl font-bold md:leading-[140%] line-clamp-2">{courses.data[courses.data.length -2].title}</h2>
           <p className="text-zinc-700 dark:text-zinc-200 text-sm md:text-base line-clamp-2 md:line-clamp-2">{courses.data[courses.data.length -1].description}</p>
@@ -33,7 +33,7 @@ export default function Home() {
 
       {courses?.data[courses.data.length -2]?.chapters[0]?.lessons[0] && <div className="px-2">
         <Link href={`/watch/${courses.data[0].id}/${courses.data[courses.data.length -2].chapters[0].lessons[0].id}`} className="">
-          <button type="button" className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-zinc-50 hover:bg-[#143229] text-[#143229]  hover:text-white px-8 py-3 text-2xl w-full">
+          <button type="button" className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-zinc-50 hover:bg-amber-500 text-[#143229]  hover:text-white px-8 py-3 text-2xl w-full">
             <div className="flex flex-1 justify-center items-center gap-2">
               <span className="text-base leading-6">Continuar a assistir</span>
               <IconPlayerPlay />
