@@ -15,11 +15,11 @@ const moduleCircle = tv({
   base: ' w-9 h-9 rounded-full p-1 border-2 border-zinc-300 text-zinc-600 dark:text-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 items-center justify-center',
   variants: {
     active: {
-      true: 'border-purple-500 text-purple-900  dark:text-zinc-100 dark:border-purple-700',
+      true: 'border-[#015F43] text-[#015F43]  dark:text-zinc-100 dark:border-[#015F43]',
       
     },
     done: {
-      true: 'border-purple-500 text-purple-900 dark:text-zinc-100  dark:border-purple-700 '
+      true: 'border-[#015F43] text-[#015F43] dark:text-zinc-100  dark:border-[#015F43] '
     }
   },
   defaultVariants: {
@@ -29,14 +29,14 @@ const moduleCircle = tv({
 });
 
 const lessonStyle = tv({
-  base: 'absolute flex items-center justify-center w-6 h-6 bg-purple-100 rounded-full -start-[13px] ring-4 ring-zinc-50 dark:ring-zinc-900 hover:ring-8 dark:bg-zinc-800 dark:bg-zinc-800   cursor-pointer transition-all duration-150 ease-in-out',
+  base: 'absolute flex items-center justify-center w-6 h-6 bg-[#015F43] rounded-full -start-[13px] ring-4 ring-zinc-50 dark:ring-zinc-900 hover:ring-8 dark:bg-zinc-800 dark:bg-zinc-800   cursor-pointer transition-all duration-150 ease-in-out',
   variants: {
     active: {
-      true: 'ring-purple-500 dark:ring-purple-700 hover:ring-8 hover:ring-purple-500/30 dark:hover:ring-purple-700/30 dark:bg-zinc-800 ',
+      true: 'ring-[#015F43] dark:ring-[#015F43] hover:ring-8 hover:ring-[#015F43]/30 dark:hover:ring-[#015F43]/30 dark:bg-zinc-800 ',
       
     },
     done: {
-      true: 'ring-zinc-50 dark:ring-zinc-900 hover:ring-8 bg-purple-500 dark:bg-purple-900 '
+      true: 'ring-zinc-50 dark:ring-zinc-900 hover:ring-8 bg-[#015F43] dark:bg-[#015F43] '
     }
   },
   defaultVariants: {
@@ -187,7 +187,7 @@ function ClassContent({course}: { course: Course}) {
       <div className="sticky top-0 bg-zinc-50 dark:bg-zinc-900 z-50 px-8 py-5">
         <h2 className="text-lg">{course.title}</h2>
         <div className={`mt-3 w-full bg-zinc-200 rounded dark:bg-zinc-700 my-2`} >
-          <div className={`bg-purple-300 dark:bg-purple-700 text-xs font-medium text-purple-950 dark:text-zinc-100 text-center p-0.5 leading-none rounded whitespace-nowrap transition-[width] duration-300 ease-in-out`} style={{width: `${coursePercentage}%` }} > 
+          <div className={`bg-purple-300 dark:bg-[#015F43] text-xs font-medium text-[#015F43] dark:text-zinc-100 text-center p-0.5 leading-none rounded whitespace-nowrap transition-[width] duration-300 ease-in-out`} style={{width: `${coursePercentage}%` }} > 
             {Math.round(coursePercentage)}% Completado
           </div>
         </div>
@@ -208,9 +208,9 @@ function ClassContent({course}: { course: Course}) {
                   <ol className="relative">
                   {chapter.lessons.map((lesson, i) => ( 
                     <> 
-                      <li className= {`pb-4 p-1  border-s-2 pl-7 -ml-[2px] pt-3 ${checkDoneLesson(chapter.position, lesson.position) ? 'border-purple-500 dark:border-purple-700 ' : 'border-zinc-200 dark:border-zinc-700'}`} >
+                      <li className= {`pb-4 p-1  border-s-2 pl-7 -ml-[2px] pt-3 ${checkDoneLesson(chapter.position, lesson.position) ? 'border-[#015F43] dark:border-[#015F43] ' : 'border-zinc-200 dark:border-zinc-700'}`} >
                         <span className={lessonStyle({active: (i === lesseonIndexActive && index === indexActive), done: (checkDoneLesson(chapter.position, lesson.position))})} onClick={() => markAsDone({index:chapter.position, lessons:[lesson.position]})}>
-                            <span className="text-xs text-purple-800 dark:text-zinc-50" >
+                            <span className="text-xs text-[#015F43] dark:text-zinc-50" >
                                 {(i === lesseonIndexActive && index === indexActive) ? <IconEye className='w-3 h-3'/> : i + 1}
                             </span>
                         </span>
