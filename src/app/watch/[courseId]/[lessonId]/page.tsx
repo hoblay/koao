@@ -1,17 +1,21 @@
 "use client"
 import { trpc } from "@/app/_trpc/client";
-import ReactPlayer from "react-player";
+import HalfStarIcon from "@/app/components/Icons/HalfStar";
+import StarIcon from "@/app/components/Icons/Star";
+import ReactPlayer, { ReactPlayerProps } from "react-player";
 export default function ClassPage({params}:{params:{lessonId:string}}) {
   const lesson = trpc.lesson.getById.useQuery(params.lessonId) 
   if (!lesson.data) {
     return null
   }
 
+
   return (
+    
     <div className="px-9"> 
       
-      <div className="flex min-w-[1022px] min-h-[601px]">
-        <ReactPlayer controls width={1022} className="rounded-3xl"  height={601} url={lesson.data.video?.commitUrl ? lesson.data.video?.commitUrl : '' } />
+      <div className="flex relative min-w-[1022px] min-h-[601px] overflow-hidden ">
+        <ReactPlayer controls width={"100%"} className="absolute top-0 left-0"  height={"100%"} url={lesson.data.video?.commitUrl ? lesson.data.video?.commitUrl : '' } config={{}}/>
       </div>
 
       <div className="py-4 max-w-[1022px]">
@@ -21,11 +25,11 @@ export default function ClassPage({params}:{params:{lessonId:string}}) {
             <div className="flex items-center gap-3">
               <span className="text-xl font-semibold text-zinc-600 dark:text-zinc-200">4,86</span>
               <div className="flex items-center gap-[.375rem] text-yellow-600 text-xl">
-                <svg stroke="currentColor" fill="currentColor" stroke-width="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><path d="M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z"></path></svg>
-                <svg stroke="currentColor" fill="currentColor" stroke-width="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><path d="M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z"></path></svg>
-                <svg stroke="currentColor" fill="currentColor" stroke-width="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><path d="M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z"></path></svg>
-                <svg stroke="currentColor" fill="currentColor" stroke-width="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><path d="M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z"></path></svg>
-                <svg stroke="currentColor" fill="currentColor" stroke-width="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><path d="M480 208H308L256 48l-52 160H32l140 96-54 160 138-100 138 100-54-160z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"></path><path d="M256 48v316L118 464l54-160-140-96h172l52-160z"></path></svg>
+                <StarIcon className="text-yellow-700 w-6 h-6" /> 
+                <StarIcon className="text-yellow-700 w-6 h-6" /> 
+                <StarIcon className="text-yellow-700 w-6 h-6" /> 
+                <StarIcon className="text-yellow-700 w-6 h-6" /> 
+                <HalfStarIcon className="text-yellow-700 w-6 h-6" /> 
               </div>
               <span className="text-xs text-zinc-700 dark:text-zinc-200">(365)</span>
             </div>

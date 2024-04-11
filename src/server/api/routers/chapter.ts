@@ -93,7 +93,14 @@ export const chapterRouter = router({
       include: {
         course:{
           include:{
-            author: true
+            author: {
+              select:{
+                name: true,
+                id: true,
+                email: true,
+                image: true
+              }
+            },
           }
         },
         lessons: {

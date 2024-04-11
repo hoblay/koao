@@ -51,7 +51,14 @@ export const courseRouter = router({
         userId: session?.user.id
       },
       include:{
-        author: true,
+        author: {
+          select:{
+            name: true,
+            id: true,
+            email: true,
+            image: true
+          }
+        },
         chapters: {
           include:{
             lessons: true
@@ -93,13 +100,20 @@ export const courseRouter = router({
   }),
   getById: publicProcedure.input(idSchema).query(async ({input}) => {
     const session = await getServerSession(authOptions)
-   return await db.course.findUnique({
+   const course =  await db.course.findUnique({
       where: {
         id: input,
         userId: session?.user.id
       },
       include: {
-        author: true,
+        author: {
+          select:{
+            name: true,
+            id: true,
+            email: true,
+            image: true
+          }
+        },
         chapters: {
           include:{
             lessons: true
@@ -108,6 +122,7 @@ export const courseRouter = router({
         },
       },
     )
+    return course
   }),
   updateCourse: publicProcedure.input(CreateChapterSchema).mutation(async ({input}) => {
    
