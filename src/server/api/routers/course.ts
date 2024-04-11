@@ -103,7 +103,6 @@ export const courseRouter = router({
    const course =  await db.course.findUnique({
       where: {
         id: input,
-        userId: session?.user.id
       },
       include: {
         author: {
