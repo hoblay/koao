@@ -180,7 +180,7 @@ function ClassContent({course}: { course: Course}) {
 
     setCoursePercentage(finalPercentage);
     
-  },[lessonsDone, lessonsNumber]);
+  },[lessonsDone, lessonsNumber, course.chapters]);
 
   return (
     <div className={`h-[calc(100vh-40px)] overscroll-x-none overscroll-y-none rounded-xl overflow-y-auto overflow-hidden bg-zinc-50 dark:bg-zinc-900 no-scrollbar w-[350px] shadow-sm`}>

@@ -73,13 +73,10 @@ function AddImage({imageUrl, edit, courseId}: AddImageProps) {
       body: file,
     })
     
-    if(pet.ok) {
-      getCourse.refetch()
-      route.refresh()
-    }
+   
 
   }
-,[courseId, getCourse]) 
+,[courseId ]) 
   
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
   return (
