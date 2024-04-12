@@ -60,7 +60,7 @@ import React from 'react'
           <div className="flex items-center space-x-2 relative ">
             <Image unoptimized src={`${course.author.image}`} width={24} height={24} className="bg-zinc-300 w-6 h-6 rounded-full object-cover dark:bg-zinc-700" alt='foto'/>
             <span className="text-xs text-zinc-700 dark:text-zinc-100">{course.author.name}</span>
-            <span className="text-xs text-zinc-500 dark:text-zinc-400 ">atualizado há {formatTime(new Date(course.updatedAt))}</span>
+            <span className="text-xs text-zinc-500 dark:text-zinc-400 ">atualizado {formatTime(new Date(course.updatedAt))}</span>
           
           </div>
           </div>

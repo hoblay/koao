@@ -52,7 +52,7 @@ interface LessonsDoneProps {
   lessons: {name?: string}[] | number[] 
 }
 
-interface Course{
+type Course = {
   id: string,
   userId: string;
   title: string;
@@ -65,7 +65,7 @@ interface Course{
   updatedAt: Date;
   chapters: Chapter[]
 }
-interface Chapter {
+type Chapter = {
   id: string;
   title: string;
   description: string | null;
@@ -73,12 +73,10 @@ interface Chapter {
   position: number;
   isPublished: boolean;
   lessons: Lesson[];
-
-
 }
 
 
-interface Lesson {
+type Lesson = {
   id: string;
   title: string;
   description: string | null;

@@ -1,9 +1,10 @@
-import { CreateChapterSchema, CreateCourseSchema, SignUpSchema, TSignUpSchema } from "@/schemas"
+import { CreateChapterSchema } from "@/schemas"
 import { publicProcedure, router } from "@/server/api/trpc"
 import { authOptions } from "@/server/auth";
 import { db } from "@/server/db";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+import { run } from "node:test";
 import { z } from "zod";
 
 const idSchema =  z.string() 
@@ -61,25 +62,22 @@ export const lessonRouter = router({
         return NextResponse.json({message: 'Algo de errado não está certo', error}, { status: 500 })
       }
     }),
-  getAllbyCourse:  publicProcedure.input(idSchema).query(async ({input}) => {
+  getAllbyChapter:  publicProcedure.input(idSchema).query(async ({input}) => {
     try {
    
     
     
-     const chapter = await db.chapter.findMany({
+     const lessons = await db.lesson.findMany({
       orderBy: {
         position: 'desc'
       },
       where: {
-        courseId: input
+        chapterId: input
       },
-      include:{
-        lessons: true
-      }
 
     }) 
 
-    return chapter
+    return lessons
     } catch (error) {
       
     } 
@@ -109,6 +107,16 @@ export const lessonRouter = router({
       },
     )
   }),
+  deleteById: publicProcedure.input(idSchema).mutation(async ({input}) => {
+    const session = await getServerSession(authOptions)
+    if(!session) return null
+    return await db.lesson.delete({
+      where: {
+        id: input,
+      }
+    })
+  })
+
   
 
   

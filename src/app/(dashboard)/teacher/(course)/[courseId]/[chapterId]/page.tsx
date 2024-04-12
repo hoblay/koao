@@ -84,7 +84,7 @@ export default function ChapterIdPage({
                     <td className="px-6 py-4">
                       <div className="flex items-center space-x-2 relative ">
                       <Image unoptimized src={`${chapter.data?.course.author.image}`} width={24} height={24} className="bg-zinc-300 w-6 h-6 rounded-full object-cover dark:bg-zinc-700" alt='foto'/>
-                        <span className="text-xs text-zinc-500 dark:text-zinc-400 ">há {formatTime(new Date(lesson.updatedAt))}</span>
+                        <span className="text-xs text-zinc-500 dark:text-zinc-400 ">{formatTime(new Date(lesson.updatedAt))}</span>
                       
                       </div>
                     </td>
