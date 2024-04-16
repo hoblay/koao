@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 📘️ Kwenda - LMS
 
-## Getting Started
+This is an LMS project that aims to provide a comprehensive learning management system for educational institutions and individuals.
 
-First, run the development server:
+## 📦 Built With
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- `Next.js`
+- `TypeScript`
+- `TRPC`
+- `Cloudfare R2`
+- `Tailwind`
+- `Prisma`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🦄 Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Here's what you can do with Kwenda:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Course Management**: Enables teachers to create, edit, delete and publish courses, chapters, and lessons, providing flexibility in content organization.
 
-## Learn More
+- **Lesson Upload**: Supports the uploading of lessons to the LMS, providing a centralized location for learning materials.
 
-To learn more about Next.js, take a look at the following resources:
+- **Attachment Support**: Allows the addition of attachments to lessons, enhancing the learning experience by providing complementary resources.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Progress Tracking**: Tracks learners' progress as they watch lessons, enabling them to monitor their own progress and stay engaged in the learning process.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### 🎯 Keyboard Shortcuts:
 
-## Deploy on Vercel
+Speed up your learning with these shortcuts:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Switch Theme**: Cmd + T.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 👩🏽‍🍳 The Process
+
+...
+
+### 📈 Overall Growth:
+
+Each part of this project helped me understand more about building apps, managing complex information, and improving user experience. It was more than just making a tool. It was about solving problems, learning new things, and improving my skills for future work.
+
+## 💭 How can it be improved?
+
+- ...
+
+## 🚦 Running the Project
+
+To run the project in your local environment, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Run `npm install` or `yarn` or `pnpm install` in the project directory to install the required dependencies.
+3. Run `npm run dev` or `yarn dev` or `pnpm dev` to get the project started.
+4. Open [http://localhost:3000](http://localhost:3000) (or the address shown in your console) in your web browser to view the app.
