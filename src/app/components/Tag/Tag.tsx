@@ -1,14 +1,3 @@
-import {
-  IconDeviceSpeaker,
-  IconChefHat,
-  IconPalette,
-  IconCode,
-  IconBrush,
-  IconBooks,
-  IconNotebook,
-  IconUsers,
-  IconChevronDown,
-} from "@tabler/icons-react";
 import React, { ReactNode } from "react";
 import { tv } from "tailwind-variants";
 import TagIcon from "./TagIcon";
