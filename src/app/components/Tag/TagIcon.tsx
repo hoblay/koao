@@ -34,7 +34,7 @@ const Icon = {
 
 function TagIcon({ name }: TagIconProps) {
   if (!name) return null;
-  return <>{Icon[name]}</>;
+  return <>{Icon[name as keyof typeof Icon]}</>;
 }
 
 export default TagIcon;
