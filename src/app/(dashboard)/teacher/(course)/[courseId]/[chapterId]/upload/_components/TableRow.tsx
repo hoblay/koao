@@ -4,7 +4,14 @@ import React, { SyntheticEvent, useState } from "react";
 import { formatBytes } from "@/utils/format-bytes";
 import { formatSecondsToMinutes } from "@/utils/format-seconds";
 import Tag from "@/app/components/Tag/Tag";
-import { IconTag, IconDots, IconTrash, IconEdit } from "@tabler/icons-react";
+import {
+  IconTag,
+  IconDots,
+  IconTrash,
+  IconEdit,
+  IconNotes,
+  IconFiles,
+} from "@tabler/icons-react";
 import { Dropdown } from "@/app/components/Dropdown";
 import { FormProvider, useForm } from "react-hook-form";
 import { Form } from "@/app/components/Form";
@@ -26,6 +33,8 @@ function TableRow({ file, onClick }: { file: Aula; onClick: any }) {
       title: file?.name,
     },
   });
+
+  const { handleSubmit } = lessonForm;
   const updateDuration = (duration: number) => {
     setDuration(formatSecondsToMinutes(duration));
   };
@@ -35,6 +44,8 @@ function TableRow({ file, onClick }: { file: Aula; onClick: any }) {
     updateDuration(event.currentTarget.duration);
     setName(file.name);
   }
+
+  const onSubmit = async (data) => {};
   return (
     <tr
       className="bg-zinc-50 border-b dark:bg-zinc-950 dark:border-zinc-900 py-2 "
@@ -57,7 +68,10 @@ function TableRow({ file, onClick }: { file: Aula; onClick: any }) {
             style={{ objectFit: "cover" }}
           />
           <FormProvider {...lessonForm}>
-            <form className="flex flex-col gap-2 w-full">
+            <form
+              className="flex flex-col gap-2 w-full"
+              onSubmit={handleSubmit(onSubmit)}
+            >
               <Form.Field>
                 <Form.Input
                   name="title"
@@ -69,10 +83,10 @@ function TableRow({ file, onClick }: { file: Aula; onClick: any }) {
               </Form.Field>
               <div className="flex">
                 <Tag
-                  name="Categoria"
+                  name="Recursos"
                   className="border border-zinc-800 border-dashed dark:bg-zinc-950 text-xs items-center justify-center"
                   startContent={
-                    <IconTag className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
+                    <IconFiles className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
                   }
                 />
               </div>
