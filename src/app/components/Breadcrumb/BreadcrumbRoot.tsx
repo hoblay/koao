@@ -8,7 +8,7 @@ import {
 import Link from "next/link";
 import React from "react";
 
-function Test({
+function BreadcrumbRoot({
   courseId,
   chapterId,
   lessonId,
@@ -78,4 +78,4 @@ function Test({
   );
 }
 
-export default Test;
+export default BreadcrumbRoot;

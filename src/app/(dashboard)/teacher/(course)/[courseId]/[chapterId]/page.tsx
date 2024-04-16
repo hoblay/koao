@@ -1,6 +1,7 @@
 "use client";
 import { trpc } from "@/app/_trpc/client";
 import Avatar from "@/app/components/Avatar/Avatar";
+import { Breadcrumb } from "@/app/components/Breadcrumb";
 import Test from "@/app/components/Breadcrumb/test";
 import Tag from "@/app/components/Tag/Tag";
 import { formatBytes } from "@/utils/format-bytes";
@@ -32,7 +33,10 @@ export default function ChapterIdPage({
       <div className="flex items-center justify-between border-b border-b-zinc-900 py-4 px-4">
         <div className="flex gap-3">
           <h2 className="text-xl">
-            <Test courseId={params.courseId} chapterId={params.chapterId} />
+            <Breadcrumb.Root
+              courseId={params.courseId}
+              chapterId={params.chapterId}
+            />
           </h2>
         </div>
         <div className="flex gap-1.5 pl-3 border-l border-l-zinc-900">
