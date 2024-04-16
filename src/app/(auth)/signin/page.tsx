@@ -52,6 +52,7 @@ export default function SignIn() {
               type="email"
               name="email"
               placeholder="exemplo@email.com"
+              hasIcon
             />
             <Form.ErrorMessage field="email" />
           </Form.Field>
@@ -61,6 +62,7 @@ export default function SignIn() {
               type="password"
               name="password"
               placeholder="palavra-passe"
+              hasIcon
             />
             <Form.ErrorMessage field="password" />
           </Form.Field>

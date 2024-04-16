@@ -70,7 +70,12 @@ export default function SignUp() {
           >
             <Form.Field>
               <Form.Label htmlFor="name">Nome completo</Form.Label>
-              <Form.Input placeholder="João Lourenço" type="text" name="name" />
+              <Form.Input
+                placeholder="João Lourenço"
+                type="text"
+                name="name"
+                hasIcon
+              />
               <Form.ErrorMessage field="name" />
             </Form.Field>
 
@@ -80,6 +85,7 @@ export default function SignUp() {
                 placeholder="example@email.com"
                 type="email"
                 name="email"
+                hasIcon
               />
               <Form.ErrorMessage field="email" />
             </Form.Field>
@@ -99,6 +105,7 @@ export default function SignUp() {
                 placeholder="Palavra-passe"
                 type="password"
                 name="password"
+                hasIcon
               />
               <Form.ErrorMessage field="password" />
             </Form.Field>
@@ -110,6 +117,7 @@ export default function SignUp() {
                 placeholder="Palavra-passe"
                 type="password"
                 name="confirmPassword"
+                hasIcon
               />
               <Form.ErrorMessage field="confirmPassword" />
             </Form.Field>
@@ -119,6 +127,7 @@ export default function SignUp() {
                 type="date"
                 name="dateOfBirth"
                 placeholder="07/01/2001"
+                hasIcon
               />
               <Form.ErrorMessage field="dateOfBirth" />
             </Form.Field>

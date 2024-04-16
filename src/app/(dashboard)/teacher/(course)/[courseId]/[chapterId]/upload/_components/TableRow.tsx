@@ -6,6 +6,8 @@ import { formatSecondsToMinutes } from "@/utils/format-seconds";
 import Tag from "@/app/components/Tag/Tag";
 import { IconTag, IconDots, IconTrash, IconEdit } from "@tabler/icons-react";
 import { Dropdown } from "@/app/components/Dropdown";
+import { FormProvider, useForm } from "react-hook-form";
+import { Form } from "@/app/components/Form";
 
 interface Aula {
   name: string;
@@ -19,6 +21,11 @@ function TableRow({ file, onClick }: { file: Aula; onClick: any }) {
   const [name, setName] = useState("");
   const [duration, setDuration] = useState("");
 
+  const lessonForm = useForm({
+    defaultValues: {
+      title: file?.name,
+    },
+  });
   const updateDuration = (duration: number) => {
     setDuration(formatSecondsToMinutes(duration));
   };
@@ -49,25 +56,28 @@ function TableRow({ file, onClick }: { file: Aula; onClick: any }) {
             typeof={file.type}
             style={{ objectFit: "cover" }}
           />
-          <div className="flex flex-col gap-2 w-full">
-            <input
-              className="max-h-10 text-xs w-full p-3 rounded-lg focus:ring-0 outline-none bg-zinc-100 hover:bg-white focus:bg-white dark:bg-zinc-900 dark:hover:bg-zinc-800/30 dark:focus:bg-zinc-800/30"
-              type="text"
-              name="title"
-              value={name}
-              placeholder="Titulo da aula"
-              onChange={(e) => setName(e.target.value)}
-            />
-            <div className="flex">
-              <Tag
-                name="Categoria"
-                className="border border-zinc-800 border-dashed dark:bg-zinc-950 text-xs items-center justify-center"
-                startContent={
-                  <IconTag className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-                }
-              />
-            </div>
-          </div>
+          <FormProvider {...lessonForm}>
+            <form className="flex flex-col gap-2 w-full">
+              <Form.Field>
+                <Form.Input
+                  name="title"
+                  sizes="xs"
+                  type="text"
+                  bordered
+                  className="max-w-[380px]"
+                />
+              </Form.Field>
+              <div className="flex">
+                <Tag
+                  name="Categoria"
+                  className="border border-zinc-800 border-dashed dark:bg-zinc-950 text-xs items-center justify-center"
+                  startContent={
+                    <IconTag className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
+                  }
+                />
+              </div>
+            </form>
+          </FormProvider>
         </div>
       </th>
       <td className="px-6 py-4">{duration}</td>

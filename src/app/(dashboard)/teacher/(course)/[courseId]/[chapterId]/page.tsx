@@ -132,7 +132,7 @@ export default function ChapterIdPage({
                             <IconClockEdit className="w-5 h-5 text-amber-950 dark:text-zinc-400" />
                           }
                           name="Em andamento"
-                          color="success"
+                          color="warning"
                         />
                       ) : (
                         <Tag
