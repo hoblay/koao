@@ -2,7 +2,6 @@ import UserAvatar from "@/app/components/UserAvatar";
 import { getServerSession } from "next-auth";
 import LogoIcon from "@/app/components/Icons/Logo";
 import Link from "next/link";
-import Test from "@/app/components/Breadcrumb/test";
 
 export default async function AppLayout({
   children,

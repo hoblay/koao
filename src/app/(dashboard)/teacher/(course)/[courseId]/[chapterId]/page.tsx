@@ -1,6 +1,7 @@
 "use client";
 import { trpc } from "@/app/_trpc/client";
 import Avatar from "@/app/components/Avatar/Avatar";
+import Test from "@/app/components/Breadcrumb/test";
 import Tag from "@/app/components/Tag/Tag";
 import { formatBytes } from "@/utils/format-bytes";
 import { formatSecondsToMinutes } from "@/utils/format-seconds";
@@ -30,7 +31,9 @@ export default function ChapterIdPage({
     <div className="px-24 py-8 border-t border-t-zinc-900">
       <div className="flex items-center justify-between border-b border-b-zinc-900 py-4 px-4">
         <div className="flex gap-3">
-          <h2 className="text-xl">Aulas</h2>
+          <h2 className="text-xl">
+            <Test courseId={params.courseId} chapterId={params.chapterId} />
+          </h2>
           <Link href={`/teacher/${params.courseId}/${params.chapterId}/upload`}>
             <Tag
               name="Adicionar aula"

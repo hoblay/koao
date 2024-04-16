@@ -1,37 +1,72 @@
-import { IconDots, IconChevronRight } from '@tabler/icons-react'
-import React from 'react'
+"use client";
+import { trpc } from "@/app/_trpc/client";
+import {
+  IconDots,
+  IconChevronRight,
+  IconAwardFilled,
+} from "@tabler/icons-react";
+import Link from "next/link";
+import React from "react";
 
-function Test({courseId, chapterId}:{ courseId: string, chapterId: string}) {
+function Test({
+  courseId,
+  chapterId,
+  lessonId,
+}: {
+  courseId: string;
+  chapterId?: string;
+  lessonId?: string;
+}) {
+  const course = trpc.course.getById.useQuery(courseId);
+  let lesson;
+  let chapter;
+  if (chapterId) chapter = trpc.chapter.getById.useQuery(chapterId);
+  if (lessonId) lesson = trpc.chapter.getById.useQuery(lessonId);
   return (
-   
-<ol className="flex flex-wrap justify-center items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5">
-
-  <li className="inline-flex items-center gap-1.5">
-    <span className="font-normal text-foreground max-w-52 truncate overflow-ellipsis">{courseId}</span>
-  <IconChevronRight  className='w-4 h-4 mt-[3px]'/>
-  </li>
-  <li className="inline-flex items-center gap-1.5">
-    <span className="font-normal text-foreground">{chapterId}</span>
-    <IconChevronRight  className='w-4 h-4 mt-[3px]'/>
-  </li>
-  <li className="inline-flex items-center gap-1.5">
-    <span className="font-normal text-foreground">Solucoes</span>
-  </li>
-
-    
-</ol>
-  )
+    <ol className="flex flex-wrap justify-center items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5">
+      {course.data && (
+        <li className="inline-flex items-center gap-1.5">
+          <Link
+            href={`/teacher/${course.data.id}`}
+            className={`  truncate overflow-ellipsis ${chapter?.data ? "max-w-64" : ""} `}
+          >
+            <span className="font-normal text-xl dark:hover:text-zinc-200">
+              {course.data.title}
+            </span>
+          </Link>
+        </li>
+      )}
+      {chapter?.data && (
+        <li className="inline-flex items-center gap-1.5">
+          <IconChevronRight className="w-4 h-4 mt-[3px]" />
+          <Link
+            href={`/teacher/${chapter.data.id}`}
+            className={`  truncate overflow-ellipsis ${lesson?.data ? "max-w-64" : ""} `}
+          >
+            <span className="font-normal text-xl dark:hover:text-zinc-200">
+              {chapter.data.title}
+            </span>
+          </Link>
+        </li>
+      )}
+      {lesson?.data && (
+        <li className="inline-flex items-center gap-1.5">
+          <IconChevronRight className="w-4 h-4 mt-[3px]" />
+          <span className="font-normal text-xl dark:hover:text-zinc-200">
+            lesson.data.title
+          </span>
+        </li>
+      )}
+    </ol>
+  );
 }
 
-export default Test
-
-
-
+export default Test;
 
 /**
- * 
- * 
- * 
+ *
+ *
+ *
  * <li
     role="presentation"
     aria-hidden="true"
@@ -45,8 +80,8 @@ export default Test
 
     <IconChevronRight />
   </li>
- * 
- * 
- * 
- * 
+ *
+ *
+ *
+ *
  */
