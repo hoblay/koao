@@ -10,6 +10,7 @@ import {
   IconBook2,
   IconBooks,
   IconCloudUpload,
+  IconLayoutDashboard,
   IconSettings,
   IconTags,
   IconTimeline,
@@ -24,6 +25,14 @@ export default async function AppLayout({
     <div className=" flex flex-col">
       <nav className="md:px-24 px-4 pb-4 w-full">
         <div className="flex gap-3">
+          <Link href="/teacher">
+            <Tag
+              name="Painel de controle"
+              startContent={
+                <IconLayoutDashboard className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
+              }
+            />
+          </Link>
           <Link href="/teacher/category">
             <Tag
               name="Categorias"
