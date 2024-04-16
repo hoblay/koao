@@ -41,7 +41,7 @@ function BreadcrumbRoot({
         <li className="inline-flex items-center gap-1.5">
           <IconChevronRight className="w-4 h-4 mt-[3px]" />
           <Link
-            href={`/teacher/${chapter.data.id}`}
+            href={`/teacher/${course?.data?.id}/${chapter?.data?.id}`}
             className={`  truncate overflow-ellipsis ${lesson?.data ? "max-w-64" : ""} `}
           >
             <span className="font-normal text-xl dark:hover:text-zinc-200">
