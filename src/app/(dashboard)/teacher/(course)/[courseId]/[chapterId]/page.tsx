@@ -13,6 +13,7 @@ import {
   IconCircleMinus,
   IconClockEdit,
   IconDots,
+  IconExclamationCircle,
   IconFileExport,
   IconTags,
   IconUpload,
@@ -125,13 +126,23 @@ export default function ChapterIdPage({
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex">
-                      <Tag
-                        startContent={
-                          <IconClockEdit className="w-5 h-5 text-amber-950 dark:text-zinc-400" />
-                        }
-                        name="Em andamento"
-                        className="bg-amber-200 dark:bg-yellow-950"
-                      />
+                      {lesson.video?.id ? (
+                        <Tag
+                          startContent={
+                            <IconClockEdit className="w-5 h-5 text-amber-950 dark:text-zinc-400" />
+                          }
+                          name="Em andamento"
+                          color="warning"
+                        />
+                      ) : (
+                        <Tag
+                          startContent={
+                            <IconExclamationCircle className="w-5 h-5 text-red-950 dark:text-zinc-400" />
+                          }
+                          name="Não foi possivel achar o video"
+                          color="danger"
+                        />
+                      )}
                     </div>
                   </td>
                   <td className="px-6 py-4">
