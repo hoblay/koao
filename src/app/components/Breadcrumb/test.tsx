@@ -21,7 +21,7 @@ function Test({
   let lesson;
   let chapter;
   if (chapterId) chapter = trpc.chapter.getById.useQuery(chapterId);
-  if (lessonId) lesson = trpc.chapter.getById.useQuery(lessonId);
+  if (lessonId) lesson = trpc.lesson.getById.useQuery(lessonId);
   return (
     <ol className="flex flex-wrap justify-center items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5">
       {course.data && (
@@ -36,7 +36,8 @@ function Test({
           </Link>
         </li>
       )}
-      {chapter?.data && (
+
+      {chapter?.data && !lesson?.data && (
         <li className="inline-flex items-center gap-1.5">
           <IconChevronRight className="w-4 h-4 mt-[3px]" />
           <Link
@@ -50,38 +51,31 @@ function Test({
         </li>
       )}
       {lesson?.data && (
-        <li className="inline-flex items-center gap-1.5">
-          <IconChevronRight className="w-4 h-4 mt-[3px]" />
-          <span className="font-normal text-xl dark:hover:text-zinc-200">
-            lesson.data.title
-          </span>
-        </li>
+        <>
+          <li className="inline-flex items-center gap-1.5" aria-hidden="true">
+            <IconChevronRight className="w-4 h-4 mt-[3px]" />
+            <Link
+              href={`/teacher/${course?.data?.id}/${chapter?.data?.id}`}
+              className="max-w-52 flex truncate overflow-ellipsis"
+            >
+              <span className="flex h-9 w-9 items-center justify-center">
+                <IconDots className="h-5 w-5 dark:hover:text-zinc-200" />
+                <span className="sr-only">More</span>
+              </span>
+            </Link>
+          </li>
+          <li className="inline-flex items-center gap-1.5">
+            <IconChevronRight className="w-4 h-4 mt-[3px]" />
+            <Link href={`/teacher/${lesson.data.id}`}>
+              <span className="font-normal text-xl dark:hover:text-zinc-200">
+                {lesson.data.title}
+              </span>
+            </Link>
+          </li>
+        </>
       )}
     </ol>
   );
 }
 
 export default Test;
-
-/**
- *
- *
- *
- * <li
-    role="presentation"
-    aria-hidden="true"
-    className="[&>svg]:size-3.5"
-  >
-<span className="font-normal text-foreground">Solucoes</span>
-  <span className="flex h-9 w-9 items-center justify-center">
-    <IconDots className="h-4 w-4" />
-    <span className="sr-only">More</span>
-  </span>
-
-    <IconChevronRight />
-  </li>
- *
- *
- *
- *
- */

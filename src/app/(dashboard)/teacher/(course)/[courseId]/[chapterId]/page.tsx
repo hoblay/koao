@@ -34,14 +34,6 @@ export default function ChapterIdPage({
           <h2 className="text-xl">
             <Test courseId={params.courseId} chapterId={params.chapterId} />
           </h2>
-          <Link href={`/teacher/${params.courseId}/${params.chapterId}/upload`}>
-            <Tag
-              name="Adicionar aula"
-              startContent={
-                <IconBookUpload className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-              }
-            />
-          </Link>
         </div>
         <div className="flex gap-1.5 pl-3 border-l border-l-zinc-900">
           <Link href="/teacher/">
@@ -49,6 +41,14 @@ export default function ChapterIdPage({
               name="Exportar "
               startContent={
                 <IconFileExport className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
+              }
+            />
+          </Link>
+          <Link href={`/teacher/${params.courseId}/${params.chapterId}/upload`}>
+            <Tag
+              name="Adicionar aula"
+              startContent={
+                <IconBookUpload className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
               }
             />
           </Link>
