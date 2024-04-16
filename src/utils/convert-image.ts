@@ -1,16 +1,11 @@
-import sharp from 'sharp';
+import sharp from "sharp";
 
-
-export async function resizeImage(image:any) {
-
+export async function resizeImage(image: any) {
   try {
-    const data = await sharp(image)
-  .webp({ lossless: true })
-  .toBuffer();
+    const data = await sharp(image).webp({ lossless: true }).toBuffer();
 
-  return data
+    return data;
   } catch (error) {
     console.log(error);
   }
-} 
-
+}

@@ -1,45 +1,42 @@
-"use server"
+"use server";
 
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
-
-
-import { PutObjectCommand } from "@aws-sdk/client-s3"
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
-
-
-
-import crypto from "crypto"
-import { getServerSession } from "next-auth"
-import { authOptions } from "@/server/auth"
-import { r2 } from "@/lib/cloudfare-r2"
-import { db } from "@/server/db"
-
-
-
-
+import crypto from "crypto";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/server/auth";
+import { r2 } from "@/lib/cloudfare-r2";
+import { db } from "@/server/db";
 
 const allowedFileTypes = [
- "video/webm", "video/mp4", "video/ogg", "video/mov", "video/avi", "video/mpeg"
-]
+  "video/webm",
+  "video/mp4",
+  "video/ogg",
+  "video/mov",
+  "video/avi",
+  "video/mpeg",
+];
 
-const maxFileSize = 1048576 * 100000 // 1 MB
+const maxFileSize = 1048576 * 100000; // 1 MB
 
-const generateFileName = (bytes = 32) => crypto.randomBytes(bytes).toString("hex")
+const generateFileName = (bytes = 32) =>
+  crypto.randomBytes(bytes).toString("hex");
 
 type SignedURLResponse = Promise<
   | { failure?: undefined; success: { url: string; id: number } }
   | { failure: string; success?: undefined }
->
+>;
 
 type GetSignedURLParams = {
-  fileType: string
-  fileSize: number
-  checksum: string,
-  courseId: string,
-  chapterId: string,
-  title: string,
-  duration: number,
-}
+  fileType: string;
+  fileSize: number;
+  checksum: string;
+  courseId: string;
+  chapterId: string;
+  title: string;
+  duration: number;
+};
 export const getSignedURL = async ({
   fileType,
   fileSize,
@@ -47,23 +44,23 @@ export const getSignedURL = async ({
   courseId,
   chapterId,
   title,
-  duration
+  duration,
 }: GetSignedURLParams) => {
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession(authOptions);
 
   if (!session) {
-    return { failure: "not authenticated" }
+    return { failure: "not authenticated" };
   }
 
   if (!allowedFileTypes.includes(fileType)) {
-    return { failure: "File type not allowed" }
+    return { failure: "File type not allowed" };
   }
 
   if (fileSize > maxFileSize) {
-    return { failure: "File size too large" }
+    return { failure: "File size too large" };
   }
 
-  const fileName = generateFileName()
+  const fileName = generateFileName();
   const lastChapter = await db.lesson.findFirst({
     where: {
       chapterId: chapterId,
@@ -75,12 +72,12 @@ export const getSignedURL = async ({
 
   const newPosition = lastChapter ? lastChapter.position + 1 : 1;
   const lesson = await db.lesson.create({
-    data:{
+    data: {
       chapterId,
       position: newPosition,
-      title
-    }
-  })
+      title,
+    },
+  });
 
   const putObjectCommand = new PutObjectCommand({
     Bucket: process.env.R2_BUCKET_NAME,
@@ -88,26 +85,21 @@ export const getSignedURL = async ({
     ContentType: fileType,
     ContentLength: fileSize,
     ChecksumSHA256: checksum,
-    
-  })
+  });
 
-  const signedUrl = await getSignedUrl(
-    r2,
-    putObjectCommand, 
-    { expiresIn: 6000 }
-  )
+  const signedUrl = await getSignedUrl(r2, putObjectCommand, {
+    expiresIn: 6000,
+  });
 
-  console.log({ success: signedUrl })
+  console.log({ success: signedUrl });
 
-
- 
   const video = await db.video.create({
-    data:{
+    data: {
       lessonId: lesson.id,
       duration,
       sizeInBytes: fileSize,
-      commitUrl:`${process.env.R2_DEV_URL}/${courseId}${chapterId}${lesson.id}` 
-    }
-  })
-  return { success: { url: signedUrl,  } }
-}
+      commitUrl: `${process.env.R2_DEV_URL}/${courseId}${chapterId}${lesson.id}`,
+    },
+  });
+  return { success: { url: signedUrl } };
+};
