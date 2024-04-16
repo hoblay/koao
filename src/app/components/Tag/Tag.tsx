@@ -31,14 +31,10 @@ function Tag({ name, startContent, className, color }: TagProps) {
   return (
     <div className={TagStyle({ color, class: className })}>
       {startContent && <div className="h-5 w-5">{startContent}</div>}
-      <TagIcon name={name} />
+      {name !== "Mais" && <TagIcon name={name} />}
 
       <span className="">{name}</span>
-      {name === "Mais" && (
-        <div className="">
-          <TagIcon name={name} />
-        </div>
-      )}
+      {name === "Mais" && <TagIcon name={name} />}
     </div>
   );
 }
