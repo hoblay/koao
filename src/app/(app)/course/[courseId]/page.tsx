@@ -1,6 +1,7 @@
 "use client";
 
 import { trpc } from "@/app/_trpc/client";
+import Avatar from "@/app/components/Avatar/Avatar";
 import { Card } from "@/app/components/Card";
 import Tag from "@/app/components/Tag/Tag";
 import {
@@ -98,9 +99,12 @@ export default function Home({ params }: { params: { courseId: string } }) {
             </Card.Header>
             <Card.Body className="py-5 px-8">
               <div className="flex gap-4">
-                <span className="inline-flex items-center justify-center size-[52px] text-lg font-semibold leading-none rounded-full bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-500 select-none cursor-pointer">
-                  WM
-                </span>
+                <Avatar
+                  name={course.data.author.name}
+                  image={course.data.author.image}
+                  color="green"
+                  size="lg"
+                />
                 <div className="flex flex-col align-center justify-center">
                   <span className="text-zinc-800 dark:text-zinc-100 text-base">
                     {course.data.author.name}

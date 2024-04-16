@@ -5,6 +5,7 @@ import { Dropdown } from "@/app/components/Dropdown";
 import { formatTime } from "@/utils/format-time";
 import { IconDots, IconEdit, IconEye, IconTrash } from "@tabler/icons-react";
 import Image from "next/image";
+import Avatar from "@/app/components/Avatar/Avatar";
 import Link from "next/link";
 import React from "react";
 
@@ -81,13 +82,11 @@ function Courses() {
           <Card.Footer className="flex py-4 px-5 max-h-[56px] bg-zinc-950/40 rounded-b-2xl">
             <div className="flex">
               <div className="flex items-center space-x-2 relative ">
-                <Image
-                  unoptimized
-                  src={`${course.author.image}`}
-                  width={24}
-                  height={24}
-                  className="bg-zinc-300 w-6 h-6 rounded-full object-cover dark:bg-zinc-700"
-                  alt="foto"
+                <Avatar
+                  name={course.author.name}
+                  image={course.author.image}
+                  size="xs"
+                  color={"green"}
                 />
                 <span className="text-xs text-zinc-700 dark:text-zinc-100">
                   {course.author.name}
