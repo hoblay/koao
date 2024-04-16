@@ -11,6 +11,7 @@ import {
 } from "@tabler/icons-react";
 import React, { ReactNode } from "react";
 import { tv } from "tailwind-variants";
+import TagIcon from "./TagIcon";
 
 const TagStyle = tv({
   base: "relative flex gap-1.5 select-none items-center whitespace-nowrap rounded-lg  py-1.5 px-2 text-xs cursor-pointer dark:text-zinc-100",
@@ -41,51 +42,12 @@ function Tag({ name, startContent, className, color }: TagProps) {
   return (
     <div className={TagStyle({ color, class: className })}>
       {startContent && <div className="h-5 w-5">{startContent}</div>}
-      {name === "Produção musical" && (
-        <div className="">
-          <IconDeviceSpeaker className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-        </div>
-      )}
-      {name === "Culinaria" && (
-        <div className="">
-          <IconChefHat className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-        </div>
-      )}
-      {name === "Design" && (
-        <div className="">
-          <IconPalette className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-        </div>
-      )}
-      {name === "Programação" && (
-        <div className="">
-          <IconCode className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-        </div>
-      )}
-      {name === "Arte" && (
-        <div className="">
-          <IconBrush className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-        </div>
-      )}
-      {name === "Materia" && (
-        <div className="">
-          <IconNotebook className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-        </div>
-      )}
-      {name === "Colegas" && (
-        <div className="">
-          <IconUsers className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-        </div>
-      )}
-      {name === "Cursos" && (
-        <div className="">
-          <IconBooks className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-        </div>
-      )}
+      <TagIcon name={name} />
 
       <span className="">{name}</span>
       {name === "Mais" && (
         <div className="">
-          <IconChevronDown className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
+          <TagIcon name={name} />
         </div>
       )}
     </div>
