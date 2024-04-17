@@ -20,7 +20,9 @@ export default function Home({
   params: { courseId: string; chapterId: string };
 }) {
   const [files, setFiles] = useState<any[]>([]);
-  const [loading, setLoading] = useState<boolean[]>([]);
+  const [loading, setLoading] = useState<{ index: number; loading: boolean }[]>(
+    [],
+  );
   const computeSHA256 = async (file: File) => {
     const buffer = await file.arrayBuffer();
     const hashBuffer = await crypto.subtle.digest("SHA-256", buffer);
@@ -34,6 +36,8 @@ export default function Home({
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       acceptedFiles.forEach(async (file, index) => {
+        loading.push({ index, loading: true });
+        setLoading([...loading]);
         const reader = new FileReader();
         reader.onabort = () => console.log("file reading was aborted");
         reader.onerror = () => console.log("file reading has failed");
@@ -62,8 +66,6 @@ export default function Home({
             lessonId,
             videoId,
           };
-
-          setLoading((prev) => [...prev, true]);
           setFiles((prev) => [...prev, newFile]);
         };
         reader.readAsArrayBuffer(file);
@@ -74,8 +76,8 @@ export default function Home({
           },
           body: file,
         });
-
-        loading[index] = false;
+        const objIndex = loading.findIndex((obj) => obj.index == index);
+        loading[objIndex] = false;
         setLoading([...loading]);
       });
     },
@@ -152,7 +154,7 @@ export default function Home({
                   file={file}
                   key={index}
                   onClick={removeFile}
-                  loading={loading[index]}
+                  loading={loading[index].loading}
                 />
               ))}
             </tbody>
