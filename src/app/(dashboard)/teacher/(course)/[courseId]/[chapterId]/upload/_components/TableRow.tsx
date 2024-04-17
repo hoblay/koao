@@ -4,30 +4,33 @@ import React, { SyntheticEvent, useState } from "react";
 import { formatBytes } from "@/utils/format-bytes";
 import { formatSecondsToMinutes } from "@/utils/format-seconds";
 import Tag from "@/app/components/Tag/Tag";
-import {
-  IconTag,
-  IconDots,
-  IconTrash,
-  IconEdit,
-  IconNotes,
-  IconFiles,
-} from "@tabler/icons-react";
+import { IconDots, IconTrash, IconEdit, IconFiles } from "@tabler/icons-react";
 import { Dropdown } from "@/app/components/Dropdown";
 import { FormProvider, useForm } from "react-hook-form";
 import { Form } from "@/app/components/Form";
+import { trpc } from "@/app/_trpc/client";
 
-interface Aula {
+interface LessonVideo {
   name: string;
   src: string;
   size: number;
   type: string;
   duration: string;
+  lessonId: string;
+  videoId: string;
 }
 
-function TableRow({ file, onClick }: { file: Aula; onClick: any }) {
-  const [name, setName] = useState("");
+function TableRow({
+  file,
+  onClick,
+  loading,
+}: {
+  file: LessonVideo;
+  onClick: any;
+  loading: boolean;
+}) {
   const [duration, setDuration] = useState("");
-
+  const updateVideo = trpc.lesson.updateVideoDuration.useMutation();
   const lessonForm = useForm({
     defaultValues: {
       title: file?.name,
@@ -37,12 +40,11 @@ function TableRow({ file, onClick }: { file: Aula; onClick: any }) {
   const { handleSubmit } = lessonForm;
   const updateDuration = (duration: number) => {
     setDuration(formatSecondsToMinutes(duration));
+    updateVideo.mutate({ videoId: file.videoId, duration });
   };
-  const updateName = (name: string) => {};
 
   function handleLoadedMetadata(event: SyntheticEvent<HTMLVideoElement>) {
     updateDuration(event.currentTarget.duration);
-    setName(file.name);
   }
 
   const onSubmit = async (data) => {};

@@ -19,6 +19,9 @@ export default function Home({
   params: { courseId: string; chapterId: string };
 }) {
   const [files, setFiles] = useState<any[]>([]);
+  const [loading, setLoading] = useState<{ id: string; loading: boolean }[]>(
+    [],
+  );
   const computeSHA256 = async (file: File) => {
     const buffer = await file.arrayBuffer();
     const hashBuffer = await crypto.subtle.digest("SHA-256", buffer);
@@ -36,18 +39,6 @@ export default function Home({
 
         reader.onabort = () => console.log("file reading was aborted");
         reader.onerror = () => console.log("file reading has failed");
-        reader.onload = () => {
-          let newFile = {
-            ...file,
-            name: file.name,
-            src: URL.createObjectURL(file),
-            size: file.size,
-            type: file.type,
-            duration: "",
-          };
-          setFiles((prev) => [...prev, newFile]);
-        };
-        reader.readAsArrayBuffer(file);
 
         const signedURLResult = await getSignedURL({
           fileSize: file.size,
@@ -61,7 +52,7 @@ export default function Home({
         if (signedURLResult.failure !== undefined) {
           throw new Error(signedURLResult.failure);
         }
-        const { url } = signedURLResult.success;
+        const { url, lessonId, videoId } = signedURLResult.success;
         await fetch(url, {
           method: "PUT",
           headers: {
@@ -69,6 +60,20 @@ export default function Home({
           },
           body: file,
         });
+        reader.onload = () => {
+          let newFile = {
+            ...file,
+            name: file.name,
+            src: URL.createObjectURL(file),
+            size: file.size,
+            type: file.type,
+            duration: "",
+            lessonId,
+            videoId,
+          };
+          setFiles((prev) => [...prev, newFile]);
+        };
+        reader.readAsArrayBuffer(file);
       });
     },
     [params.chapterId, params.courseId],
@@ -140,7 +145,12 @@ export default function Home({
             </thead>
             <tbody>
               {files.map((file, index) => (
-                <TableRow file={file} key={index} onClick={removeFile} />
+                <TableRow
+                  file={file}
+                  key={index}
+                  onClick={removeFile}
+                  loading={loading[index].loading}
+                />
               ))}
             </tbody>
           </table>

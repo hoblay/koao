@@ -101,5 +101,7 @@ export const getSignedURL = async ({
       commitUrl: `${process.env.R2_DEV_URL}/${courseId}${chapterId}${lesson.id}`,
     },
   });
-  return { success: { url: signedUrl } };
+  return {
+    success: { url: signedUrl, lessonId: lesson.id, videoId: video.id },
+  };
 };

@@ -1,4 +1,4 @@
-import { CreateChapterSchema } from "@/schemas";
+import { CreateChapterSchema, UpdateDurationSchema } from "@/schemas";
 import { publicProcedure, router } from "@/server/api/trpc";
 import { authOptions } from "@/server/auth";
 import { db } from "@/server/db";
@@ -97,6 +97,25 @@ export const lessonRouter = router({
       },
     });
   }),
+  updateVideoDuration: publicProcedure
+    .input(UpdateDurationSchema)
+    .mutation(async ({ input }) => {
+      const session = await getServerSession(authOptions);
+      if (!session?.user) {
+        return new NextResponse("Unauthorized", { status: 401 });
+      }
+
+      const video = await db.video.update({
+        where: {
+          id: input.videoId,
+        },
+        data: {
+          duration: input.duration,
+        },
+      });
+
+      return video;
+    }),
   deleteById: publicProcedure.input(idSchema).mutation(async ({ input }) => {
     const session = await getServerSession(authOptions);
     if (!session) return null;
