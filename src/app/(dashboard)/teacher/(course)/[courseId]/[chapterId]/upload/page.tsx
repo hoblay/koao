@@ -77,7 +77,7 @@ export default function Home({
           body: file,
         });
         const objIndex = loading.findIndex((obj) => obj.index == index);
-        loading[objIndex] = false;
+        loading[objIndex] = { index, loading: false };
         setLoading([...loading]);
       });
     },
