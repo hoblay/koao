@@ -8,7 +8,6 @@ import {
   EraserIcon,
   CodeIcon,
   ArrowTopRightIcon,
-  ResumeIcon,
   VideoIcon,
 } from "@radix-ui/react-icons";
 import { IconNotebook, IconPlayerPlay } from "@tabler/icons-react";

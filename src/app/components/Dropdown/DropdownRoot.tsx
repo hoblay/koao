@@ -1,43 +1,53 @@
 "use client";
-import { ReactNode, createContext, useEffect, useState } from "react";
-import React from 'react'
+import { useOnOutsideClick } from "@/hooks/useOnOutsideClick";
+import { ReactNode, createContext, useEffect, useRef, useState } from "react";
+import React from "react";
 import { tv } from "tailwind-variants";
 
 const dropdownStyle = tv({
-  base: '',
+  base: "",
   variants: {
     active: {
-      true: '',
-      
+      true: "",
     },
     done: {
-      true: ' '
-    }
+      true: " ",
+    },
   },
   defaultVariants: {
     active: false,
-    done: false
-  }
+    done: false,
+  },
 });
 
-interface DropdownRootProps{
-  children: ReactNode[],
-  type?: 	'menu' | 'listbox',
-  trigger?: 'press' | 'longPress',
-  isDisabled?: boolean,
-  closeOnSelect?: boolean,
-
+interface DropdownRootProps {
+  children: ReactNode[];
+  type?: "menu" | "listbox";
+  trigger?: "press" | "longPress";
+  isDisabled?: boolean;
+  closeOnSelect?: boolean;
 }
 interface DropdownContextProps {
-  isDropdownOpen: boolean,
-  handleDropdown: () => void,
-  closeDropdown: () => void
+  isDropdownOpen: boolean;
+  handleDropdown: () => void;
+  closeDropdown: () => void;
 }
 
-export const DropdownContext = createContext<DropdownContextProps | null >(null);
+export const DropdownContext = createContext<DropdownContextProps | null>(null);
 
-function DropdownRoot({children, type, trigger, isDisabled, closeOnSelect,}: DropdownRootProps) {
+function DropdownRoot({
+  children,
+  type,
+  trigger,
+  isDisabled,
+  closeOnSelect,
+}: DropdownRootProps) {
   const [isDropdownOpen, setisDropdownOpen] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>();
+
+  useOnOutsideClick(dropdownRef, () => {
+    if (isDropdownOpen) setisDropdownOpen(false);
+  });
 
   const handleDropdown = () => {
     setisDropdownOpen(!isDropdownOpen);
@@ -48,17 +58,16 @@ function DropdownRoot({children, type, trigger, isDisabled, closeOnSelect,}: Dro
   };
 
   return (
-    <div className="relative flex items-center">
-      <div className='max-w-full w-full h-full scrollbar-hide overflow-x-scroll'>
-        <DropdownContext.Provider value={{ isDropdownOpen, handleDropdown , closeDropdown}}>
+    <div className="relative flex items-center" ref={dropdownRef}>
+      <div className="max-w-full w-full h-full scrollbar-hide overflow-x-scroll">
+        <DropdownContext.Provider
+          value={{ isDropdownOpen, handleDropdown, closeDropdown }}
+        >
           {children}
         </DropdownContext.Provider>
       </div>
     </div>
-  )
+  );
 }
 
-export default DropdownRoot
-
-
-
+export default DropdownRoot;

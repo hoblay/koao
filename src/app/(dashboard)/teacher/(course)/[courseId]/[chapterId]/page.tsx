@@ -29,7 +29,7 @@ export default function ChapterIdPage({
 
   const removeLesson = async (id: string) => {
     const a = await deleteLesson(id);
-    if (!a?.failure) chapter.refetch();
+    chapter.refetch();
   };
   return (
     <div className="px-24 py-8 border-t border-t-zinc-900">
