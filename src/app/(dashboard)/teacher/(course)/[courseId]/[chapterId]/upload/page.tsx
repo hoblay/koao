@@ -12,6 +12,7 @@ import TableRow from "./_components/TableRow";
 import { useDropzone } from "react-dropzone";
 import { getSignedURL, deleteLesson } from "./_components/actions";
 import { Breadcrumb } from "@/app/components/Breadcrumb";
+import Link from "next/link";
 
 export default function Home({
   params,
@@ -115,14 +116,16 @@ export default function Home({
               }
             />
           </button>
-          <button disabled={files.length > 0}>
-            <Tag
-              name="Adicionar tudo"
-              startContent={
-                <IconUpload className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-              }
-            />
-          </button>
+          <Link href={`/teacher/${params.courseId}/${params.chapterId}`}>
+            <button disabled={files.length < 0}>
+              <Tag
+                name="Adicionar tudo"
+                startContent={
+                  <IconUpload className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
+                }
+              />
+            </button>
+          </Link>
         </div>
       </div>
 
