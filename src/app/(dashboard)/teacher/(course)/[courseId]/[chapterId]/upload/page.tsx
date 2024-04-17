@@ -35,7 +35,6 @@ export default function Home({
     (acceptedFiles: File[]) => {
       acceptedFiles.forEach(async (file, index) => {
         const reader = new FileReader();
-        setLoading((prev) => [...prev, true]);
         reader.onabort = () => console.log("file reading was aborted");
         reader.onerror = () => console.log("file reading has failed");
 
@@ -63,6 +62,8 @@ export default function Home({
             lessonId,
             videoId,
           };
+
+          setLoading((prev) => [...prev, true]);
           setFiles((prev) => [...prev, newFile]);
         };
         reader.readAsArrayBuffer(file);

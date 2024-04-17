@@ -4,7 +4,14 @@ import React, { SyntheticEvent, useState } from "react";
 import { formatBytes } from "@/utils/format-bytes";
 import { formatSecondsToMinutes } from "@/utils/format-seconds";
 import Tag from "@/app/components/Tag/Tag";
-import { IconDots, IconTrash, IconEdit, IconFiles } from "@tabler/icons-react";
+import {
+  IconDots,
+  IconTrash,
+  IconEdit,
+  IconFiles,
+  IconLoader3,
+  IconCircleCheck,
+} from "@tabler/icons-react";
 import { Dropdown } from "@/app/components/Dropdown";
 import { FormProvider, useForm } from "react-hook-form";
 import { Form } from "@/app/components/Form";
@@ -100,7 +107,23 @@ function TableRow({
       <td className="px-6 py-4">{formatBytes(file.size)}</td>
       <td className="px-6 py-4">
         <div className="flex">
-          <Tag name={loading ? "loading" : "ready"} />
+          {loading ? (
+            <Tag
+              name="Verificando"
+              color="warning"
+              startContent={
+                <IconLoader3 className="w-5 h-5 animate-spin text-amber-500 dark:text-zinc-300" />
+              }
+            />
+          ) : (
+            <Tag
+              name="Verificado"
+              color="success"
+              startContent={
+                <IconCircleCheck className="w-5 h-5 text-emerarl-500 dark:text-zinc-300" />
+              }
+            />
+          )}
         </div>
       </td>
       <td className="px-6 py-4 text-right">
