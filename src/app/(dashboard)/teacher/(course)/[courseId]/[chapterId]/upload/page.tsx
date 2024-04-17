@@ -88,7 +88,7 @@ export default function Home({
 
   const removeFile = async (id: string) => {
     const deletedIndex = files.findIndex((item) => item.lessonId === id);
-    await deleteLesson(id);
+
     // removes it from the array if the lesson already exists
     if (deletedIndex > -1) {
       let filteredFiles = files.filter(
@@ -97,6 +97,7 @@ export default function Home({
       const newFiles = [...filteredFiles];
 
       setFiles([...newFiles]);
+      await deleteLesson(id);
     }
   };
 

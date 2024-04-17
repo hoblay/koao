@@ -1,5 +1,4 @@
-export function formatTime(date:Date) {
-
+export function formatTime(date: Date) {
   var seconds = Math.floor((+new Date() - +date) / 1000);
 
   var interval = seconds / 31536000;
@@ -19,7 +18,7 @@ export function formatTime(date:Date) {
   }
   interval = seconds / 86400;
   if (interval > 1) {
-    return "há " + Math.floor(interval) +" dias";
+    return "há " + Math.floor(interval) + " dias";
   }
   if (interval === 1) {
     return "ontem";
@@ -38,8 +37,8 @@ export function formatTime(date:Date) {
   if (interval === 1) {
     return "há 1 minuto";
   }
-  return Math.floor(seconds) + " segundos";
-  if(seconds === 1) {
-    return "há 1 segundo";
+  if (seconds < 20) {
+    return "agora";
   }
+  return "há " + Math.floor(seconds) + " segundos";
 }
