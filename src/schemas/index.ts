@@ -109,8 +109,8 @@ export type TUpdateDurationSchema = z.infer<typeof UpdateDurationSchema>;
 
 export const UpdateLessonTitleSchema = z.object({
   lessonId: z.string(),
-  title: z.string().min(10, {
-    message: "O titulo tem que ser maior a 10 carateres.",
+  title: z.string().min(3, {
+    message: "O titulo tem que ser maior a 3 carateres.",
   }),
 });
 

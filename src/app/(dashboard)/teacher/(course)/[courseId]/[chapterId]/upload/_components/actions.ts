@@ -1,6 +1,6 @@
 "use server";
 
-import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 import crypto from "crypto";
@@ -103,3 +103,44 @@ export const getSignedURL = async ({
     success: { url: signedUrl, lessonId: lesson.id, videoId: video.id },
   };
 };
+
+export async function deleteLesson(lessonId: string) {
+  try {
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+      return { failure: "not authenticated" };
+    }
+    const lesson = await db.lesson.findUnique({
+      where: {
+        id: lessonId,
+      },
+      include: {
+        chapter: {
+          select: {
+            courseId: true,
+            id: true,
+          },
+        },
+      },
+    });
+
+    const deletedMedia = await db.lesson.delete({
+      where: {
+        id: lessonId,
+      },
+    });
+
+    if (deletedMedia) {
+      const key = `${lesson?.chapter.courseId}${lesson?.chapterId}${lessonId}`;
+      const deleteParams = {
+        Bucket: process.env.R2_BUCKET_NAME,
+        Key: key,
+      };
+
+      await r2.send(new DeleteObjectCommand(deleteParams));
+    }
+  } catch (e) {
+    console.error(e);
+  }
+}

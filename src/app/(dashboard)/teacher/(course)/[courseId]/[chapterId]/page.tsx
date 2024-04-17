@@ -2,24 +2,22 @@
 import { trpc } from "@/app/_trpc/client";
 import Avatar from "@/app/components/Avatar/Avatar";
 import { Breadcrumb } from "@/app/components/Breadcrumb";
+import { Dropdown } from "@/app/components/Dropdown";
 import Tag from "@/app/components/Tag/Tag";
 import { formatBytes } from "@/utils/format-bytes";
 import { formatSecondsToMinutes } from "@/utils/format-seconds";
 import { formatTime } from "@/utils/format-time";
-import { PlusIcon } from "@radix-ui/react-icons";
 import {
   IconBookUpload,
-  IconCircleCheckFilled,
-  IconCircleMinus,
   IconClockEdit,
   IconDots,
+  IconEdit,
   IconExclamationCircle,
   IconFileExport,
-  IconTags,
-  IconUpload,
+  IconTrash,
 } from "@tabler/icons-react";
-import Image from "next/image";
 import Link from "next/link";
+import { deleteLesson } from "./upload/_components/actions";
 
 export default function ChapterIdPage({
   params,
@@ -28,6 +26,11 @@ export default function ChapterIdPage({
 }) {
   const chapter = trpc.chapter.getById.useQuery(params.chapterId);
   if (!chapter.data) return null;
+
+  const removeLesson = async (id: string) => {
+    const a = await deleteLesson(id);
+    if (!a?.failure) chapter.refetch();
+  };
   return (
     <div className="px-24 py-8 border-t border-t-zinc-900">
       <div className="flex items-center justify-between border-b border-b-zinc-900 py-4 px-4">
@@ -59,7 +62,7 @@ export default function ChapterIdPage({
         </div>
       </div>
 
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
+      <div className="relative shadow-md sm:rounded-lg mt-4">
         <table className="w-full text-sm text-left rtl:text-right text-zinc-500 dark:text-zinc-400">
           <thead className="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-900 dark:text-zinc-400">
             <tr>
@@ -159,9 +162,32 @@ export default function ChapterIdPage({
                     </div>
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <button className="p-2 border-zinc-800 border rounded-xl hover:bg-zinc-800/10">
-                      <IconDots />
-                    </button>
+                    <Dropdown.Root>
+                      <Dropdown.Trigger>
+                        <button className="p-2 border-zinc-800 border rounded-xl hover:bg-zinc-800/10">
+                          <IconDots />
+                        </button>
+                      </Dropdown.Trigger>
+                      <Dropdown.Menu className="right-12">
+                        <Dropdown.Section>
+                          <Dropdown.Item
+                            title="Editar a aula"
+                            description={"Aperte para editar"}
+                            startContent={
+                              <IconEdit className="text-zinc-600" />
+                            }
+                          />
+                          <Dropdown.Item
+                            title="Eliminar a aula"
+                            description={"Aperte para eliminar"}
+                            startContent={
+                              <IconTrash className="text-red-500" />
+                            }
+                            onClick={() => removeLesson(lesson.id)}
+                          />
+                        </Dropdown.Section>
+                      </Dropdown.Menu>
+                    </Dropdown.Root>
                   </td>
                 </tr>
               ))}

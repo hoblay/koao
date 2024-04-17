@@ -10,9 +10,8 @@ import {
 import { useState, useCallback } from "react";
 import TableRow from "./_components/TableRow";
 import { useDropzone } from "react-dropzone";
-import { getSignedURL } from "./_components/actions";
+import { getSignedURL, deleteLesson } from "./_components/actions";
 import { Breadcrumb } from "@/app/components/Breadcrumb";
-import { deleteLesson } from "./_components/deleteAction";
 
 export default function Home({
   params,
