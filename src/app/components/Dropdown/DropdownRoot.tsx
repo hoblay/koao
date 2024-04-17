@@ -43,7 +43,7 @@ function DropdownRoot({
   closeOnSelect,
 }: DropdownRootProps) {
   const [isDropdownOpen, setisDropdownOpen] = useState<boolean>(false);
-  const dropdownRef = useRef<HTMLDivElement>();
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   useOnOutsideClick(dropdownRef, () => {
     if (isDropdownOpen) setisDropdownOpen(false);
