@@ -12,6 +12,7 @@ import TableRow from "./_components/TableRow";
 import { useDropzone } from "react-dropzone";
 import { getSignedURL } from "./_components/actions";
 import { Breadcrumb } from "@/app/components/Breadcrumb";
+import { APP_PATHS_MANIFEST } from "next/dist/shared/lib/constants";
 
 export default function Home({
   params,
@@ -19,9 +20,7 @@ export default function Home({
   params: { courseId: string; chapterId: string };
 }) {
   const [files, setFiles] = useState<any[]>([]);
-  const [loading, setLoading] = useState<{ id: string; loading: boolean }[]>(
-    [],
-  );
+  const [loading, setLoading] = useState<boolean[]>([]);
   const computeSHA256 = async (file: File) => {
     const buffer = await file.arrayBuffer();
     const hashBuffer = await crypto.subtle.digest("SHA-256", buffer);
@@ -34,9 +33,9 @@ export default function Home({
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      acceptedFiles.forEach(async (file) => {
+      acceptedFiles.forEach(async (file, index) => {
         const reader = new FileReader();
-
+        setLoading((prev) => [...prev, true]);
         reader.onabort = () => console.log("file reading was aborted");
         reader.onerror = () => console.log("file reading has failed");
 
@@ -53,13 +52,6 @@ export default function Home({
           throw new Error(signedURLResult.failure);
         }
         const { url, lessonId, videoId } = signedURLResult.success;
-        await fetch(url, {
-          method: "PUT",
-          headers: {
-            "Content-Type": file.type,
-          },
-          body: file,
-        });
         reader.onload = () => {
           let newFile = {
             ...file,
@@ -74,9 +66,19 @@ export default function Home({
           setFiles((prev) => [...prev, newFile]);
         };
         reader.readAsArrayBuffer(file);
+        await fetch(url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": file.type,
+          },
+          body: file,
+        });
+
+        loading[index] = false;
+        setLoading([...loading]);
       });
     },
-    [params.chapterId, params.courseId],
+    [params.chapterId, params.courseId, loading],
   );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -149,7 +151,7 @@ export default function Home({
                   file={file}
                   key={index}
                   onClick={removeFile}
-                  loading={loading[index].loading}
+                  loading={loading[index]}
                 />
               ))}
             </tbody>

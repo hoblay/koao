@@ -100,7 +100,7 @@ function TableRow({
       <td className="px-6 py-4">{formatBytes(file.size)}</td>
       <td className="px-6 py-4">
         <div className="flex">
-          <Tag name="Pronto " />
+          <Tag name={loading ? "loading" : "ready"} />
         </div>
       </td>
       <td className="px-6 py-4 text-right">
