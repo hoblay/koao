@@ -16,6 +16,8 @@ import { Dropdown } from "@/app/components/Dropdown";
 import { FormProvider, useForm } from "react-hook-form";
 import { Form } from "@/app/components/Form";
 import { trpc } from "@/app/_trpc/client";
+import { TUpdateLessonTitleSchema, UpdateLessonTitleSchema } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 interface LessonVideo {
   name: string;
@@ -38,9 +40,12 @@ function TableRow({
 }) {
   const [duration, setDuration] = useState("");
   const updateVideo = trpc.lesson.updateVideoDuration.useMutation();
+  const updateLesson = trpc.lesson.updateLessonTitle.useMutation();
   const lessonForm = useForm({
+    resolver: zodResolver(UpdateLessonTitleSchema),
     defaultValues: {
       title: file?.name,
+      lessonId: file.lessonId,
     },
   });
 
@@ -54,7 +59,9 @@ function TableRow({
     updateDuration(event.currentTarget.duration);
   }
 
-  const onSubmit = async (data) => {};
+  const onSubmit = async (data: TUpdateLessonTitleSchema) => {
+    updateLesson.mutate(data);
+  };
   return (
     <tr
       className="bg-zinc-50 border-b dark:bg-zinc-950 dark:border-zinc-900 py-2 "
@@ -78,6 +85,7 @@ function TableRow({
           />
           <FormProvider {...lessonForm}>
             <form
+              id="lessonTitle"
               className="flex flex-col gap-2 w-full"
               onSubmit={handleSubmit(onSubmit)}
             >

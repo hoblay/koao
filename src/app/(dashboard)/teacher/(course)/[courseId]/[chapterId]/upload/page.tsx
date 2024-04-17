@@ -115,7 +115,7 @@ export default function Home({
               }
             />
           </button>
-          <button disabled={files.length > 0}>
+          <button disabled={files.length > 0} type="submit" form="lessonTitle">
             <Tag
               name="Adicionar tudo"
               startContent={
