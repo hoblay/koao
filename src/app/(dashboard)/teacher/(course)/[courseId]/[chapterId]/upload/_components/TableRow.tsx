@@ -85,7 +85,6 @@ function TableRow({
           />
           <FormProvider {...lessonForm}>
             <form
-              id="lessonTitle"
               className="flex flex-col gap-2 w-full"
               onSubmit={handleSubmit(onSubmit)}
             >
@@ -96,6 +95,7 @@ function TableRow({
                   type="text"
                   bordered
                   className="max-w-[380px]"
+                  onBlur={handleSubmit(onSubmit)}
                 />
               </Form.Field>
               <div className="flex">
@@ -153,7 +153,7 @@ function TableRow({
                 title="Eliminar a aula"
                 description={"Aperte para eliminar"}
                 startContent={<IconTrash className="text-red-500" />}
-                onClick={() => onClick(file.name)}
+                onClick={() => onClick(file.lessonId)}
               />
             </Dropdown.Section>
           </Dropdown.Menu>

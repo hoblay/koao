@@ -12,7 +12,7 @@ import TableRow from "./_components/TableRow";
 import { useDropzone } from "react-dropzone";
 import { getSignedURL } from "./_components/actions";
 import { Breadcrumb } from "@/app/components/Breadcrumb";
-import { APP_PATHS_MANIFEST } from "next/dist/shared/lib/constants";
+import { deleteLesson } from "./_components/deleteAction";
 
 export default function Home({
   params,
@@ -76,8 +76,9 @@ export default function Home({
           },
           body: file,
         });
-        const objIndex = loading.findIndex((obj) => obj.index == index);
-        loading[objIndex] = { index, loading: false };
+        const deletedIndex = loading.findIndex((item) => item.index === index);
+
+        loading[deletedIndex] = { index: deletedIndex, loading: false };
         setLoading([...loading]);
       });
     },
@@ -85,9 +86,9 @@ export default function Home({
   );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
-  const removeFile = (id: string) => {
-    const deletedIndex = files.findIndex((item) => item.name === id);
-
+  const removeFile = async (id: string) => {
+    const deletedIndex = files.findIndex((item) => item.lessonId === id);
+    await deleteLesson(id);
     // removes it from the array if the lesson already exists
     if (deletedIndex > -1) {
       let filteredFiles = files.filter(
@@ -115,7 +116,7 @@ export default function Home({
               }
             />
           </button>
-          <button disabled={files.length > 0} type="submit" form="lessonTitle">
+          <button disabled={files.length > 0}>
             <Tag
               name="Adicionar tudo"
               startContent={

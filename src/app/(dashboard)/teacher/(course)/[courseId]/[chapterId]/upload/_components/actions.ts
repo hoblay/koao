@@ -91,8 +91,6 @@ export const getSignedURL = async ({
     expiresIn: 6000,
   });
 
-  console.log({ success: signedUrl });
-
   const video = await db.video.create({
     data: {
       lessonId: lesson.id,
