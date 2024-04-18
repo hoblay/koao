@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   IconDots,
   IconEdit,
+  IconEye,
   IconFileExport,
   IconTagStarred,
   IconTrash,
@@ -137,17 +138,29 @@ export default function Home() {
                     </Dropdown.Trigger>
                     <Dropdown.Menu className="right-16">
                       <Dropdown.Section>
+                        {category.courses.length > 0 && (
+                          <Dropdown.Item
+                            title="Ver categoria"
+                            description={"Ver os cursos"}
+                            startContent={<IconEye className="text-zinc-600" />}
+                            href={`/teacher/category`}
+                          />
+                        )}
                         <Dropdown.Item
                           title="Editar a categoria"
                           description={"Aperte para editar"}
                           startContent={<IconEdit className="text-zinc-600" />}
                         />
-                        <Dropdown.Item
-                          title="Eliminar a categoria"
-                          description={"Aperte para eliminar"}
-                          startContent={<IconTrash className="text-red-500" />}
-                          onClick={() => removeCategory(category.id)}
-                        />
+                        {category.courses.length === 0 && (
+                          <Dropdown.Item
+                            title="Eliminar a categoria"
+                            description={"Aperte para eliminar"}
+                            startContent={
+                              <IconTrash className="text-red-500" />
+                            }
+                            onClick={() => removeCategory(category.id)}
+                          />
+                        )}
                       </Dropdown.Section>
                     </Dropdown.Menu>
                   </Dropdown.Root>
@@ -211,7 +224,7 @@ export default function Home() {
                   className="p-2 items-center justify-center text-zinc-100 flex rounded-md gap-2 text-xs bg-[#015F43] hover:bg-[#224138]  disabled:bg-[#172d26]"
                 >
                   {" "}
-                  <span className="">Criar curso</span>
+                  <span className="">Criar categoria</span>
                 </button>
               </div>
             </form>
