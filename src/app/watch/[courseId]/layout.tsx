@@ -23,7 +23,7 @@ export default async function ClassLayout({
         <Card.Root className="">
           <Card.Header>
             <div className="py-4 px-6 flex gap-4 items-center">
-              <div className="p-3 rounded-xl bg-zinc-800">
+              <div className="p-3 rounded-xl bg-zinc-200 dark:bg-zinc-800">
                 <IconNotebook />
               </div>
               <h3 className="text-xl">Material da aula</h3>

@@ -5,12 +5,9 @@ import { Accordion } from "../Accordion";
 import { tv } from "tailwind-variants";
 import Link from "next/link";
 
-import {
-  IconEye,
-  IconPlayerPause,
-  IconPlayerPauseFilled,
-} from "@tabler/icons-react";
+import { IconEye, IconPlayerPause } from "@tabler/icons-react";
 import Course from "../Course";
+import CategoryIcon from "./_components/CategoryIcon";
 
 const moduleCircle = tv({
   base: " w-9 h-9 rounded-full p-1 border-2 border-zinc-300 text-zinc-600 dark:text-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 items-center justify-center",
@@ -55,6 +52,7 @@ type Course = {
   userId: string;
   title: string;
   description: string | null;
+  category: Category | null;
   imageUrl: string | null;
   price: number | null;
   isPublished: boolean;
@@ -83,6 +81,12 @@ type Lesson = {
   chapterId: string;
   createdAt: Date;
   updatedAt: Date;
+};
+
+type Category = {
+  id: string;
+  name: string;
+  slug: string;
 };
 
 function ClassContent({ course }: { course: Course }) {
@@ -189,13 +193,18 @@ function ClassContent({ course }: { course: Course }) {
       <div className="bg-zinc-100 dark:bg-zinc-950/25 ">
         <Accordion.Root className="min-w-[100%] relative pt-0">
           <div className="sticky top-0 z-10 pt-2 rounded-xl bg-zinc-100 dark:bg-[#141417]">
-            <div className=" bg-zinc-50 dark:bg-zinc-900 px-6 py-4 rounded-xl">
-              <h2 className="text-lg">{course.title}</h2>
+            <div className=" bg-zinc-50 dark:bg-zinc-900 px-4 py-4 rounded-xl">
+              <div className="flex gap-3 items-center">
+                <div className="p-3 rounded-xl bg-zinc-200 dark:bg-zinc-800">
+                  <CategoryIcon name={course?.category?.name} />
+                </div>
+                <h2 className="text-base line-clamp-2">{course.title}</h2>
+              </div>
               <div
                 className={`mt-3 w-full bg-zinc-200 rounded dark:bg-zinc-700 my-2`}
               >
                 <div
-                  className={`bg-emerald-300 dark:bg-[#015F43] text-xs font-medium text-[#015F43] dark:text-zinc-100 text-center p-0.5 leading-none rounded whitespace-nowrap transition-[width] duration-300 ease-in-out`}
+                  className={`bg-emerald-300 dark:bg-[#015F43] text-xs font-medium text-[#015F43] dark:text-zinc-100 text-center p-1 leading-none rounded whitespace-nowrap transition-[width] duration-300 ease-in-out`}
                   style={{ width: `${coursePercentage}%` }}
                 >
                   {Math.round(coursePercentage)}% Completado
