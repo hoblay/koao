@@ -4,6 +4,28 @@ import Avatar from "@/app/components/Avatar/Avatar";
 import { Card } from "@/app/components/Card";
 import Link from "next/link";
 import ReactPlayer from "react-player";
+
+type Chapter = {
+  id: string;
+  title: string;
+  description: string | null;
+  courseId: string;
+  position: number;
+  isPublished: boolean;
+  lessons: Lesson[];
+};
+
+type Lesson = {
+  id: string;
+  title: string;
+  description: string | null;
+  position: number;
+  isPublished: boolean;
+  isFree: boolean;
+  chapterId: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
 export default function ClassPage({
   params,
 }: {
@@ -15,7 +37,7 @@ export default function ClassPage({
   }
   const getNextLesson = (lesson: any) => {
     let nLesson = lesson;
-    lesson.chapter.course.chapters.map((chapter) => {
+    lesson.chapter.course.chapters.map((chapter: Chapter) => {
       chapter.lessons.map((lessonT, index) => {
         if (lesson.id === lessonT.id) {
           nLesson = chapter.lessons[index + 1];
