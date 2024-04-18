@@ -138,12 +138,12 @@ export default function Home() {
                     <Dropdown.Menu className="right-16">
                       <Dropdown.Section>
                         <Dropdown.Item
-                          title="Editar a aula"
+                          title="Editar a categoria"
                           description={"Aperte para editar"}
                           startContent={<IconEdit className="text-zinc-600" />}
                         />
                         <Dropdown.Item
-                          title="Eliminar a aula"
+                          title="Eliminar a categoria"
                           description={"Aperte para eliminar"}
                           startContent={<IconTrash className="text-red-500" />}
                           onClick={() => removeCategory(category.id)}
