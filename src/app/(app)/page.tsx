@@ -50,7 +50,7 @@ export default async function Home() {
           {courses[courses.length - 1].chapters[0].lessons[0] && (
             <div className="px-2">
               <Link
-                href={`/watch/${courses[0].id}/${courses[courses.length - 1].chapters[0].lessons[0].id}`}
+                href={`/watch/${courses[courses.length - 1].id}/${courses[courses.length - 1].chapters[0].lessons[0].id}`}
                 className=""
               >
                 <button
