@@ -1,10 +1,8 @@
 import { trpc } from "@/app/_trpc/client";
-import { serverClient } from "@/app/_trpc/serverClient";
 import { Card } from "@/app/components/Card";
 import { Dropdown } from "@/app/components/Dropdown";
 import { formatTime } from "@/utils/format-time";
 import { IconDots, IconEdit, IconEye, IconTrash } from "@tabler/icons-react";
-import Image from "next/image";
 import Avatar from "@/app/components/Avatar/Avatar";
 import Link from "next/link";
 import React from "react";
