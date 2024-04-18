@@ -17,7 +17,7 @@ export default async function ClassLayout({
   return (
     <div className="relative flex ">
       <main className="">
-        <nav className=" dark:bg-[#101012] w-full z-20  bg-white">
+        <nav className=" dark:bg-[#101012] w-full z-20  bg-white fixed">
           <div className="relative flex pr-10 pl-10 gap-48 pt-4 py-2  items-center ">
             <div className="flex">
               <Link href={"/"} className="flex p-2 space-x-2 items-center">

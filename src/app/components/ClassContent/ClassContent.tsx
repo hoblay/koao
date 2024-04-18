@@ -195,7 +195,7 @@ function ClassContent({ course }: { course: Course }) {
           <div className="sticky top-0 z-10 pt-2 rounded-xl bg-zinc-100 dark:bg-[#141417]">
             <div className=" bg-zinc-50 dark:bg-zinc-900 px-4 py-4 rounded-xl">
               <div className="flex gap-3 items-center">
-                <div className="p-3 rounded-xl bg-zinc-200 dark:bg-zinc-800">
+                <div className="p-3 rounded-xl bg-zinc-100 dark:bg-zinc-800">
                   <CategoryIcon name={course?.category?.name} />
                 </div>
                 <h2 className="text-base line-clamp-2">{course.title}</h2>
