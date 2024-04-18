@@ -215,7 +215,6 @@ export default function Home() {
                   className="p-2 items-center justify-center bg-zinc-700 hover:bg-zinc-800 text-zinc-100 flex rounded-md gap-2 text-xs"
                   onClick={() => setModalOpen(false)}
                 >
-                  {" "}
                   <span className="">Cancelar</span>
                 </button>
                 <button
@@ -223,7 +222,6 @@ export default function Home() {
                   type="submit"
                   className="p-2 items-center justify-center text-zinc-100 flex rounded-md gap-2 text-xs bg-[#015F43] hover:bg-[#224138]  disabled:bg-[#172d26]"
                 >
-                  {" "}
                   <span className="">Criar categoria</span>
                 </button>
               </div>

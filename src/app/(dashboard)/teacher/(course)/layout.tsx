@@ -23,42 +23,6 @@ export default async function AppLayout({
 }) {
   return (
     <div className=" flex flex-col">
-      <nav className="md:px-24 px-4 pb-4 w-full">
-        <div className="flex gap-3">
-          <Link href="/teacher">
-            <Tag
-              name="Painel de controle"
-              startContent={
-                <IconLayoutDashboard className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-              }
-            />
-          </Link>
-          <Link href="/teacher/category">
-            <Tag
-              name="Categorias"
-              startContent={
-                <IconTags className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-              }
-            />
-          </Link>
-          <Link href="/teacher/upload">
-            <Tag
-              name="Definições"
-              startContent={
-                <IconSettings className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-              }
-            />
-          </Link>
-          <Link href="/teacher/create">
-            <Tag
-              name="Rendimento"
-              startContent={
-                <IconTimeline className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-              }
-            />
-          </Link>
-        </div>
-      </nav>
       <main className="w-full  ">{children}</main>
     </div>
   );
