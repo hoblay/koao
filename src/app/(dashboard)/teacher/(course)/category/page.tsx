@@ -1,12 +1,19 @@
 "use client";
 
 import { trpc } from "@/app/_trpc/client";
+import { Dropdown } from "@/app/components/Dropdown";
 import { Form } from "@/app/components/Form";
 import Tag from "@/app/components/Tag/Tag";
 import { CreateCategorySchema, TCreateCategorySchema } from "@/schemas";
 import { toSlug } from "@/utils/text-to-slug";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { IconDots, IconFileExport, IconTagStarred } from "@tabler/icons-react";
+import {
+  IconDots,
+  IconEdit,
+  IconFileExport,
+  IconTagStarred,
+  IconTrash,
+} from "@tabler/icons-react";
 
 import Link from "next/link";
 import { useState } from "react";
@@ -31,6 +38,14 @@ export default function Home() {
       getCategories.refetch();
     },
   });
+  const deleteCategory = trpc.category.delete.useMutation({
+    onSettled: () => {
+      getCategories.refetch();
+    },
+  });
+  const removeCategory = (id: string) => {
+    deleteCategory.mutate(id);
+  };
   const onSubmit = async (data: TCreateCategorySchema) => {
     createCategory.mutate(data);
     reset();
@@ -65,7 +80,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-4">
+      <div className=" shadow-md sm:rounded-lg mt-4">
         <table className="w-full text-sm text-left rtl:text-right text-zinc-500 dark:text-zinc-400">
           <thead className="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-900 dark:text-zinc-400">
             <tr>
@@ -114,9 +129,28 @@ export default function Home() {
                   Em {category.courses.length} cursos
                 </td>
                 <td className="px-6 py-4 text-right">
-                  <button className="p-2 border-zinc-800 border rounded-xl hover:bg-zinc-800/10">
-                    <IconDots />
-                  </button>
+                  <Dropdown.Root>
+                    <Dropdown.Trigger>
+                      <button className="p-2 border-zinc-800 border rounded-xl hover:bg-zinc-800/10">
+                        <IconDots />
+                      </button>
+                    </Dropdown.Trigger>
+                    <Dropdown.Menu className="right-16">
+                      <Dropdown.Section>
+                        <Dropdown.Item
+                          title="Editar a aula"
+                          description={"Aperte para editar"}
+                          startContent={<IconEdit className="text-zinc-600" />}
+                        />
+                        <Dropdown.Item
+                          title="Eliminar a aula"
+                          description={"Aperte para eliminar"}
+                          startContent={<IconTrash className="text-red-500" />}
+                          onClick={() => removeCategory(category.id)}
+                        />
+                      </Dropdown.Section>
+                    </Dropdown.Menu>
+                  </Dropdown.Root>
                 </td>
               </tr>
             ))}

@@ -69,13 +69,19 @@ export const categoryRouter = router({
       } catch (error) {}
     }),
   getBySlug: publicProcedure.input(idSchema).query(async ({ input }) => {
-    const session = await getServerSession(authOptions);
     return await db.category.findUnique({
       where: {
         slug: input,
       },
       include: {
         courses: true,
+      },
+    });
+  }),
+  delete: publicProcedure.input(idSchema).mutation(async ({ input }) => {
+    return await db.category.delete({
+      where: {
+        id: input,
       },
     });
   }),
