@@ -2,6 +2,7 @@
 import { trpc } from "@/app/_trpc/client";
 import Avatar from "@/app/components/Avatar/Avatar";
 import { Card } from "@/app/components/Card";
+import Link from "next/link";
 import ReactPlayer from "react-player";
 export default function ClassPage({
   params,
@@ -12,6 +13,17 @@ export default function ClassPage({
   if (!lesson.data) {
     return null;
   }
+  const getNextLesson = (lesson: any) => {
+    let nLesson = lesson;
+    lesson.chapter.course.chapters.map((chapter) => {
+      chapter.lessons.map((lessonT, index) => {
+        if (lesson.id === lessonT.id) {
+          nLesson = chapter.lessons[index + 1];
+        }
+      });
+    });
+    return nLesson;
+  };
 
   return (
     <div className="">
@@ -49,14 +61,18 @@ export default function ClassPage({
               </div>
             </div>
             <div className="flex">
-              <button
-                type="button"
-                className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-[#015F43] hover:bg-[#143229] text-white px-4 py-2 text-sm"
+              <Link
+                href={`/watch/${lesson.data.chapter.course.id}/${getNextLesson(lesson.data).id}`}
               >
-                <div className="flex flex-1 justify-center items-center gap-2">
-                  <span className="text-base leading-6">Proxima aula</span>
-                </div>
-              </button>
+                <button
+                  type="button"
+                  className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-[#015F43] hover:bg-[#143229] text-white px-4 py-2 text-sm"
+                >
+                  <div className="flex flex-1 justify-center items-center gap-2">
+                    <span className="text-base leading-6">Proxima aula</span>
+                  </div>
+                </button>
+              </Link>
             </div>
           </div>
         </div>
