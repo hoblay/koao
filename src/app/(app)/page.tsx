@@ -14,6 +14,8 @@ export default async function Home() {
   const courses = await serverClient.course.getAll();
   if (!courses) return null;
   const recomended = await serverClient.course.getAll();
+  if (!recomended) return null;
+
   recomended.pop();
   return (
     <div className="px-9 flex flex-col gap-4">
