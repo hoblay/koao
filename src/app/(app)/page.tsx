@@ -61,7 +61,6 @@ export default async function Home() {
                     <span className="text-base leading-6">
                       Começar a assistir
                     </span>
-                    <IconPlayerPlay />
                   </div>
                 </button>
               </Link>
