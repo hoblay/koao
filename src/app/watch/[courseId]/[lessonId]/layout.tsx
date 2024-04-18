@@ -41,7 +41,7 @@ export default async function ClassLayout({
         if (lesson.id === lessonT.id) {
           nLesson = chapter.lessons[index + 1]
             ? chapter.lessons[index + 1]
-            : course.chapters[i + 1].lessons[0];
+            : course.chapters[i + 1] && course.chapters[i + 1].lessons[0];
         }
       });
     });

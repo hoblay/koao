@@ -42,7 +42,8 @@ export default function ClassPage({
         if (lesson.id === lessonT.id) {
           nLesson = chapter.lessons[index + 1]
             ? chapter.lessons[index + 1]
-            : lesson.chapter.course.chapters[i + 1].lessons[0];
+            : lesson.chapter.course.chapters[i + 1] &&
+              lesson.chapter.course.chapters[i + 1].lessons[0];
         }
       });
     });

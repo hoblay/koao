@@ -246,7 +246,7 @@ function ClassContent({
                   </div>
                 ) : (
                   <div className="flex gap-2 justify-between items-center">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col w-full  pr-7">
                       <h2
                         className={`text-base dark:text-zinc-200 font-semibold text-zinc-600 line-clamp-1`}
                       >
@@ -262,9 +262,21 @@ function ClassContent({
                           {numberOfLessons(course.chapters)}
                         </Link>
                       )}
+                      {!nextLesson && (
+                        <Link
+                          href={`/watch/${course.id}}`}
+                          className="text-sm dark:text-zinc-400  line-clamp-1 text-zinc-600 hover:dark:text-zinc-500 hover:text-zinc-500"
+                        >
+                          <span className="pr-1 font-semibold">
+                            Etapa final do curso
+                          </span>
+                          {currentLesson.position}/
+                          {numberOfLessons(course.chapters)}
+                        </Link>
+                      )}
                     </div>
                     <span
-                      className="p-2 rounded-xl hover:bg-white/5 cursor-pointer"
+                      className="p-2 flex rounded-xl hover:bg-white/5 cursor-pointer"
                       onClick={() => setOpen(!open)}
                     >
                       {!open && <IconChevronDown className="size-6" />}
