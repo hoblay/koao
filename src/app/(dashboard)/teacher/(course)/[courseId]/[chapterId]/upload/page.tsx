@@ -156,7 +156,7 @@ export default function Home({
               {files.map((file, index) => (
                 <TableRow
                   file={file}
-                  key={index}
+                  key={file.lessonId}
                   onClick={removeFile}
                   loading={loading[index].loading}
                 />
