@@ -44,7 +44,7 @@ export default function ClassPage({
                   {lesson.data.chapter.course.author.name}
                 </span>
                 <span className="text-zinc-600 dark:text-zinc-400 text-sm">
-                  Front End Developer
+                  Instrutor na Kwenda
                 </span>
               </div>
             </div>
@@ -63,19 +63,7 @@ export default function ClassPage({
         <Card.Root className="">
           <Card.Body className="p-4">
             <div className="flex flex-col gap-6 leading-[1.6]">
-              <p>
-                {lesson.data.description}
-                Introdução ao Photoshop O Photoshop é um software de edição de
-                imagens digitalmente avançado e versátil, utilizado por
-                profissionais da área de design gráfico, ilustração, design de
-                produto, fotografia, influencers digitais e muitos outros.
-                Entendendo a interface A interface do Photoshop é intuitiva e
-                organizada, com uma barra de ferramentas principal e uma área de
-                trabalho principal para visualizar e editar imagens.
-                Configurando o ambiente de trabalho Configurar o ambiente de
-                trabalho do Photoshop é importante para maximizar a
-                produtividade e eficiência ao editar imagens.
-              </p>
+              <p>{lesson.data.chapter.description}</p>
             </div>
           </Card.Body>
         </Card.Root>
