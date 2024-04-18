@@ -27,11 +27,11 @@ export default function ClassPage({
       </div>
 
       <div className=" max-w-[853px]">
-        <div className="flex justify-between items-start">
-          <div className="flex flex-col gap-2 px-2 py-4">
-            <h4 className="text-zinc-600 dark:text-zinc-100 text-xl font-semibold w-full">
-              {lesson.data.title}
-            </h4>
+        <div className="flex flex-col gap-2 px-2 py-4">
+          <h4 className="text-zinc-600 dark:text-zinc-100 text-xl font-semibold w-full">
+            {lesson.data.title}
+          </h4>
+          <div className="flex justify-between items-center">
             <div className="flex gap-4">
               <Avatar
                 name={lesson.data.chapter.course.author.name}
@@ -47,16 +47,16 @@ export default function ClassPage({
                 </span>
               </div>
             </div>
-          </div>
-          <div className="flex py-4 px-2">
-            <button
-              type="button"
-              className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-[#015F43] hover:bg-[#143229] text-white px-8 py-3 text-2xl"
-            >
-              <div className="flex flex-1 justify-center items-center gap-2">
-                <span className="text-base leading-6">Proxima aula</span>
-              </div>
-            </button>
+            <div className="flex">
+              <button
+                type="button"
+                className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-[#015F43] hover:bg-[#143229] text-white px-4 py-2 text-sm"
+              >
+                <div className="flex flex-1 justify-center items-center gap-2">
+                  <span className="text-base leading-6">Proxima aula</span>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
         <Card.Root className="">
