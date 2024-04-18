@@ -21,6 +21,7 @@ export default function ClassPage({
           width={"100%"}
           className="absolute top-0 left-0"
           height={"100%"}
+          autoplay
           url={lesson.data.video?.commitUrl ? lesson.data.video?.commitUrl : ""}
           config={{}}
         />
