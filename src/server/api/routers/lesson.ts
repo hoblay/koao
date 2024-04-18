@@ -88,6 +88,7 @@ export const lessonRouter = router({
           include: {
             course: {
               include: {
+                author: true,
                 chapters: {
                   include: {
                     lessons: true,

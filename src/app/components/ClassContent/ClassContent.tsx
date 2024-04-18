@@ -184,98 +184,101 @@ function ClassContent({ course }: { course: Course }) {
 
   return (
     <div
-      className={`h-[594px] overscroll-x-none overscroll-y-none rounded-xl overflow-y-auto overflow-hidden bg-zinc-50 dark:bg-zinc-900 no-scrollbar w-[400px] shadow-sm`}
+      className={`h-[480px] overscroll-x-none overscroll-y-none rounded-xl overflow-y-auto overflow-hidden bg-zinc-50 dark:bg-zinc-900 no-scrollbar w-[400px] shadow-sm`}
     >
-      <div className="sticky z-10 top-0 bg-zinc-50 dark:bg-zinc-900 px-10 py-7">
-        <h2 className="text-lg">{course.title}</h2>
-        <div
-          className={`mt-3 w-full bg-zinc-200 rounded dark:bg-zinc-700 my-2`}
-        >
-          <div
-            className={`bg-purple-300 dark:bg-[#015F43] text-xs font-medium text-[#015F43] dark:text-zinc-100 text-center p-0.5 leading-none rounded whitespace-nowrap transition-[width] duration-300 ease-in-out`}
-            style={{ width: `${coursePercentage}%` }}
-          >
-            {Math.round(coursePercentage)}% Completado
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-zinc-100 dark:bg-zinc-950/25 px-3 py-2">
-        <Accordion.Root className="min-w-[100%]">
-          {course?.chapters?.map((chapter, index) => (
-            <>
-              <Accordion.Item
-                startContent={
-                  <div
-                    className={moduleCircle({
-                      active: index === indexActive,
-                      done: checkDoneModule(chapter, chapter.position),
-                    })}
-                  >
-                    <div className="flex items-center text-center justify-center">
-                      {index === indexActive ? (
-                        <IconPlayerPause className="m-1 w-4 h-4" />
-                      ) : (
-                        chapter.position
-                      )}
-                    </div>
-                  </div>
-                }
-                index={chapter.position}
-                title={chapter.title}
+      <div className="bg-zinc-100 dark:bg-zinc-950/25 ">
+        <Accordion.Root className="min-w-[100%] relative pt-0">
+          <div className="sticky top-0 z-10 pt-2 rounded-xl bg-zinc-100 dark:bg-[#141417]">
+            <div className=" bg-zinc-50 dark:bg-zinc-900 px-6 py-4 rounded-xl">
+              <h2 className="text-lg">{course.title}</h2>
+              <div
+                className={`mt-3 w-full bg-zinc-200 rounded dark:bg-zinc-700 my-2`}
               >
-                <div className="py-0 px-7" ref={listItems}>
-                  <ol className="relative">
-                    {chapter.lessons.map((lesson, i) => (
-                      <>
-                        <li
-                          className={`pb-4 p-1  border-s-2 pl-7 -ml-[2px] pt-3 ${checkDoneLesson(chapter.position, lesson.position) ? "border-[#015F43] dark:border-[#015F43] " : "border-zinc-200 dark:border-zinc-700"}`}
-                        >
-                          <span
-                            className={lessonStyle({
-                              active:
-                                i === lesseonIndexActive &&
-                                index === indexActive,
-                              done: checkDoneLesson(
-                                chapter.position,
-                                lesson.position,
-                              ),
-                            })}
-                            onClick={() =>
-                              markAsDone({
-                                index: chapter.position,
-                                lessons: [lesson.position],
-                              })
-                            }
-                          >
-                            <span className="text-xs text-[#015F43] dark:text-zinc-50">
-                              {i === lesseonIndexActive &&
-                              index === indexActive ? (
-                                <IconEye className="w-3 h-3" />
-                              ) : (
-                                i + 1
-                              )}
-                            </span>
-                          </span>
-                          <Link
-                            href={`/watch/${course.id}/${lesson.id}`}
-                            className=""
-                          >
-                            <h3
-                              className="flex items-center text-sm text-zinc-900 dark:text-white dark:hover:text-zinc-300"
-                              onClick={() => markAsActive(index, i)}
-                            >
-                              {lesson.title}
-                            </h3>
-                          </Link>
-                        </li>
-                      </>
-                    ))}
-                  </ol>
+                <div
+                  className={`bg-emerald-300 dark:bg-[#015F43] text-xs font-medium text-[#015F43] dark:text-zinc-100 text-center p-0.5 leading-none rounded whitespace-nowrap transition-[width] duration-300 ease-in-out`}
+                  style={{ width: `${coursePercentage}%` }}
+                >
+                  {Math.round(coursePercentage)}% Completado
                 </div>
-              </Accordion.Item>
-            </>
-          ))}
+              </div>
+            </div>
+          </div>
+          <div className="px-3 py-2  overscroll-x-none overscroll-y-none no-scrollbar overflow-hidden">
+            {course?.chapters?.map((chapter, index) => (
+              <>
+                <Accordion.Item
+                  startContent={
+                    <div
+                      className={moduleCircle({
+                        active: index === indexActive,
+                        done: checkDoneModule(chapter, chapter.position),
+                      })}
+                    >
+                      <div className="flex items-center text-center justify-center">
+                        {index === indexActive ? (
+                          <IconPlayerPause className="m-1 w-4 h-4" />
+                        ) : (
+                          chapter.position
+                        )}
+                      </div>
+                    </div>
+                  }
+                  index={chapter.position}
+                  title={chapter.title}
+                >
+                  <div className="py-0 px-7" ref={listItems}>
+                    <ol className="relative">
+                      {chapter.lessons.map((lesson, i) => (
+                        <>
+                          <li
+                            className={`pb-4 p-1  border-s-2 pl-7 -ml-[2px] pt-3 ${checkDoneLesson(chapter.position, lesson.position) ? "border-[#015F43] dark:border-[#015F43] " : "border-zinc-200 dark:border-zinc-700"}`}
+                          >
+                            <span
+                              className={lessonStyle({
+                                active:
+                                  i === lesseonIndexActive &&
+                                  index === indexActive,
+                                done: checkDoneLesson(
+                                  chapter.position,
+                                  lesson.position,
+                                ),
+                              })}
+                              onClick={() =>
+                                markAsDone({
+                                  index: chapter.position,
+                                  lessons: [lesson.position],
+                                })
+                              }
+                            >
+                              <span className="text-xs text-[#015F43] dark:text-zinc-50">
+                                {i === lesseonIndexActive &&
+                                index === indexActive ? (
+                                  <IconEye className="w-3 h-3" />
+                                ) : (
+                                  i + 1
+                                )}
+                              </span>
+                            </span>
+                            <Link
+                              href={`/watch/${course.id}/${lesson.id}`}
+                              className=""
+                            >
+                              <h3
+                                className="flex items-center text-sm text-zinc-900 dark:text-white dark:hover:text-zinc-300"
+                                onClick={() => markAsActive(index, i)}
+                              >
+                                {lesson.title}
+                              </h3>
+                            </Link>
+                          </li>
+                        </>
+                      ))}
+                    </ol>
+                  </div>
+                </Accordion.Item>
+              </>
+            ))}
+          </div>
         </Accordion.Root>
       </div>
     </div>

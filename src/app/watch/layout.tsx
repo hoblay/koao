@@ -59,7 +59,6 @@ export default async function ClassLayout({
             </div>
           </div>
         </nav>
-
         {children}
       </main>
     </div>
