@@ -19,11 +19,11 @@ export default async function ClassLayout({
   }
 
   return (
-    <div className="relative flex">
-      <aside className="sticky mt-3 top-5 left-5 h-[100%] md:flex overscroll-y-none overscroll-x-none max-w-[350px]">
+    <div className="relative flex gap-6 px-16 py-1.5">
+      <main className="w-full min-w-[853px]">{children}</main>
+      <aside className=" md:flex overscroll-y-none overscroll-x-none max-w-[400px] max-h-[594px]">
         <ClassContent course={course} />
       </aside>
-      <main className="w-full min-w-[1098px]">{children}</main>
     </div>
   );
 }

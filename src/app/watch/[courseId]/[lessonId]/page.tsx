@@ -13,8 +13,8 @@ export default function ClassPage({
   }
 
   return (
-    <div className="px-9">
-      <div className="flex relative min-w-[1022px] min-h-[601px] overflow-hidden ">
+    <div className="">
+      <div className="flex relative min-w-[853px] min-h-[480px] overflow-hidden ">
         <ReactPlayer
           controls
           width={"100%"}
@@ -25,7 +25,7 @@ export default function ClassPage({
         />
       </div>
 
-      <div className="py-4 max-w-[1022px]">
+      <div className="py-4 max-w-[853px]">
         <Card.Root className="">
           <Card.Header showDivider className="flex px-8 py-5">
             <h4 className="text-zinc-600 dark:text-zinc-100 text-xl font-semibold w-full">

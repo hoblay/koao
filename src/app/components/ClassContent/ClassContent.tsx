@@ -4,14 +4,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { Accordion } from "../Accordion";
 import { tv } from "tailwind-variants";
 import Link from "next/link";
-import { PauseIcon, Pencil1Icon } from "@radix-ui/react-icons";
 
 import {
   IconEye,
   IconPlayerPause,
   IconPlayerPauseFilled,
 } from "@tabler/icons-react";
-import { trpc } from "@/app/_trpc/client";
 import Course from "../Course";
 
 const moduleCircle = tv({
@@ -186,9 +184,9 @@ function ClassContent({ course }: { course: Course }) {
 
   return (
     <div
-      className={`h-[calc(100vh-40px)] overscroll-x-none overscroll-y-none rounded-xl overflow-y-auto overflow-hidden bg-zinc-50 dark:bg-zinc-900 no-scrollbar w-[350px] shadow-sm`}
+      className={`h-[594px] overscroll-x-none overscroll-y-none rounded-xl overflow-y-auto overflow-hidden bg-zinc-50 dark:bg-zinc-900 no-scrollbar w-[400px] shadow-sm`}
     >
-      <div className="sticky top-0 bg-zinc-50 dark:bg-zinc-900 z-50 px-8 py-5">
+      <div className="sticky z-10 top-0 bg-zinc-50 dark:bg-zinc-900 px-10 py-7">
         <h2 className="text-lg">{course.title}</h2>
         <div
           className={`mt-3 w-full bg-zinc-200 rounded dark:bg-zinc-700 my-2`}
@@ -202,8 +200,8 @@ function ClassContent({ course }: { course: Course }) {
         </div>
       </div>
 
-      <div className="bg-zinc-100 dark:bg-zinc-950/25 p-2">
-        <Accordion.Root className="">
+      <div className="bg-zinc-100 dark:bg-zinc-950/25 px-3 py-2">
+        <Accordion.Root className="min-w-[100%]">
           {course?.chapters?.map((chapter, index) => (
             <>
               <Accordion.Item
