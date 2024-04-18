@@ -36,10 +36,12 @@ export default async function ClassLayout({
   }
   const getNextLesson = (lesson: Lesson) => {
     let nLesson = lesson;
-    course.chapters.map((chapter) => {
+    course.chapters.map((chapter, i) => {
       chapter.lessons.map((lessonT, index) => {
         if (lesson.id === lessonT.id) {
-          nLesson = chapter.lessons[index + 1];
+          nLesson = chapter.lessons[index + 1]
+            ? chapter.lessons[index + 1]
+            : course.chapters[i + 1].lessons[0];
         }
       });
     });

@@ -37,10 +37,12 @@ export default function ClassPage({
   }
   const getNextLesson = (lesson: any) => {
     let nLesson = lesson;
-    lesson.chapter.course.chapters.map((chapter: Chapter) => {
+    lesson.chapter.course.chapters.map((chapter: Chapter, i: number) => {
       chapter.lessons.map((lessonT, index) => {
         if (lesson.id === lessonT.id) {
-          nLesson = chapter.lessons[index + 1];
+          nLesson = chapter.lessons[index + 1]
+            ? chapter.lessons[index + 1]
+            : lesson.chapter.course.chapters[i + 1].lessons[0];
         }
       });
     });
@@ -83,18 +85,20 @@ export default function ClassPage({
               </div>
             </div>
             <div className="flex">
-              <Link
-                href={`/watch/${lesson.data.chapter.course.id}/${getNextLesson(lesson.data).id}`}
-              >
-                <button
-                  type="button"
-                  className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-[#015F43] hover:bg-[#143229] text-white px-4 py-2 text-sm"
+              {getNextLesson(lesson.data) && (
+                <Link
+                  href={`/watch/${lesson.data.chapter.course.id}/${getNextLesson(lesson.data).id}`}
                 >
-                  <div className="flex flex-1 justify-center items-center gap-2">
-                    <span className="text-base leading-6">Proxima aula</span>
-                  </div>
-                </button>
-              </Link>
+                  <button
+                    type="button"
+                    className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-[#015F43] hover:bg-[#143229] text-white px-4 py-2 text-sm"
+                  >
+                    <div className="flex flex-1 justify-center items-center gap-2">
+                      <span className="text-base leading-6">Proxima aula</span>
+                    </div>
+                  </button>
+                </Link>
+              )}
             </div>
           </div>
         </div>

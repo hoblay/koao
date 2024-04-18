@@ -97,7 +97,7 @@ type Category = {
 function ClassContent({
   course,
   nextLesson,
-  lesson,
+  lesson: currentLesson,
 }: {
   course: Course;
   nextLesson: Lesson;
@@ -108,8 +108,10 @@ function ClassContent({
   const [lessonsDone, setLessonsDone] = useState<
     { index: number; lessons: number[] }[]
   >([]);
-  const [indexActive, setIndexActive] = useState<number>(9999);
-  const [lesseonIndexActive, setlessonIndexActive] = useState<number>(999);
+  const [indexActive, setIndexActive] = useState<number>(99999);
+  const [lesseonIndexActive, setlessonIndexActive] = useState<number>(
+    currentLesson.position - 1,
+  );
 
   const numberOfLessons = (chapters: Chapter[]) => {
     let nLessons = 0;
@@ -250,18 +252,16 @@ function ClassContent({
                       >
                         {course.title}
                       </h2>
-                      <Link
-                        href={`/watch/${course.id}/${
-                          course.chapters[0].lessons[
-                            course.chapters[0].lessons.length - 1
-                          ].id
-                        }`}
-                        className="text-sm dark:text-zinc-400 line-clamp-1 text-zinc-600 hover:dark:text-zinc-500 hover:text-zinc-500"
-                      >
-                        <span className="pr-1 font-semibold">A seguir: </span>
-                        {nextLesson?.title} {lesson.position}/
-                        {numberOfLessons(course.chapters)}
-                      </Link>
+                      {nextLesson && (
+                        <Link
+                          href={`/watch/${course.id}/${nextLesson.id}`}
+                          className="text-sm dark:text-zinc-400 line-clamp-1 text-zinc-600 hover:dark:text-zinc-500 hover:text-zinc-500"
+                        >
+                          <span className="pr-1 font-semibold">A seguir: </span>
+                          {nextLesson?.title} {currentLesson.position}/
+                          {numberOfLessons(course.chapters)}
+                        </Link>
+                      )}
                     </div>
                     <span
                       className="p-2 rounded-xl hover:bg-white/5 cursor-pointer"
@@ -296,12 +296,15 @@ function ClassContent({
                 startContent={
                   <div
                     className={moduleCircle({
-                      active: index === indexActive,
+                      active:
+                        currentLesson.chapterId === chapter.id ||
+                        index === indexActive,
                       done: checkDoneModule(chapter, chapter.position),
                     })}
                   >
                     <div className="flex items-center text-center justify-center">
-                      {index === indexActive ? (
+                      {currentLesson.chapterId === chapter.id ||
+                      index === indexActive ? (
                         <IconPlayerPause className="m-1 w-4 h-4" />
                       ) : (
                         chapter.position
@@ -322,7 +325,9 @@ function ClassContent({
                         <span
                           className={lessonStyle({
                             active:
-                              i === lesseonIndexActive && index === indexActive,
+                              currentLesson.id === lesson.id ||
+                              (i === lesseonIndexActive &&
+                                index === indexActive),
                             done: checkDoneLesson(
                               chapter.position,
                               lesson.position,
@@ -336,8 +341,9 @@ function ClassContent({
                           }
                         >
                           <span className="text-xs text-[#015F43] dark:text-zinc-50">
-                            {i === lesseonIndexActive &&
-                            index === indexActive ? (
+                            {currentLesson.id === lesson.id ||
+                            (i === lesseonIndexActive &&
+                              index === indexActive) ? (
                               <IconEye className="w-3 h-3" />
                             ) : (
                               i + 1
