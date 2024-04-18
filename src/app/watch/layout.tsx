@@ -2,9 +2,9 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Search } from "@/app/components/Search/Index";
 import UserAvatar from "@/app/components/UserAvatar";
-import LogoIcon from "../components/Icons/Logo";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/server/auth";
+import LogoIcon from "@/app/components/Icons/Logo";
 
 export default async function ClassLayout({
   children,

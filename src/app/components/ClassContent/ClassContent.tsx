@@ -5,7 +5,12 @@ import { Accordion } from "../Accordion";
 import { tv } from "tailwind-variants";
 import Link from "next/link";
 
-import { IconEye, IconPlayerPause } from "@tabler/icons-react";
+import {
+  IconChevronDown,
+  IconEye,
+  IconPlayerPause,
+  IconX,
+} from "@tabler/icons-react";
 import Course from "../Course";
 import CategoryIcon from "./_components/CategoryIcon";
 
@@ -89,13 +94,32 @@ type Category = {
   slug: string;
 };
 
-function ClassContent({ course }: { course: Course }) {
+function ClassContent({
+  course,
+  nextLesson,
+  lesson,
+}: {
+  course: Course;
+  nextLesson: Lesson;
+  lesson: Lesson;
+}) {
+  const [open, setOpen] = useState(true);
   const [coursePercentage, setCoursePercentage] = useState<number>(0);
   const [lessonsDone, setLessonsDone] = useState<
     { index: number; lessons: number[] }[]
   >([]);
   const [indexActive, setIndexActive] = useState<number>(9999);
   const [lesseonIndexActive, setlessonIndexActive] = useState<number>(999);
+
+  const numberOfLessons = (chapters: Chapter[]) => {
+    let nLessons = 0;
+    chapters.map((chapter) => {
+      chapter.lessons.map(() => {
+        nLessons++;
+      });
+    });
+    return nLessons;
+  };
 
   /* TODO: Make the container scrooll to the lesson when clicked */
   const listItems = useRef(null);
@@ -188,31 +212,84 @@ function ClassContent({ course }: { course: Course }) {
 
   return (
     <div
-      className={`h-[480px] overscroll-x-none overscroll-y-none rounded-xl overflow-y-auto overflow-hidden bg-zinc-50 dark:bg-zinc-900 no-scrollbar w-[400px] shadow-sm`}
+      className={`${open ? "h-[480px] max-h-[480px]" : "max-h-[116px]"} transition-[max-height] duration-150 ease-in-out   overscroll-x-none overscroll-y-none rounded-xl overflow-y-auto overflow-hidden bg-zinc-50 dark:bg-zinc-900 no-scrollbar w-[400px] shadow-sm`}
     >
-      <div className="bg-zinc-100 dark:bg-zinc-950/25 ">
-        <Accordion.Root className="min-w-[100%] relative pt-0">
-          <div className="sticky top-0 z-10 pt-2 rounded-xl bg-zinc-100 dark:bg-[#141417]">
+      <div className={`bg-zinc-100 dark:bg-zinc-950/25   `}>
+        <Accordion.Root
+          className={`min-w-[100%] relative pt-0 transition-[padding] duration-150 ease-in-out ${!open && "p-0"}`}
+        >
+          <div
+            className={`sticky top-0 z-10  rounded-xl bg-zinc-100 dark:bg-[#141417] transition-[padding] duration-150 ease-in-out ${open && "pt-2"}`}
+          >
             <div className=" bg-zinc-50 dark:bg-zinc-900 px-4 py-4 rounded-xl">
               <div className="flex gap-3 items-center">
-                <div className="p-3 rounded-xl bg-zinc-100 dark:bg-zinc-800">
-                  <CategoryIcon name={course?.category?.name} />
-                </div>
-                <h2 className="text-base line-clamp-2">{course.title}</h2>
+                {open && (
+                  <div className="p-3 rounded-xl bg-zinc-100 dark:bg-zinc-800">
+                    <CategoryIcon name={course?.category?.name} />
+                  </div>
+                )}
+                {open ? (
+                  <div className="flex gap-2 justify-between items-center">
+                    <div className="flex">
+                      <h2 className={`text-base line-clamp-2`}>
+                        {course.title}
+                      </h2>
+                    </div>
+                    <span
+                      className="p-2 rounded-xl hover:bg-white/5 cursor-pointer"
+                      onClick={() => setOpen(!open)}
+                    >
+                      {open && <IconX className="size-6" />}
+                    </span>
+                  </div>
+                ) : (
+                  <div className="flex gap-2 justify-between items-center">
+                    <div className="flex flex-col">
+                      <h2
+                        className={`text-base dark:text-zinc-200 font-semibold text-zinc-600 line-clamp-1`}
+                      >
+                        {course.title}
+                      </h2>
+                      <Link
+                        href={`/watch/${course.id}/${
+                          course.chapters[0].lessons[
+                            course.chapters[0].lessons.length - 1
+                          ].id
+                        }`}
+                        className="text-sm dark:text-zinc-400 line-clamp-1 text-zinc-600 hover:dark:text-zinc-500 hover:text-zinc-500"
+                      >
+                        <span className="pr-1 font-semibold">A seguir: </span>
+                        {nextLesson?.title} {lesson.position}/
+                        {numberOfLessons(course.chapters)}
+                      </Link>
+                    </div>
+                    <span
+                      className="p-2 rounded-xl hover:bg-white/5 cursor-pointer"
+                      onClick={() => setOpen(!open)}
+                    >
+                      {!open && <IconChevronDown className="size-6" />}
+                    </span>
+                  </div>
+                )}
               </div>
-              <div
-                className={`mt-3 w-full bg-zinc-200 rounded dark:bg-zinc-700 my-2`}
-              >
+
+              {open && (
                 <div
-                  className={`bg-emerald-300 dark:bg-[#015F43] text-xs font-medium text-[#015F43] dark:text-zinc-100 text-center p-1 leading-none rounded whitespace-nowrap transition-[width] duration-300 ease-in-out`}
-                  style={{ width: `${coursePercentage}%` }}
+                  className={`mt-3 w-full bg-zinc-200 rounded dark:bg-zinc-700 my-2`}
                 >
-                  {Math.round(coursePercentage)}% Completado
+                  <div
+                    className={`bg-emerald-300 dark:bg-[#015F43] text-xs font-medium text-[#015F43] dark:text-zinc-100 text-center p-1 leading-none rounded whitespace-nowrap transition-[width] duration-300 ease-in-out`}
+                    style={{ width: `${coursePercentage}%` }}
+                  >
+                    {Math.round(coursePercentage)}% Completado
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
-          <div className="px-3 py-2  overscroll-x-none overscroll-y-none no-scrollbar overflow-hidden flex flex-col gap-1">
+          <div
+            className={`px-3 py-2  overscroll-x-none overscroll-y-none no-scrollbar overflow-hidden flex flex-col gap-1 ${!open && "hidden"}`}
+          >
             {course?.chapters?.map((chapter, index) => (
               <Accordion.Item
                 key={chapter.id}
@@ -238,49 +315,47 @@ function ClassContent({ course }: { course: Course }) {
                 <div className="py-0 px-7" ref={listItems}>
                   <ol className="relative">
                     {chapter.lessons.map((lesson, i) => (
-                      <>
-                        <li
-                          className={`pb-4 p-1  border-s-2 pl-7 -ml-[2px] pt-3 ${checkDoneLesson(chapter.position, lesson.position) ? "border-[#015F43] dark:border-[#015F43] " : "border-zinc-200 dark:border-zinc-700"}`}
+                      <li
+                        key={lesson.id}
+                        className={`pb-4 p-1  border-s-2 pl-7 -ml-[2px] pt-3 ${checkDoneLesson(chapter.position, lesson.position) ? "border-[#015F43] dark:border-[#015F43] " : "border-zinc-200 dark:border-zinc-700"}`}
+                      >
+                        <span
+                          className={lessonStyle({
+                            active:
+                              i === lesseonIndexActive && index === indexActive,
+                            done: checkDoneLesson(
+                              chapter.position,
+                              lesson.position,
+                            ),
+                          })}
+                          onClick={() =>
+                            markAsDone({
+                              index: chapter.position,
+                              lessons: [lesson.position],
+                            })
+                          }
                         >
-                          <span
-                            className={lessonStyle({
-                              active:
-                                i === lesseonIndexActive &&
-                                index === indexActive,
-                              done: checkDoneLesson(
-                                chapter.position,
-                                lesson.position,
-                              ),
-                            })}
-                            onClick={() =>
-                              markAsDone({
-                                index: chapter.position,
-                                lessons: [lesson.position],
-                              })
-                            }
-                          >
-                            <span className="text-xs text-[#015F43] dark:text-zinc-50">
-                              {i === lesseonIndexActive &&
-                              index === indexActive ? (
-                                <IconEye className="w-3 h-3" />
-                              ) : (
-                                i + 1
-                              )}
-                            </span>
+                          <span className="text-xs text-[#015F43] dark:text-zinc-50">
+                            {i === lesseonIndexActive &&
+                            index === indexActive ? (
+                              <IconEye className="w-3 h-3" />
+                            ) : (
+                              i + 1
+                            )}
                           </span>
-                          <Link
-                            href={`/watch/${course.id}/${lesson.id}`}
-                            className=""
+                        </span>
+                        <Link
+                          href={`/watch/${course.id}/${lesson.id}`}
+                          className=""
+                        >
+                          <h3
+                            className="flex items-center text-sm text-zinc-900 dark:text-white dark:hover:text-zinc-300"
+                            onClick={() => markAsActive(index, i)}
                           >
-                            <h3
-                              className="flex items-center text-sm text-zinc-900 dark:text-white dark:hover:text-zinc-300"
-                              onClick={() => markAsActive(index, i)}
-                            >
-                              {lesson.title}
-                            </h3>
-                          </Link>
-                        </li>
-                      </>
+                            {lesson.title}
+                          </h3>
+                        </Link>
+                      </li>
                     ))}
                   </ol>
                 </div>

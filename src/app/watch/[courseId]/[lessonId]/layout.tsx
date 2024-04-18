@@ -2,24 +2,58 @@ import ClassContent from "@/app/components/ClassContent/ClassContent";
 import { serverClient } from "@/app/_trpc/serverClient";
 import { Card } from "@/app/components/Card";
 import { IconNotebook } from "@tabler/icons-react";
-
+type Lesson = {
+  id: string;
+  title: string;
+  description: string | null;
+  position: number;
+  isPublished: boolean;
+  isFree: boolean;
+  chapterId: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+type Chapter = {
+  id: string;
+  title: string;
+  description: string | null;
+  courseId: string;
+  position: number;
+  isPublished: boolean;
+  lessons: Lesson[];
+};
 export default async function ClassLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { courseId: string };
+  params: { courseId: string; lessonId: string };
 }) {
   const course = await serverClient.course.getById(params.courseId);
-  if (!course) {
+  const lesson = await serverClient.lesson.getById(params.lessonId);
+  if (!course || !lesson) {
     return null;
   }
-
+  const getNextLesson = (lesson: Lesson) => {
+    let nLesson = lesson;
+    course.chapters.map((chapter) => {
+      chapter.lessons.map((lessonT, index) => {
+        if (lesson.id === lessonT.id) {
+          nLesson = chapter.lessons[index + 1];
+        }
+      });
+    });
+    return nLesson;
+  };
   return (
     <div className="relative flex gap-6 px-16 py-24 pb-8">
       <main className="w-full min-w-[853px]">{children}</main>
       <aside className=" md:flex flex-col gap-4 overscroll-y-none overscroll-x-none max-w-[400px] max-h-[594px]">
-        <ClassContent course={course} />
+        <ClassContent
+          course={course}
+          nextLesson={getNextLesson(lesson)}
+          lesson={lesson}
+        />
         <Card.Root className="">
           <Card.Header>
             <div className="py-4 px-4 flex gap-4 items-center">
