@@ -13,6 +13,8 @@ import { serverClient } from "../_trpc/serverClient";
 export default async function Home() {
   const courses = await serverClient.course.getAll();
   if (!courses) return null;
+  const recomended = await serverClient.course.getAll();
+  recomended.pop();
   return (
     <div className="px-9 flex flex-col gap-4">
       <div className="relative  flex-col items-start bg-blue-200 dark:bg-blue-950 dark:bg-grid-small-white/[0.2]  bg-dot-black/[0.2]  rounded-xl max-h-[343px] min-h-[340px]">
@@ -72,7 +74,7 @@ export default async function Home() {
         Cursos recomendados <IconChevronRight className="w-4 h-4" />
       </h2>
       <div className="pb-5 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
-        {courses.map((course, index) => (
+        {recomended.map((course, index) => (
           <>
             <Course
               key={course.id}
