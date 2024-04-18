@@ -115,3 +115,14 @@ export const UpdateLessonTitleSchema = z.object({
 });
 
 export type TUpdateLessonTitleSchema = z.infer<typeof UpdateLessonTitleSchema>;
+
+export const CreateCategorySchema = z.object({
+  categoryName: z.string().min(3, {
+    message: "O nome tem que ser maior a 3 carateres.",
+  }),
+  slug: z.string().min(3, {
+    message: "O slug tem que ser maior a 3 carateres.",
+  }),
+});
+
+export type TCreateCategorySchema = z.infer<typeof CreateCategorySchema>;

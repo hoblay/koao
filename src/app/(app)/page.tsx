@@ -85,7 +85,7 @@ export default function Home() {
               img={`${course.imageUrl}`}
               modules={course.chapters.length}
               progress={0}
-              category={"Design"}
+              category={course.category ? course.category.name : "Programação"}
               id={course.id}
             />
           </>
