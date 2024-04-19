@@ -49,16 +49,17 @@ export default async function ClassLayout({
   };
   return (
     <div className="relative flex gap-6 px-16 py-24 pb-8">
-      <main className="w-full min-w-[900px]">{children}</main>
+      <main className="w-full min-w-[883px]">{children}</main>
       <aside className=" md:flex flex-col gap-4 overscroll-y-none overscroll-x-none max-w-[510px] max-h-[594px]">
         <ClassContent
           course={course}
           nextLesson={getNextLesson(lesson)}
           lesson={lesson}
+          chapterPosition={lesson.chapter.position}
         />
         <Card.Root className="">
           <Card.Header>
-            <div className="py-4 px-4 flex gap-4 items-center">
+            <div className="py-4 px-4 flex gap-3 items-center">
               <div className="p-3 rounded-xl bg-zinc-100 dark:bg-zinc-800">
                 <IconNotebook />
               </div>

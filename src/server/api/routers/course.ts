@@ -84,7 +84,14 @@ export const courseRouter = router({
         },
         include: {
           category: true,
-          author: true,
+          author: {
+            select: {
+              name: true,
+              id: true,
+              email: true,
+              image: true,
+            },
+          },
           chapters: {
             include: {
               lessons: true,
@@ -119,6 +126,51 @@ export const courseRouter = router({
         },
       },
     });
+    return course;
+  }),
+
+  getBySearch: publicProcedure.input(idSchema).query(async ({ input }) => {
+    const capitalize = (word: string) => {
+      const firstLetter = word.charAt(0);
+
+      const firstLetterCap = firstLetter.toUpperCase();
+
+      const remainingLetters = word.slice(1);
+
+      const capitalizedWord = firstLetterCap + remainingLetters;
+      return capitalizedWord;
+    };
+    const course = await db.course.findMany({
+      where: {
+        title: {
+          contains: input.toLowerCase(),
+        },
+      },
+      orderBy: {
+        _relevance: {
+          fields: ["title"],
+          search: input,
+          sort: "desc",
+        },
+      },
+      include: {
+        category: true,
+        author: {
+          select: {
+            name: true,
+            id: true,
+            email: true,
+            image: true,
+          },
+        },
+        chapters: {
+          include: {
+            lessons: true,
+          },
+        },
+      },
+    });
+
     return course;
   }),
   updateCourse: publicProcedure

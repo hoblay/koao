@@ -3,6 +3,7 @@ import { trpc } from "@/app/_trpc/client";
 import Avatar from "@/app/components/Avatar/Avatar";
 import { Card } from "@/app/components/Card";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import ReactPlayer from "react-player";
 
 type Chapter = {
@@ -31,10 +32,9 @@ export default function ClassPage({
 }: {
   params: { lessonId: string };
 }) {
+  const router = useRouter();
   const lesson = trpc.lesson.getById.useQuery(params.lessonId);
-  if (!lesson.data) {
-    return null;
-  }
+
   const getNextLesson = (lesson: any) => {
     let nLesson = lesson;
     lesson.chapter.course.chapters.map((chapter: Chapter, i: number) => {
@@ -49,22 +49,28 @@ export default function ClassPage({
     });
     return nLesson;
   };
-
+  if (!lesson.data) {
+    return null;
+  }
   return (
     <div className="">
-      <div className="flex relative rounded-2xl bg-zinc-950 min-w-[900px] min-h-[506.25px] overflow-hidden ">
+      <div className="flex relative rounded-2xl bg-zinc-950 w-[883px] h-[496.6875px] overflow-hidden ">
         <ReactPlayer
           controls
           width={"100%"}
+          onEnded={() =>
+            router.push(
+              `/watch/${lesson?.data?.chapter.course.id}/${getNextLesson(lesson.data).id}`,
+            )
+          }
           className="absolute top-0 left-0"
           height={"100%"}
-          autoPlay
+          playing
           url={lesson.data.video?.commitUrl ? lesson.data.video?.commitUrl : ""}
-          config={{}}
         />
       </div>
 
-      <div className=" max-w-[900px]">
+      <div className=" max-w-[883px]">
         <div className="flex flex-col gap-2 px-2 py-4">
           <h4 className="text-zinc-600 dark:text-zinc-100 text-xl font-semibold w-full">
             {lesson.data.title}

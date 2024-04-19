@@ -98,17 +98,19 @@ function ClassContent({
   course,
   nextLesson,
   lesson: currentLesson,
+  chapterPosition,
 }: {
   course: Course;
   nextLesson: Lesson;
   lesson: Lesson;
+  chapterPosition: number;
 }) {
   const [open, setOpen] = useState(true);
   const [coursePercentage, setCoursePercentage] = useState<number>(0);
   const [lessonsDone, setLessonsDone] = useState<
     { index: number; lessons: number[] }[]
   >([]);
-  const [indexActive, setIndexActive] = useState<number>(99999);
+  const [indexActive, setIndexActive] = useState<number>(chapterPosition - 1);
   const [lesseonIndexActive, setlessonIndexActive] = useState<number>(
     currentLesson.position - 1,
   );
@@ -308,15 +310,12 @@ function ClassContent({
                 startContent={
                   <div
                     className={moduleCircle({
-                      active:
-                        currentLesson.chapterId === chapter.id ||
-                        index === indexActive,
+                      active: index === indexActive,
                       done: checkDoneModule(chapter, chapter.position),
                     })}
                   >
                     <div className="flex items-center text-center justify-center">
-                      {currentLesson.chapterId === chapter.id ||
-                      index === indexActive ? (
+                      {index === indexActive ? (
                         <IconPlayerPause className="m-1 w-4 h-4" />
                       ) : (
                         chapter.position
@@ -337,9 +336,7 @@ function ClassContent({
                         <span
                           className={lessonStyle({
                             active:
-                              currentLesson.id === lesson.id ||
-                              (i === lesseonIndexActive &&
-                                index === indexActive),
+                              i === lesseonIndexActive && index === indexActive,
                             done: checkDoneLesson(
                               chapter.position,
                               lesson.position,
@@ -353,9 +350,8 @@ function ClassContent({
                           }
                         >
                           <span className="text-xs text-[#015F43] dark:text-zinc-50">
-                            {currentLesson.id === lesson.id ||
-                            (i === lesseonIndexActive &&
-                              index === indexActive) ? (
+                            {i === lesseonIndexActive &&
+                            index === indexActive ? (
                               <IconEye className="w-3 h-3" />
                             ) : (
                               i + 1

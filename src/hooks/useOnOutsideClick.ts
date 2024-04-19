@@ -7,7 +7,6 @@ export const useOnOutsideClick = (
   const handleClick = (e: any) => {
     if (!ref.current?.contains(e.target)) {
       callback();
-      console.log("click");
     }
   };
 
