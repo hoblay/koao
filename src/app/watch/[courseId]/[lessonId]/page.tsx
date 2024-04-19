@@ -52,7 +52,7 @@ export default function ClassPage({
 
   return (
     <div className="">
-      <div className="flex relative rounded-2xl bg-zinc-950 min-w-[853px] min-h-[480px] overflow-hidden ">
+      <div className="flex relative rounded-2xl bg-zinc-950 min-w-[900px] min-h-[506.25px] overflow-hidden ">
         <ReactPlayer
           controls
           width={"100%"}
@@ -64,7 +64,7 @@ export default function ClassPage({
         />
       </div>
 
-      <div className=" max-w-[853px]">
+      <div className=" max-w-[900px]">
         <div className="flex flex-col gap-2 px-2 py-4">
           <h4 className="text-zinc-600 dark:text-zinc-100 text-xl font-semibold w-full">
             {lesson.data.title}

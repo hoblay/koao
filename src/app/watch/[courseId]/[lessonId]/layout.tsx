@@ -49,8 +49,8 @@ export default async function ClassLayout({
   };
   return (
     <div className="relative flex gap-6 px-16 py-24 pb-8">
-      <main className="w-full min-w-[853px]">{children}</main>
-      <aside className=" md:flex flex-col gap-4 overscroll-y-none overscroll-x-none max-w-[400px] max-h-[594px]">
+      <main className="w-full min-w-[900px]">{children}</main>
+      <aside className=" md:flex flex-col gap-4 overscroll-y-none overscroll-x-none max-w-[510px] max-h-[594px]">
         <ClassContent
           course={course}
           nextLesson={getNextLesson(lesson)}

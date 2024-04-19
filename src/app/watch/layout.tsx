@@ -18,7 +18,7 @@ export default async function ClassLayout({
     <div className="relative flex ">
       <main className="">
         <nav className=" dark:bg-[#101012] w-full z-20  bg-white fixed">
-          <div className="relative flex pr-10 pl-10 gap-48 pt-4 py-2  items-center ">
+          <div className="relative flex pr-10 pl-10 gap-48 pt-4 py-2  items-center justify-between">
             <div className="flex">
               <Link href={"/"} className="flex p-2 space-x-2 items-center">
                 <div className="">
@@ -31,7 +31,7 @@ export default async function ClassLayout({
                 </span>
               </Link>
             </div>
-            <div className="flex justify-between items-center w-full pl-6">
+            <div className="flex justify-between items-center w-full pl-[70px]">
               <Search.Root className="w-[100%]">
                 <Search.Section title="Colegas">
                   <Search.Result
