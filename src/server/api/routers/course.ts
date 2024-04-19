@@ -142,9 +142,20 @@ export const courseRouter = router({
     };
     const course = await db.course.findMany({
       where: {
-        title: {
-          contains: input.toLowerCase(),
-        },
+        OR: [
+          {
+            title: {
+              contains: input.toLowerCase(),
+              mode: "insensitive",
+            },
+          },
+          {
+            description: {
+              contains: input.toLowerCase(),
+              mode: "insensitive",
+            },
+          },
+        ],
       },
       orderBy: {
         _relevance: {
