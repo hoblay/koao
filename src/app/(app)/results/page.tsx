@@ -1,7 +1,6 @@
-import { IconChevronRight } from "@tabler/icons-react";
 import { serverClient } from "@/app/_trpc/serverClient";
-import Course from "@/app/components/Course";
 import { parseSearchQuery } from "@/utils/parse-search-query";
+import CourseResult from "./_components/CourseResult";
 
 interface SearchPageProps {
   searchParams: {
@@ -27,16 +26,17 @@ export default async function Home({ searchParams }: SearchPageProps) {
           {parseSearchQuery(searchParams.query)}
         </span>
       </h2>
-      <div className="pb-5 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
+      <div className="flex flex-col gap-4 ">
         {courses.map((course, index) => (
           <>
-            <Course
+            <CourseResult
               key={course.id}
               name={course.title}
               price={0}
               img={`${course.imageUrl}`}
               modules={course.chapters.length}
               progress={0}
+              description={course.description}
               category={course.category ? course.category.name : "Programação"}
               id={course.id}
             />

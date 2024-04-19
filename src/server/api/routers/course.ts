@@ -165,7 +165,7 @@ export const courseRouter = router({
       },
       orderBy: {
         _relevance: {
-          fields: ["title"],
+          fields: ["title", "description"],
           search: input.trim().replace(/\s\s+/g, " ").split(" ").join(" | "),
           sort: "desc",
         },
