@@ -145,6 +145,14 @@ export const courseRouter = router({
               mode: "insensitive",
             },
           },
+          {
+            author: {
+              name: {
+                contains: input,
+                mode: "insensitive",
+              },
+            },
+          },
         ],
       },
       orderBy: {
