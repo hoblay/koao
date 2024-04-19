@@ -17,7 +17,7 @@ import {
   IconSearch,
   IconUsers,
 } from "@tabler/icons-react";
-import { ReactNode, useEffect, useState } from "react";
+import { FormEvent, ReactNode, useEffect, useState } from "react";
 import { createContext, useContext } from "react";
 import Tag from "../Tag/Tag";
 import { useDebounce } from "@/hooks/useDebounce";
@@ -71,7 +71,7 @@ export function SearchRoot({ children, className }: SearchProps) {
     setValue(e);
   };
 
-  const handleSubmit = (event: FormDataEvent) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (value.length > 0) {
