@@ -130,16 +130,6 @@ export const courseRouter = router({
   }),
 
   getBySearch: publicProcedure.input(idSchema).query(async ({ input }) => {
-    const capitalize = (word: string) => {
-      const firstLetter = word.charAt(0);
-
-      const firstLetterCap = firstLetter.toUpperCase();
-
-      const remainingLetters = word.slice(1);
-
-      const capitalizedWord = firstLetterCap + remainingLetters;
-      return capitalizedWord;
-    };
     const course = await db.course.findMany({
       where: {
         OR: [
