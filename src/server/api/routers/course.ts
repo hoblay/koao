@@ -135,20 +135,28 @@ export const courseRouter = router({
         OR: [
           {
             title: {
-              contains: input.toLowerCase(),
+              search: input.split(" ").join(" | "),
               mode: "insensitive",
             },
           },
           {
             description: {
-              contains: input.toLowerCase(),
+              search: input.split(" ").join(" | "),
               mode: "insensitive",
+            },
+          },
+          {
+            category: {
+              name: {
+                search: input.split(" ").join(" | "),
+                mode: "insensitive",
+              },
             },
           },
           {
             author: {
               name: {
-                contains: input,
+                search: input.split(" ").join(" | "),
                 mode: "insensitive",
               },
             },
@@ -158,7 +166,7 @@ export const courseRouter = router({
       orderBy: {
         _relevance: {
           fields: ["title"],
-          search: input,
+          search: input.trim().replace(/\s\s+/g, " ").split(" ").join(" | "),
           sort: "desc",
         },
       },
