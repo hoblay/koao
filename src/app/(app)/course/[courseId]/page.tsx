@@ -40,8 +40,8 @@ export default function Home({ params }: { params: { courseId: string } }) {
             lessons={chapter.lessons}
             title={chapter.title}
             key={chapter.id}
-            tag={course.data.tag}
-            courseId={course.data.id}
+            tag={course.data?.tag}
+            courseId={course.data?.id}
           />
         ))}
       </div>
