@@ -5,7 +5,7 @@ import { tv } from "tailwind-variants";
 import { DropdownContext } from "./DropdownRoot";
 
 const dropdownMenuStyle = tv({
-  base: "absolute right-0 mt-2 z-40 inline-flex flex-col items-center justify-center subpixel-antialiased outline-none box-border text-sm max-w-64 bg-zinc-50 dark:bg-zinc-900 rounded-lg shadow-md w-full p-1 min-w-[200px] transition-all duration-150 ease-in-out",
+  base: "absolute right-0 mt-2 z-40 inline-flex flex-col items-center justify-center subpixel-antialiased outline-none box-border text-sm max-w-64 bg-zinc-50 dark:bg-[#1f1f1f] rounded-lg shadow-md w-full p-1 min-w-[200px] transition-all duration-150 ease-in-out",
   variants: {
     variant: {
       solid: "",

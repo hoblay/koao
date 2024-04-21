@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full" suppressHydrationWarning={true}>
-      <body className={`${inter.className} dark:bg-[#101012] h-full w-full`}>
+      <body className={`${inter.className} dark:bg-[#2d2d2d] h-full w-full`}>
         <TrpcProvider>
           <SessionProvider>
             <ThemeProvider>{children}</ThemeProvider>
