@@ -12,7 +12,7 @@ interface LessonProps {
   tag?: string | null;
   title: string;
   description: string | null;
-  courseId: string;
+  courseId?: string | null;
   duration?: number | null;
   id: string;
 }
