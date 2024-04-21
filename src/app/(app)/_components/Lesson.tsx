@@ -56,7 +56,7 @@ function Lesson({
                   <div className="flex gap-1">
                     <IconClock className="size-4 text-zinc-500 dark:text-zinc-400" />
                     <span className="text-xs">
-                      {formatSecondsToMinutes(duration)}
+                      {duration && formatSecondsToMinutes(duration)}
                     </span>
                   </div>
                 </div>
