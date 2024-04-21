@@ -1,8 +1,8 @@
 import Tag from "@/app/components/Tag/Tag";
 import { IconClock, IconNotebook, IconPresentation } from "@tabler/icons-react";
 import React from "react";
-import Photoshop from "./Photoshop";
 import Link from "next/link";
+import CourseIcon from "./CourseIcon";
 interface CourseProps {
   className?: string;
   progress?: number;
@@ -14,11 +14,13 @@ interface CourseProps {
   id: string;
   author: string | null;
   lessonId?: string;
+  tag: string | null;
 }
 
-function CourseSection({
+function CourseHeading({
   className,
   id,
+  tag,
   progress,
   image,
   lessonId,
@@ -37,7 +39,7 @@ function CourseSection({
     >
       <div className="absolute top-0 left-0 max-w-[350px]">
         <div className="pl-10 pt-10 flex flex-col gap-4">
-          <Photoshop className="size-32" />
+          <CourseIcon name={tag} />
           <div color="flex">
             <h2 className=" pr-20 text-zinc-100 text-xl font-semibold md:leading-[140%] line-clamp-3">
               {title}
@@ -48,18 +50,20 @@ function CourseSection({
       <div className="absolute bottom-0 backdrop-blur-md left-0 px-10 pb-10 pt-6 space-y-2 max-w-[100%]">
         <div className="flex gap-10">
           <div className="flex flex-col gap-2">
-            <Link href={`/watch/${id}/${lessonId}`} className="">
-              <button
-                type="button"
-                className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-zinc-50 hover:bg-[#1f1f1f] text-[#143229]  hover:text-white px-8 py-3 text-2xl w-full"
-              >
-                <div className="flex flex-1 justify-center items-center gap-2">
-                  <span className="text-base leading-6 text-nowrap">
-                    Começar a assistir
-                  </span>
-                </div>
-              </button>
-            </Link>
+            {lessonId && (
+              <Link href={`/watch/${id}/${lessonId}`} className="">
+                <button
+                  type="button"
+                  className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-zinc-50 hover:bg-[#1f1f1f] text-[#143229]  hover:text-white px-8 py-3 text-2xl w-full"
+                >
+                  <div className="flex flex-1 justify-center items-center gap-2">
+                    <span className="text-base leading-6 text-nowrap">
+                      Começar a assistir
+                    </span>
+                  </div>
+                </button>
+              </Link>
+            )}
             <button
               type="button"
               className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-zinc-50 hover:bg-[#1f1f1f] text-[#143229]  hover:text-white px-8 py-3 text-2xl w-full"
@@ -106,4 +110,4 @@ function CourseSection({
   );
 }
 
-export default CourseSection;
+export default CourseHeading;

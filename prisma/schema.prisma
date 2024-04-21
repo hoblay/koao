@@ -61,16 +61,17 @@ model VerificationToken {
 }
 
 model Course {
-  id          String  @id @default(uuid())
+  id          String    @id @default(uuid())
   userId      String
-  title       String  @db.Text
-  description String? @db.Text
-  imageUrl    String? @db.Text
+  title       String    @db.Text
+  description String?   @db.Text
+  imageUrl    String?   @db.Text
   price       Float?
-  isPublished Boolean @default(false)
-
-  categoryId String?
-  category   Category? @relation(fields: [categoryId], references: [id])
+  cover       String    @default("https://pub-31ec4c4d831748f1969dfaa1b69a9cc1.r2.dev/7d217ea7-ff2d-428b-99a1-b1d7b2a157cf")
+  isPublished Boolean   @default(false)
+  tag         String?
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id])
 
   chapters  Chapter[]
   author    User      @relation(fields: [userId], references: [id])

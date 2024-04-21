@@ -21,6 +21,7 @@ export default async function Home() {
         description={courses[courses.length - 1].description}
         image={courses[courses.length - 1].imageUrl}
         id={courses[courses.length - 1].id}
+        tag={courses[courses.length - 1].tag}
         lessonId={courses[courses.length - 1].chapters[0].lessons[0].id}
         author={courses[courses.length - 1].author.name}
       />
