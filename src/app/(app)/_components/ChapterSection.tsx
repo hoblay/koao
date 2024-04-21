@@ -12,10 +12,10 @@ function ChapterSection({
   title,
   tag,
 }: {
-  courseId: string;
+  courseId?: string | null;
   lessons: any[];
   title: string;
-  tag: string | null;
+  tag?: string | null;
 }) {
   const settings = {
     speed: 500,
