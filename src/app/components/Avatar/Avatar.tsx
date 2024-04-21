@@ -25,7 +25,7 @@ const AvatarStyle = tv({
       sm: "",
       md: "size-[46px] text-sm",
       lg: "size-[52px] text-lg",
-      xl: "",
+      xl: "size-[118px] text-lg",
     },
     done: {
       true: " ",

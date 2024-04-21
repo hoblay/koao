@@ -19,7 +19,7 @@ export default async function Home({ searchParams }: SearchPageProps) {
   );
   if (!courses) return null;
   return (
-    <div className="px-9 flex flex-col gap-4">
+    <div className="px-9 py-24 flex flex-col gap-4">
       <h2 className="text-lg py-2 px-2 flex gap-2 items-center">
         Resultados para:{" "}
         <span className="font-semibold text-emerald-300">

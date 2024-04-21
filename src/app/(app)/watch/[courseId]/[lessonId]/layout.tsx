@@ -60,7 +60,7 @@ export default async function ClassLayout({
         <Card.Root className="">
           <Card.Header>
             <div className="py-4 px-4 flex gap-3 items-center">
-              <div className="p-3 rounded-xl bg-zinc-100 dark:bg-zinc-800">
+              <div className="p-3 rounded-xl bg-zinc-100 dark:bg-[#2b2b2b]">
                 <IconNotebook />
               </div>
               <div className="flex flex-col">

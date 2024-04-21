@@ -15,7 +15,7 @@ import Course from "../Course";
 import CategoryIcon from "./_components/CategoryIcon";
 
 const moduleCircle = tv({
-  base: " w-9 h-9 rounded-full p-1 border-2 border-zinc-300 text-zinc-600 dark:text-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 items-center justify-center",
+  base: " w-9 h-9 rounded-full p-1 border-2 border-zinc-300 text-zinc-600 dark:text-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-[#1f1f1f] items-center justify-center",
   variants: {
     active: {
       true: "border-[#015F43] text-[#015F43]  dark:text-zinc-100 dark:border-[#015F43]",
@@ -31,13 +31,13 @@ const moduleCircle = tv({
 });
 
 const lessonStyle = tv({
-  base: "absolute flex items-center justify-center w-6 h-6 bg-[#015F43] rounded-full -start-[13px] ring-4 ring-zinc-50 dark:ring-zinc-900 hover:ring-8 dark:bg-zinc-800 dark:bg-zinc-800   cursor-pointer transition-all duration-150 ease-in-out",
+  base: "absolute flex items-center justify-center w-6 h-6 bg-[#015F43] rounded-full -start-[13px] ring-4 ring-zinc-50 dark:ring-[#1f1f1f]/40 hover:ring-8 dark:bg-[#1f1f1f]   cursor-pointer transition-all duration-150 ease-in-out",
   variants: {
     active: {
-      true: "ring-[#015F43] dark:ring-[#015F43] hover:ring-8 hover:ring-[#015F43]/30 dark:hover:ring-[#015F43]/30 dark:bg-zinc-800 ",
+      true: "ring-[#015F43] dark:ring-[#015F43] hover:ring-8 hover:ring-[#015F43]/30 dark:hover:ring-[#015F43]/30 dark:bg-[#1f1f1f] ",
     },
     done: {
-      true: "ring-zinc-50 dark:ring-zinc-900 hover:ring-8 bg-[#015F43] dark:bg-[#015F43] ",
+      true: "ring-zinc-50 dark:ring-[#313131]/50 hover:ring-8 bg-[#015F43] dark:bg-[#015F43] ",
     },
   },
   defaultVariants: {
@@ -216,19 +216,19 @@ function ClassContent({
 
   return (
     <div
-      className={`${open ? "h-[480px] max-h-[480px]" : "max-h-[116px]"} transition-[max-height] duration-150 ease-in-out   overscroll-x-none overscroll-y-none rounded-xl overflow-y-auto overflow-hidden bg-zinc-50 dark:bg-zinc-900 no-scrollbar w-[400px] shadow-sm`}
+      className={`${open ? "h-[480px] max-h-[480px]" : "max-h-[116px]"} transition-[max-height] duration-150 ease-in-out   overscroll-x-none overscroll-y-none rounded-xl overflow-y-auto overflow-hidden bg-zinc-50 dark:bg-[#313131] no-scrollbar w-[400px] shadow-sm`}
     >
-      <div className={`bg-zinc-100 dark:bg-zinc-950/25   `}>
+      <div className={`bg-zinc-100 dark:bg-[#313131]   `}>
         <Accordion.Root
           className={`min-w-[100%] relative pt-0 transition-[padding] duration-150 ease-in-out ${!open && "p-0"}`}
         >
           <div
-            className={`sticky top-0 z-10  rounded-xl bg-zinc-100 dark:bg-[#141417] transition-[padding] duration-150 ease-in-out ${open && "pt-2"}`}
+            className={`sticky top-0 z-10  rounded-xl bg-zinc-100 dark:bg-[#313131]  transition-[padding] duration-150 ease-in-out ${open && "pt-2"}`}
           >
-            <div className=" bg-zinc-50 dark:bg-zinc-900 px-4 py-4 rounded-xl">
+            <div className=" bg-zinc-50 dark:bg-[#363636]  px-4 py-4 rounded-xl">
               <div className="flex gap-3 items-center">
                 {open && (
-                  <div className="p-3 rounded-xl bg-zinc-100 dark:bg-zinc-800">
+                  <div className="p-3 rounded-xl bg-zinc-100 dark:bg-[#2b2b2b]">
                     <CategoryIcon name={course?.category?.name} />
                   </div>
                 )}
@@ -289,7 +289,7 @@ function ClassContent({
 
               {open && (
                 <div
-                  className={`mt-3 w-full bg-zinc-200 rounded dark:bg-zinc-700 my-2`}
+                  className={`mt-3 w-full bg-zinc-200 rounded dark:bg-[#1f1f1f] my-2`}
                 >
                   <div
                     className={`bg-emerald-300 dark:bg-[#015F43] text-xs font-medium text-[#015F43] dark:text-zinc-100 text-center p-1 leading-none rounded whitespace-nowrap transition-[width] duration-300 ease-in-out`}
@@ -331,7 +331,7 @@ function ClassContent({
                     {chapter.lessons.map((lesson, i) => (
                       <li
                         key={lesson.id}
-                        className={`pb-4 p-1  border-s-2 pl-7 -ml-[2px] pt-3 ${checkDoneLesson(chapter.position, lesson.position) ? "border-[#015F43] dark:border-[#015F43] " : "border-zinc-200 dark:border-zinc-700"}`}
+                        className={`pb-4 p-1  border-s-2 pl-7 -ml-[2px] pt-3 ${checkDoneLesson(chapter.position, lesson.position) ? "border-[#015F43] dark:border-[#015F43] " : "border-zinc-200 dark:border-[#1f1f1f]/20"}`}
                       >
                         <span
                           className={lessonStyle({
@@ -349,7 +349,13 @@ function ClassContent({
                             })
                           }
                         >
-                          <span className="text-xs text-[#015F43] dark:text-zinc-50">
+                          <span
+                            className={`text-xs text-[#015F43] dark:text-zinc-50 ${
+                              i === lesseonIndexActive &&
+                              index === indexActive &&
+                              "text-zinc-50"
+                            }`}
+                          >
                             {i === lesseonIndexActive &&
                             index === indexActive ? (
                               <IconEye className="w-3 h-3" />

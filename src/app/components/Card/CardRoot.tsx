@@ -5,7 +5,7 @@ const CardRootStyle = tv({
   base: "flex flex-col relative h-auto text-zinc-600 dark:text-zinc-100 box-border outline-none  ",
   variants: {
     bg: {
-      true: "bg-zinc-50 dark:bg-zinc-900",
+      true: "bg-zinc-50 dark:bg-[#363636]",
     },
     shadow: {
       none: "",

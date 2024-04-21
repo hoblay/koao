@@ -16,13 +16,13 @@ interface AccordionItemProps {
 }
 
 const Item = tv({
-  base: "w-full gap-3 outline-none px-2 py-0 rounded-lg h-14 flex items-center text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-200 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50  group font-normal text-medium cursor-pointer",
+  base: "w-full gap-3 outline-none px-2 py-0 rounded-lg h-14 flex items-center text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-200 hover:bg-zinc-200/50 dark:hover:bg-[#1f1f1f]/20  group font-normal text-medium cursor-pointer",
   variants: {
     isDisabled: {
       true: "",
     },
     active: {
-      true: "bg-zinc-200/50 dark:bg-zinc-800/50 dark:text-zinc-200",
+      true: "bg-zinc-200/50 dark:bg-[#1f1f1f]/20 dark:text-zinc-200",
     },
   },
   defaultVariants: {
