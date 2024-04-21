@@ -8,7 +8,6 @@ interface CourseProps {
   progress?: number;
   image: string | null;
   title: string;
-  price: number | 0;
   modules: number;
   category: string | undefined;
   description: string | null;
@@ -24,7 +23,6 @@ function CourseSection({
   image,
   lessonId,
   title,
-  price,
   modules,
   author,
   description,

@@ -42,7 +42,7 @@ function CourseSection({ courses, title }: { courses: any[]; title: string }) {
       <h2 className=" text-[17px] font-semibold flex gap-2 items-center">
         {title}
       </h2>
-      <div className=" border-[#363636] border-b-2">
+      <div className="border-[#1f1f1f]/10 dark:border-[#363636] border-b-2">
         <Slider {...settings}>
           {courses.map((course, index) => (
             <Course
