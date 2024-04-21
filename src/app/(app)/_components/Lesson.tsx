@@ -9,7 +9,7 @@ import { formatSecondsToMinutes } from "@/utils/format-seconds";
 interface LessonProps {
   className?: string;
   progress?: number;
-  tag: string | null;
+  tag?: string | null;
   title: string;
   description: string | null;
   courseId: string;
