@@ -72,8 +72,8 @@ export default async function Home() {
           )}
         </div>
       </div>
-      <h2 className="text-lg py-2 px-2 flex gap-2 items-center">
-        Cursos recomendados <IconChevronRight className="w-4 h-4" />
+      <h2 className="text-[17px] font-semibold pt-3 flex gap-2 items-center">
+        Cursos recomendados
       </h2>
       <div className="pb-5 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
         {recomended.map((course, index) => (
@@ -85,6 +85,7 @@ export default async function Home() {
               img={`${course.imageUrl}`}
               modules={course.chapters.length}
               progress={0}
+              description={course.description}
               category={course.category ? course.category.name : "Programação"}
               id={course.id}
             />
