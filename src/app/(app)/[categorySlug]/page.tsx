@@ -1,5 +1,4 @@
 import { serverClient } from "@/app/_trpc/serverClient";
-import CategoryIcon from "@/app/components/ClassContent/_components/CategoryIcon";
 import CourseSection from "../_components/CourseSection";
 import Link from "next/link";
 import Category from "../_components/Category";
