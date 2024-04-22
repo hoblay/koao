@@ -17,6 +17,7 @@ function CourseSection({
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
+    lazyLoad: true,
     responsive: [
       {
         breakpoint: 1024,
