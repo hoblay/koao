@@ -1,9 +1,10 @@
-import Tag from "@/app/components/Tag/Tag";
 import { IconClock, IconNotebook, IconPresentation } from "@tabler/icons-react";
 import React from "react";
 import Link from "next/link";
 import CourseIcon from "./CourseIcon";
 import TagIcon from "@/app/components/Tag/TagIcon";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/server/auth";
 interface CourseProps {
   className?: string;
   progress?: number;
@@ -18,7 +19,7 @@ interface CourseProps {
   tag: string | null;
 }
 
-function CourseHeading({
+async function CourseHeading({
   className,
   id,
   tag,
@@ -31,6 +32,7 @@ function CourseHeading({
   description,
   category,
 }: CourseProps) {
+  const session = await getServerSession(authOptions);
   return (
     <div
       className={`relative  flex-col items-start bg-zinc-950  dark:bg-grid-small-white/[0.2]  bg-dot-black/[0.2]  max-h-[503px] min-h-[500px]`}
@@ -52,7 +54,10 @@ function CourseHeading({
         <div className="flex gap-10">
           <div className="flex flex-col gap-2">
             {lessonId && (
-              <Link href={`/watch/${id}/${lessonId}`} className="">
+              <Link
+                href={session.user ? `/watch/${id}/${lessonId}` : "/signin"}
+                className=""
+              >
                 <button
                   type="button"
                   className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-zinc-50 hover:bg-[#1f1f1f] text-[#143229]  hover:text-white px-8 py-3 text-2xl w-full"

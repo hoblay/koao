@@ -1,7 +1,5 @@
 import { Search } from "@/app/components/Search/Index";
-import UserAvatar from "@/app/components/UserAvatar";
-import { getServerSession } from "next-auth";
-import Aside from "@/app/components/Aside";
+
 import LogoIcon from "@/app/components/Icons/Logo";
 import Link from "next/link";
 import Tag from "@/app/components/Tag/Tag";

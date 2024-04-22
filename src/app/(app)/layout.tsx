@@ -3,18 +3,19 @@ import UserAvatar from "../components/UserAvatar";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import LogoIcon from "../components/Icons/Logo";
-import SignDialog from "./_components/signDialog";
+import SignDialog from "./_components/SignDialog";
+import { authOptions } from "@/server/auth";
 
 export default async function AppLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
 
   return (
     <div className="relative flex">
-      <main className="w-full pb-[96px]">
+      <main className={`w-full ${!session?.user && "pb-[96px]"}`}>
         <nav className=" dark:bg-[#2d2d2d] w-full z-20  bg-white fixed">
           <div className="relative flex pr-10 pl-10 gap-48 py-2  items-center justify-between">
             <div className="flex">

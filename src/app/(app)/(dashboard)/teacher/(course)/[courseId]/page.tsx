@@ -14,8 +14,6 @@ import {
   IconTrash,
   IconUpload,
 } from "@tabler/icons-react";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
 import Image from "next/image";
 import CreateChapter from "./_components/CreateChapter";
 import { Accordion } from "@/app/components/Accordion";

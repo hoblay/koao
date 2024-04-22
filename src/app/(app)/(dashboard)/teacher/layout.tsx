@@ -1,6 +1,4 @@
-import UserAvatar from "@/app/components/UserAvatar";
 import { getServerSession } from "next-auth";
-import LogoIcon from "@/app/components/Icons/Logo";
 import Link from "next/link";
 import Tag from "@/app/components/Tag/Tag";
 import {
@@ -9,13 +7,14 @@ import {
   IconTags,
   IconTimeline,
 } from "@tabler/icons-react";
+import { authOptions } from "@/server/auth";
 
 export default async function AppLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
 
   return (
     <div className="relative flex py-[88px]">

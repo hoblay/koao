@@ -2,6 +2,9 @@ import { serverClient } from "@/app/_trpc/serverClient";
 import { Card } from "@/app/components/Card";
 import { IconNotebook } from "@tabler/icons-react";
 import ClassContent from "./_components/ClassContent";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { authOptions } from "@/server/auth";
 type Lesson = {
   id: string;
   title: string;
@@ -29,6 +32,8 @@ export default async function ClassLayout({
   children: React.ReactNode;
   params: { courseId: string; lessonId: string };
 }) {
+  const session = await getServerSession(authOptions);
+  if (!session?.user) redirect("/signin");
   const course = await serverClient.course.getById(params.courseId);
   const lesson = await serverClient.lesson.getById(params.lessonId);
   if (!course || !lesson) {
