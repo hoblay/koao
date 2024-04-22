@@ -1,31 +1,28 @@
-import { serverClient } from "../_trpc/serverClient";
-import CourseSection from "./_components/CourseSection";
-
-import CourseHeading from "./_components/CourseHeading";
-import CategoryIcon from "../components/ClassContent/_components/CategoryIcon";
+import { serverClient } from "@/app/_trpc/serverClient";
+import CourseHeading from "../_components/CourseHeading";
+import CategoryIcon from "@/app/components/ClassContent/_components/CategoryIcon";
+import CourseSection from "../_components/CourseSection";
 import Link from "next/link";
 
-export default async function Home() {
-  const courses = await serverClient.course.getAll();
+export default async function Home({
+  params,
+}: {
+  params: {
+    categorySlug: string;
+  };
+}) {
+  const currentCategory = await serverClient.category.getBySlug(
+    params.categorySlug,
+  );
+  if (!currentCategory) return null;
+  const courses = await serverClient.category.getCoursesByCategory(
+    currentCategory.id,
+  );
   if (!courses) return null;
-  const recomended = await serverClient.course.getAll();
   const categories = await serverClient.category.getAll();
   if (!categories) return null;
-  if (!recomended) return null;
-  recomended.pop();
   return (
     <div className=" pt-[78px] flex flex-col gap-4">
-      <CourseHeading
-        title={courses[courses.length - 1].title}
-        modules={courses[courses.length - 1].chapters.length}
-        category={courses[courses.length - 1].category?.name}
-        description={courses[courses.length - 1].description}
-        image={courses[courses.length - 1].cover}
-        id={courses[courses.length - 1].id}
-        tag={courses[courses.length - 1].tag}
-        lessonId={courses[courses.length - 1].chapters[0].lessons[0].id}
-        author={courses[courses.length - 1].author.name}
-      />
       <div className="flex flex-col px-9 gap-4 ">
         <h2 className=" text-[17px] font-semibold flex gap-2 items-center">
           Pesquise por categoria
@@ -47,8 +44,19 @@ export default async function Home() {
           ))}
         </div>
       </div>
-      <CourseSection title="Cursos recomendados" courses={recomended} />
-      <CourseSection title="Cursos da casa" courses={recomended.toReversed()} />
+      {courses.length > 0 ? (
+        <CourseSection
+          title={currentCategory.name}
+          sliderOff
+          courses={courses}
+        />
+      ) : (
+        <div className="flex flex-col gap-4 px-9 pb-4">
+          <h2 className=" text-[17px] font-semibold flex gap-2 items-center">
+            Não foram encontrados resultados
+          </h2>
+        </div>
+      )}
     </div>
   );
 }

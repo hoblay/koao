@@ -1,11 +1,17 @@
 "use client";
-import { trpc } from "@/app/_trpc/client";
 import Course from "@/app/components/Course";
-import { Course as Coors } from "@prisma/client";
 import React from "react";
 import Slider from "react-slick";
 
-function CourseSection({ courses, title }: { courses: any[]; title: string }) {
+function CourseSection({
+  courses,
+  title,
+  sliderOff,
+}: {
+  courses: any[];
+  title: string;
+  sliderOff?: boolean;
+}) {
   const settings = {
     infinite: true,
     speed: 500,
@@ -42,8 +48,26 @@ function CourseSection({ courses, title }: { courses: any[]; title: string }) {
       <h2 className=" text-[17px] font-semibold flex gap-2 items-center">
         {title}
       </h2>
-      <div className="border-[#1f1f1f]/10 dark:border-[#363636] border-b-2">
-        <Slider {...settings}>
+      {!sliderOff ? (
+        <div className="border-[#1f1f1f]/10 dark:border-[#363636] border-b-2">
+          <Slider {...settings}>
+            {courses.map((course, index) => (
+              <Course
+                key={course.id}
+                name={course.title}
+                price={0}
+                img={`${course.imageUrl}`}
+                modules={course.chapters.length}
+                progress={0}
+                description={course.description}
+                category={course.category ? course.category.name : "Design"}
+                id={course.id}
+              />
+            ))}
+          </Slider>
+        </div>
+      ) : (
+        <div className="grid grid-cols-4 border-[#1f1f1f]/10 dark:border-[#363636] border-b-2">
           {courses.map((course, index) => (
             <Course
               key={course.id}
@@ -53,12 +77,12 @@ function CourseSection({ courses, title }: { courses: any[]; title: string }) {
               modules={course.chapters.length}
               progress={0}
               description={course.description}
-              category={course.category ? course.category.name : "Programação"}
+              category={course.category ? course.category.name : "Design"}
               id={course.id}
             />
           ))}
-        </Slider>
-      </div>
+        </div>
+      )}
     </div>
   );
 }
