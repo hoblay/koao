@@ -19,7 +19,7 @@ export default async function Home() {
         modules={courses[courses.length - 1].chapters.length}
         category={courses[courses.length - 1].category?.name}
         description={courses[courses.length - 1].description}
-        image={courses[courses.length - 1].imageUrl}
+        image={courses[courses.length - 1].cover}
         id={courses[courses.length - 1].id}
         tag={courses[courses.length - 1].tag}
         lessonId={courses[courses.length - 1].chapters[0].lessons[0].id}
