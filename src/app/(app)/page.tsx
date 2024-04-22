@@ -6,6 +6,9 @@ import Category from "./_components/Category";
 import CourseInProgressSection from "./_components/CourseInProgressSection";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/server/auth";
+import Image from "next/image";
+import { IconPlayerPlayFilled } from "@tabler/icons-react";
+import LastSeenSection from "./_components/LastSeenSection";
 
 export default async function Home() {
   const courses = await serverClient.course.getAll();
@@ -29,7 +32,7 @@ export default async function Home() {
         lessonId={courses[courses.length - 1].chapters[0].lessons[0].id}
         author={courses[courses.length - 1].author.name}
       />
-
+      <LastSeenSection title="Continua onde você deixou" courses={courses} />
       <CourseInProgressSection
         title="Cursos que você está fazendo"
         courses={courses.toReversed()}
