@@ -32,8 +32,8 @@ function Lesson({
     <div className="mr-4 max-w-[100hh]">
       <Link href={`/watch/${courseId}/${id}`} className="mr-4 ">
         <Card.Root>
-          <div className="flex p-2 gap-2">
-            <Card.Body className="max-w-24 p-2 max-h-24 flex w-full items-center color-inherit subpixel-antialiased gap-3">
+          <div className="flex p-2 gap-2.5">
+            <Card.Body className="max-w-24 p-1.5 max-h-24 flex w-full items-center color-inherit subpixel-antialiased gap-3 ">
               <CourseIcon name={tag} />
             </Card.Body>
             <Card.Footer className=" flex dark:text-zinc-200 w-full items-center color-inherit subpixel-antialiased gap-3">

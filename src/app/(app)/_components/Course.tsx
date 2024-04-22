@@ -1,16 +1,9 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { Card } from "./Card";
-import {
-  IconClock,
-  IconDeviceSpeaker,
-  IconNotebook,
-  IconPresentation,
-  IconStarFilled,
-} from "@tabler/icons-react";
-import Tag from "./Tag/Tag";
+import { IconClock, IconNotebook, IconPresentation } from "@tabler/icons-react";
 import Image from "next/image";
+import { Card } from "@/app/components/Card";
 
 interface CourseProps {
   className?: string;

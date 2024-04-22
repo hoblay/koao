@@ -121,7 +121,15 @@ export const courseRouter = router({
         },
         chapters: {
           include: {
-            lessons: true,
+            lessons: {
+              include: {
+                video: {
+                  select: {
+                    duration: true,
+                  },
+                },
+              },
+            },
           },
         },
       },

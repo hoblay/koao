@@ -1,7 +1,7 @@
 "use client";
-import Course from "@/app/components/Course";
 import React from "react";
 import Slider from "react-slick";
+import Course from "./Course";
 
 function CourseSection({
   courses,

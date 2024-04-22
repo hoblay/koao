@@ -28,7 +28,9 @@ interface CourseIconProps {
 
 const Icon = {
   photoshop: <Photoshop className={IconStyle()} />,
-  javascript: <JavaScript className={IconStyle()} />,
+  javascript: (
+    <JavaScript className="size-32 drop-shadow-2xl rounded-xl overflow-hidden" />
+  ),
   php: <Php className={IconStyle()} />,
   figma: <Figma className={IconStyle()} />,
   nodejs: <Nodejs className={IconStyle()} />,

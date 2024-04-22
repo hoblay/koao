@@ -152,11 +152,10 @@ span.ripple {
 }
 .slick-next,
 .slick-prev {
-    position: absolute;
     font-size: 0;
     line-height: 0;
-
-    top: 80px;
+    margin-top: 40px;
+    top: 20%;
     width: 20px;
     height: 20px;
     -webkit-transform: translate(0, -50%);
@@ -202,7 +201,7 @@ span.ripple {
     left: auto;
 }
 .slick-prev:before {
-    content: url("https://tv.apple.com/assets/shelf/paddle-default-3bc9eef848158860d017803b15a9911c.svg");
+    content: "";
 }
 .slick-next:before,
 [dir="rtl"] .slick-prev:before {
@@ -218,7 +217,7 @@ span.ripple {
     left: -25px;
 }
 [dir="rtl"] .slick-next:before {
-    content: url("https://tv.apple.com/assets/shelf/paddle-default-3bc9eef848158860d017803b15a9911c.svg");
+    content: "";
 }
 .slick-dotted.slick-slider {
     margin-bottom: 30px;
