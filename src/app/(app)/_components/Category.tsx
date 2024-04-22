@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
-
-import CategoryIcon from "@/app/components/ClassContent/_components/CategoryIcon";
+import CategoryIcon from "../watch/[courseId]/[lessonId]/_components/CategoryIcon";
 
 interface CategoryProps {
   className?: string;
