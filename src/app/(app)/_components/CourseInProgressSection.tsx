@@ -2,6 +2,7 @@
 import React from "react";
 import Slider from "react-slick";
 import CourseInProgress from "./CourseInProgress";
+import { useSession } from "next-auth/react";
 
 function CourseInProgressSection({
   courses,
@@ -12,6 +13,11 @@ function CourseInProgressSection({
   title: string;
   sliderOff?: boolean;
 }) {
+  const { data: session, status } = useSession();
+
+  if (!session?.user) {
+    return null;
+  }
   const settings = {
     infinite: true,
     speed: 500,
