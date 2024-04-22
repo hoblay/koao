@@ -3,16 +3,7 @@
 import { trpc } from "@/app/_trpc/client";
 import Avatar from "@/app/components/Avatar/Avatar";
 import { Card } from "@/app/components/Card";
-import Tag from "@/app/components/Tag/Tag";
-import {
-  EraserIcon,
-  CodeIcon,
-  ArrowTopRightIcon,
-  VideoIcon,
-} from "@radix-ui/react-icons";
-import { IconNotebook, IconPlayerPlay } from "@tabler/icons-react";
-import Image from "next/image";
-import Link from "next/link";
+
 import CourseHeading from "../../_components/CourseHeading";
 import ChapterSection from "../../_components/ChapterSection";
 

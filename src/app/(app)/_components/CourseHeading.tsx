@@ -1,10 +1,10 @@
+"use client";
 import { IconClock, IconNotebook, IconPresentation } from "@tabler/icons-react";
 import React from "react";
 import Link from "next/link";
 import CourseIcon from "./CourseIcon";
 import TagIcon from "@/app/components/Tag/TagIcon";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/server/auth";
+import { useSession } from "next-auth/react";
 interface CourseProps {
   className?: string;
   progress?: number;
@@ -19,7 +19,7 @@ interface CourseProps {
   tag: string | null;
 }
 
-async function CourseHeading({
+function CourseHeading({
   className,
   id,
   tag,
@@ -32,7 +32,7 @@ async function CourseHeading({
   description,
   category,
 }: CourseProps) {
-  const session = await getServerSession(authOptions);
+  const { data: session, status } = useSession();
   return (
     <div
       className={`relative  flex-col items-start bg-zinc-950  dark:bg-grid-small-white/[0.2]  bg-dot-black/[0.2]  max-h-[503px] min-h-[500px]`}
@@ -55,7 +55,7 @@ async function CourseHeading({
           <div className="flex flex-col gap-2">
             {lessonId && (
               <Link
-                href={session.user ? `/watch/${id}/${lessonId}` : "/signin"}
+                href={session?.user ? `/watch/${id}/${lessonId}` : "/signin"}
                 className=""
               >
                 <button

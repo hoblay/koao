@@ -1,7 +1,5 @@
 "use client";
 import Tag from "@/app/components/Tag/Tag";
-import { authOptions } from "@/server/auth";
-import { db } from "@/server/db";
 import {
   IconCircleMinus,
   IconEdit,
@@ -14,14 +12,10 @@ import {
   IconTrash,
   IconUpload,
 } from "@tabler/icons-react";
-import Image from "next/image";
 import CreateChapter from "./_components/CreateChapter";
 import { Accordion } from "@/app/components/Accordion";
 import { trpc } from "@/app/_trpc/client";
 import Link from "next/link";
-import { FormProvider, useForm } from "react-hook-form";
-import { TCreateChaptersFront, CreateChapterFront } from "@/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
 import EditCourse from "./_components/EditCourse";
 import { useState } from "react";
 import AddImage from "./_components/AddImage";
