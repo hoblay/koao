@@ -2,7 +2,6 @@ import { serverClient } from "../_trpc/serverClient";
 import CourseSection from "./_components/CourseSection";
 
 import CourseHeading from "./_components/CourseHeading";
-import CategoryIcon from "../components/ClassContent/_components/CategoryIcon";
 import Link from "next/link";
 import Category from "./_components/Category";
 
