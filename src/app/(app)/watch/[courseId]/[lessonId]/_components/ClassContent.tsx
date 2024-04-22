@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Accordion } from "../Accordion";
 import { tv } from "tailwind-variants";
 import Link from "next/link";
 
@@ -11,8 +10,8 @@ import {
   IconPlayerPause,
   IconX,
 } from "@tabler/icons-react";
-import Course from "../Course";
-import CategoryIcon from "./_components/CategoryIcon";
+import { Accordion } from "@/app/components/Accordion";
+import CategoryIcon from "./CategoryIcon";
 
 const moduleCircle = tv({
   base: " w-9 h-9 rounded-full p-1 border-2 border-zinc-300 text-zinc-600 dark:text-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-[#1f1f1f] items-center justify-center",

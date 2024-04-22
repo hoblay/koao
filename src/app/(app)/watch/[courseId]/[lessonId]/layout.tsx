@@ -1,7 +1,7 @@
-import ClassContent from "@/app/components/ClassContent/ClassContent";
 import { serverClient } from "@/app/_trpc/serverClient";
 import { Card } from "@/app/components/Card";
 import { IconNotebook } from "@tabler/icons-react";
+import ClassContent from "./_components/ClassContent";
 type Lesson = {
   id: string;
   title: string;
