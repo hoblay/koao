@@ -1,7 +1,4 @@
 "use client";
-import { trpc } from "@/app/_trpc/client";
-import Course from "@/app/components/Course";
-import { Course as Coors } from "@prisma/client";
 import React from "react";
 import Slider from "react-slick";
 import Lesson from "./Lesson";
