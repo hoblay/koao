@@ -13,7 +13,7 @@ interface CategoryProps {
 function Category({ className, id, slug, name }: CategoryProps) {
   return (
     <Link href={`/${slug}`}>
-      <div className="relative flex py-10 px-20 min-w-[255.45px] min-h-[144px] bg-[#1a6f56] hover:bg-[#015F43]  dark:bg-[#00261b] dark:hover:bg-[#013928] transition-colors duration-300 ease-in-out rounded-xl shadow-xl">
+      <div className="relative flex py-10 px-20 min-w-[255.45px] min-h-[144px] bg-[#1a6f56] hover:bg-[#015F43]  dark:bg-[#00261b] dark:hover:bg-[#013928] rounded-xl shadow-xl">
         <div className="absolute top-0 left-0 p-4 justify-between font-semibold text-[#ccdfd9] dark:text-[#99bfb4] drop-shadow-2xl leading-none ">
           <CategoryIcon name={name} />
         </div>

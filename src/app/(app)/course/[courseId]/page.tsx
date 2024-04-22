@@ -48,18 +48,6 @@ export default function Home({ params }: { params: { courseId: string } }) {
       <div className="px-9 flex gap-4 justify-between">
         <div className="w-full max-w-[623px] space-y-4">
           <h2 className=" text-[17px] font-semibold flex gap-2 items-center">
-            Sobre o curso
-          </h2>
-          <Card.Root>
-            <Card.Body className="p-4">
-              <div className="flex flex-col gap-6">
-                <p className="text-base line-clamp-[8]">
-                  {course.data.description}
-                </p>
-              </div>
-            </Card.Body>
-          </Card.Root>
-          <h2 className=" text-[17px] font-semibold flex gap-2 items-center">
             Educador
           </h2>
           <div className="flex gap-4">
@@ -80,6 +68,18 @@ export default function Home({ params }: { params: { courseId: string } }) {
               </div>
             </div>
           </div>
+          <h2 className=" text-[17px] font-semibold flex gap-2 items-center">
+            Sobre o curso
+          </h2>
+          <Card.Root>
+            <Card.Body className="p-4">
+              <div className="flex flex-col gap-6">
+                <p className="text-base line-clamp-[8]">
+                  {course.data.description}
+                </p>
+              </div>
+            </Card.Body>
+          </Card.Root>
         </div>
       </div>
     </div>

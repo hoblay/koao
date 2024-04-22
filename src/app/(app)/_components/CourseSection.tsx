@@ -60,7 +60,9 @@ function CourseSection({
                 modules={course.chapters.length}
                 progress={0}
                 description={course.description}
-                category={course.category ? course.category.name : "Design"}
+                category={
+                  course.category ? course.category.name : "Sem categoria"
+                }
                 id={course.id}
               />
             ))}

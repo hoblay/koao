@@ -3,6 +3,7 @@ import { IconClock, IconNotebook, IconPresentation } from "@tabler/icons-react";
 import React from "react";
 import Link from "next/link";
 import CourseIcon from "./CourseIcon";
+import TagIcon from "@/app/components/Tag/TagIcon";
 interface CourseProps {
   className?: string;
   progress?: number;
@@ -81,8 +82,11 @@ function CourseHeading({
                 {description}
               </p>
               <div className="flex gap-2">
-                <Tag name={category} className="text-zinc-200" />
-                <div className="flex gap-1 items-center ">
+                <div className="flex gap-1 items-center max-h-[32px]">
+                  <div className="flex gap-1 items-center !text-xs">
+                    <TagIcon name={category} />
+                    <span className="text-xs ">{category} ·</span>
+                  </div>
                   <div className="flex gap-1">
                     <IconNotebook className="size-4 text-zinc-400" />
                     <span className="text-xs ">{modules} Modulos ·</span>
