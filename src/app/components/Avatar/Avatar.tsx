@@ -7,6 +7,8 @@ const AvatarStyle = tv({
   base: "inline-flex items-center justify-center   font-semibold leading-none rounded-full  select-none cursor-pointer object-cover hover:opacity-95",
   variants: {
     color: {
+      primary:
+        "bg-[#ccdfd9] dark:bg-[#00261b]/30 text-[#00261b]  dark:text-[#1a6f56]",
       purple:
         "bg-purple-100 text-purple-800 dark:bg-purple-800/30 dark:text-purple-500",
       green:
@@ -32,7 +34,7 @@ const AvatarStyle = tv({
     },
   },
   defaultVariants: {
-    color: "purple",
+    color: "primary",
     done: false,
     size: "md",
   },
@@ -74,7 +76,7 @@ function Avatar({ image, color, size, name }: AvatarProps) {
         initials?.toUpperCase()
       ) : (
         <IconUserFilled
-          className={"z-2 text-purple-800 dark:text-white rounded-full w-6 h-6"}
+          className={"z-2 text-[#00261b] dark:text-white rounded-full w-6 h-6"}
         />
       )}
     </span>

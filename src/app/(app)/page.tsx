@@ -3,6 +3,9 @@ import CourseSection from "./_components/CourseSection";
 
 import CourseHeading from "./_components/CourseHeading";
 import Category from "./_components/Category";
+import CourseInProgressSection from "./_components/CourseInProgressSection";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/server/auth";
 
 export default async function Home() {
   const courses = await serverClient.course.getAll();
@@ -12,6 +15,7 @@ export default async function Home() {
   if (!categories) return null;
   if (!recomended) return null;
   recomended.pop();
+  const session = await getServerSession(authOptions);
   return (
     <div className=" pt-[78px] flex flex-col gap-4">
       <CourseHeading
@@ -25,6 +29,13 @@ export default async function Home() {
         lessonId={courses[courses.length - 1].chapters[0].lessons[0].id}
         author={courses[courses.length - 1].author.name}
       />
+
+      {session?.user && (
+        <CourseInProgressSection
+          title="Cursos que você está fazendo"
+          courses={courses.toReversed()}
+        />
+      )}
       <div className="flex flex-col px-9 gap-4 ">
         <h2 className=" text-[17px] font-semibold flex gap-2 items-center">
           Pesquise por categoria
