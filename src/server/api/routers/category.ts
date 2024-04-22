@@ -62,6 +62,7 @@ export const categoryRouter = router({
           },
           include: {
             chapters: true,
+            category: true,
           },
         });
 

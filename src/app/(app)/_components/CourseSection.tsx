@@ -17,7 +17,7 @@ function CourseSection({
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
-    lazyLoad: true,
+
     responsive: [
       {
         breakpoint: 1024,
@@ -80,7 +80,9 @@ function CourseSection({
               modules={course.chapters.length}
               progress={0}
               description={course.description}
-              category={course.category ? course.category.name : "Design"}
+              category={
+                course.category ? course.category.name : "Sem categoria"
+              }
               id={course.id}
             />
           ))}

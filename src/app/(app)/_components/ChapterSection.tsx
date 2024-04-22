@@ -18,7 +18,7 @@ function ChapterSection({
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
-    lazyLoad: true,
+
     responsive: [
       {
         breakpoint: 1024,
