@@ -37,7 +37,7 @@ function CourseInProgress({
               <CourseIcon name={tag} />
             </Card.Body>
             <Card.Footer className=" px-2 flex dark:text-zinc-200 w-full items-center color-inherit subpixel-antialiased gap-3">
-              <div className="flex flex-col gap-3">
+              <div className="w-full flex flex-col gap-3">
                 <div className="flex flex-col gap-1.5">
                   <div className="text-left">
                     <span className=" line-clamp-1 text-sm text-zinc-950 dark:text-zinc-50">
@@ -58,7 +58,7 @@ function CourseInProgress({
                     </div>
                   </div>
 
-                  <div className="flex gap-1 justify-between items-center">
+                  <div className="flex w-full gap-1 justify-between items-center">
                     <div
                       className={` w-full bg-zinc-200 rounded dark:bg-[#1f1f1f] my-2`}
                     >

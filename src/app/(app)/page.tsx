@@ -35,7 +35,7 @@ export default async function Home() {
       <LastSeenSection title="Continua onde você deixou" courses={courses} />
       <CourseInProgressSection
         title="Cursos que você está fazendo"
-        courses={courses.toReversed()}
+        courses={courses}
       />
       <div className="flex flex-col px-9 gap-4 ">
         <h2 className=" text-[17px] font-semibold flex gap-2 items-center">
