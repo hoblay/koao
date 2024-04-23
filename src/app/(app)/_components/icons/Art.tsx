@@ -23,12 +23,9 @@ const Art = (props: SVGProps<SVGSVGElement>) => (
         textDecorationStyle: "solid",
         textDecorationColor: "#fff",
         textTransform: "none",
-        blockProgression: "tb",
         whiteSpace: "normal",
         isolation: "auto",
         mixBlendMode: "normal",
-        solidColor: "#fff",
-        solidOpacity: 1,
       }}
       transform="translate(136.64258 -280.3457)"
     />
