@@ -40,11 +40,11 @@ function CourseHeading({
         backgroundImage: `url(${image})`,
       }}
     >
-      <div className="absolute top-0 left-0 max-w-[350px]">
-        <div className="pl-10 pt-10 flex flex-col gap-4">
+      <div className="absolute top-0 left-0 max-w-[400px]">
+        <div className="pl-10 pt-10 flex flex-col gap-4 ">
           <CourseIcon name={tag} />
           <div color="flex">
-            <h2 className=" pr-20 text-zinc-100 text-xl font-semibold md:leading-[140%] line-clamp-3">
+            <h2 className=" pr-20 drop-shadow-2xl   text-zinc-100 text-xl font-semibold md:leading-[140%] line-clamp-3">
               {title}
             </h2>
           </div>

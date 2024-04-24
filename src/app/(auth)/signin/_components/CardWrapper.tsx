@@ -1,11 +1,9 @@
 import React, { ReactNode } from "react";
-import { Card } from "../Card";
 import {
   IconBrandGithubFilled,
   IconBrandGoogleFilled,
 } from "@tabler/icons-react";
-import Link from "next/link";
-import LogoIcon from "../Icons/Logo";
+import { Card } from "@/app/components/Card";
 
 interface CardWrapperProps {
   children?: ReactNode | ReactNode[];

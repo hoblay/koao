@@ -25,10 +25,10 @@ const Modal = () => {
 
       {openModal && (
         <div className="fixed top-0 left-0 w-full z-50 h-[100vh] bg-zinc-950/70 flex justify-center items-center">
-          <div className="relative px-5 w-[460px] h-[424px] flex flex-col justify-center items-center bg-zinc-100 dark:bg-[#1f1f1f] z-50 shadow-lg  rounded-xl">
+          <div className="relative px-5  h-[410px] flex flex-col justify-center items-center bg-zinc-100 dark:bg-[#1f1f1f] z-50 shadow-lg  rounded-xl">
             <Link
               href={"/"}
-              className="flex gap-2 items-center py-3 absolute top-8 "
+              className="flex gap-2 items-center py-3 absolute top-6 "
             >
               <LogoIcon width="34" height="22" className="#015F43" />
               <span

@@ -1,10 +1,10 @@
 import { Search } from "../components/Search/Index";
-import UserAvatar from "../components/UserAvatar";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import LogoIcon from "../components/Icons/Logo";
 import SignDialog from "./_components/SignDialog";
 import { authOptions } from "@/server/auth";
+import UserAvatar from "./_components/UserAvatar";
 
 export default async function AppLayout({
   children,

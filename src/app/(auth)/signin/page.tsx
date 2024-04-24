@@ -8,13 +8,13 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { Form } from "@/app/components/Form";
-import CardWrapper from "@/app/components/auth/CardWrapper";
 import { signIn } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { IconArrowRight, IconLoader3 } from "@tabler/icons-react";
 import { checkExistingUser } from "./actions";
 import { trpc } from "@/app/_trpc/client";
+import CardWrapper from "./_components/CardWrapper";
 
 export default function SignIn() {
   const [currentStep, setCurrentStep] = useState(0);
