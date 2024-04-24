@@ -25,7 +25,7 @@ const Modal = () => {
 
       {openModal && (
         <div className="fixed top-0 left-0 w-full z-50 h-[100vh] bg-zinc-950/70 flex justify-center items-center">
-          <div className="relative px-5 w-[470px] h-[434px] flex flex-col justify-center items-center bg-[#1f1f1f] z-50 shadow-lg  rounded-xl">
+          <div className="relative px-5 w-[460px] h-[424px] flex flex-col justify-center items-center bg-zinc-100 dark:bg-[#1f1f1f] z-50 shadow-lg  rounded-xl">
             <Link
               href={"/"}
               className="flex gap-2 items-center py-3 absolute top-8 "
@@ -38,10 +38,10 @@ const Modal = () => {
               </span>
             </Link>
             <span
-              className="p-2 rounded-full bg-[#363636] absolute top-4 left-4 cursor-pointer"
+              className="p-2 rounded-full bg-[#363636]/70 dark:bg-[#363636]  hover:bg-[#363636]/50  absolute top-4 left-4 cursor-pointer"
               onClick={handleModal}
             >
-              <IconX className="size-4" />
+              <IconX className="size-4 text-zinc-50" />
             </span>
             <div className="flex pt-12">
               <SignIn />

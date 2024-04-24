@@ -1,4 +1,5 @@
 "use client";
+import { IconAlertCircleFilled } from "@tabler/icons-react";
 import { useFormContext } from "react-hook-form";
 
 interface ErrorMessageProps {
@@ -32,7 +33,8 @@ export function FormErrorMessage({ field }: ErrorMessageProps) {
   }
 
   return (
-    <span className="  text-xs text-red-500 mt-1">
+    <span className="flex gap-1  text-xs text-red-500 mt-1 items-center ">
+      <IconAlertCircleFilled className="size-4" />
       {fieldError.message?.toString()}
     </span>
   );

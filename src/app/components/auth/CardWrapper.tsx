@@ -40,29 +40,29 @@ function CardWrapper({
                     : `Aguarde um instante ${name}`}
           </h1>
           {step === 1 && (
-            <p className="text-[.875rem] text-zinc-400">
+            <p className="text-[.875rem] text-zinc-500 dark:text-zinc-400">
               <span>Inicia sessão com a senha de </span>
               <b>{email}</b>
             </p>
           )}
           {step === 2 && (
-            <p className="text-[.875rem] text-zinc-400">
+            <p className="text-[.875rem] text-zinc-500 dark:text-zinc-400">
               Deve tener no minimo 10 caracteres.
             </p>
           )}
           {step === 3 && (
-            <p className="text-[.875rem] text-zinc-400">
+            <p className="text-[.875rem] text-zinc-500 dark:text-zinc-400">
               Escreve da maneira que vai aparecer nos certificados.
             </p>
           )}
           {step === 4 && (
-            <p className="text-[.875rem] text-zinc-400">
+            <p className="text-[.875rem] text-zinc-500 dark:text-zinc-400">
               Estamos a preparar tudo pra ti.
             </p>
           )}
         </div>
       </Card.Header>
-      <Card.Body className=" ">{children}</Card.Body>
+      <Card.Body className="py-2">{children}</Card.Body>
       {step === 0 && (
         <Card.Footer className="">
           <div className="items-center justify-center flex">

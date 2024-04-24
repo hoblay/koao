@@ -97,23 +97,30 @@ export default function SignIn() {
     }
   };
   const logInUser = async (data: TSignInSchema) => {
-    setLoading(true);
-    const signInData = await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      redirect: false,
-    });
+    if (!userPassword) {
+    } else {
+      setLoading(true);
+      const signInData = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      });
 
-    if (signInData?.error) console.error(signInData.error);
-    else {
-      setLoading(false);
-      setCurrentStep(4);
-      router.refresh();
-      if (pathname === "/signin") {
-        router.push("/");
+      if (signInData?.error) {
+        setLoading(false);
+        setError("password", {
+          message: "Email ou senha incorrectos. Tente novamente.",
+        });
+      } else {
+        setLoading(false);
+        setCurrentStep(4);
+        router.refresh();
+        if (pathname === "/signin") {
+          router.push("/");
+        }
+
+        reset();
       }
-
-      reset();
     }
   };
   const registerUser = async (data: TSignUpSchema) => {
@@ -136,7 +143,11 @@ export default function SignIn() {
           }
           reset();
         },
-        onError: () => console.error("something went wrong"),
+        onError: () => {
+          setError("password", {
+            message: "Email ou senha incorrectos. Tente novamente.",
+          });
+        },
       },
     );
     setLoading(false);

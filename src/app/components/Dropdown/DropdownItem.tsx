@@ -45,37 +45,65 @@ export default function DropdownItem({
   isDisabled,
   onClick,
 }: DropdownItemProps) {
-  return (
-    <Link
-      href={`${href ? href : "#"}`}
-      target={target}
-      className="flex gap-3"
-      onClick={onClick}
-    >
-      <li className={dropdownItemStyle({})}>
-        {startContent && (
-          <div className="dark:text-zinc-400 dark:group-hover:text-zinc-50 text-xl pointer-events-none flex-shrink-0">
-            {startContent}
-          </div>
-        )}
-        <div className="w-full flex-1 flex flex-col items-start justify-center overflow-x-hidden">
-          <span className="flex-1 text-sm truncate text-zinc-600 dark:text-zinc-300 dark:group-hover:text-zinc-50">
-            {title}
-          </span>
-          <span className="w-full text-xs text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-700 dark:group-hover:text-zinc-100 truncate text-start">
-            {description}
-          </span>
-        </div>
-
-        {endContent && endContent}
-        {shortcut && (
-          <div className="">
-            <span className="  px-1 py-0.5 rounded-md font-sans text-zinc-700 dark:text-zinc-500 text-xs bg-purple-300 dark:bg-zinc-800 group-hover:bg-purple-300 dark:group-hover:bg-zinc-400 group-hover:text-zinc-800">
-              ⌘T
+  if (href) {
+    return (
+      <Link
+        href={`${href ? href : "#"}`}
+        target={target}
+        className="flex gap-3"
+        onClick={onClick}
+      >
+        <li className={dropdownItemStyle({})} onClick={onClick}>
+          {startContent && (
+            <div className="dark:text-zinc-400 dark:group-hover:text-zinc-50 text-xl pointer-events-none flex-shrink-0">
+              {startContent}
+            </div>
+          )}
+          <div className="w-full flex-1 flex flex-col items-start justify-center overflow-x-hidden">
+            <span className="flex-1 text-sm truncate text-zinc-600 dark:text-zinc-300 dark:group-hover:text-zinc-50">
+              {title}
+            </span>
+            <span className="w-full text-xs text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-700 dark:group-hover:text-zinc-100 truncate text-start">
+              {description}
             </span>
           </div>
-        )}
-      </li>
-    </Link>
+
+          {endContent && endContent}
+          {shortcut && (
+            <div className="">
+              <span className="  px-1 py-0.5 rounded-md font-sans text-zinc-700 dark:text-zinc-500 text-xs bg-purple-300 dark:bg-zinc-800 group-hover:bg-purple-300 dark:group-hover:bg-zinc-400 group-hover:text-zinc-800">
+                ⌘T
+              </span>
+            </div>
+          )}
+        </li>
+      </Link>
+    );
+  }
+  return (
+    <li className={dropdownItemStyle({})} onClick={onClick}>
+      {startContent && (
+        <div className="dark:text-zinc-400 dark:group-hover:text-zinc-50 text-xl pointer-events-none flex-shrink-0">
+          {startContent}
+        </div>
+      )}
+      <div className="w-full flex-1 flex flex-col items-start justify-center overflow-x-hidden">
+        <span className="flex-1 text-sm truncate text-zinc-600 dark:text-zinc-300 dark:group-hover:text-zinc-50">
+          {title}
+        </span>
+        <span className="w-full text-xs text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-700 dark:group-hover:text-zinc-100 truncate text-start">
+          {description}
+        </span>
+      </div>
+
+      {endContent && endContent}
+      {shortcut && (
+        <div className="">
+          <span className="  px-1 py-0.5 rounded-md font-sans text-zinc-700 dark:text-zinc-500 text-xs bg-purple-300 dark:bg-zinc-800 group-hover:bg-purple-300 dark:group-hover:bg-zinc-400 group-hover:text-zinc-800">
+            ⌘T
+          </span>
+        </div>
+      )}
+    </li>
   );
 }
