@@ -66,7 +66,7 @@ function CardWrapper({
           <div className="items-center justify-center flex">
             <div className="relative flex py-5 items-center w-full">
               <div className="flex-grow border-t border-[#363636]"></div>
-              <span className="flex-shrink mx-4 text-zinc-400">
+              <span className="flex-shrink text-sm mx-4 text-zinc-500 dark:text-zinc-400">
                 Ou se preferir
               </span>
               <div className="flex-grow border-t border-[#363636]"></div>

@@ -38,10 +38,10 @@ const Modal = () => {
               </span>
             </Link>
             <span
-              className="p-2 rounded-full bg-[#363636]/70 dark:bg-[#363636]  hover:bg-[#363636]/50  absolute top-4 left-4 cursor-pointer"
+              className="p-2    absolute top-4 left-4 cursor-pointer"
               onClick={handleModal}
             >
-              <IconX className="size-4 text-zinc-50" />
+              <IconX className="size-6 text-[#1f1f1f] hover:opacity-80 dark:text-zinc-50" />
             </span>
             <div className="flex pt-12">
               <SignIn />
