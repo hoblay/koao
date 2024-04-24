@@ -27,7 +27,6 @@ export const userRouter = router({
           name,
           email,
           password: hashedPassword,
-          n,
         },
       });
 
