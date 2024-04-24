@@ -11,10 +11,10 @@ import {
   IconTrophyFilled,
 } from "@tabler/icons-react";
 import React, { useEffect, useState } from "react";
-import { Dropdown } from "./Dropdown";
 import Avatar from "@/app/components/Avatar/Avatar";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
+import { Dropdown } from "@/app/components/Dropdown";
 
 interface UserAvatarProps {
   user?: User;
