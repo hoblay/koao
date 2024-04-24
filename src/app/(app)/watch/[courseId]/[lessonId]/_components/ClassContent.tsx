@@ -301,7 +301,7 @@ function ClassContent({
             </div>
           </div>
           <div
-            className={`px-3 py-2  overscroll-x-none overscroll-y-none no-scrollbar overflow-hidden flex flex-col gap-1 ${!open && "hidden"}`}
+            className={`px-3 py-2 dark:bg-[#1f1f1f]/5 rounded-b-xl  overscroll-x-none overscroll-y-none no-scrollbar overflow-hidden flex flex-col gap-1 ${!open && "hidden"}`}
           >
             {course?.chapters?.map((chapter, index) => (
               <Accordion.Item

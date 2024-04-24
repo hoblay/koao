@@ -10,40 +10,76 @@ import LogoIcon from "../Icons/Logo";
 interface CardWrapperProps {
   children?: ReactNode | ReactNode[];
   headerLabel?: string;
-  backButonLabel?: string;
-  backButtonHref: string;
   showSocial?: boolean;
+  step?: number;
+  email?: string;
+  name?: string;
 }
 
 function CardWrapper({
   children,
   headerLabel,
-  backButonLabel,
-  backButtonHref,
   showSocial,
+  name,
+  email,
+  step,
 }: CardWrapperProps) {
   return (
-    <Card.Root className="max-w-[385px]" bg={false}>
-      <Card.Header className="flex flex-col gap-4 py-3">
-        <h1 className="text-3xl font-semibold">{headerLabel}</h1>
-        <p>Faça login ou registre-se para começar a aprender ainda hoje.</p>
+    <Card.Root className="w-[360px] p-6 " shadow="none" bg={false}>
+      <Card.Header className="flex flex-col gap-4 items-center text-center justify-center">
+        <Link href={"/"} className="flex gap-2 items-center py-3">
+          <LogoIcon width="38" height="26" className="#015F43" />
+          <span
+            className={` text-xl font-semibold text-zinc-700 dark:text-zinc-50 whitespace-nowrap`}
+          >
+            Logotipo
+          </span>
+        </Link>
+        <div className="flex flex-col gap-1">
+          <h1 className="text-lg font-semibold">
+            {step === 0
+              ? headerLabel
+              : step === 1
+                ? `Oi de novo, ${name}`
+                : step === 2
+                  ? "Crea una contraseña"
+                  : "Finalmente, Qual é o teu nome?"}
+          </h1>
+          {step === 1 && (
+            <p className="text-[.875rem] text-zinc-400">
+              <span>Inicia sessão com a senha de </span>
+              <b>{email}</b>
+            </p>
+          )}
+          {step === 2 && (
+            <p className="text-[.875rem] text-zinc-400">
+              Debe tener al menos 10 caracteres.
+            </p>
+          )}
+          {step === 3 && (
+            <p className="text-[.875rem] text-zinc-400">
+              Escreve da maneira que vai aparecer nos certificados.
+            </p>
+          )}
+        </div>
       </Card.Header>
-      <Card.Body className=" py-4">{children}</Card.Body>
-      <Card.Footer className="">
-        <div className="items-center justify-between mt-4 flex">
-          <div className="px-6">
-            <span className="flex text-center  ">Ou se preferir</span>
+      <Card.Body className=" ">{children}</Card.Body>
+      {step === 0 && (
+        <Card.Footer className="">
+          <div className="items-center justify-center flex">
+            <div className="relative flex py-5 items-center w-full">
+              <div className="flex-grow border-t border-[#363636]"></div>
+              <span className="flex-shrink mx-4 text-zinc-400">
+                Ou se preferir
+              </span>
+              <div className="flex-grow border-t border-[#363636]"></div>
+            </div>
           </div>
-          <button className="py-3 w-[60%] items-center justify-center bg-zinc-700 hover:bg-zinc-800 text-zinc-100 flex rounded-md">
-            <IconBrandGoogleFilled />
+          <button className="py-3 w-[100%] items-center justify-center bg-zinc-700 hover:bg-zinc-800 text-zinc-100 flex rounded-md">
+            <IconBrandGithubFilled />
           </button>
-        </div>
-        <div className=" mt-6">
-          <button>
-            <Link href={backButtonHref}>{backButonLabel}</Link>
-          </button>
-        </div>
-      </Card.Footer>
+        </Card.Footer>
+      )}
     </Card.Root>
   );
 }

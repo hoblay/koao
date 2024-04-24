@@ -50,17 +50,6 @@ export const SignUpSchema = z
       message: "A senha tem que ser maior a 6 carateres",
     }),
     confirmPassword: z.string(),
-    dateOfBirth: z
-      .string()
-      .refine((dob) => `${new Date(dob)}` !== "Invalid Date", {
-        message: "Por favor selecione uma data valida",
-      })
-      .transform((dob) => {
-        return new Date(dob);
-      }),
-    plan: z.enum(plans, {
-      errorMap: () => ({ message: "Por favor selecione um plano" }),
-    }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "As senhas devem ser identicas.",
