@@ -10,7 +10,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { Form } from "@/app/components/Form";
 import CardWrapper from "@/app/components/auth/CardWrapper";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { IconArrowRight, IconLoader3 } from "@tabler/icons-react";
 import { checkExistingUser } from "./actions";
@@ -22,6 +22,7 @@ export default function SignIn() {
   const [name, setName] = useState("");
   const router = useRouter();
   const createUser = trpc.user.create.useMutation();
+  const pathname = usePathname();
   const signInForm = useForm<TSignUpSchema>({
     resolver: zodResolver(SignUpSchema),
     defaultValues: {
@@ -108,7 +109,9 @@ export default function SignIn() {
       setLoading(false);
       setCurrentStep(4);
       router.refresh();
-      router.push("/");
+      if (pathname === "/signin") {
+        router.push("/");
+      }
 
       reset();
     }
@@ -127,7 +130,10 @@ export default function SignIn() {
 
           setLoading(false);
           setCurrentStep(4);
-          router.push("/");
+          router.refresh();
+          if (pathname === "/signin") {
+            router.push("/");
+          }
           reset();
         },
         onError: () => console.error("something went wrong"),
