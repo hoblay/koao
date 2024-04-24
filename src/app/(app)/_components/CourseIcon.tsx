@@ -20,7 +20,7 @@ import Flstudio from "./icons/Flstudio";
 import Art from "./icons/Art";
 
 const IconStyle = tv({
-  base: "size-24 drop-shadow-2xl",
+  base: "size-32 drop-shadow-2xl",
 });
 
 interface CourseIconProps {

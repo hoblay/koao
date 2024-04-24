@@ -35,7 +35,7 @@ function CourseHeading({
   const { data: session, status } = useSession();
   return (
     <div
-      className={`relative  flex-col items-start bg-zinc-950  dark:bg-grid-small-white/[0.2]  bg-dot-black/[0.2]  max-h-[503px] min-h-[500px]`}
+      className={`relative  flex-col items-start bg-zinc-950  dark:bg-grid-small-white/[0.2]  bg-dot-black/[0.2]  max-h-[503px] min-h-[450px]`}
       style={{
         backgroundImage: `url(${image})`,
       }}

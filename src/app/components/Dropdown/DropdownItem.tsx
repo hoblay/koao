@@ -99,7 +99,7 @@ export default function DropdownItem({
       {endContent && endContent}
       {shortcut && (
         <div className="">
-          <span className="  px-1 py-0.5 rounded-md font-sans text-zinc-700 dark:text-zinc-500 text-xs bg-purple-300 dark:bg-zinc-800 group-hover:bg-purple-300 dark:group-hover:bg-zinc-400 group-hover:text-zinc-800">
+          <span className="  px-1 py-0.5 rounded-md font-sans text-zinc-700 dark:text-zinc-500 text-xs bg-[#015f43]/40 dark:bg-zinc-800 group-hover:bg-[#015f43]/50 dark:group-hover:bg-zinc-400 group-hover:text-zinc-800">
             ⌘T
           </span>
         </div>
