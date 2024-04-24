@@ -34,7 +34,7 @@ function CardWrapper({
               : step === 1
                 ? `Oi de novo, ${name}`
                 : step === 2
-                  ? "Crea una contraseña"
+                  ? "Cria una palavra-passe"
                   : step === 3
                     ? "Finalmente, Qual é o teu nome?"
                     : `Aguarde um instante ${name}`}
@@ -47,7 +47,7 @@ function CardWrapper({
           )}
           {step === 2 && (
             <p className="text-[.875rem] text-zinc-400">
-              Debe tener al menos 10 caracteres.
+              Deve tener no minimo 10 caracteres.
             </p>
           )}
           {step === 3 && (
