@@ -25,16 +25,8 @@ function CardWrapper({
   step,
 }: CardWrapperProps) {
   return (
-    <Card.Root className="w-[360px] p-6 " shadow="none" bg={false}>
+    <Card.Root className="w-[360px] p-6" shadow="none" bg={false}>
       <Card.Header className="flex flex-col gap-4 items-center text-center justify-center">
-        <Link href={"/"} className="flex gap-2 items-center py-3">
-          <LogoIcon width="38" height="26" className="#015F43" />
-          <span
-            className={` text-xl font-semibold text-zinc-700 dark:text-zinc-50 whitespace-nowrap`}
-          >
-            Logotipo
-          </span>
-        </Link>
         <div className="flex flex-col gap-1">
           <h1 className="text-lg font-semibold">
             {step === 0
@@ -43,7 +35,9 @@ function CardWrapper({
                 ? `Oi de novo, ${name}`
                 : step === 2
                   ? "Crea una contraseña"
-                  : "Finalmente, Qual é o teu nome?"}
+                  : step === 3
+                    ? "Finalmente, Qual é o teu nome?"
+                    : `Aguarde um instante ${name}`}
           </h1>
           {step === 1 && (
             <p className="text-[.875rem] text-zinc-400">
@@ -59,6 +53,11 @@ function CardWrapper({
           {step === 3 && (
             <p className="text-[.875rem] text-zinc-400">
               Escreve da maneira que vai aparecer nos certificados.
+            </p>
+          )}
+          {step === 4 && (
+            <p className="text-[.875rem] text-zinc-400">
+              Estamos a preparar tudo pra ti.
             </p>
           )}
         </div>

@@ -14,10 +14,16 @@ export default function AuthLayout({
   const { data: session } = useSession();
   if (session) router.push("/");
   return (
-    <div className="relative flex justify-center items-center">
-      <main className="flex  items-center justify-center min-h-[100%] py-32">
-        {children}
-      </main>
+    <div className="relative flex flex-col justify-center items-center min-h-[100%] py-32">
+      <Link href={"/"} className="flex gap-2 items-center py-3">
+        <LogoIcon width="38" height="26" className="#015F43" />
+        <span
+          className={` text-xl font-semibold text-zinc-700 dark:text-zinc-50 whitespace-nowrap`}
+        >
+          Logotipo
+        </span>
+      </Link>
+      <main className="flex  items-center justify-center  ">{children}</main>
     </div>
   );
 }

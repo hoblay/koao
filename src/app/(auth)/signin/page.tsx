@@ -106,6 +106,7 @@ export default function SignIn() {
     if (signInData?.error) console.error(signInData.error);
     else {
       setLoading(false);
+      setCurrentStep(4);
       router.refresh();
       router.push("/");
 
@@ -125,12 +126,14 @@ export default function SignIn() {
           });
 
           setLoading(false);
+          setCurrentStep(4);
           router.push("/");
           reset();
         },
         onError: () => console.error("something went wrong"),
       },
     );
+    setLoading(false);
   };
 
   return (
