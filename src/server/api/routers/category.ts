@@ -1,10 +1,4 @@
-import {
-  CreateCategorySchema,
-  CreateChapterSchema,
-  CreateCourseSchema,
-  SignUpSchema,
-  TSignUpSchema,
-} from "@/schemas";
+import { CreateCategorySchema } from "@/schemas";
 import { publicProcedure, router } from "@/server/api/trpc";
 import { authOptions } from "@/server/auth";
 import { db } from "@/server/db";

@@ -78,7 +78,6 @@ export const lessonRouter = router({
     } catch (error) {}
   }),
   getById: publicProcedure.input(idSchema).query(async ({ input }) => {
-    const session = await getServerSession(authOptions);
     return await db.lesson.findUnique({
       where: {
         id: input,
