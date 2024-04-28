@@ -62,7 +62,7 @@ export default function ModalContent({
       })}
     >
       <div
-        className="relative px-5  h-[410px] flex flex-col justify-center items-center bg-zinc-100 dark:bg-[#1f1f1f] z-50 shadow-lg  rounded-xl"
+        className="relative px-5 py-5 flex flex-col justify-center items-center bg-zinc-100 dark:bg-[#1f1f1f] z-50 shadow-lg  rounded-xl"
         ref={modalRef}
       >
         <span

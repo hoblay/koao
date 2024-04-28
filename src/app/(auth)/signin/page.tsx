@@ -15,6 +15,7 @@ import { IconArrowRight, IconLoader3 } from "@tabler/icons-react";
 import { checkExistingUser } from "./actions";
 import { trpc } from "@/app/_trpc/client";
 import CardWrapper from "./_components/CardWrapper";
+import Button from "@/app/components/Button/Button";
 
 export default function SignIn() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -178,25 +179,23 @@ export default function SignIn() {
                 />
                 <Form.ErrorMessage field="email" />
               </Form.Field>
-              <button
-                type="button"
+              <Button
+                fullWidth
                 disabled={loading}
                 onClick={() => checkEmail()}
-                className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-[#015F43]  dark:bg-zinc-50 hover:bg-[#1f1f1f] text-zinc-50 dark:text-[#143229]  hover:text-white px-8 py-3 text-2xl w-full"
+                size="lg"
               >
-                <div className="flex flex-1 justify-center items-center gap-2">
-                  {loading ? (
-                    <IconLoader3 className=" animate-spin text-zinc-200/60 dark:text-[#1f1f1f]" />
-                  ) : (
-                    <>
-                      <span className="text-base leading-6 text-nowrap">
-                        Continuar
-                      </span>
-                      <IconArrowRight />
-                    </>
-                  )}
-                </div>
-              </button>
+                {loading ? (
+                  <IconLoader3 className=" animate-spin text-zinc-200/60 dark:text-[#1f1f1f]" />
+                ) : (
+                  <>
+                    <span className="text-base leading-6 text-nowrap">
+                      Continuar
+                    </span>
+                    <IconArrowRight />
+                  </>
+                )}
+              </Button>
             </>
           )}
 

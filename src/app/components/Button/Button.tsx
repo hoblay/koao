@@ -14,15 +14,19 @@ const buttonStyle = tv({
       true: "w-full",
     },
     color: {
-      white: " bg-zinc-50  hover:bg-[#1f1f1f] text-[#143229] hover:text-white",
+      white: " bg-zinc-50   text-[#143229] ",
       green:
         "bg-[#143229] text-white dark:bg-zinc-50  dark:hover:bg-[#1f1f1f] dark:text-[#143229] dark:hover:text-white",
+    },
+    hoverable: {
+      true: "hover:bg-[#1f1f1f] hover:text-white",
     },
   },
   defaultVariants: {
     size: "md",
     color: "white",
     fullWidth: false,
+    hoverable: false,
   },
 });
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -30,6 +34,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: "xs" | "sm" | "md" | "lg" | "xl";
   subtitle?: string;
   fullWidth?: boolean;
+  hoverable?: boolean;
+  color?: "white" | "green";
 }
 
 function Button(props: ButtonProps) {
@@ -42,6 +48,8 @@ function Button(props: ButtonProps) {
           className={buttonStyle({
             size: props.size,
             fullWidth: props.fullWidth,
+            hoverable: props.hoverable,
+            color: props.color,
           })}
         >
           <div className="flex flex-1 justify-center items-center gap-2">
