@@ -33,11 +33,14 @@ export default async function Home() {
         lessonId={courses[courses.length - 1].chapters[0].lessons[0].id}
         author={courses[courses.length - 1].author.name}
       />
-      <LastSeenSection title="Continua onde você deixou" courses={courses} />
-      <CourseInProgressSection
-        title="Cursos que você está fazendo"
-        courses={courses}
-      />
+      {session?.user && (
+        <>
+          <LastSeenSection title="Continua onde você deixou" />
+
+          <CourseInProgressSection title="Cursos que você está fazendo" />
+        </>
+      )}
+
       <Section.Root divider>
         <Section.Title>Pesquise por categoria</Section.Title>
 

@@ -4,21 +4,22 @@ import { IconPlayerPlayFilled } from "@tabler/icons-react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { trpc } from "@/app/_trpc/client";
 
 function LastSeenSection({
-  courses,
   title,
   sliderOff,
 }: {
-  courses: any[];
   title: string;
   sliderOff?: boolean;
 }) {
   const { data: session, status } = useSession();
 
-  if (!session?.user) {
+  const lastSeen = trpc.lesson.getLastWatch.useQuery();
+  if (!session?.user || !lastSeen.data) {
     return null;
   }
+
   const settings = {
     infinite: true,
     speed: 500,
@@ -57,16 +58,16 @@ function LastSeenSection({
         {title}
       </h2>
       <div className="grid grid-cols-5 gap-4 border-[#1f1f1f]/10 dark:border-[#363636] border-b-2 pb-6">
-        {courses.map(
-          (course, index) =>
-            course?.chapters[0]?.lessons[0] && (
+        {lastSeen.data.map(
+          (lesson, index) =>
+            lesson && (
               <Link
-                key={course.id}
-                href={`/watch/${course.id}/${course.chapters[0].lessons[0].id}`}
+                key={lesson.id}
+                href={`/watch/${lesson.chapter.course.id}/${lesson.id}`}
               >
                 <div className="relative">
                   <Image
-                    src={course.imageUrl}
+                    src={lesson.chapter.course.imageUrl}
                     className="object-cover rounded-xl w-full min-h-[100%]"
                     alt="course"
                     width={311}

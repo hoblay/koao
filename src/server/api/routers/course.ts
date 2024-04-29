@@ -229,4 +229,32 @@ export const courseRouter = router({
       },
     });
   }),
+  getLastWatch: publicProcedure.query(async () => {
+    try {
+      const session = await getServerSession(authOptions);
+      if (!session?.user) return null;
+      const courses = await db.course.findMany({
+        where: {
+          chapters: {
+            some: {
+              lessons: {
+                some: {
+                  userProgress: {
+                    some: {
+                      userId: session.user.id,
+                      isCompleted: false,
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        include: {
+          chapters: true,
+        },
+      });
+      return courses;
+    } catch (error) {}
+  }),
 });

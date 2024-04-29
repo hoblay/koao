@@ -54,7 +54,6 @@ export const lessonRouter = router({
           description,
         },
       });
-      console.log(chapter);
       return chapter;
     } catch (error) {
       return NextResponse.json(
@@ -98,6 +97,13 @@ export const lessonRouter = router({
           },
         },
         video: true,
+        userProgress: {
+          select: {
+            isCompleted: true,
+            lessonId: true,
+            userId: true,
+          },
+        },
       },
     });
   }),
@@ -147,5 +153,69 @@ export const lessonRouter = router({
         id: input,
       },
     });
+  }),
+  enroll: publicProcedure.input(idSchema).mutation(async ({ input }) => {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) return null;
+    const progress = await db.userProgress.create({
+      data: {
+        userId: session.user.id,
+        lessonId: input,
+      },
+    });
+    return progress;
+  }),
+
+  complete: publicProcedure.input(idSchema).mutation(async ({ input }) => {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) return null;
+
+    const progress = await db.userProgress.findFirst({
+      where: {
+        lessonId: input,
+        userId: session.user.id,
+      },
+    });
+
+    const completedProgress = await db.userProgress.update({
+      where: {
+        id: progress?.id,
+      },
+      data: {
+        isCompleted: true,
+      },
+    });
+    return completedProgress;
+  }),
+  getLastWatch: publicProcedure.query(async () => {
+    try {
+      const session = await getServerSession(authOptions);
+      if (!session?.user) return null;
+      const lessons = await db.lesson.findMany({
+        where: {
+          userProgress: {
+            some: {
+              userId: session.user.id,
+              isCompleted: false,
+            },
+          },
+        },
+        include: {
+          chapter: {
+            select: {
+              course: {
+                select: {
+                  imageUrl: true,
+                  title: true,
+                  id: true,
+                },
+              },
+            },
+          },
+        },
+      });
+
+      return lessons;
+    } catch (error) {}
   }),
 });

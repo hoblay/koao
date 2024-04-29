@@ -4,6 +4,7 @@ import Avatar from "@/app/components/Avatar/Avatar";
 import { Card } from "@/app/components/Card";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import ReactPlayer from "react-player";
 
 type Chapter = {
@@ -34,6 +35,10 @@ export default function ClassPage({
 }) {
   const router = useRouter();
   const lesson = trpc.lesson.getById.useQuery(params.lessonId);
+  const progress = trpc.lesson.enroll.useMutation();
+  const progressComplete = trpc.lesson.complete.useMutation();
+  const lastSeen = trpc.lesson.getLastWatch.useQuery();
+  const userCourses = trpc.course.getLastWatch.useQuery();
 
   const getNextLesson = (lesson: any) => {
     let nLesson = lesson;
@@ -49,9 +54,34 @@ export default function ClassPage({
     });
     return nLesson;
   };
+
+  useEffect(() => {
+    const enroll = () => {
+      if (!lesson.data?.userProgress) {
+        progress.mutate(params.lessonId, {
+          onSettled: () => {
+            lastSeen.refetch();
+            userCourses.refetch();
+          },
+        });
+      }
+    };
+    enroll();
+  }, [lesson.data?.userProgress, progress, params.lessonId, lastSeen]);
   if (!lesson.data) {
     return null;
   }
+  const nextLesson = () => {
+    progressComplete.mutate(params.lessonId);
+    if (!lesson.data) {
+      return null;
+    }
+    getNextLesson(lesson.data) &&
+      router.push(
+        `/watch/${lesson.data.chapter.course.id}/${getNextLesson(lesson.data).id}`,
+      );
+  };
+
   return (
     <div className="">
       <div className="flex relative rounded-2xl bg-zinc-950 w-[883px] h-[496.6875px] overflow-hidden ">
@@ -93,18 +123,15 @@ export default function ClassPage({
             </div>
             <div className="flex">
               {getNextLesson(lesson.data) && (
-                <Link
-                  href={`/watch/${lesson.data.chapter.course.id}/${getNextLesson(lesson.data).id}`}
+                <button
+                  type="button"
+                  onClick={nextLesson}
+                  className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-[#015F43] hover:bg-[#143229] text-white px-4 py-2 text-sm"
                 >
-                  <button
-                    type="button"
-                    className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-[#015F43] hover:bg-[#143229] text-white px-4 py-2 text-sm"
-                  >
-                    <div className="flex flex-1 justify-center items-center gap-2">
-                      <span className="text-base leading-6">Proxima aula</span>
-                    </div>
-                  </button>
-                </Link>
+                  <div className="flex flex-1 justify-center items-center gap-2">
+                    <span className="text-base leading-6">Proxima aula</span>
+                  </div>
+                </button>
               )}
             </div>
           </div>

@@ -3,19 +3,20 @@ import React from "react";
 import Slider from "react-slick";
 import CourseInProgress from "./CourseInProgress";
 import { useSession } from "next-auth/react";
+import { trpc } from "@/app/_trpc/client";
 
 function CourseInProgressSection({
-  courses,
   title,
   sliderOff,
 }: {
-  courses: any[];
   title: string;
   sliderOff?: boolean;
 }) {
   const { data: session, status } = useSession();
 
-  if (!session?.user) {
+  const userCourses = trpc.course.getLastWatch.useQuery();
+  const courses = userCourses.data;
+  if (!session?.user || !courses) {
     return null;
   }
   const settings = {
