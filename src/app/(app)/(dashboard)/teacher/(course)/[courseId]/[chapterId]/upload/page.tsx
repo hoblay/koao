@@ -102,13 +102,13 @@ export default function Home({
   };
 
   return (
-    <div className="px-24 py-8 border-t border-t-zinc-900">
-      <div className="flex items-center justify-between border-b border-b-zinc-900 py-4 px-4">
+    <div className="px-24 py-8 border-t border-[#1f1f1f]/10 dark:border-[#363636]">
+      <div className="flex items-center justify-between border-b border-[#1f1f1f]/10 dark:border-[#363636] py-4 px-4">
         <Breadcrumb.Root
           courseId={params.courseId}
           chapterId={params.chapterId}
         />
-        <div className="flex gap-1.5 pl-3 border-l border-l-zinc-900">
+        <div className="flex gap-1.5 pl-3 border-l border-[#1f1f1f]/10 dark:border-[#363636]">
           <button onClick={() => setFiles([])}>
             <Tag
               name="Apagar tudo"

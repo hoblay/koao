@@ -38,7 +38,7 @@ function Lesson({
   return (
     <div className="mr-4 max-w-[100hh]">
       <Link href={`/watch/${courseId}/${id}`} className="mr-4 ">
-        <Card.Root rounded="none" bg={false}>
+        <Card.Root rounded="none" bg={false} shadow="none">
           <Card.Header className="">
             <Image
               src={courseImage}

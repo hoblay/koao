@@ -34,7 +34,7 @@ export default function Home() {
   };
 
   return (
-    <div className="px-9 border-t border-t-zinc-900">
+    <div className="px-9 border-t border-[#1f1f1f]/10 dark:border-[#363636]">
       <div className="md:px-16 py-8">
         <div className="flex gap-3">
           <h2 className="text-xl">Cursos</h2>
@@ -57,7 +57,7 @@ export default function Home() {
           ></div>
 
           <div
-            className={`z-40 fixed  w-full top-0 right-0 p-8 h-[100vh] bg-[#080808] border-r border-r-zinc-800 md:max-w-[421px] transition-all duration-500 transform ${modalOpen ? "translate-x-0" : "translate-x-full"}`}
+            className={`z-40 fixed  w-full top-0 right-0 p-8 h-[100vh] bg-[#1f1f1f] border-r border-r-zinc-800 md:max-w-[421px] transition-all duration-500 transform ${modalOpen ? "translate-x-0" : "translate-x-full"}`}
           >
             <FormProvider {...createCourseForm}>
               <form onSubmit={handleSubmit(onSubmit)}>

@@ -32,7 +32,7 @@ function Course({
   return (
     <div className="mr-4">
       <Link href={`/course/${id}`} className="mr-4 ">
-        <Card.Root rounded="none" bg={false}>
+        <Card.Root rounded="none" bg={false} shadow="none">
           <Card.Header className="">
             <Image
               src={img}

@@ -35,9 +35,10 @@ function Courses() {
       {courses?.data?.map((course) => (
         <Card.Root
           key={course.id}
-          className="min-h-[206px] w-full border border-zinc-900 bg-zinc-900/70 rounded-2xl justify-between flex flex-col"
+          bg={false}
+          className="min-h-[206px] w-full border border-[#363636] bg-[#363636]/70 rounded-2xl justify-between flex flex-col"
         >
-          <Card.Body className="dark:bg-zinc-900 p-5 rounded-2xl rounded-b-none flex items-start justify-between gap-3">
+          <Card.Body className=" p-5 rounded-2xl rounded-b-none flex items-start justify-between gap-3">
             <div className="flex flex-col gap-2 overflow-x-hidden">
               <Link href={`/teacher/${course.id}`}>
                 <h4>{course.title}</h4>
@@ -49,7 +50,7 @@ function Courses() {
             </div>
             <Dropdown.Root>
               <Dropdown.Trigger>
-                <button className="p-2 border-zinc-800 border rounded-xl hover:bg-zinc-800/10">
+                <button className="p-2 border-[#363636] border rounded-xl hover:bg-[#363636]">
                   <IconDots />
                 </button>
               </Dropdown.Trigger>
@@ -77,7 +78,7 @@ function Courses() {
               </Dropdown.Menu>
             </Dropdown.Root>
           </Card.Body>
-          <Card.Footer className="flex py-4 px-5 max-h-[56px] bg-zinc-950/40 rounded-b-2xl">
+          <Card.Footer className="flex py-4 px-5 max-h-[56px] bg-[#1f1f1f]/40 rounded-b-2xl">
             <div className="flex">
               <div className="flex items-center space-x-2 relative ">
                 <Avatar
