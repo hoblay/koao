@@ -7,12 +7,13 @@ import CourseInProgressSection from "./_components/CourseInProgressSection";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/server/auth";
 import Image from "next/image";
-import { IconPlayerPlayFilled } from "@tabler/icons-react";
 import LastSeenSection from "./_components/LastSeenSection";
 import { Section } from "../components/Section";
 
 export default async function Home() {
   const courses = await serverClient.course.getAll();
+  const lastSeen = await serverClient.lesson.getLastWatch();
+  const userCourses = await serverClient.course.getLastWatch();
   if (!courses) return null;
   const recomended = await serverClient.course.getAll();
   const categories = await serverClient.category.getAll();
@@ -35,12 +36,14 @@ export default async function Home() {
       />
       {session?.user && (
         <>
-          <LastSeenSection title="Continua onde você deixou" />
-
-          <CourseInProgressSection title="Cursos que você está fazendo" />
+          {lastSeen?.length && (
+            <LastSeenSection title="Continua onde você deixou" />
+          )}
+          {userCourses?.length && (
+            <CourseInProgressSection title="Cursos que você está fazendo" />
+          )}
         </>
       )}
-
       <Section.Root divider>
         <Section.Title>Pesquise por categoria</Section.Title>
 

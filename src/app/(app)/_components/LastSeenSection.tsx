@@ -16,7 +16,7 @@ function LastSeenSection({
   const { data: session, status } = useSession();
 
   const lastSeen = trpc.lesson.getLastWatch.useQuery();
-  if (!session?.user || !lastSeen.data) {
+  if (!session?.user || !lastSeen.data?.length) {
     return null;
   }
 

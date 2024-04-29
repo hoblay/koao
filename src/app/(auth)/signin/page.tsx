@@ -48,7 +48,7 @@ export default function SignIn() {
   const checkEmail = async () => {
     setLoading(true);
     if (email && email.length > 3) {
-      const existingUser = await checkExistingUser(email);
+      const existingUser = await checkExistingUser(email.toLowerCase());
       if (existingUser) setName(`${existingUser?.name}`);
       setLoading(false);
       existingUser ? setCurrentStep(1) : setCurrentStep(2);
@@ -102,7 +102,7 @@ export default function SignIn() {
     } else {
       setLoading(true);
       const signInData = await signIn("credentials", {
-        email: data.email,
+        email: data.email.toLowerCase(),
         password: data.password,
         redirect: false,
       });

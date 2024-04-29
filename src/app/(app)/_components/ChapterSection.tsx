@@ -18,6 +18,9 @@ function ChapterSection({
   title: string;
   tag?: string | null;
 }) {
+  if (!lessons.length) {
+    return null;
+  }
   const settings = {
     speed: 500,
     slidesToShow: 5,

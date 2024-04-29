@@ -192,6 +192,9 @@ export const lessonRouter = router({
       const session = await getServerSession(authOptions);
       if (!session?.user) return null;
       const lessons = await db.lesson.findMany({
+        orderBy: {
+          updatedAt: "desc",
+        },
         where: {
           userProgress: {
             some: {
@@ -218,4 +221,40 @@ export const lessonRouter = router({
       return lessons;
     } catch (error) {}
   }),
+  getLastWatchByCourse: publicProcedure
+    .input(idSchema)
+    .query(async ({ input }) => {
+      try {
+        const session = await getServerSession(authOptions);
+        if (!session?.user) return null;
+        const lessons = await db.lesson.findFirst({
+          where: {
+            userProgress: {
+              some: {
+                userId: session.user.id,
+                isCompleted: false,
+              },
+            },
+            chapter: {
+              courseId: input,
+            },
+          },
+          include: {
+            chapter: {
+              select: {
+                course: {
+                  select: {
+                    imageUrl: true,
+                    title: true,
+                    id: true,
+                  },
+                },
+              },
+            },
+          },
+        });
+
+        return lessons;
+      } catch (error) {}
+    }),
 });

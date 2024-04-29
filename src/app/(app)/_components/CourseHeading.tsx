@@ -9,6 +9,7 @@ import { Modal } from "@/app/components/Modal";
 import Button from "@/app/components/Button/Button";
 import LogoIcon from "@/app/components/Icons/Logo";
 import SignIn from "@/app/(auth)/signin/page";
+import { trpc } from "@/app/_trpc/client";
 interface CourseProps {
   className?: string;
   progress?: number;
@@ -37,6 +38,8 @@ function CourseHeading({
   category,
 }: CourseProps) {
   const { data: session, status } = useSession();
+
+  const lastSeen = trpc.lesson.getLastWatchByCourse.useQuery(id);
   return (
     <div
       className={`relative  flex-col items-start bg-zinc-950  dark:bg-grid-small-white/[0.2]  bg-dot-black/[0.2]  max-h-[503px] min-h-[450px]`}
@@ -57,15 +60,28 @@ function CourseHeading({
       <div className="absolute bottom-0 backdrop-blur-md left-0 px-10 pb-10 pt-6 space-y-2 max-w-[100%]">
         <div className="flex gap-10">
           <div className="flex flex-col gap-2 w-full">
-            {lessonId && (
+            {lastSeen.data ? (
               <Link
-                href={session?.user ? `/watch/${id}/${lessonId}` : "/signin"}
+                href={
+                  session?.user ? `/watch/${id}/${lastSeen.data.id}` : "/signin"
+                }
                 className=""
               >
                 <Button size="lg" fullWidth className="py-3">
-                  <span className="text-base">Começar a assistir</span>
+                  <span className="text-base">Continuar a assistir</span>
                 </Button>
               </Link>
+            ) : (
+              lessonId && (
+                <Link
+                  href={session?.user ? `/watch/${id}/${lessonId}` : "/signin"}
+                  className=""
+                >
+                  <Button size="lg" fullWidth className="py-3">
+                    <span className="text-base">Começar a assistir</span>
+                  </Button>
+                </Link>
+              )
             )}
             <Button size="lg" fullWidth className="py-3">
               <span className="text-base">Guardar na minha lista</span>

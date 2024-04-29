@@ -16,7 +16,7 @@ function CourseInProgressSection({
 
   const userCourses = trpc.course.getLastWatch.useQuery();
   const courses = userCourses.data;
-  if (!session?.user || !courses) {
+  if (!session?.user || !courses?.length) {
     return null;
   }
   const settings = {
