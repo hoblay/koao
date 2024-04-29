@@ -33,7 +33,7 @@ export default function Home({ params }: { params: { courseId: string } }) {
             key={chapter.id}
             tag={course.data?.tag}
             courseId={course.data?.id}
-            courseImage={course.data?.imageUrl || course.data?.cover}
+            courseImage={course?.data?.imageUrl || course?.data?.cover || ""}
             category={course.data?.category?.name}
           />
         ))}
