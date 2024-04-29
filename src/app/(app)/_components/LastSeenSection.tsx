@@ -67,7 +67,7 @@ function LastSeenSection({
               >
                 <div className="relative">
                   <Image
-                    src={lesson.chapter.course.imageUrl}
+                    src={lesson.chapter.course.imageUrl || ""}
                     className="object-cover rounded-xl w-full min-h-[100%]"
                     alt="course"
                     width={311}

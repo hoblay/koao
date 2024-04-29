@@ -67,7 +67,13 @@ export default function ClassPage({
       }
     };
     enroll();
-  }, [lesson.data?.userProgress, progress, params.lessonId, lastSeen]);
+  }, [
+    lesson.data?.userProgress,
+    progress,
+    params.lessonId,
+    lastSeen,
+    userCourses,
+  ]);
   if (!lesson.data) {
     return null;
   }
