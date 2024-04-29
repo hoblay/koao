@@ -56,7 +56,7 @@ function CourseInProgressSection({
       <h2 className=" text-[17px] font-semibold flex gap-2 items-center">
         {title}
       </h2>
-      {!sliderOff ? (
+      {!sliderOff && courses.length > 6 ? (
         <div className="border-[#1f1f1f]/10 dark:border-[#363636] border-b-2">
           <Slider {...settings}>
             {courses.map((course, index) => (
@@ -75,7 +75,7 @@ function CourseInProgressSection({
           </Slider>
         </div>
       ) : (
-        <div className="grid grid-cols-4 border-[#1f1f1f]/10 dark:border-[#363636] border-b-2">
+        <div className="grid grid-cols-3 border-[#1f1f1f]/10 dark:border-[#363636] border-b-2">
           {courses.map((course, index) => (
             <CourseInProgress
               key={course.id}
