@@ -48,9 +48,7 @@ export default function ModalContent({
 }: ModalContentProps) {
   const context = useContext(ModalContext);
   const modalRef = useRef<HTMLDivElement | null>(null);
-  useOnOutsideClick(modalRef, () => {
-    if (context?.isModalOpen) context.closeModal();
-  });
+  useOnOutsideClick(modalRef, () => {});
   if (!context) return null;
   if (!context.isModalOpen) null;
 

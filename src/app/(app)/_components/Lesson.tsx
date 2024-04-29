@@ -5,22 +5,29 @@ import { IconClock } from "@tabler/icons-react";
 import CourseIcon from "./CourseIcon";
 import { Card } from "@/app/components/Card";
 import { formatSecondsToMinutes } from "@/utils/format-seconds";
+import Image from "next/image";
 
 interface LessonProps {
   className?: string;
   progress?: number;
   tag?: string | null;
   title: string;
+  category?: string;
   description: string | null;
   courseId?: string | null;
+  courseImage: string;
   duration?: number | null;
   id: string;
+  index: number;
 }
 
 function Lesson({
   className,
+  category,
   courseId,
+  courseImage,
   id,
+  index,
   progress,
   tag,
   duration,
@@ -31,38 +38,35 @@ function Lesson({
   return (
     <div className="mr-4 max-w-[100hh]">
       <Link href={`/watch/${courseId}/${id}`} className="mr-4 ">
-        <Card.Root>
-          <div className="flex p-2 gap-2.5">
-            <Card.Body className="max-w-24 p-1.5 max-h-24 flex w-full items-center color-inherit subpixel-antialiased gap-3 ">
-              <CourseIcon name={tag} />
-            </Card.Body>
-            <Card.Footer className=" flex dark:text-zinc-200 w-full items-center color-inherit subpixel-antialiased gap-3">
-              <div className="flex flex-col gap-3">
-                <div className="flex flex-col gap-1">
-                  <div className="text-left">
-                    <span className=" line-clamp-1 text-sm text-zinc-950 dark:text-zinc-50">
-                      {title}
-                    </span>
-                  </div>
-
-                  <p className=" line-clamp-2 text-xs dark:text-zinc-400">
-                    Este curso é um treinamento que visa ensinar os aspectos
-                    básicos e avançados do Photoshop para pessoas que não têm
-                    conhecimento prévio sobre o software de edição de imagens. O
-                    curso aborda técnicas e práticas para criar e editar imagens
-                    de alta qualidade. Além disso, o treinamento oferece
-                    conhecimentos teóricos e práticos sobre os diferentes
-                  </p>
-                  <div className="flex gap-1">
-                    <IconClock className="size-4 text-zinc-500 dark:text-zinc-400" />
-                    <span className="text-xs">
-                      {duration && formatSecondsToMinutes(duration)}
-                    </span>
-                  </div>
+        <Card.Root rounded="none" bg={false}>
+          <Card.Header className="">
+            <Image
+              src={courseImage}
+              className="object-cover rounded-xl w-full md:max-h-[182.812px] h-[100%]"
+              alt="course"
+              width={311}
+              height={182.812}
+              style={{ objectFit: "cover" }}
+              unoptimized
+            />
+          </Card.Header>
+          <Card.Body className="py-1 h-auto flex w-full items-center color-inherit subpixel-antialiased gap-3">
+            <div className="flex flex-col gap-1">
+              <div className="text-left flex gap-3 justify-center items-center">
+                <span className="text-5xl   font-bold text-zinc-700 dark:text-zinc-300">
+                  {index}
+                </span>
+                <div>
+                  <span className=" line-clamp-1 text-sm text-zinc-950 dark:text-zinc-50">
+                    {title}
+                  </span>
+                  <span className=" line-clamp-1 text-sm text-zinc-500 dark:text-zinc-400">
+                    2024 · {category}
+                  </span>
                 </div>
               </div>
-            </Card.Footer>
-          </div>
+            </div>
+          </Card.Body>
         </Card.Root>
       </Link>
     </div>

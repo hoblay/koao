@@ -5,6 +5,10 @@ import Link from "next/link";
 import CourseIcon from "./CourseIcon";
 import TagIcon from "@/app/components/Tag/TagIcon";
 import { useSession } from "next-auth/react";
+import { Modal } from "@/app/components/Modal";
+import Button from "@/app/components/Button/Button";
+import LogoIcon from "@/app/components/Icons/Logo";
+import SignIn from "@/app/(auth)/signin/page";
 interface CourseProps {
   className?: string;
   progress?: number;
@@ -52,34 +56,20 @@ function CourseHeading({
       </div>
       <div className="absolute bottom-0 backdrop-blur-md left-0 px-10 pb-10 pt-6 space-y-2 max-w-[100%]">
         <div className="flex gap-10">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 w-full">
             {lessonId && (
               <Link
                 href={session?.user ? `/watch/${id}/${lessonId}` : "/signin"}
                 className=""
               >
-                <button
-                  type="button"
-                  className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-zinc-50 hover:bg-[#1f1f1f] text-[#143229]  hover:text-white px-8 py-3 text-2xl w-full"
-                >
-                  <div className="flex flex-1 justify-center items-center gap-2">
-                    <span className="text-base leading-6 text-nowrap">
-                      Começar a assistir
-                    </span>
-                  </div>
-                </button>
+                <Button size="lg" fullWidth className="py-3">
+                  <span className="text-base">Começar a assistir</span>
+                </Button>
               </Link>
             )}
-            <button
-              type="button"
-              className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-zinc-50 hover:bg-[#1f1f1f] text-[#143229]  hover:text-white px-8 py-3 text-2xl w-full"
-            >
-              <div className="flex flex-1 justify-center items-center gap-2">
-                <span className="text-base leading-6 text-nowrap">
-                  Guardar na minha lista
-                </span>
-              </div>
-            </button>
+            <Button size="lg" fullWidth className="py-3">
+              <span className="text-base">Guardar na minha lista</span>
+            </Button>
           </div>
           <div className="flex gap-4">
             <div className="flex flex-col gap-4 text-zinc-200 ">

@@ -9,6 +9,7 @@ import { authOptions } from "@/server/auth";
 import Image from "next/image";
 import { IconPlayerPlayFilled } from "@tabler/icons-react";
 import LastSeenSection from "./_components/LastSeenSection";
+import { Section } from "../components/Section";
 
 export default async function Home() {
   const courses = await serverClient.course.getAll();
@@ -37,22 +38,29 @@ export default async function Home() {
         title="Cursos que você está fazendo"
         courses={courses}
       />
-      <div className="flex flex-col px-9 gap-4 ">
-        <h2 className=" text-[17px] font-semibold flex gap-2 items-center">
-          Pesquise por categoria
-        </h2>
-        <div className="flex gap-4 border-[#1f1f1f]/10 dark:border-[#363636] border-b-2 pb-6">
-          {categories.map((category, index) => (
-            <Category
-              name={category.name}
-              slug={category.slug}
-              id={category.id}
-              key={category.id}
-            />
-          ))}
-        </div>
-      </div>
-      <CourseSection title="Cursos recomendados" courses={recomended} />
+      <Section.Root divider>
+        <Section.Title>Pesquise por categoria</Section.Title>
+
+        <Section.Content>
+          <div className="flex gap-4 ">
+            {categories.map((category, index) => (
+              <Category
+                name={category.name}
+                slug={category.slug}
+                id={category.id}
+                key={category.id}
+              />
+            ))}
+          </div>
+        </Section.Content>
+      </Section.Root>
+
+      <CourseSection
+        title="Cursos recomendados"
+        subtitle="Cursos escolhidos especialmente pra ti"
+        courses={recomended}
+        divider
+      />
       <CourseSection title="Cursos da casa" courses={recomended.toReversed()} />
     </div>
   );

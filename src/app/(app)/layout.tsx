@@ -15,7 +15,7 @@ export default async function AppLayout({
 
   return (
     <div className="relative flex">
-      <main className={`w-full ${!session?.user && "pb-[96px]"}`}>
+      <main className={`w-full ${!session?.user && "pb-[84px]"}`}>
         <nav className=" dark:bg-[#2d2d2d] w-full z-20  bg-white fixed">
           <div className="relative flex pr-10 pl-10 gap-48 py-2  items-center justify-between">
             <div className="flex">

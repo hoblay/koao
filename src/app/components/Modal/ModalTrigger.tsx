@@ -30,7 +30,7 @@ export default function ModalTrigger({ children }: ModalTriggerProps) {
   if (!context) return null;
 
   return (
-    <div className="flex h-full w-full " onClick={() => context.handleModal()}>
+    <div className=" h-full w-full " onClick={() => context.handleModal()}>
       {children}
     </div>
   );

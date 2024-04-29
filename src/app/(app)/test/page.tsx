@@ -47,51 +47,46 @@ export default async function Home() {
             </Button>
           </div>
         </Modal.Trigger>
-        <Modal.Content className="h-full">
-          <Button
-            subtitle="7 dias grátis e depois 5.000&nbsp;AKZ / mês"
-            size="lg"
-          >
-            Continuar
-            <IconArrowRight />
-          </Button>
+        <Modal.Content className="h-full flex flex-col">
+          <div>
+            <Section.Root divider>
+              <div>
+                <Section.Title>Cursos Recomendados</Section.Title>
+                <Section.Subtitle>
+                  7 dias grátis e depois 5.000&nbsp;AKZ / mês
+                </Section.Subtitle>
+              </div>
+              <Section.Content>
+                <Button
+                  subtitle="7 dias grátis e depois 5.000&nbsp;AKZ / mês"
+                  size="md"
+                >
+                  Continuar
+                  <IconArrowRight />
+                </Button>
+              </Section.Content>
+            </Section.Root>
+            <Section.Root>
+              <div>
+                <Section.Title>Cursos Recomendados</Section.Title>
+                <Section.Subtitle>
+                  7 dias grátis e depois 5.000&nbsp;AKZ / mês
+                </Section.Subtitle>
+              </div>
+              <Section.Content>
+                <Button
+                  subtitle="7 dias grátis e depois 5.000&nbsp;AKZ / mês"
+                  size="md"
+                >
+                  Continuar
+                  <IconArrowRight />
+                </Button>
+              </Section.Content>
+            </Section.Root>
+          </div>
         </Modal.Content>
       </Modal.Root>
 
-      <Section.Root divider>
-        <div>
-          <Section.Title>Cursos Recomendados</Section.Title>
-          <Section.Subtitle>
-            7 dias grátis e depois 5.000&nbsp;AKZ / mês
-          </Section.Subtitle>
-        </div>
-        <Section.Content>
-          <Button
-            subtitle="7 dias grátis e depois 5.000&nbsp;AKZ / mês"
-            size="md"
-          >
-            Continuar
-            <IconArrowRight />
-          </Button>
-        </Section.Content>
-      </Section.Root>
-      <Section.Root divider>
-        <div>
-          <Section.Title>Cursos Recomendados</Section.Title>
-          <Section.Subtitle>
-            7 dias grátis e depois 5.000&nbsp;AKZ / mês
-          </Section.Subtitle>
-        </div>
-        <Section.Content>
-          <Button
-            subtitle="7 dias grátis e depois 5.000&nbsp;AKZ / mês"
-            size="md"
-          >
-            Continuar
-            <IconArrowRight />
-          </Button>
-        </Section.Content>
-      </Section.Root>
       <Section.Root divider>
         <div>
           <Section.Title>Cursos Recomendados</Section.Title>
