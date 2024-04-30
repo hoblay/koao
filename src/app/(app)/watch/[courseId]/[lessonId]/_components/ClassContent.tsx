@@ -12,6 +12,7 @@ import {
 } from "@tabler/icons-react";
 import { Accordion } from "@/app/components/Accordion";
 import CategoryIcon from "./CategoryIcon";
+import { trpc } from "@/app/_trpc/client";
 
 const moduleCircle = tv({
   base: " w-9 h-9 rounded-full p-1 border-2 border-zinc-300 text-zinc-600 dark:text-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-[#1f1f1f] items-center justify-center",
@@ -212,7 +213,11 @@ function ClassContent({
 
     setCoursePercentage(finalPercentage);
   }, [lessonsDone, lessonsNumber, course.chapters]);
-
+  const progress = trpc.course.getProgress.useQuery(course.id);
+  let pp: number | any = 0;
+  if (progress.data) {
+    pp = progress.data;
+  }
   return (
     <div
       className={`${open ? "h-[480px] max-h-[480px]" : "max-h-[116px]"} transition-[max-height] duration-150 ease-in-out   overscroll-x-none overscroll-y-none rounded-xl overflow-y-auto overflow-hidden bg-zinc-50 dark:bg-[#313131] no-scrollbar w-[400px] shadow-sm`}
@@ -292,9 +297,9 @@ function ClassContent({
                 >
                   <div
                     className={`bg-emerald-300 dark:bg-[#015F43] text-xs font-medium text-[#015F43] dark:text-zinc-100 text-center p-1 leading-none rounded whitespace-nowrap transition-[width] duration-300 ease-in-out`}
-                    style={{ width: `${coursePercentage}%` }}
+                    style={{ width: `${pp}%` }}
                   >
-                    {Math.round(coursePercentage)}% Completado
+                    {Math.round(pp)}% Completado
                   </div>
                 </div>
               )}

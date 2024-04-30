@@ -4,10 +4,10 @@ import React from "react";
 import { IconNotebook, IconPresentation } from "@tabler/icons-react";
 import CourseIcon from "./CourseIcon";
 import { Card } from "@/app/components/Card";
+import { trpc } from "@/app/_trpc/client";
 
 interface CourseProps {
   className?: string;
-  progress?: number;
   img: string;
   name: string;
   price: number | 0;
@@ -20,7 +20,6 @@ interface CourseProps {
 function CourseInProgress({
   className,
   id,
-  progress = 0,
   img,
   name,
   price,
@@ -28,6 +27,12 @@ function CourseInProgress({
   description,
   tag,
 }: CourseProps) {
+  const progress = trpc.course.getProgress.useQuery(id);
+  let pp: number | any = 0;
+  if (progress.data) {
+    pp = progress.data;
+  }
+
   return (
     <div className="mr-4 max-w-[100hh]">
       <Link href={`/course/${id}`} className="mr-4 ">
@@ -64,13 +69,15 @@ function CourseInProgress({
                     >
                       <div
                         className={`bg-emerald-300 dark:bg-[#015F43] text-xs font-medium text-[#015F43] dark:text-zinc-100 text-center leading-none rounded whitespace-nowrap transition-[width] duration-300 ease-in-out`}
-                        style={{ width: `${progress}%` }}
+                        style={{ width: `${pp}%` }}
                       >
-                        {Math.round(progress)}% Completado
+                        {Math.round(pp)}% Completado
                       </div>
                     </div>
                     <div className="flex gap-1 px-2">
-                      <span className="text-xs">{progress}/18h</span>
+                      <span className="text-xs">
+                        {Math.round(((pp / 18) * 100) / 60)}/18h
+                      </span>
                     </div>
                   </div>
                 </div>

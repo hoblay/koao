@@ -257,4 +257,47 @@ export const courseRouter = router({
       return courses;
     } catch (error) {}
   }),
+  getProgress: publicProcedure.input(idSchema).query(async ({ input }) => {
+    try {
+      const session = await getServerSession(authOptions);
+      if (!session?.user) {
+        return new NextResponse("Unauthorized", { status: 401 });
+      }
+      const publishedLessons = await db.lesson.findMany({
+        where: {
+          chapter: {
+            course: {
+              id: input,
+            },
+          },
+        },
+        select: {
+          id: true,
+        },
+      });
+
+      // create an array of chapter ids
+      const publishedLessonIds = publishedLessons.map((lesson) => lesson.id);
+
+      const validCompletedLessons = await db.userProgress.count({
+        where: {
+          userId: session.user.id,
+          lessonId: {
+            in: publishedLessonIds,
+          },
+          isCompleted: true,
+        },
+      });
+
+      //calucate progress percentage:
+      // completed chapters / total published chapters
+      const progressPercentage =
+        (validCompletedLessons / publishedLessons.length) * 100;
+
+      return progressPercentage || 0;
+    } catch (error) {
+      console.log("[GET_PROGRESS]", error);
+      return 0;
+    }
+  }),
 });

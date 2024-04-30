@@ -15,7 +15,9 @@ function CourseInProgressSection({
   const { data: session, status } = useSession();
 
   const userCourses = trpc.course.getLastWatch.useQuery();
+
   const courses = userCourses.data;
+
   if (!session?.user || !courses?.length) {
     return null;
   }
@@ -66,7 +68,6 @@ function CourseInProgressSection({
                 price={0}
                 img={`${course.imageUrl}`}
                 modules={course.chapters.length}
-                progress={0}
                 description={course.description}
                 tag={course.tag || "art"}
                 id={course.id}
@@ -83,7 +84,6 @@ function CourseInProgressSection({
               price={0}
               img={`${course.imageUrl}`}
               modules={course.chapters.length}
-              progress={0}
               description={course.description}
               tag={course.tag || "art"}
               id={course.id}

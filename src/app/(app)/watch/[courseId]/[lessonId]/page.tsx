@@ -1,6 +1,7 @@
 "use client";
 import { trpc } from "@/app/_trpc/client";
 import Avatar from "@/app/components/Avatar/Avatar";
+import Button from "@/app/components/Button/Button";
 import { Card } from "@/app/components/Card";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -39,6 +40,9 @@ export default function ClassPage({
   const progressComplete = trpc.lesson.complete.useMutation();
   const lastSeen = trpc.lesson.getLastWatch.useQuery();
   const userCourses = trpc.course.getLastWatch.useQuery();
+  const updateProgress = trpc.course.getProgress.useQuery(
+    lesson?.data?.chapter?.course?.id,
+  );
 
   const getNextLesson = (lesson: any) => {
     let nLesson = lesson;
@@ -78,7 +82,11 @@ export default function ClassPage({
     return null;
   }
   const nextLesson = () => {
-    progressComplete.mutate(params.lessonId);
+    progressComplete.mutate(params.lessonId, {
+      onSettled: () => {
+        updateProgress.refetch();
+      },
+    });
     if (!lesson.data) {
       return null;
     }
@@ -123,22 +131,16 @@ export default function ClassPage({
                   {lesson.data.chapter.course.author.name}
                 </span>
                 <span className="text-zinc-600 dark:text-zinc-400 text-sm">
-                  Instrutor na Kwenda
+                  Educador na Kwenda
                 </span>
               </div>
             </div>
             <div className="flex">
-              {getNextLesson(lesson.data) && (
-                <button
-                  type="button"
-                  onClick={nextLesson}
-                  className="relative inline-flex flex-shrink-0 justify-center items-center rounded-md transition-colors ease-in-out duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:select-none border-none cursor-pointer bg-[#015F43] hover:bg-[#143229] text-white px-4 py-2 text-sm"
-                >
-                  <div className="flex flex-1 justify-center items-center gap-2">
-                    <span className="text-base leading-6">Proxima aula</span>
-                  </div>
-                </button>
-              )}
+              <Button onClick={nextLesson}>
+                {getNextLesson(lesson.data)
+                  ? "Proxima aula"
+                  : "Finalizar curso"}
+              </Button>
             </div>
           </div>
         </div>

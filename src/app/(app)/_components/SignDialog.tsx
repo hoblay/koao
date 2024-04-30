@@ -38,18 +38,20 @@ function SignDialog() {
             </div>
           </Modal.Trigger>
           <Modal.Content className="h-full">
-            <Link
-              href={"/"}
-              className="flex gap-2 items-center py-3 absolute top-6 left-32"
-            >
-              <LogoIcon width="34" height="22" className="#015F43" />
-              <span
-                className={` text-xl font-semibold text-zinc-700 dark:text-zinc-50 whitespace-nowrap`}
+            <div className="pt-6">
+              <Link
+                href={"/"}
+                className="flex gap-2 items-center py-3 absolute top-6 left-32"
               >
-                Logotipo
-              </span>
-            </Link>
-            <SignIn />
+                <LogoIcon width="34" height="22" className="#015F43" />
+                <span
+                  className={` text-xl font-semibold text-zinc-700 dark:text-zinc-50 whitespace-nowrap`}
+                >
+                  Logotipo
+                </span>
+              </Link>
+              <SignIn />
+            </div>
           </Modal.Content>
         </Modal.Root>
       </div>

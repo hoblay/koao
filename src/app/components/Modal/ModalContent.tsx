@@ -64,12 +64,12 @@ export default function ModalContent({
         ref={modalRef}
       >
         <span
-          className="p-2    absolute top-4 left-4 cursor-pointer"
+          className="p-2    absolute top-2 left-2 cursor-pointer"
           onClick={context.handleModal}
         >
           <IconX className="size-6 text-[#1f1f1f] hover:opacity-80 dark:text-zinc-50" />
         </span>
-        <div className="flex pt-12">{children}</div>
+        <div className="flex pt-6">{children}</div>
       </div>
     </div>
   );
