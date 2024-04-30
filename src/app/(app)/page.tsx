@@ -32,7 +32,7 @@ export default async function Home() {
         author={courses[courses.length - 1].author.name}
       />
       <LastSeenSection title="Continua onde você deixou" divider />
-      <CourseInProgressSection title="Cursos que você está fazendo" divider />+
+      <CourseInProgressSection title="Cursos que você está fazendo" divider />
       <Section.Root divider>
         <Section.Title>Pesquise por categoria</Section.Title>
 
