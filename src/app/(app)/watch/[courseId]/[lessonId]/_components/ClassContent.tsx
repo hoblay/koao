@@ -96,17 +96,19 @@ type Category = {
 
 function ClassContent({
   course,
+  progress,
   nextLesson,
   lesson: currentLesson,
   chapterPosition,
 }: {
   course: Course;
+  progress: number;
   nextLesson: Lesson;
   lesson: Lesson;
   chapterPosition: number;
 }) {
   const [open, setOpen] = useState(true);
-  const [coursePercentage, setCoursePercentage] = useState<number>(0);
+  const [coursePercentage, setCoursePercentage] = useState<number>(progress);
   const [lessonsDone, setLessonsDone] = useState<
     { index: number; lessons: number[] }[]
   >([]);
@@ -210,14 +212,8 @@ function ClassContent({
         }
       });
     });
-
-    setCoursePercentage(finalPercentage);
   }, [lessonsDone, lessonsNumber, course.chapters]);
-  const progress = trpc.course.getProgress.useQuery(course.id);
-  let pp: number | any = 0;
-  if (progress.data) {
-    pp = progress.data;
-  }
+
   return (
     <div
       className={`${open ? "h-[480px] max-h-[480px]" : "max-h-[116px]"} transition-[max-height] duration-150 ease-in-out   overscroll-x-none overscroll-y-none rounded-xl overflow-y-auto overflow-hidden bg-zinc-50 dark:bg-[#313131] no-scrollbar w-[400px] shadow-sm`}
@@ -297,9 +293,9 @@ function ClassContent({
                 >
                   <div
                     className={`bg-emerald-300 dark:bg-[#015F43] text-xs font-medium text-[#015F43] dark:text-zinc-100 text-center p-1 leading-none rounded whitespace-nowrap transition-[width] duration-300 ease-in-out`}
-                    style={{ width: `${pp}%` }}
+                    style={{ width: `${coursePercentage}%` }}
                   >
-                    {Math.round(pp)}% Completado
+                    {Math.round(coursePercentage)}% Completado
                   </div>
                 </div>
               )}

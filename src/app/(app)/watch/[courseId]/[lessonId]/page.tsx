@@ -78,13 +78,13 @@ export default function ClassPage({
   if (!lesson.data) {
     return null;
   }
-  const updateProgress = trpc.course.getProgress.useQuery(
-    lesson.data.chapter.course.id,
-  );
+
   const nextLesson = () => {
     progressComplete.mutate(params.lessonId, {
       onSettled: () => {
-        updateProgress.refetch();
+        const updateProgress = trpc.course.getProgress.useQuery(
+          lesson.data.chapter.course.id,
+        );
       },
     });
     if (!lesson.data) {
