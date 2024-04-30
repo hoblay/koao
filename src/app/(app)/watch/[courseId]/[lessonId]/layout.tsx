@@ -36,7 +36,7 @@ export default async function ClassLayout({
   if (!session?.user) redirect("/signin");
   const course = await serverClient.course.getById(params.courseId);
   const progress = await serverClient.course.getProgress(params.courseId);
-  let pp = 0;
+  let pp: any = 0;
   if (progress) {
     pp = progress;
   }
