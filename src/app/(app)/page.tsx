@@ -6,14 +6,11 @@ import Category from "./_components/Category";
 import CourseInProgressSection from "./_components/CourseInProgressSection";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/server/auth";
-import Image from "next/image";
 import LastSeenSection from "./_components/LastSeenSection";
 import { Section } from "../components/Section";
 
 export default async function Home() {
   const courses = await serverClient.course.getAll();
-  const lastSeen = await serverClient.lesson.getLastWatch();
-  const userCourses = await serverClient.course.getLastWatch();
   if (!courses) return null;
   const recomended = await serverClient.course.getAll();
   const categories = await serverClient.category.getAll();
@@ -34,19 +31,8 @@ export default async function Home() {
         lessonId={courses[courses.length - 1].chapters[0].lessons[0].id}
         author={courses[courses.length - 1].author.name}
       />
-      {session?.user && (
-        <>
-          {lastSeen?.length && (
-            <LastSeenSection title="Continua onde você deixou" divider />
-          )}
-          {userCourses?.length && (
-            <CourseInProgressSection
-              title="Cursos que você está fazendo"
-              divider
-            />
-          )}
-        </>
-      )}
+      <LastSeenSection title="Continua onde você deixou" divider />
+      <CourseInProgressSection title="Cursos que você está fazendo" divider />+
       <Section.Root divider>
         <Section.Title>Pesquise por categoria</Section.Title>
 
@@ -63,7 +49,6 @@ export default async function Home() {
           </div>
         </Section.Content>
       </Section.Root>
-
       <CourseSection
         title="Cursos recomendados"
         subtitle="Cursos escolhidos especialmente pra ti"
