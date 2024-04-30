@@ -37,10 +37,13 @@ export default async function Home() {
       {session?.user && (
         <>
           {lastSeen?.length && (
-            <LastSeenSection title="Continua onde você deixou" />
+            <LastSeenSection title="Continua onde você deixou" divider />
           )}
           {userCourses?.length && (
-            <CourseInProgressSection title="Cursos que você está fazendo" />
+            <CourseInProgressSection
+              title="Cursos que você está fazendo"
+              divider
+            />
           )}
         </>
       )}

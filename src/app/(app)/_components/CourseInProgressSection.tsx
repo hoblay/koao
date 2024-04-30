@@ -4,12 +4,17 @@ import Slider from "react-slick";
 import CourseInProgress from "./CourseInProgress";
 import { useSession } from "next-auth/react";
 import { trpc } from "@/app/_trpc/client";
+import { Section } from "@/app/components/Section";
 
 function CourseInProgressSection({
   title,
+  subtitle,
+  divider,
   sliderOff,
 }: {
   title: string;
+  divider?: boolean;
+  subtitle?: string;
   sliderOff?: boolean;
 }) {
   const { data: session, status } = useSession();
@@ -54,13 +59,31 @@ function CourseInProgressSection({
   };
 
   return (
-    <div className="flex flex-col gap-4 px-9">
-      <h2 className=" text-[17px] font-semibold flex gap-2 items-center">
-        {title}
-      </h2>
-      {!sliderOff && courses.length > 6 ? (
-        <div className="border-[#1f1f1f]/10 dark:border-[#363636] border-b-2">
-          <Slider {...settings}>
+    <Section.Root divider={divider && true}>
+      <div>
+        <Section.Title> {title}</Section.Title>
+        <Section.Subtitle>{subtitle}</Section.Subtitle>
+      </div>
+      <Section.Content>
+        {!sliderOff && courses.length > 6 ? (
+          <div className="">
+            <Slider {...settings}>
+              {courses.map((course, index) => (
+                <CourseInProgress
+                  key={course.id}
+                  name={course.title}
+                  price={0}
+                  img={`${course.imageUrl}`}
+                  modules={course.chapters.length}
+                  description={course.description}
+                  tag={course.tag || "art"}
+                  id={course.id}
+                />
+              ))}
+            </Slider>
+          </div>
+        ) : (
+          <div className="grid grid-cols-3 ">
             {courses.map((course, index) => (
               <CourseInProgress
                 key={course.id}
@@ -73,25 +96,10 @@ function CourseInProgressSection({
                 id={course.id}
               />
             ))}
-          </Slider>
-        </div>
-      ) : (
-        <div className="grid grid-cols-3 border-[#1f1f1f]/10 dark:border-[#363636] border-b-2">
-          {courses.map((course, index) => (
-            <CourseInProgress
-              key={course.id}
-              name={course.title}
-              price={0}
-              img={`${course.imageUrl}`}
-              modules={course.chapters.length}
-              description={course.description}
-              tag={course.tag || "art"}
-              id={course.id}
-            />
-          ))}
-        </div>
-      )}
-    </div>
+          </div>
+        )}
+      </Section.Content>
+    </Section.Root>
   );
 }
 
