@@ -36,7 +36,10 @@ export default async function ClassLayout({
   if (!session?.user) redirect("/signin");
   const course = await serverClient.course.getById(params.courseId);
   const progress = await serverClient.course.getProgress(params.courseId);
-
+  let pp = 0;
+  if (progress) {
+    pp = progress;
+  }
   const lesson = await serverClient.lesson.getById(params.lessonId);
   if (!course || !lesson) {
     return null;
@@ -63,7 +66,7 @@ export default async function ClassLayout({
           nextLesson={getNextLesson(lesson)}
           lesson={lesson}
           chapterPosition={lesson.chapter.position}
-          progress={progress}
+          progress={pp}
         />
         <Card.Root className="">
           <Card.Header>
