@@ -80,16 +80,19 @@ export default function ClassPage({
   }
 
   const nextLesson = () => {
-    progressComplete.mutate(params.lessonId, {
-      onSettled: () => {
-        const updateProgress = trpc.course.getProgress.useQuery(
-          lesson.data.chapter.course.id,
-        );
-      },
-    });
     if (!lesson.data) {
       return null;
     }
+    progressComplete.mutate(params.lessonId, {
+      onSettled: () => {
+        if (lesson.data) {
+          const updateProgress = trpc.course.getProgress.useQuery(
+            lesson.data.chapter.course.id,
+          );
+          updateProgress.refetch();
+        }
+      },
+    });
     getNextLesson(lesson.data) &&
       router.push(
         `/watch/${lesson.data.chapter.course.id}/${getNextLesson(lesson.data).id}`,
