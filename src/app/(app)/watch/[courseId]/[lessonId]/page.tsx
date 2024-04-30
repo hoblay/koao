@@ -40,9 +40,6 @@ export default function ClassPage({
   const progressComplete = trpc.lesson.complete.useMutation();
   const lastSeen = trpc.lesson.getLastWatch.useQuery();
   const userCourses = trpc.course.getLastWatch.useQuery();
-  const updateProgress = trpc.course.getProgress.useQuery(
-    lesson?.data?.chapter?.course?.id,
-  );
 
   const getNextLesson = (lesson: any) => {
     let nLesson = lesson;
@@ -81,6 +78,9 @@ export default function ClassPage({
   if (!lesson.data) {
     return null;
   }
+  const updateProgress = trpc.course.getProgress.useQuery(
+    lesson.data.chapter.course.id,
+  );
   const nextLesson = () => {
     progressComplete.mutate(params.lessonId, {
       onSettled: () => {
