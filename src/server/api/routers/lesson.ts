@@ -9,7 +9,7 @@ import { db } from "@/server/db";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { run } from "node:test";
-import { z } from "zod";
+import { addIssueToContext, z } from "zod";
 
 const idSchema = z.string();
 
@@ -77,6 +77,10 @@ export const lessonRouter = router({
     } catch (error) {}
   }),
   getById: publicProcedure.input(idSchema).query(async ({ input }) => {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
     return await db.lesson.findUnique({
       where: {
         id: input,
@@ -98,6 +102,10 @@ export const lessonRouter = router({
         },
         video: true,
         userProgress: {
+          where: {
+            userId: session.user.id,
+            lessonId: input,
+          },
           select: {
             isCompleted: true,
             lessonId: true,
@@ -157,6 +165,15 @@ export const lessonRouter = router({
   enroll: publicProcedure.input(idSchema).mutation(async ({ input }) => {
     const session = await getServerSession(authOptions);
     if (!session?.user) return null;
+    const progressExists = await db.userProgress.findFirst({
+      where: {
+        lessonId: input,
+        userId: session.user.id,
+      },
+    });
+    if (progressExists) {
+      return progressExists;
+    }
     const progress = await db.userProgress.create({
       data: {
         userId: session.user.id,
@@ -257,4 +274,41 @@ export const lessonRouter = router({
         return lessons;
       } catch (error) {}
     }),
+  checkDone: publicProcedure.input(idSchema).query(async ({ input }) => {
+    try {
+      const session = await getServerSession(authOptions);
+      if (!session?.user) return null;
+      const lesson = await db.lesson.findFirst({
+        where: {
+          userProgress: {
+            some: {
+              userId: session.user.id,
+              lessonId: input,
+              isCompleted: true,
+            },
+          },
+        },
+      });
+
+      return !!lesson;
+    } catch (error) {}
+  }),
+  checkIfProgress: publicProcedure.input(idSchema).query(async ({ input }) => {
+    try {
+      const session = await getServerSession(authOptions);
+      if (!session?.user) return null;
+      const lesson = await db.lesson.findFirst({
+        where: {
+          userProgress: {
+            some: {
+              userId: session.user.id,
+              lessonId: input,
+            },
+          },
+        },
+      });
+
+      return !!lesson;
+    } catch (error) {}
+  }),
 });

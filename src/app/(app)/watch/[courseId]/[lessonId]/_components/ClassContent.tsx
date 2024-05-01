@@ -13,6 +13,7 @@ import {
 import { Accordion } from "@/app/components/Accordion";
 import CategoryIcon from "./CategoryIcon";
 import { trpc } from "@/app/_trpc/client";
+import { custom } from "zod";
 
 const moduleCircle = tv({
   base: " w-9 h-9 rounded-full p-1 border-2 border-zinc-300 text-zinc-600 dark:text-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-[#1f1f1f] items-center justify-center",
@@ -185,12 +186,15 @@ function ClassContent({
     );
   };
 
-  const checkDoneLesson = (parentIndex: number, index: number) => {
+  const checkDoneLesson = (
+    parentIndex: number,
+    index: number,
+    lessonId: string,
+  ) => {
     let lessonModule = lessonsDone.find((item) => item.index === parentIndex);
+    const done = trpc.lesson.checkDone.useQuery(lessonId);
 
-    return (
-      lessonModule && !!lessonModule.lessons.find((item) => item === index)
-    );
+    return !!done.data;
   };
 
   const lessonsNumber = Object.keys(course.chapters).length;
@@ -331,15 +335,17 @@ function ClassContent({
                     {chapter.lessons.map((lesson, i) => (
                       <li
                         key={lesson.id}
-                        className={`pb-4 p-1  border-s-2 pl-7 -ml-[2px] pt-3 ${checkDoneLesson(chapter.position, lesson.position) ? "border-[#015F43] dark:border-[#015F43] " : "border-zinc-200 dark:border-[#1f1f1f]/20"}`}
+                        className={`pb-4 p-1  border-s-2 pl-7 -ml-[2px] pt-3 ${checkDoneLesson(chapter.position, lesson.position, lesson.id) ? "border-[#015F43] dark:border-[#015F43] " : "border-zinc-200 dark:border-[#1f1f1f]/20"}`}
                       >
                         <span
                           className={lessonStyle({
                             active:
-                              i === lesseonIndexActive && index === indexActive,
+                              lesson.id === currentLesson.id &&
+                              chapter.id === currentLesson.chapterId,
                             done: checkDoneLesson(
                               chapter.position,
                               lesson.position,
+                              lesson.id,
                             ),
                           })}
                           onClick={() =>
@@ -351,8 +357,8 @@ function ClassContent({
                         >
                           <span
                             className={`text-xs text-[#015F43] dark:text-zinc-50 ${
-                              i === lesseonIndexActive &&
-                              index === indexActive &&
+                              lesson.id === currentLesson.id &&
+                              chapter.id === currentLesson.chapterId &&
                               "text-zinc-50"
                             }`}
                           >

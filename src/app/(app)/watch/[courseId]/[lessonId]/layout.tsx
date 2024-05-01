@@ -5,6 +5,7 @@ import ClassContent from "./_components/ClassContent";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/server/auth";
+import { UserProgress } from "@prisma/client";
 type Lesson = {
   id: string;
   title: string;
@@ -38,7 +39,7 @@ export default async function ClassLayout({
   const progress = await serverClient.course.getProgress(params.courseId);
   let pp: any = 0;
   if (progress) {
-    pp = progress;
+    pp = progress.progress;
   }
   const lesson = await serverClient.lesson.getById(params.lessonId);
   if (!course || !lesson) {

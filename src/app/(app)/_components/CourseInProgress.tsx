@@ -5,6 +5,7 @@ import { IconNotebook, IconPresentation } from "@tabler/icons-react";
 import CourseIcon from "./CourseIcon";
 import { Card } from "@/app/components/Card";
 import { trpc } from "@/app/_trpc/client";
+import { formatSecondsToHours } from "@/utils/format-hours";
 
 interface CourseProps {
   className?: string;
@@ -58,7 +59,7 @@ function CourseInProgress({
                       </div>
                       <div className="flex gap-1">
                         <IconPresentation className="size-4 text-zinc-400" />
-                        <span className="text-xs ">{modules} Aulas</span>
+                        <span className="text-xs ">{pp.nlessons} Aulas</span>
                       </div>
                     </div>
                   </div>
@@ -69,14 +70,14 @@ function CourseInProgress({
                     >
                       <div
                         className={`bg-emerald-300 dark:bg-[#015F43] text-xs font-medium text-[#015F43] dark:text-zinc-100 text-center leading-none rounded whitespace-nowrap transition-[width] duration-300 ease-in-out`}
-                        style={{ width: `${pp}%` }}
+                        style={{ width: `${pp.progress}%` }}
                       >
-                        {Math.round(pp)}% Completado
+                        {Math.round(pp.progress)}% Completado
                       </div>
                     </div>
                     <div className="flex gap-1 px-2">
-                      <span className="text-xs">
-                        {Math.round(((pp / 18) * 100) / 60)}/18h
+                      <span className="text-xs text-nowrap">
+                        {formatSecondsToHours(pp.duration)}
                       </span>
                     </div>
                   </div>

@@ -23,6 +23,7 @@ import Tag from "../Tag/Tag";
 import { useDebounce } from "@/hooks/useDebounce";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import qs from "query-string";
+import Link from "next/link";
 interface SearchProps {
   children: ReactNode;
   className?: string;
@@ -114,12 +115,14 @@ export function SearchRoot({ children, className }: SearchProps) {
           <span className="text-zinc-500 dark:text-zinc-400 text-sm">
             Estou a procura de...
           </span>
-          <div className="py-1 space-x-1 flex">
-            <Tag name="Cursos" />
-            <Tag name="Materia" />
-            <Tag name="Colegas" />
-            <Tag name="Mais" />
-          </div>
+          <Link href={"/results"}>
+            <div className="py-1 space-x-1 flex">
+              <Tag name="Cursos" />
+              <Tag name="Materia" />
+              <Tag name="Colegas" />
+              <Tag name="Mais" />
+            </div>
+          </Link>
         </div>
         <SearchContext.Provider value={{ isTyping }}>
           {children}

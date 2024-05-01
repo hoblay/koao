@@ -276,6 +276,27 @@ export const courseRouter = router({
         },
       });
 
+      const durationLessons = await db.lesson.findMany({
+        where: {
+          chapter: {
+            course: {
+              id: input,
+            },
+          },
+        },
+        select: {
+          video: {
+            select: {
+              duration: true,
+            },
+          },
+        },
+      });
+      let duration = 0;
+      durationLessons.map((lesson) => {
+        duration = duration + (lesson.video?.duration || 0);
+      });
+
       // create an array of chapter ids
       const publishedLessonIds = publishedLessons.map((lesson) => lesson.id);
 
@@ -293,8 +314,12 @@ export const courseRouter = router({
       // completed chapters / total published chapters
       const progressPercentage =
         (validCompletedLessons / publishedLessons.length) * 100;
-
-      return progressPercentage || 0;
+      const pp = {
+        progress: progressPercentage,
+        nlessons: publishedLessons.length,
+        duration,
+      };
+      return pp;
     } catch (error) {
       console.log("[GET_PROGRESS]", error);
       return 0;

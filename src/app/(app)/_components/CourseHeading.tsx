@@ -5,11 +5,9 @@ import Link from "next/link";
 import CourseIcon from "./CourseIcon";
 import TagIcon from "@/app/components/Tag/TagIcon";
 import { useSession } from "next-auth/react";
-import { Modal } from "@/app/components/Modal";
 import Button from "@/app/components/Button/Button";
-import LogoIcon from "@/app/components/Icons/Logo";
-import SignIn from "@/app/(auth)/signin/page";
 import { trpc } from "@/app/_trpc/client";
+import { formatSecondsToHours } from "@/utils/format-hours";
 interface CourseProps {
   className?: string;
   progress?: number;
@@ -40,6 +38,11 @@ function CourseHeading({
   const { data: session, status } = useSession();
 
   const lastSeen = trpc.lesson.getLastWatchByCourse.useQuery(id);
+  const course = trpc.course.getProgress.useQuery(id);
+  let courseInfo: any;
+  if (course.data) {
+    courseInfo = course.data;
+  }
   return (
     <div
       className={`relative  flex-col items-start bg-zinc-950  dark:bg-grid-small-white/[0.2]  bg-dot-black/[0.2]  max-h-[503px] min-h-[450px]`}
@@ -104,11 +107,15 @@ function CourseHeading({
                   </div>
                   <div className="flex gap-1">
                     <IconPresentation className="size-4 text-zinc-400" />
-                    <span className="text-xs ">{modules} Aulas ·</span>
+                    <span className="text-xs ">
+                      {courseInfo.nlessons} Aulas ·
+                    </span>
                   </div>
                   <div className="flex gap-1">
                     <IconClock className="size-4 text-zinc-400" />
-                    <span className="text-xs"> 5 horas</span>
+                    <span className="text-xs">
+                      {formatSecondsToHours(courseInfo.duration, "long")}
+                    </span>
                   </div>
                 </div>
               </div>

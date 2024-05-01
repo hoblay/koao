@@ -38,7 +38,7 @@ export default async function AppLayout({
                   }
                 />
               </Link>
-              <Link href="/teacher/upload">
+              <Link href="/settings">
                 <Tag
                   name="Definições"
                   startContent={

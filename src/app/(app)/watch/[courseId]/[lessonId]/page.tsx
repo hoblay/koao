@@ -5,7 +5,7 @@ import Button from "@/app/components/Button/Button";
 import { Card } from "@/app/components/Card";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 
 type Chapter = {
@@ -34,9 +34,11 @@ export default function ClassPage({
 }: {
   params: { lessonId: string };
 }) {
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const lesson = trpc.lesson.getById.useQuery(params.lessonId);
   const progress = trpc.lesson.enroll.useMutation();
+  const enrolled = trpc.lesson.checkIfProgress.useQuery(params.lessonId);
   const progressComplete = trpc.lesson.complete.useMutation();
   const lastSeen = trpc.lesson.getLastWatch.useQuery();
   const userCourses = trpc.course.getLastWatch.useQuery();
@@ -55,34 +57,25 @@ export default function ClassPage({
     });
     return nLesson;
   };
-
+  const enroll = useCallback(() => {
+    progress.mutate(params.lessonId, {
+      onSettled: () => {
+        lastSeen.refetch();
+        userCourses.refetch();
+      },
+    });
+  }, [lastSeen, params.lessonId, progress, userCourses]);
   useEffect(() => {
-    const enroll = () => {
-      if (!lesson.data?.userProgress) {
-        progress.mutate(params.lessonId, {
-          onSettled: () => {
-            lastSeen.refetch();
-            userCourses.refetch();
-          },
-        });
-      }
-    };
-    enroll();
-  }, [
-    lesson.data?.userProgress,
-    progress,
-    params.lessonId,
-    lastSeen,
-    userCourses,
-  ]);
+    if (!!enrolled.data === false) {
+      enroll();
+    }
+    setMounted(true);
+  }, [enrolled.data]);
   if (!lesson.data) {
     return null;
   }
 
   const nextLesson = () => {
-    if (!lesson.data) {
-      return null;
-    }
     progressComplete.mutate(params.lessonId, {
       onSettled: () => {
         if (lesson.data) {
@@ -93,6 +86,7 @@ export default function ClassPage({
         }
       },
     });
+    if (!lesson.data) return null;
     getNextLesson(lesson.data) &&
       router.push(
         `/watch/${lesson.data.chapter.course.id}/${getNextLesson(lesson.data).id}`,

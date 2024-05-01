@@ -4,6 +4,8 @@ import React from "react";
 import { IconClock, IconNotebook, IconPresentation } from "@tabler/icons-react";
 import Image from "next/image";
 import { Card } from "@/app/components/Card";
+import { trpc } from "@/app/_trpc/client";
+import { formatSecondsToHours } from "@/utils/format-hours";
 
 interface CourseProps {
   className?: string;
@@ -28,7 +30,12 @@ function Course({
   description,
   category,
 }: CourseProps) {
-  const pp = `w-[${progress}%]`;
+  const course = trpc.course.getProgress.useQuery(id);
+  let pp: any;
+  if (course.data) {
+    pp = course.data;
+  }
+
   return (
     <div className="mr-4">
       <Link href={`/course/${id}`} className="mr-4 ">
@@ -68,11 +75,13 @@ function Course({
               </div>
               <div className="flex gap-1">
                 <IconPresentation className="size-4 text-zinc-500 dark:text-zinc-400" />
-                <span className="text-xs ">{modules} Aulas ·</span>
+                <span className="text-xs ">{pp.nlessons} Aulas ·</span>
               </div>
               <div className="flex gap-1">
                 <IconClock className="size-4 text-zinc-500 dark:text-zinc-400" />
-                <span className="text-xs"> 5 horas</span>
+                <span className="text-xs">
+                  {formatSecondsToHours(pp.duration, "long")}
+                </span>
               </div>
             </div>
           </Card.Footer>

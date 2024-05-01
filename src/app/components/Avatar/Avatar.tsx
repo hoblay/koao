@@ -23,8 +23,8 @@ const AvatarStyle = tv({
         "bg-amber-100 text-amber-800 dark:bg-amber-800/30 dark:text-amber-500",
     },
     size: {
-      xs: "size-[24px] text-xs",
-      sm: "",
+      xs: "size-[24px] text-xs text-[9px]",
+      sm: "size-[32px] text-sm",
       md: "size-[46px] text-sm",
       lg: "size-[52px] text-lg",
       xl: "size-[118px] text-lg",

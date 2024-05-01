@@ -3,10 +3,10 @@ import { tv } from "tailwind-variants";
 import TagIcon from "./TagIcon";
 
 const TagStyle = tv({
-  base: "relative flex gap-1.5 select-none items-center whitespace-nowrap rounded-lg  py-1.5 px-2 text-xs cursor-pointer dark:text-zinc-100",
+  base: "relative flex gap-1.5 select-none items-center whitespace-nowrap rounded-md  p-2 text-xs cursor-pointer dark:text-zinc-100",
   variants: {
     color: {
-      base: "bg-zinc-400/10 dark:bg-zinc-100/10 hover:bg-zinc-500/10 hover:dark:bg-zinc-400/10  text-zinc-900",
+      base: "bg-zinc-400/10 dark:bg-[#363636] hover:bg-zinc-500/10 hover:dark:bg-zinc-400/10  text-zinc-900",
       success:
         "bg-emerald-200 dark:bg-emerald-950 hover:bg-emerald-300 hover:dark:bg-emerald-900  text-emerald-900 ",
       warning:
