@@ -10,7 +10,7 @@ import { useFormContext } from "react-hook-form";
 import { tv } from "tailwind-variants";
 
 const InputStyle = tv({
-  base: "justify-between w-full font-normal relative flex items-center shadow-sm gap-3 dark:bg-zinc-800 dark:hover:bg-zinc-950/40 dark:focus:bg-zinc-950/40   rounded-md transition-[background] motion-reduce:transition-none !duration-150 outline-none  dark:placeholder:text-zinc-500 dark:text-zinc-100",
+  base: "justify-between w-full font-normal relative flex items-center shadow-sm gap-3 dark:bg-[#363636] border border-[#1f1f1f]/10 dark:border-[#363636] dark:hover:bg-[#1f1f1f] dark:focus:bg-[#1f1f1f]   rounded-md transition-[background] motion-reduce:transition-none !duration-150 outline-none  dark:placeholder:text-zinc-500 dark:text-zinc-100",
   variants: {
     size: {
       xs: "max-h-10 p-3 text-xs",

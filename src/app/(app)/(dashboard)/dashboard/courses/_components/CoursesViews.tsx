@@ -31,17 +31,22 @@ import {
   IconTemperatureSun,
   IconTrash,
 } from "@tabler/icons-react";
+import Link from "next/link";
 import { useState } from "react";
 
 export function CoursesViews({ courses }: { courses: any[] }) {
   const [tableView, setTableView] = useState(false);
   return (
-    <div className="flex flex-col pl-[256px]">
-      <header className="w-full max-w-[1116px]  fixed z-10 top-[78px] bg-white dark:bg-[#2d2d2d] border-t px-4 py-2  border-r border-b border-[#1f1f1f]/10 dark:border-[#363636]">
+    <div className="flex flex-col lg:pl-[256px]">
+      <header className="w-full lg:max-w-[1116px] md:max-w-[93%] max-w-[83%]  fixed z-10 top-[78px] bg-white dark:bg-[#2d2d2d] border-t px-4 py-2  border-r border-b border-[#1f1f1f]/10 dark:border-[#363636]">
         <div className="flex justify-between  ">
           <Breadcrumb.RootA>
-            <Breadcrumb.Item first title="Painel de controle" />
-            <Breadcrumb.Item title="Cursos" />
+            <Breadcrumb.Item
+              first
+              href="/dashboard"
+              title="Painel de controle"
+            />
+            <Breadcrumb.Item href="/dashboard/courses" title="Cursos" />
           </Breadcrumb.RootA>
           <div className="flex">
             <button onClick={() => setTableView(!tableView)}>
@@ -70,10 +75,11 @@ export function CoursesViews({ courses }: { courses: any[] }) {
             >
               <Card.Body className="z-[5] p-3 rounded-lg rounded-b-none flex items-start justify-between gap-3">
                 <div className="flex flex-col gap-2 overflow-x-hidden">
-                  <h4 className="text-base text-balance ">
-                    Curso de fundamentos de inteligencia artificial
-                  </h4>
-
+                  <Link href={`/dashboard/courses/curso-de-fundamentos`}>
+                    <h4 className="text-base text-balance ">
+                      Curso de fundamentos de inteligencia artificial
+                    </h4>
+                  </Link>
                   <div className="flex gap-1">
                     <div className="flex gap-1">
                       <IconNotebook className="size-4 text-zinc-500 dark:text-zinc-400" />
@@ -168,7 +174,7 @@ export function CoursesViews({ courses }: { courses: any[] }) {
       ) : (
         <div className="relative rounded-lg pt-[52px] w-full ">
           <table className="w-full  text-sm text-left rtl:text-right text-zinc-500 dark:text-zinc-400">
-            <thead className="font-medium   bg-zinc-50  dark:bg-[#363636] z-10 sticky top-[131.5px] text-zinc-700 dark:text-zinc-100 border border-[#1f1f1f]/10 dark:border-[#363636]">
+            <thead className="font-medium   bg-zinc-50  dark:bg-[#2a2a2a] z-10 sticky top-[131.5px] text-zinc-700 dark:text-zinc-100 border border-[#1f1f1f]/10 dark:border-[#363636]">
               <tr className="items-center justify-center">
                 <th scope="col" className="px-4 py-3 flex gap-4">
                   <input
@@ -214,14 +220,16 @@ export function CoursesViews({ courses }: { courses: any[] }) {
                           value=""
                           className="w-4 h-4 accent-[#015F43] text-[#015F43] bg-zinc-100 border rounded focus:ring-[#2e7862] dark:focus:ring-[#015F43] dark:ring-offset-zinc-900 focus:ring-2 dark:bg-[#363636]/80 border-[#1f1f1f]/10 dark:border-[#363636] cursor-pointer"
                         />
-                        <div className="flex flex-col w-full py-4">
-                          <span className="text-base w-full truncate overflow-ellipsis">
-                            Curso de fundamentos de inteligencia artificial
-                          </span>
-                          <span className="text-sm text-zinc-500 truncate overflow-ellipsis">
-                            ascvdfa-asdfasdf-dfse3424-21dsa
-                          </span>
-                        </div>
+                        <Link href={`/dashboard/courses/curso-de-fundamentos`}>
+                          <div className="flex flex-col w-full py-4">
+                            <span className="text-base w-full truncate overflow-ellipsis">
+                              Curso de fundamentos de inteligencia artificial
+                            </span>
+                            <span className="text-sm text-zinc-500 truncate overflow-ellipsis">
+                              ascvdfa-asdfasdf-dfse3424-21dsa
+                            </span>
+                          </div>
+                        </Link>
                       </div>
                     </th>
                     <td className="px-12 text-nowrap">5 horas</td>

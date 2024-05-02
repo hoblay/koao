@@ -109,13 +109,13 @@ export function CategoriesSidebar() {
         >
           <FormProvider {...createCourseForm}>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="flex flex-col gap-3 p-4">
+              <div className="flex flex-col gap-1 p-4">
                 <h2 className="text-xl font-semibold">Criar uma categoria</h2>
                 <span className="text-zinc-500 text-sm">
                   As categorias servem para catalogar os cursos com conceios
                   similares.
                 </span>
-                <Form.Field className="flex flex-col gap-3 pt-4 relative">
+                <Form.Field className="flex flex-col gap-2 pt-4 relative">
                   <Form.Label htmlFor="categoryName">
                     Nome da categoria
                   </Form.Label>
@@ -127,7 +127,7 @@ export function CategoriesSidebar() {
                   />
                   <Form.ErrorMessage field="categoryName" />
                 </Form.Field>
-                <Form.Field className="flex flex-col gap-3 pt-4 relative">
+                <Form.Field className="flex flex-col gap-2 pt-4 relative">
                   <Form.Label htmlFor="slug">Slug</Form.Label>
                   <Form.Input
                     type="text"
@@ -138,9 +138,9 @@ export function CategoriesSidebar() {
                   <Form.ErrorMessage field="slug" />
                 </Form.Field>
               </div>
-              <div className="flex justify-end gap-2 p-4">
+              <div className="flex justify-end gap-2 px-4">
                 <button
-                  className="p-2 items-center justify-center bg-zinc-700 hover:bg-zinc-800 text-zinc-100 flex rounded-md gap-2 text-xs"
+                  className="p-2 items-center justify-center  bg-zinc-200 dark:bg-[#363636] hover:opacity-80 dark:text-zinc-100 flex rounded-md gap-2 text-xs"
                   onClick={() => setDrawerOpen(false)}
                 >
                   <span className="">Cancelar</span>
@@ -148,7 +148,7 @@ export function CategoriesSidebar() {
                 <button
                   disabled={isSubmitting}
                   type="submit"
-                  className="p-2 items-center justify-center text-zinc-100 flex rounded-md gap-2 text-xs bg-[#015F43] hover:bg-[#224138]  disabled:bg-[#172d26]"
+                  className="p-2 items-center justify-center text-zinc-100 flex rounded-md gap-2 text-xs bg-[#015F43] hover:opacity-80  disabled:bg-[#172d26]"
                 >
                   <span className="">Criar categoria</span>
                 </button>

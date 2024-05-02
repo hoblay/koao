@@ -12,12 +12,11 @@ import { createContext, useContext } from "react";
 import LogoIcon from "../Icons/Logo";
 import { SideBarSection } from "./SideBarSection";
 import { SideBarItem } from "./SideBarItem";
+import { usePathname } from "next/navigation";
 
 interface SideBarProps {
   children: ReactNode;
   className?: string;
-  logo?: Boolean | false;
-  brand?: string;
 }
 
 interface SidebarContextProps {
@@ -27,13 +26,9 @@ interface SidebarContextProps {
 
 export const SidebarContext = createContext<SidebarContextProps | null>(null);
 
-export function SideBarRoot({
-  children,
-  className,
-  logo,
-  brand,
-}: SideBarProps) {
-  const [open, setOpen] = useState<boolean>(false);
+export function SideBarRoot({ children, className }: SideBarProps) {
+  const pathname = usePathname();
+  const [open, setOpen] = useState<boolean>(pathname === "/dashboard");
   const [isHidden, setIsHidden] = useState<boolean>(true);
 
   const handleHover = () => {

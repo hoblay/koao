@@ -24,6 +24,7 @@ import { useSession } from "next-auth/react";
 import Avatar from "@/app/components/Avatar/Avatar";
 import { Modal } from "@/app/components/Modal";
 import Button from "@/app/components/Button/Button";
+import { usePathname } from "next/navigation";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const { data: session, status } = useSession();
@@ -54,7 +55,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <SideBar.Section>
             <SideBar.Item
               title="Definições"
-              href="/dashboard/settings"
+              href="/dashboard/settings/account"
               icon={IconSettings}
             />
             <SideBar.Item
@@ -90,7 +91,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                       name="Error"
                       placeholder="Curso de fundamentos de
                     inteligencia artificial"
-                      className="border border-[#1f1f1f]/10 dark:border-[#363636] p-2.5 justify-between w-full font-normal relative flex items-center shadow-sm px-3 gap-3 dark:bg-[#1f1f1f] dark:hover:bg-[#2d2d2d] dark:focus:bg-[#2d2d2d] min-h-[158px] rounded-md transition-[background] motion-reduce:transition-none !duration-150 outline-none  dark:placeholder:text-zinc-500 focus-visible:outline-none  data-[has-end-content=true]:pe-1.5 text-small dark:text-zinc-100"
+                      className=" min-h-[158px]  p-2.5 justify-between w-full font-normal relative flex items-center shadow-sm gap-3 dark:bg-[#363636] border border-[#1f1f1f]/10 dark:border-[#363636] dark:hover:bg-[#1f1f1f] dark:focus:bg-[#1f1f1f]   rounded-md transition-[background] motion-reduce:transition-none !duration-150 outline-none  dark:placeholder:text-zinc-500 dark:text-zinc-100"
                     />
                     <Button fullWidth size="lg">
                       <span className="text-base">Reportar</span>

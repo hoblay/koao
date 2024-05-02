@@ -87,7 +87,7 @@ function UserAvatar({ user }: UserAvatarProps) {
                   startContent={
                     <IconLayoutDashboard className="w-6 h-6 dark:text-zinc-500 text-zinc-600" />
                   }
-                  href="/teacher"
+                  href="/dashboard/courses"
                 />
               </>
             ) : (
@@ -106,6 +106,7 @@ function UserAvatar({ user }: UserAvatarProps) {
               startContent={
                 <IconSettings className="w-6 h-6 dark:text-zinc-500 text-zinc-600" />
               }
+              href="/dashboard/settings/account"
             />
             <Dropdown.Item
               title={`${themeState === "dark" ? "Modo escuro" : "Modo claro"}`}

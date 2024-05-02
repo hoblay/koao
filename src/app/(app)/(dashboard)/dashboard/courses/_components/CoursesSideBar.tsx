@@ -13,6 +13,7 @@ import { CreateCourseSchema, TCreateCourseSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
+  IconBook2,
   IconChevronsDown,
   IconClock,
   IconClockEdit,
@@ -61,7 +62,7 @@ export function CoursesSidebar() {
   };
   return (
     <>
-      <aside className="flex flex-col gap-2 min-w-[256px] fixed  top-[78px] border-t border-r border-b border-[#1f1f1f]/10 dark:border-[#363636] min-h-[calc(100vh-78px)]">
+      <aside className="lg:flex hidden flex-col gap-2 min-w-[256px] fixed  top-[78px] border-t border-r border-b border-[#1f1f1f]/10 dark:border-[#363636] min-h-[calc(100vh-78px)]">
         <header className="w-full bg-white dark:bg-[#2d2d2d] py-3.5 px-4  border-r border-b border-[#1f1f1f]/10 dark:border-[#363636]">
           <div className="flex justify-between  ">
             Cursos
@@ -73,7 +74,7 @@ export function CoursesSidebar() {
             <Tag
               name="Novo curso "
               startContent={
-                <IconPlus className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
+                <IconBook2 className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
               }
             />
           </button>
@@ -121,7 +122,7 @@ export function CoursesSidebar() {
         >
           <FormProvider {...createCourseForm}>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="flex flex-col gap-3 px-2 py-4">
+              <div className="flex flex-col gap-3 px-4 py-4">
                 <h2 className="text-xl font-semibold">Criar um curso</h2>
                 <span className="dark:text-zinc-400 text-zinc-500 text-sm">
                   Qual é que vai ser o titulo do Curso? Não te preocupes podes
@@ -138,9 +139,9 @@ export function CoursesSidebar() {
                   <Form.ErrorMessage field="title" />
                 </Form.Field>
               </div>
-              <div className="flex justify-end gap-2 p-4">
+              <div className="flex justify-end gap-2 px-4">
                 <button
-                  className="p-2 items-center justify-center bg-zinc-700 hover:bg-zinc-800 text-zinc-100 flex rounded-md gap-2 text-xs"
+                  className="p-2 items-center justify-center bg-zinc-200 dark:bg-[#363636] hover:opacity-80 dark:text-zinc-100 flex rounded-md gap-2 text-xs"
                   onClick={() => setDrawerOpen(false)}
                 >
                   <span className="">Cancelar</span>
@@ -148,7 +149,7 @@ export function CoursesSidebar() {
                 <button
                   disabled={isSubmitting}
                   type="submit"
-                  className="p-2 items-center justify-center text-zinc-100 flex rounded-md gap-2 text-xs bg-[#015F43] hover:bg-[#224138]  disabled:bg-[#172d26]"
+                  className="p-2 items-center justify-center text-zinc-100 flex rounded-md gap-2 text-xs bg-[#015F43] hover:opacity-80  disabled:bg-[#172d26]"
                 >
                   <span className="">Criar curso</span>
                 </button>

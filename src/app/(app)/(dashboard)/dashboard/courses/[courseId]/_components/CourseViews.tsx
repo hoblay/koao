@@ -10,19 +10,32 @@ import Tag from "@/app/components/Tag/Tag";
 
 import {
   IconBookOff,
+  IconClockEdit,
   IconDots,
   IconEdit,
+  IconEditCircle,
   IconEye,
   IconLayoutGrid,
   IconTable,
   IconTrash,
 } from "@tabler/icons-react";
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
-export function CategoriesViews({ courses }: { courses: any[] }) {
+export function CourseViews({
+  chapters,
+  course,
+}: {
+  chapters: any[];
+  course: string;
+}) {
+  const searchParams = useSearchParams();
+
+  const edit = searchParams.get("edit");
   return (
     <div className="flex flex-col pl-[256px]">
-      <header className="w-full max-w-[1116px]  fixed z-10 top-[78px] bg-white dark:bg-[#2d2d2d] border-t p-4  border-r border-b border-[#1f1f1f]/10 dark:border-[#363636]">
+      <header className="w-full max-w-[1116px]  fixed z-10 top-[78px] bg-white dark:bg-[#2d2d2d] border-t px-4 py-2  border-r border-b border-[#1f1f1f]/10 dark:border-[#363636]">
         <div className="flex justify-between  ">
           <Breadcrumb.RootA>
             <Breadcrumb.Item
@@ -30,9 +43,32 @@ export function CategoriesViews({ courses }: { courses: any[] }) {
               href="/dashboard"
               title="Painel de controle"
             />
-            <Breadcrumb.Item href="/dashboard/categories" title="Categorias" />
+            <Breadcrumb.Item href="/dashboard/courses" title="Cursos" />
+            <Breadcrumb.Item
+              href={`/dashboard/courses/${course}`}
+              title={`${course}`}
+            />
           </Breadcrumb.RootA>
-          <div className="flex"></div>
+          <div className="flex">
+            {!edit && (
+              <Link href={`/dashboard/courses/${course}?edit=true`}>
+                <Tag
+                  name="Editar curso"
+                  startContent={<IconEdit className="text-zinc-500 w-5 h-5" />}
+                />
+              </Link>
+            )}
+            {edit && (
+              <Link href={`/dashboard/courses/${course}`}>
+                <Tag
+                  name="Adicionar mudanças"
+                  startContent={
+                    <IconEditCircle className="text-zinc-500 w-5 h-5" />
+                  }
+                />
+              </Link>
+            )}
+          </div>
         </div>
       </header>
 
@@ -47,21 +83,29 @@ export function CategoriesViews({ courses }: { courses: any[] }) {
                   className="w-4 h-4 accent-[#015F43] text-[#015F43] bg-zinc-100 border-zinc-300 rounded focus:ring-[#2e7862] dark:focus:ring-[#015F43] dark:ring-offset-zinc-900 focus:ring-2 dark:bg-zinc-800 dark:border-zinc-700 cursor-pointer"
                   name="checkAll"
                 />
-                <label htmlFor="checkAll">Categoria</label>
+                <label htmlFor="checkAll">Modulos</label>
               </th>
               <th scope="col" className="px-12 py-3">
-                Numero de cursos
+                Duração
               </th>
-
+              <th scope="col" className="px-4 py-3">
+                Aulas
+              </th>
+              <th scope="col" className="px-5 py-3">
+                Estado
+              </th>
+              <th scope="col" className="px-4 py-3">
+                Atualizado por
+              </th>
               <th scope="col" className="px-6 py-3">
                 <span className="sr-only">Edit</span>
               </th>
             </tr>
           </thead>
 
-          {courses.length > 0 && (
+          {chapters.length > 0 && (
             <tbody>
-              {courses.map((index) => (
+              {chapters.map((item, index) => (
                 <tr
                   className="border border-[#1f1f1f]/10 dark:border-[#363636] "
                   key={index}
@@ -70,24 +114,48 @@ export function CategoriesViews({ courses }: { courses: any[] }) {
                     scope="row"
                     className="px-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white max-w-96 "
                   >
-                    <div className="flex gap-4 items-center">
-                      <input
-                        type="checkbox"
-                        value=""
-                        className="w-4 h-4 accent-[#015F43] text-[#015F43] bg-zinc-100 border rounded focus:ring-[#2e7862] dark:focus:ring-[#015F43] dark:ring-offset-zinc-900 focus:ring-2 dark:bg-[#363636]/80 border-[#1f1f1f]/10 dark:border-[#363636] cursor-pointer"
-                      />
-                      <div className="flex flex-col w-full py-4">
-                        <span className="text-base w-full truncate overflow-ellipsis">
-                          Produção Musical
-                        </span>
-                        <span className="text-sm text-zinc-500 truncate overflow-ellipsis">
-                          producao-musical
-                        </span>
+                    <Link
+                      href={`/dashboard/courses/curso-de-fundamentos/introducao-ao-photoshop`}
+                    >
+                      <div className="flex gap-4 items-center">
+                        <input
+                          type="checkbox"
+                          value=""
+                          className="w-4 h-4 accent-[#015F43] text-[#015F43] bg-zinc-100 border rounded focus:ring-[#2e7862] dark:focus:ring-[#015F43] dark:ring-offset-zinc-900 focus:ring-2 dark:bg-[#363636]/80 border-[#1f1f1f]/10 dark:border-[#363636] cursor-pointer"
+                        />
+                        <div className="flex flex-col w-full py-4">
+                          <span className="text-base w-full truncate overflow-ellipsis">
+                            Indrodução ao Photoshop
+                          </span>
+                          <span className="text-sm text-zinc-500 truncate overflow-ellipsis">
+                            asdfdsaf-24323q-sdafs-14352-sdfsa3
+                          </span>
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   </th>
 
-                  <td className="px-12">23 cursos</td>
+                  <td className="px-12">{item + index * 2} horas</td>
+                  <td className="px-4 text-nowrap">{item} Aulas</td>
+
+                  <td className="px-5">
+                    <div className="flex">
+                      <Tag
+                        startContent={
+                          <IconClockEdit className="w-5 h-5 text-amber-950 dark:text-zinc-400" />
+                        }
+                        name="Em andamento"
+                      />
+                    </div>
+                  </td>
+                  <td className="px-4">
+                    <div className="flex items-center space-x-2 relative ">
+                      <Avatar name={"Winslet Mateus"} color="green" size="xs" />
+                      <span className="text-xs text-zinc-500 dark:text-zinc-400 text-nowrap ">
+                        Atualizado há 50 minutos
+                      </span>
+                    </div>
+                  </td>
                   <td className="px-7 text-right ">
                     <Dropdown.Root>
                       <Dropdown.Trigger>
