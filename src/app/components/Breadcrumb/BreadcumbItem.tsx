@@ -4,6 +4,7 @@ import {
   IconDots,
   IconChevronRight,
   IconAwardFilled,
+  IconSlash,
 } from "@tabler/icons-react";
 import Link from "next/link";
 import React, { ReactNode } from "react";
@@ -18,10 +19,12 @@ function BreadcrumbItem({
   first?: boolean;
 }) {
   return (
-    <li className="inline-flex items-center gap-1">
-      {!first && <IconChevronRight className="w-4 h-4 mt-[3px]" />}
+    <li className="inline-flex items-center gap-0.5">
+      {!first && (
+        <IconSlash className="size-5 -rotate-12 text-[#1f1f1f]/10 dark:text-[#363636]" />
+      )}
       <Link href={`${href || "#"}`}>
-        <span className="font-normal text-sm dark:hover:text-zinc-200">
+        <span className="font-normal text-sm dark:hover:text-zinc-200 dark:text-zinc-400">
           {title}
         </span>
       </Link>
