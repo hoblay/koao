@@ -39,7 +39,7 @@ export default async function ClassLayout({
   const progress = await serverClient.course.getProgress(params.courseId);
   let pp: any = 0;
   if (progress) {
-    pp = progress?.progress;
+    pp = progress.progress;
   }
   const lesson = await serverClient.lesson.getById(params.lessonId);
   if (!course || !lesson) {
