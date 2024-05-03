@@ -23,7 +23,6 @@ export const lessonRouter = router({
       const session = await getServerSession(authOptions);
 
       if (!session) return null;
-
       const courseOwner = await db.course.findUnique({
         where: {
           id: courseId,
