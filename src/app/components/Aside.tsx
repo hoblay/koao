@@ -14,7 +14,7 @@ import { SideBar } from "./SideBar";
 function Aside() {
   return (
     <aside className="sticky mt-5 top-5 left-5 h-[100%] md:flex overscroll-y-none overscroll-x-none ">
-      <SideBar.Root logo brand="Logotipo" className="">
+      <SideBar.Root className="">
         <SideBar.Section first>
           <SideBar.Item title="Explorar" icon={IconWorld} href="/" />
           <SideBar.Item title="Cursos" icon={IconBooks} />

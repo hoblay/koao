@@ -17,8 +17,7 @@ export const categoryRouter = router({
 
       const session = await getServerSession(authOptions);
 
-      if (!session?.user)
-        return new NextResponse("Unauthorized", { status: 401 });
+      if (!session?.user) return null;
 
       const category = await db.category.create({
         data: {

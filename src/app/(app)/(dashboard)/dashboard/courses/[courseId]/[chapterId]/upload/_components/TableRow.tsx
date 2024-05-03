@@ -64,7 +64,7 @@ function TableRow({
   };
   return (
     <tr
-      className="bg-zinc-50 border-b dark:bg-zinc-950 dark:border-zinc-900 py-2 "
+      className="border border-[#1f1f1f]/10 dark:border-[#363636] "
       key={file.name}
     >
       <th

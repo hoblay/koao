@@ -53,7 +53,7 @@ function Button(props: ButtonProps) {
           })}
         >
           <div className="flex flex-1 justify-center items-center gap-2">
-            <span className=" leading-6 text-nowrap inline-flex gap-1 justify-center items-center">
+            <span className=" leading-6 text-nowrap flex-no whitespace-nowrap inline-flex gap-1 justify-center items-center">
               {props.children}
             </span>
           </div>

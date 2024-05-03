@@ -17,7 +17,7 @@ export const chapterRouter = router({
 
       const session = await getServerSession(authOptions);
 
-      if (!session) return new NextResponse("Unauthorized", { status: 401 });
+      if (!session) return null;
 
       const courseOwner = await db.course.findUnique({
         where: {
@@ -27,7 +27,7 @@ export const chapterRouter = router({
       });
 
       if (!courseOwner) {
-        return new NextResponse("Unauthorized", { status: 401 });
+        return null;
       }
 
       const lastChapter = await db.chapter.findFirst({

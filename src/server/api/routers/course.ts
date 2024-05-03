@@ -203,7 +203,7 @@ export const courseRouter = router({
     .mutation(async ({ input }) => {
       const session = await getServerSession(authOptions);
       if (!session?.user) {
-        return new NextResponse("Unauthorized", { status: 401 });
+        return null;
       }
 
       const course = await db.course.update({
@@ -261,7 +261,7 @@ export const courseRouter = router({
     try {
       const session = await getServerSession(authOptions);
       if (!session?.user) {
-        return new NextResponse("Unauthorized", { status: 401 });
+        return null;
       }
       const publishedLessons = await db.lesson.findMany({
         where: {
@@ -315,14 +315,11 @@ export const courseRouter = router({
       const progressPercentage =
         (validCompletedLessons / publishedLessons.length) * 100;
       const pp = {
-        progress: progressPercentage,
-        nlessons: publishedLessons.length,
-        duration,
+        progress: progressPercentage || 0,
+        nlessons: publishedLessons.length || 0,
+        duration: duration || 0,
       };
       return pp;
-    } catch (error) {
-      console.log("[GET_PROGRESS]", error);
-      return 0;
-    }
+    } catch (error) {}
   }),
 });

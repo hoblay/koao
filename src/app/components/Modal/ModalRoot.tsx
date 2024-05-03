@@ -52,7 +52,7 @@ function ModalRoot({
   };
 
   return (
-    <div className="relative">
+    <div className="relative z-50">
       <ModalContext.Provider value={{ isModalOpen, handleModal, closeModal }}>
         {children}
       </ModalContext.Provider>

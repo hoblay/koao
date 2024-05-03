@@ -8,6 +8,7 @@ import {
   IconDesk,
   IconLayoutDashboard,
   IconLayoutSidebarLeftExpand,
+  IconMail,
   IconMessageReport,
   IconMicroscope,
   IconPresentation,
@@ -28,16 +29,23 @@ import { usePathname } from "next/navigation";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const { data: session, status } = useSession();
+  const pathname = usePathname();
   return (
     <div className="relative flex pt-[78px]">
       <aside className="fixed top-[78px] z-30">
         <SideBar.Root className="">
           <SideBar.Section first>
-            <SideBar.Item title="Inicio" icon={IconWorld} href="/" />
+            <SideBar.Item
+              title="Inicio"
+              icon={IconWorld}
+              href="/"
+              active={pathname === `/`}
+            />
             <SideBar.Item
               title="Painel de controle"
               icon={IconLayoutDashboard}
               href="/dashboard"
+              active={pathname === `/dashboard`}
             />
           </SideBar.Section>
           <SideBar.Section>
@@ -45,18 +53,29 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               title="Cursos"
               icon={IconBooks}
               href="/dashboard/courses"
+              active={pathname === `/dashboard/courses`}
             />
             <SideBar.Item
               title="Categorias"
               href="/dashboard/categories"
               icon={IconTags}
+              active={pathname === `/dashboard/categories`}
             />
           </SideBar.Section>
+
           <SideBar.Section>
             <SideBar.Item
               title="Definições"
               href="/dashboard/settings/account"
               icon={IconSettings}
+              active={
+                pathname === `/dashboard/settings` ||
+                pathname === `/dashboard/settings/account` ||
+                pathname === `/dashboard/settings/security` ||
+                pathname === `/dashboard/settings/privacy` ||
+                pathname === `/dashboard/settings/payments` ||
+                pathname === `/dashboard/settings/notifications`
+              }
             />
             <SideBar.Item
               title="Rendimento"
@@ -66,9 +85,22 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </SideBar.Section>
           <SideBar.Section>
             <SideBar.Item title="Quadro" icon={IconChalkboard} />
-            <SideBar.Item title="Materia" icon={IconMicroscope} />
+            {/***<SideBar.Item title="Materia" icon={IconMicroscope} />**/}
           </SideBar.Section>
-
+          <SideBar.Section
+            warning
+            className="absolute bottom-[60px] w-full max-w-[180px]"
+          >
+            <div className="p-3 flex flex-col gap-2 rounded-lg bg-[#015f43]/80 text-zinc-50 dark:bg-[#363636] text-sm">
+              <span className="line-clamp-1">Confirme o seu email</span>
+              <p className="line-clamp-3">
+                Enviamos um link de confirmação no teu email:
+              </p>
+              <span className="overflow-hidden overflow-ellipsis text-zinc-300 dark:text-zinc-400">
+                {session?.user.email}
+              </span>
+            </div>
+          </SideBar.Section>
           <SideBar.Section
             className={`absolute  bottom-0 w-full max-w-[180px]`}
           >

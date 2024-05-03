@@ -56,6 +56,7 @@ function AddCoverImage({ imageUrl, edit, courseId }: AddImageProps) {
         fileType: file.type,
         checksum: await computeSHA256(file),
         courseId,
+        cover: true,
       });
       if (signedURLResult.failure !== undefined) {
         throw new Error(signedURLResult.failure);
@@ -96,7 +97,7 @@ function AddCoverImage({ imageUrl, edit, courseId }: AddImageProps) {
           >
             <label
               htmlFor="dropzone-file"
-              className="flex flex-col items-center justify-center w-full  h-[310px]  border-2 border-[#1f1f1f]/10 dark:border-[#363636] border-dashed rounded-lg cursor-pointer bg-zinc-50/80 dark:hover:bg-[#1f1f1f]/80 dark:bg-[#2a2a2a]/80 hover:bg-zinc-100/80  hover:border-[#1f1f1f]/10 dark:hover:border-[#363636] "
+              className="flex flex-col items-center justify-center w-full  h-[310px]  border-2 border-[#1f1f1f]/10 dark:border-[#363636] border-dashed rounded-lg cursor-pointer bg-zinc-50/50 dark:hover:bg-[#1f1f1f]/80 dark:bg-[#2a2a2a]/80 hover:bg-zinc-100/60  hover:border-[#1f1f1f]/10 dark:hover:border-[#363636] "
             >
               {!isDragActive ? (
                 <div className="flex flex-col items-center justify-center pt-5 pb-6">

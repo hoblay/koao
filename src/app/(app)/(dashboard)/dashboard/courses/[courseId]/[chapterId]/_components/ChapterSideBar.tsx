@@ -24,26 +24,27 @@ import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 export function ChapterSidebar({
-  course,
-  chapter,
+  courseId,
+  chapterId,
 }: {
-  course: string;
-  chapter: string;
+  courseId: string;
+  chapterId: string;
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
-
+  const chapter = trpc.chapter.getById.useQuery(chapterId);
+  if (!chapter.data) return null;
   return (
     <>
       <aside className="flex flex-col gap-2 min-w-[256px]  fixed  top-[78px] border-t border-r border-b border-[#1f1f1f]/10 dark:border-[#363636] min-h-[calc(100vh-78px)]">
         <header className="w-full bg-white dark:bg-[#2d2d2d] max-w-[256px] py-3.5 px-4  border-r border-b border-[#1f1f1f]/10 dark:border-[#363636]">
-          <div className="flex justify-between  max-w-[250px]">
-            <div className="max-w-[250px] line-clamp-2 text-balance truncate">
-              {chapter.split("-").join(" ")}
+          <div className="flex justify-between max-w-[250px] ">
+            <div className="max-w-[250px] line-clamp-2 text-balance overflow-hidden">
+              {chapter.data.title}
             </div>
           </div>
         </header>
         <div className="flex flex-col px-4 py-2 gap-2 max-w-[255px]">
-          <Link href={`/dashboard/courses/${course}/${chapter}/upload`}>
+          <Link href={`/dashboard/courses/${courseId}/${chapterId}/upload`}>
             <Tag
               name="Nova aula"
               startContent={

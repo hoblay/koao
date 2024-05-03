@@ -14,7 +14,7 @@ export default function AuthLayout({
   const { data: session } = useSession();
   if (session) router.push("/");
   return (
-    <div className="relative flex flex-col justify-center items-center min-h-[100%] py-32">
+    <div className="relative flex flex-col justify-center items-center min-h-[100%] py-32 dark:bg-dot-zinc-700 ">
       <Link href={"/"} className="flex gap-2 items-center py-3">
         <LogoIcon width="38" height="26" className="#015F43" />
         <span

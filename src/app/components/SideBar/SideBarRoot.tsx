@@ -64,9 +64,9 @@ export function SideBarRoot({ children, className }: SideBarProps) {
       </button>
 
       <aside
-        className={`hidden md:block h-[calc(100vh-78px)] overscroll-x-none overscroll-y-none transition-all ease-in-out duration-300 ${open ? "w-[200px]  " : "w-[62px]"}`}
+        className={`hidden md:block h-[calc(100vh-78px)] no-scrollbar overscroll-x-none overscroll-y-none transition-all ease-in-out duration-300 ${open ? "w-[200px]  " : "w-[62px]"}`}
       >
-        <div className="relative h-[calc(100vh-78px)] overscroll-x-none overscroll-y-none px-2 overflow-y-auto bg-zinc-50 dark:bg-[#2d2d2d] border border-[#1f1f1f]/10 dark:border-[#363636]">
+        <div className="relative h-[calc(100vh-78px)] no-scrollbar overscroll-x-none overscroll-y-none px-2 overflow-y-auto bg-zinc-50 dark:bg-[#2d2d2d] border border-[#1f1f1f]/10 dark:border-[#363636]">
           <SidebarContext.Provider value={{ open, setOpen }}>
             {children}
           </SidebarContext.Provider>

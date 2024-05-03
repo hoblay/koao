@@ -6,8 +6,9 @@ import { SidebarContext } from "./SideBarRoot";
 interface SideBarSectionProps {
   children: ReactNode;
   className?: string;
-  first?: Boolean | false;
+  first?: boolean;
   title?: string;
+  warning?: boolean;
 }
 
 export function SideBarSection({
@@ -15,12 +16,13 @@ export function SideBarSection({
   className,
   first,
   title,
+  warning,
 }: SideBarSectionProps) {
   const context = useContext(SidebarContext);
   if (!context) return null;
   return (
     <ul
-      className={`flex flex-col gap-1 py-2  ${className} ${!first ? " border-t border-[#1f1f1f]/10 dark:border-[#363636]" : ""}`}
+      className={`${!context.open && warning ? "opacity-0" : "opacity-100 transition-opacity ease-in-out duration-1000"}  flex flex-col gap-1 py-2  ${className} ${!first && !warning ? " border-t border-[#1f1f1f]/10 dark:border-[#363636]" : ""}`}
     >
       {title && (
         <span

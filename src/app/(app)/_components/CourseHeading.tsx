@@ -71,7 +71,9 @@ function CourseHeading({
                 className=""
               >
                 <Button size="lg" fullWidth className="py-3">
-                  <span className="text-base">Continuar a assistir</span>
+                  <span className="text-base text-nowrap">
+                    Continuar a assistir
+                  </span>
                 </Button>
               </Link>
             ) : (
@@ -81,13 +83,17 @@ function CourseHeading({
                   className=""
                 >
                   <Button size="lg" fullWidth className="py-3">
-                    <span className="text-base">Começar a assistir</span>
+                    <span className="text-base text-nowrap">
+                      Começar a assistir
+                    </span>
                   </Button>
                 </Link>
               )
             )}
             <Button size="lg" fullWidth className="py-3">
-              <span className="text-base">Guardar na minha lista</span>
+              <span className="text-base text-nowrap">
+                Guardar na minha lista
+              </span>
             </Button>
           </div>
           <div className="flex gap-4">
@@ -108,13 +114,13 @@ function CourseHeading({
                   <div className="flex gap-1">
                     <IconPresentation className="size-4 text-zinc-400" />
                     <span className="text-xs ">
-                      {courseInfo.nlessons} Aulas ·
+                      {courseInfo?.nlessons} Aulas ·
                     </span>
                   </div>
                   <div className="flex gap-1">
                     <IconClock className="size-4 text-zinc-400" />
                     <span className="text-xs">
-                      {formatSecondsToHours(courseInfo.duration, "long")}
+                      {formatSecondsToHours(courseInfo?.duration, "long")}
                     </span>
                   </div>
                 </div>

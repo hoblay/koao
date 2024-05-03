@@ -22,7 +22,7 @@ export const lessonRouter = router({
 
       const session = await getServerSession(authOptions);
 
-      if (!session) return new NextResponse("Unauthorized", { status: 401 });
+      if (!session) return null;
 
       const courseOwner = await db.course.findUnique({
         where: {
@@ -32,7 +32,7 @@ export const lessonRouter = router({
       });
 
       if (!courseOwner) {
-        return new NextResponse("Unauthorized", { status: 401 });
+        return null;
       }
 
       const lastChapter = await db.chapter.findFirst({
@@ -79,7 +79,7 @@ export const lessonRouter = router({
   getById: publicProcedure.input(idSchema).query(async ({ input }) => {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-      return new NextResponse("Unauthorized", { status: 401 });
+      return null;
     }
     return await db.lesson.findUnique({
       where: {
@@ -120,7 +120,7 @@ export const lessonRouter = router({
     .mutation(async ({ input }) => {
       const session = await getServerSession(authOptions);
       if (!session?.user) {
-        return new NextResponse("Unauthorized", { status: 401 });
+        return null;
       }
 
       const video = await db.video.update({
@@ -139,7 +139,7 @@ export const lessonRouter = router({
     .mutation(async ({ input }) => {
       const session = await getServerSession(authOptions);
       if (!session?.user) {
-        return new NextResponse("Unauthorized", { status: 401 });
+        return null;
       }
 
       const lesson = await db.lesson.update({

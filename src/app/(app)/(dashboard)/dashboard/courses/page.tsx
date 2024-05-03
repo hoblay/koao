@@ -29,15 +29,15 @@ import {
 } from "@tabler/icons-react";
 import { CoursesViews } from "./_components/CoursesViews";
 import { CoursesSidebar } from "./_components/CoursesSideBar";
+import { serverClient } from "@/app/_trpc/serverClient";
 
-export default function Home() {
-  const arr = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 9, 7, 5, 4, 3, 2, 4, 5, 62, 45, 6, 2, 2,
-  ];
+export default async function Home() {
+  const courses = await serverClient.course.getAllbyUser();
+  if (!courses) return null;
   return (
     <div className="flex pl-16 border-t border-[#1f1f1f]/10 dark:border-[#363636]">
       <CoursesSidebar />
-      <CoursesViews courses={arr} />
+      <CoursesViews courses={courses} />
     </div>
   );
 }

@@ -59,9 +59,9 @@ export default function ModalContent({
         class: className,
       })}
     >
-      <div
+      <dialog
         className="relative px-5 py-5 flex flex-col justify-center items-center bg-zinc-100 dark:bg-[#1f1f1f] z-50 shadow-lg  rounded-xl"
-        ref={modalRef}
+        open={context.isModalOpen}
       >
         <span
           className="p-2    absolute top-2 left-2 cursor-pointer"
@@ -70,7 +70,7 @@ export default function ModalContent({
           <IconX className="size-6 text-[#1f1f1f] hover:opacity-80 dark:text-zinc-50" />
         </span>
         <div className="flex pt-6">{children}</div>
-      </div>
+      </dialog>
     </div>
   );
 }

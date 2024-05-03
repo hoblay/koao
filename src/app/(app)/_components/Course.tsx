@@ -75,12 +75,12 @@ function Course({
               </div>
               <div className="flex gap-1">
                 <IconPresentation className="size-4 text-zinc-500 dark:text-zinc-400" />
-                <span className="text-xs ">{pp.nlessons} Aulas ·</span>
+                <span className="text-xs ">{pp?.nlessons} Aulas ·</span>
               </div>
               <div className="flex gap-1">
                 <IconClock className="size-4 text-zinc-500 dark:text-zinc-400" />
                 <span className="text-xs">
-                  {formatSecondsToHours(pp.duration, "long")}
+                  {formatSecondsToHours(pp?.duration, "long")}
                 </span>
               </div>
             </div>

@@ -20,6 +20,7 @@ interface SideBarItemProps {
   title: string;
   href?: string;
   onClick?: any;
+  active?: boolean;
 }
 
 export function SideBarItem({
@@ -27,6 +28,7 @@ export function SideBarItem({
   className,
   parent,
   onClick,
+  active,
   icon: Icon,
   title,
   href,
@@ -46,16 +48,16 @@ export function SideBarItem({
       <li className={` ${className}`}>
         <Link
           href={href || "#"}
-          className={`flex gap-2 w-full items-center justify-between p-3 text-zinc-600 rounded-md dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-[#363636] group transition-all duration-75 ease-in-out ${context.open ? "" : ""} ${!parent && !Icon ? "pl-9" : ""} ${isOpen && parent && context.open ? " text-[#015F43] dark:bg-[#183b30] bg-[#015F43]/10 hover:bg-[#015F43]/15 dark:hover:bg-[#16332a]" : ""}`}
+          className={`${active && "bg-zinc-100 dark:bg-[#363636] dark:text-white"} flex gap-2 w-full items-center justify-between p-3 text-zinc-600 rounded-md dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-[#363636] group transition-all duration-75 ease-in-out ${context.open ? "" : ""} ${!parent && !Icon ? "pl-9" : ""} ${isOpen && parent && context.open ? " text-[#015F43] dark:bg-[#183b30] bg-[#015F43]/10 hover:bg-[#015F43]/15 dark:hover:bg-[#16332a]" : ""}`}
           onClick={() => handleClick()}
         >
           {Icon && (
             <Icon
-              className={` flex-shrink-0 size-5  transition duration-75 ${isOpen && parent && context.open ? "text-[#015F43] group-hover:text-[#015F43] dark:group-hover:text-zinc-100 dark:text-zinc-50" : "text-zinc-500  group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"}`}
+              className={`${active ? "dark:text-white" : "dark:text-zinc-400"} flex-shrink-0 size-5  transition duration-75  group-hover:text-zinc-900  dark:group-hover:text-white`}
             />
           )}
           <span
-            className={`flex-1 text-left rtl:text-right text-sm whitespace-nowrap ${!context.open ? "hidden" : ""} ${isOpen && parent && context.open ? "text-[#015F43] group-hover:text-[#015F43] dark:group-hover:text-zinc-100 dark:text-zinc-50" : ""}`}
+            className={`${active ? "dark:text-white" : "dark:text-zinc-300"} flex-1 text-left rtl:text-right text-sm whitespace-nowrap ${!context.open ? "hidden" : ""} ${isOpen && parent && context.open ? "text-[#015F43] group-hover:text-[#015F43] dark:group-hover:text-zinc-100 dark:text-zinc-50" : ""}`}
           >
             {title}
           </span>

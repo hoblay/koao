@@ -23,16 +23,18 @@ import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import CreateChapter from "./CreateChapter";
 
-export function CourseSidebar({ course }: { course: string }) {
+export function CourseSidebar({ courseId }: { courseId: string }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const course = trpc.course.getById.useQuery(courseId);
+  if (!course.data) return null;
 
   return (
     <>
-      <aside className="flex flex-col gap-2 min-w-[256px]  fixed  top-[78px] border-t border-r border-b border-[#1f1f1f]/10 dark:border-[#363636] min-h-[calc(100vh-78px)]">
-        <header className="w-full bg-white dark:bg-[#2d2d2d] py-3.5 px-4  border-r border-b border-[#1f1f1f]/10 dark:border-[#363636]">
-          <div className="flex justify-between  ">
-            <div className="max-w-[250px] line-clamp-1 text-balance overflow-hidden">
-              {course.split("-").join(" ")}
+      <aside className="flex flex-col gap-2 max-w-[256px]  fixed  top-[78px] border-t border-r border-b border-[#1f1f1f]/10 dark:border-[#363636] min-h-[calc(100vh-78px)]">
+        <header className="w-full bg-white dark:bg-[#2d2d2d] max-w-[256px] py-3.5 px-4  border-r border-b border-[#1f1f1f]/10 dark:border-[#363636]">
+          <div className="flex justify-between max-w-[250px] ">
+            <div className="max-w-[250px] line-clamp-2 text-pretty overflow-hidden">
+              {course.data.title}
             </div>
           </div>
         </header>
@@ -45,13 +47,18 @@ export function CourseSidebar({ course }: { course: string }) {
               }
             />
           </button>
-          <Tag
-            name="Categoria"
-            className="border border-[#1f1f1f]/10 dark:border-[#363636]  border-dashed dark:bg-[#2a2a2a]"
-            startContent={
-              <IconTag className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-            }
-          />
+          {course.data.category ? (
+            <Tag name={course.data.category.name} />
+          ) : (
+            <Tag
+              name="Categoria"
+              className="border border-[#1f1f1f]/10 dark:border-[#363636]  border-dashed dark:bg-[#2a2a2a]"
+              startContent={
+                <IconTag className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
+              }
+            />
+          )}
+
           <form
             className={` relative w-full rounded-md border border-[#1f1f1f]/10 dark:border-[#363636] `}
           >
@@ -94,7 +101,7 @@ export function CourseSidebar({ course }: { course: string }) {
                 Os modulos servem para agrupar as aulas com conceitos similares.
               </span>
             </div>
-            <CreateChapter courseId={course} />
+            <CreateChapter courseId={courseId} />
           </div>
         </div>
       </div>
