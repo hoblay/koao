@@ -36,12 +36,10 @@ export function LessonView({
   courseId,
   chapterId,
   lessonId,
-  children,
 }: {
   courseId: string;
   chapterId: string;
   lessonId: string;
-  children: ReactNode | ReactNode[];
 }) {
   const pathname = usePathname();
   const course = trpc.course.getById.useQuery(courseId);
