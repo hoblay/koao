@@ -156,7 +156,7 @@ export function CourseViews({
                             value=""
                             className="w-4 h-4 accent-[#015F43] text-[#015F43] bg-zinc-100 border rounded focus:ring-[#2e7862] dark:focus:ring-[#015F43] dark:ring-offset-zinc-900 focus:ring-2 dark:bg-[#363636]/80 border-[#1f1f1f]/10 dark:border-[#363636] cursor-pointer"
                           />
-                          <div className="flex flex-col w-full py-4">
+                          <div className="flex flex-col w-full overflow-ellipsis max-w-[342px] py-4">
                             <span className="text-base w-full truncate overflow-ellipsis">
                               {chapter.title}
                             </span>

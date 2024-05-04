@@ -81,7 +81,7 @@ export function ChapterSidebar({
       </aside>
       <div className="">
         <div
-          className={`${!drawerOpen ? "hidden" : ""} absolute z-30 bg-zinc-950/80 left-0 top-0 w-[100%] h-[100%] min-h-[100vh]  cursor-pointer`}
+          className={`${!drawerOpen ? "hidden" : ""} absolute z-30 bg-[#161616]/75 left-0 top-0 w-[100%] h-[100%] min-h-[100vh]  cursor-pointer`}
           onClick={() => setDrawerOpen(false)}
         ></div>
 

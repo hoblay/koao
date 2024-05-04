@@ -7,7 +7,7 @@ import { IconX } from "@tabler/icons-react";
 import { useOnOutsideClick } from "@/hooks/useOnOutsideClick";
 
 const modalContentStyle = tv({
-  base: "fixed top-0 left-0 w-full z-50 h-[100vh] bg-zinc-950/70 flex justify-center items-center",
+  base: "fixed top-0 left-0 w-full z-50 h-[100vh] bg-[#161616]/75 flex justify-center items-center",
   variants: {
     variant: {
       solid: "",
@@ -60,7 +60,7 @@ export default function ModalContent({
       })}
     >
       <dialog
-        className="relative px-5 py-5 flex flex-col justify-center items-center bg-zinc-100 dark:bg-[#1f1f1f] z-50 shadow-lg  rounded-xl"
+        className="relative px-5 py-5 flex flex-col justify-center items-center bg-zinc-100 dark:bg-[#2d2d2d] z-50 shadow-lg border border-[#1f1f1f]/10 dark:border-[#363636]  rounded-lg"
         open={context.isModalOpen}
       >
         <span

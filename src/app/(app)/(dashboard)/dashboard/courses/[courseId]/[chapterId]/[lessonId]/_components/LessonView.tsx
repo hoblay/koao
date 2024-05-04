@@ -15,6 +15,7 @@ import {
   IconClockEdit,
   IconDots,
   IconEdit,
+  IconEditCircle,
   IconExclamationCircle,
   IconEye,
   IconLayoutGrid,
@@ -55,20 +56,20 @@ export function LessonView({
   return (
     <div className="flex flex-col pl-[256px]">
       <header
-        className={`${pathname === `/dashboard/courses/${courseId}/${chapterId}/upload` || pathname === `/dashboard/courses/${courseId}/${chapterId}` ? "py-2" : "py-4"} w-full max-w-[1116px]  fixed z-10 top-[78px] bg-white dark:bg-[#2d2d2d] border-t px-4   border-r border-b border-[#1f1f1f]/10 dark:border-[#363636]`}
+        className={`py-2 w-full max-w-[1116px]  fixed z-10 top-[78px] bg-white dark:bg-[#2d2d2d] border-t px-4   border-r border-b border-[#1f1f1f]/10 dark:border-[#363636]`}
       >
         <div className="flex justify-between  ">
           <Breadcrumb.RootA>
             <Breadcrumb.Item
               first
-              href="/dashboard"
+              href="/dashboard/"
               title="Painel de controle"
             />
-            <Breadcrumb.Item href="/dashboard/courses" title="Cursos" />
+            <Breadcrumb.Item href="/dashboard/courses" title="..." />
             <Breadcrumb.Item
               href={`/dashboard/courses/${courseId}`}
               short
-              title={`${course.data.title}`}
+              title={`...`}
             />
             <Breadcrumb.Item
               short
@@ -81,46 +82,19 @@ export function LessonView({
             />
           </Breadcrumb.RootA>
           <div className="flex gap-2">
-            {pathname === `/dashboard/courses/${courseId}/${chapterId}` && (
-              <>
-                <Tag
-                  name="Eliminar"
-                  startContent={<IconTrash className="text-red-500 w-5 h-5" />}
-                />
-                <Tag
-                  name="Editar"
-                  startContent={<IconEdit className="text-zinc-500 w-5 h-5" />}
-                />
-              </>
-            )}
-            {pathname ===
-              `/dashboard/courses/${courseId}/${chapterId}/upload` && (
-              <>
-                <button>
-                  <Tag
-                    name="Apagar tudo"
-                    startContent={
-                      <IconCircleMinus className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-                    }
-                  />
-                </button>
-                <Link href={`/dashboard/courses/${courseId}/${chapterId}`}>
-                  <button disabled>
-                    <Tag
-                      name="Adicionar tudo"
-                      startContent={
-                        <IconUpload className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-                      }
-                    />
-                  </button>
-                </Link>
-              </>
-            )}
+            <button disabled>
+              <Tag
+                name="Adicionar mudanças"
+                startContent={
+                  <IconEditCircle className="text-zinc-500 w-5 h-5" />
+                }
+              />
+            </button>
           </div>
         </div>
       </header>
 
-      <div className="relative rounded-lg pt-[52px] w-full ">
+      <div className="relative rounded-lg pt-[68px] w-full ">
         <div className="relative rounded-lg w-full p-4 flex flex-col">
           <div className="flex p-8 justify-between min-w-[1084px] gap-4 items-start rounded-lg w-full dark:bg-[#1f1f1f]/20 border border-[#1f1f1f]/10 dark:border-[#363636]">
             <EditLesson lessonId={lessonId} edit={true} />

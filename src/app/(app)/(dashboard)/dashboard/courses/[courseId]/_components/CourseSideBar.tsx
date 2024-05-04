@@ -87,21 +87,23 @@ export function CourseSidebar({ courseId }: { courseId: string }) {
       </aside>
       <div className="">
         <div
-          className={`${!drawerOpen ? "hidden" : ""} absolute z-30 bg-zinc-950/80 left-0 top-0 w-[100%] h-[100%] min-h-[100vh]  cursor-pointer`}
+          className={`${!drawerOpen ? "hidden" : ""} absolute z-30 bg-[#161616]/75 left-0 top-0 w-[100%] h-[100%] min-h-[100vh]  cursor-pointer`}
           onClick={() => setDrawerOpen(false)}
         ></div>
 
         <div
-          className={`z-40 fixed  w-full top-0 right-0 p-4 h-[100vh] bg-white dark:bg-[#2d2d2d] border-r border-r-zinc-800 md:max-w-[361px] transition-all duration-500 transform ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}
+          className={`z-40 fixed  w-full top-0 right-0 h-[100vh] bg-white border border-[#1f1f1f]/10 dark:border-[#363636] dark:bg-[#2d2d2d] border-r border-r-zinc-800 md:max-w-[361px] transition-all duration-500 transform ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}
         >
-          <div className="flex flex-col gap-3 p-4">
-            <div className="flex flex-col gap-1">
-              <h2 className="text-xl font-semibold">Criar um modulo</h2>
-              <span className="text-zinc-500 text-sm">
+          <div className="flex flex-col ">
+            <div className="flex flex-col gap-1 border border-[#1f1f1f]/10 dark:border-[#363636] p-4">
+              <h2 className=" text-[17px] font-semibold ">Criar um modulo</h2>
+              <h3 className="text-sm flex gap-2 items-center dark:text-zinc-300 text-zinc-500">
                 Os modulos servem para agrupar as aulas com conceitos similares.
-              </span>
+              </h3>
             </div>
-            <CreateChapter courseId={courseId} />
+            <div className="flex flex-col gap-1  p-4">
+              <CreateChapter courseId={courseId} />
+            </div>
           </div>
         </div>
       </div>

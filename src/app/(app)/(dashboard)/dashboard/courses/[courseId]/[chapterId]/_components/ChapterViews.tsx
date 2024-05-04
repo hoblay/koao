@@ -163,7 +163,7 @@ export function ChapterViews({
                         <Link
                           href={`/dashboard/courses/${courseId}/${chapterId}/${lesson.id}`}
                         >
-                          <div className="flex flex-col w-full py-4">
+                          <div className="flex flex-col w-full overflow-ellipsis max-w-[342px] py-4">
                             <span className="text-base w-full truncate overflow-ellipsis">
                               {lesson.title}
                             </span>
@@ -187,18 +187,16 @@ export function ChapterViews({
                         {lesson.video?.id ? (
                           <Tag
                             startContent={
-                              <IconClockEdit className="w-5 h-5 text-amber-950 dark:text-zinc-400" />
+                              <IconClockEdit className="w-5 h-5 " />
                             }
                             name="Em andamento"
-                            color="warning"
                           />
                         ) : (
                           <Tag
                             startContent={
-                              <IconExclamationCircle className="w-5 h-5 text-red-950 dark:text-zinc-400" />
+                              <IconExclamationCircle className="w-5 h-5 text-red-500 dark:text-red-500" />
                             }
-                            name="Não foi possivel achar o video"
-                            color="danger"
+                            name="Video not found"
                           />
                         )}
                       </div>

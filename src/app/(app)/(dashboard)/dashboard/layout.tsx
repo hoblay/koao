@@ -121,9 +121,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     </h2>
                     <textarea
                       name="Error"
-                      placeholder="Curso de fundamentos de
-                    inteligencia artificial"
-                      className=" min-h-[158px]  p-2.5 justify-between w-full font-normal relative flex items-center shadow-sm gap-3 dark:bg-[#363636] border border-[#1f1f1f]/10 dark:border-[#363636] dark:hover:bg-[#1f1f1f] dark:focus:bg-[#1f1f1f]   rounded-md transition-[background] motion-reduce:transition-none !duration-150 outline-none  dark:placeholder:text-zinc-500 dark:text-zinc-100"
+                      placeholder="Nos conte o que aconteceu..."
+                      className=" min-h-[158px]  p-2.5 justify-between w-full font-normal relative flex items-center gap-3 dark:bg-[#363636] border border-[#1f1f1f]/10 dark:border-[#363636] dark:hover:bg-[#1f1f1f] dark:focus:bg-[#1f1f1f]   rounded-md  motion-reduce:transition-none !duration-150 outline-none  dark:placeholder:text-zinc-500 dark:text-zinc-100 box-border shadow-sm transition-all focus-visible:shadow-md focus:ring-[#363636] focus:ring-[1px] focus-visible:ring-background-control  group border-control"
                     />
                     <Button fullWidth size="lg">
                       <span className="text-base">Reportar</span>

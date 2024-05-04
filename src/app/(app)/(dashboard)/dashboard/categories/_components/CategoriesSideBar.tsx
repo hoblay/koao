@@ -100,21 +100,25 @@ export function CategoriesSidebar() {
       </aside>
       <div className="">
         <div
-          className={`${!drawerOpen ? "hidden" : ""} absolute z-30 bg-zinc-950/80 left-0 top-0 w-[100%] h-[100%]  cursor-pointer`}
+          className={`${!drawerOpen ? "hidden" : ""} absolute z-30 bg-[#161616]/75 left-0 top-0 w-[100%] h-[100%]  cursor-pointer`}
           onClick={() => setDrawerOpen(false)}
         ></div>
 
         <div
-          className={`z-40 fixed  w-full top-0 right-0 p-4 h-[100vh] bg-white dark:bg-[#2d2d2d] border-r border-r-zinc-800 md:max-w-[361px] transition-all duration-500 transform ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}
+          className={`z-40 fixed  border border-[#1f1f1f]/10 dark:border-[#363636]  w-full top-0 right-0 h-[100vh] bg-white dark:bg-[#2d2d2d] border-r border-r-zinc-800 md:max-w-[361px] transition-all duration-500 transform ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}
         >
           <FormProvider {...createCourseForm}>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="flex flex-col gap-1 p-4">
-                <h2 className="text-xl font-semibold">Criar uma categoria</h2>
-                <span className="text-zinc-500 text-sm">
+              <div className="flex flex-col gap-1 border border-[#1f1f1f]/10 dark:border-[#363636] p-4">
+                <h2 className=" text-[17px] font-semibold ">
+                  Criar uma categoria
+                </h2>
+                <h3 className="text-sm flex gap-2 items-center dark:text-zinc-300 text-zinc-500">
                   As categorias servem para catalogar os cursos com conceios
                   similares.
-                </span>
+                </h3>
+              </div>
+              <div className="flex flex-col gap-1 px-4">
                 <Form.Field className="flex flex-col gap-2 pt-4 relative">
                   <Form.Label htmlFor="categoryName">
                     Nome da categoria
@@ -138,7 +142,7 @@ export function CategoriesSidebar() {
                   <Form.ErrorMessage field="slug" />
                 </Form.Field>
               </div>
-              <div className="flex justify-end gap-2 px-4">
+              <div className="flex justify-end gap-2 p-4">
                 <button
                   className="p-2 items-center justify-center  bg-zinc-200 dark:bg-[#363636] hover:opacity-80 dark:text-zinc-100 flex rounded-md gap-2 text-xs"
                   onClick={() => setDrawerOpen(false)}

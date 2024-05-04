@@ -3,16 +3,16 @@ import { tv } from "tailwind-variants";
 import TagIcon from "./TagIcon";
 
 const TagStyle = tv({
-  base: "relative flex gap-1.5 select-none items-center whitespace-nowrap rounded-md  p-2 text-xs cursor-pointer dark:text-zinc-100",
+  base: "group relative flex gap-2 select-none items-center whitespace-nowrap rounded-md  px-[10px] py-1.5 text-xs cursor-pointer dark:text-zinc-100",
   variants: {
     color: {
-      base: "bg-zinc-400/10 dark:bg-[#363636] hover:bg-zinc-500/10 hover:dark:bg-zinc-400/10  text-zinc-900",
+      base: "bg-[#363636]/10 text-zinc-500 dark:bg-[#363636]/60 border border-[#1f1f1f]/10 dark:border-[#363636] hover:bg-[#363636]/20 hover:dark:bg-[#2d2d2d] hover:text-[#363636] dark:hover:text-white dark:text-zinc-400",
       success:
-        "bg-emerald-200 dark:bg-emerald-950 hover:bg-emerald-300 hover:dark:bg-emerald-900  text-emerald-900 ",
+        "bg-emerald-100 dark:bg-emerald-950 border border-emerald-500 hover:bg-emerald-400 hover:dark:bg-emerald-900 hover:text-white dark:hover:text-white text-emerald-500 dark:text-emerald-500",
       warning:
-        "bg-amber-200 dark:bg-yellow-950 hover:bg-amber-300 hover:dark:bg-yellow-900  text-amber-900 ",
+        "bg-amber-100 dark:bg-amber-950 border border-amber-500 hover:bg-amber-400 hover:dark:bg-amber-900 hover:text-white dark:hover:text-white text-amber-500 dark:text-amber-500",
       danger:
-        "bg-red-200 dark:bg-red-950 hover:bg-red-300 hover:dark:bg-red-900  text-red-900 ",
+        "bg-red-100 dark:bg-red-950 border border-red-500 hover:bg-red-400 hover:dark:bg-red-900 hover:text-white dark:hover:text-white text-red-500 dark:text-red-500",
     },
   },
   defaultVariants: {
