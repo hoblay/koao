@@ -47,7 +47,9 @@ function AccordionItem({
   if (!context) return null;
 
   return (
-    <div>
+    <div
+      className={`${context.removable && context.indexopen !== index && context.indexopen !== 99999 && context.indexopen > index && "hidden"}`}
+    >
       <h2>
         <button
           className={Item({
@@ -56,7 +58,7 @@ function AccordionItem({
           })}
           onClick={() => context.onClick(index)}
         >
-          <div className="flex-shrink-0">{StartContent && StartContent}</div>
+          <div className=" flex-shrink-0">{StartContent && StartContent}</div>
           {subtitle ? (
             <div
               className={`${textEnd ? "text-end" : "text-start"} flex-1 text-sm flex flex-col `}

@@ -86,6 +86,7 @@ type Lesson = {
   isPublished: boolean;
   isFree: boolean;
   video: any;
+  chapter: Chapter;
   chapterId: string;
   createdAt: Date;
   updatedAt: Date;
@@ -236,6 +237,8 @@ function ClassContent({
         className={`bg-zinc-100 dark:bg-[#313131]  border border-[#1f1f1f]/10 dark:border-[#363636]   `}
       >
         <Accordion.Root
+          indexOpen={currentLesson.chapter.position}
+          removable
           className={`min-w-[100%] relative pt-0 transition-[padding] duration-150 ease-in-out ${!open && "p-0"}`}
         >
           <div
