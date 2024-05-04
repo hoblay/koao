@@ -4,7 +4,7 @@ import { ReactNode, HTMLAttributeAnchorTarget } from "react";
 import { tv } from "tailwind-variants";
 
 const dropdownItemStyle = tv({
-  base: "flex group gap-3 items-center justify-between relative px-2 py-1.5 w-full h-full box-border rounded-lg subpixel-antialiased cursor-pointer outline-none border-transparent  hover:bg-zinc-100 dark:hover:bg-[#363636]/20 hover:transition-colors hover:text-default-foreground",
+  base: "flex group gap-3 items-center justify-between relative px-2 py-1.5 w-full h-full box-border rounded-md subpixel-antialiased cursor-pointer outline-none border-transparent  hover:bg-zinc-100 dark:hover:bg-[#363636]/80 hover:transition-colors hover:text-white",
   variants: {
     variant: {
       bordered:
