@@ -11,7 +11,7 @@ import { db } from "@/server/db";
 
 const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 
-const maxFileSize = 1048576 * 10; // 1 MB
+const maxFileSize = 1048576 * 100; // 1 MB
 
 const generateFileName = (bytes = 32) =>
   crypto.randomBytes(bytes).toString("hex");

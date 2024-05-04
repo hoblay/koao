@@ -18,6 +18,7 @@ import Figma from "./icons/Figma";
 import Nodejs from "./icons/Nodejs";
 import Flstudio from "./icons/Flstudio";
 import Art from "./icons/Art";
+import Cook from "./icons/Cook";
 
 const IconStyle = tv({
   base: "size-32 drop-shadow-2xl",
@@ -42,10 +43,13 @@ const Icon = {
     <Nodejs className="size-32 drop-shadow-2xl  rounded-xl bg-[#0d121c] p-3 max-h-[100%] overflow-hidden" />
   ),
   mix: (
-    <Flstudio className="size-32 drop-shadow-2xl  rounded-xl bg-indigo-950 p-3 max-h-[100%] overflow-hidden" />
+    <Flstudio className="size-20 drop-shadow-2xl  rounded-xl bg-indigo-950 p-2 max-h-[100%] overflow-hidden" />
   ),
   art: (
-    <Art className="size-32 drop-shadow-2xl  rounded-xl bg-purple-950 p-4 max-h-[100%] overflow-hidden" />
+    <Art className="size-24 drop-shadow-2xl  rounded-xl bg-purple-950 p-4 max-h-[100%] overflow-hidden" />
+  ),
+  cook: (
+    <Cook className="size-32 drop-shadow-2xl  rounded-xl bg-purple-950 p-6 max-h-[100%] overflow-hidden" />
   ),
 };
 

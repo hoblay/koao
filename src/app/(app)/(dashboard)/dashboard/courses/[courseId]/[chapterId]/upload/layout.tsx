@@ -22,6 +22,7 @@ import {
 import Link from "next/link";
 import { ChapterSidebar } from "../_components/ChapterSideBar";
 import { UploadView } from "./_components/UploadView";
+import { ReactNode } from "react";
 
 export default function Layout({
   params,

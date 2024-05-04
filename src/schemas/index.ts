@@ -116,3 +116,12 @@ export const CreateCategorySchema = z.object({
 });
 
 export type TCreateCategorySchema = z.infer<typeof CreateCategorySchema>;
+
+export const AddCategoryToCourseSchema = z.object({
+  courseId: z.string(),
+  categoryId: z.string(),
+});
+
+export type TAddCategoryToCourseSchema = z.infer<
+  typeof AddCategoryToCourseSchema
+>;

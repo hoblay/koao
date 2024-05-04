@@ -8,15 +8,16 @@ import {
   IconChevronDown,
   IconEye,
   IconPlayerPause,
+  IconPresentation,
   IconX,
 } from "@tabler/icons-react";
 import { Accordion } from "@/app/components/Accordion";
 import CategoryIcon from "./CategoryIcon";
 import { trpc } from "@/app/_trpc/client";
-import { custom } from "zod";
+import { formatSecondsToMinutes } from "@/utils/format-seconds";
 
 const moduleCircle = tv({
-  base: " w-9 h-9 rounded-full p-1 border-2 border-zinc-300 text-zinc-600 dark:text-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-[#1f1f1f] items-center justify-center",
+  base: " w-9 h-9 rounded-xl font-bold p-1 border-2 border-[#1f1f1f]/10 dark:border-[#363636] text-zinc-600 dark:text-zinc-200 bg-zinc-100 dark:bg-[#2a2a2a] items-center justify-center",
   variants: {
     active: {
       true: "border-[#015F43] text-[#015F43]  dark:text-zinc-100 dark:border-[#015F43]",
@@ -32,13 +33,13 @@ const moduleCircle = tv({
 });
 
 const lessonStyle = tv({
-  base: "absolute flex items-center justify-center w-6 h-6 bg-[#015F43] rounded-full -start-[13px] ring-4 ring-zinc-50 dark:ring-[#1f1f1f]/40 hover:ring-8 dark:bg-[#1f1f1f]   cursor-pointer transition-all duration-150 ease-in-out",
+  base: " flex items-center justify-center p-1 rounded-lg -start-[13px] ring-zinc-50 dark:ring-[#313131]/50 hover:ring-8 text-[#015F43] dark:text-zinc-400   cursor-pointer transition-all duration-150 ease-in-out",
   variants: {
     active: {
-      true: "ring-[#015F43] dark:ring-[#015F43] hover:ring-8 hover:ring-[#015F43]/30 dark:hover:ring-[#015F43]/30 dark:bg-[#1f1f1f] ",
+      true: "ring-zinc-50 dark:ring-[#313131]/50 hover:ring-8 text-[#015F43] dark:text-zinc-200 ",
     },
     done: {
-      true: "ring-zinc-50 dark:ring-[#313131]/50 hover:ring-8 bg-[#015F43] dark:bg-[#015F43] ",
+      true: "ring-zinc-50 dark:ring-[#313131]/50 hover:ring-8 text-[#015F43] dark:text-green-500  ",
     },
   },
   defaultVariants: {
@@ -84,6 +85,7 @@ type Lesson = {
   position: number;
   isPublished: boolean;
   isFree: boolean;
+  video: any;
   chapterId: string;
   createdAt: Date;
   updatedAt: Date;
@@ -199,6 +201,14 @@ function ClassContent({
 
   const lessonsNumber = Object.keys(course.chapters).length;
 
+  const getChapterDuration = (chapter: Chapter) => {
+    let duration = 0;
+    chapter.lessons.map((lesson) => {
+      duration = lesson.video.duration + duration;
+    });
+    return duration;
+  };
+
   useEffect(() => {
     let percentagePerModule = 100 / lessonsNumber;
 
@@ -222,14 +232,16 @@ function ClassContent({
     <div
       className={`${open ? "h-[480px] max-h-[480px]" : "max-h-[116px]"} transition-[max-height] duration-150 ease-in-out   overscroll-x-none overscroll-y-none rounded-xl overflow-y-auto overflow-hidden bg-zinc-50 dark:bg-[#313131] no-scrollbar w-[400px] shadow-sm`}
     >
-      <div className={`bg-zinc-100 dark:bg-[#313131]   `}>
+      <div
+        className={`bg-zinc-100 dark:bg-[#313131]  border border-[#1f1f1f]/10 dark:border-[#363636]   `}
+      >
         <Accordion.Root
           className={`min-w-[100%] relative pt-0 transition-[padding] duration-150 ease-in-out ${!open && "p-0"}`}
         >
           <div
             className={`sticky top-0 z-10  rounded-xl bg-zinc-100 dark:bg-[#313131]  transition-[padding] duration-150 ease-in-out ${open && "pt-2"}`}
           >
-            <div className=" bg-zinc-50 dark:bg-[#363636]  px-4 py-4 rounded-xl">
+            <div className="border border-[#1f1f1f]/10 dark:border-[#363636] bg-zinc-50 dark:bg-[#363636]/60  px-4 py-4 rounded-lg">
               <div className="flex gap-3 items-center">
                 {open && (
                   <div className="p-3 rounded-xl bg-zinc-100 dark:bg-[#2b2b2b]">
@@ -306,10 +318,11 @@ function ClassContent({
             </div>
           </div>
           <div
-            className={`px-3 py-2 dark:bg-[#1f1f1f]/5 rounded-b-xl  overscroll-x-none overscroll-y-none no-scrollbar overflow-hidden flex flex-col gap-1 ${!open && "hidden"}`}
+            className={`px-2 py-2 rounded-lg border border-[#1f1f1f]/10 dark:border-[#363636]  rounded-b-xl  overscroll-x-none overscroll-y-none no-scrollbar overflow-hidden flex flex-col gap-2 ${!open && "hidden"}`}
           >
             {course?.chapters?.map((chapter, index) => (
               <Accordion.Item
+                className="py-8 px-3 bg-zinc-100 dark:bg-[#313131] rounded-lg hover:dark:bg-[#363636]"
                 key={chapter.id}
                 startContent={
                   <div
@@ -327,15 +340,16 @@ function ClassContent({
                     </div>
                   </div>
                 }
+                subtitle={`${chapter.lessons.length} Aulas · ${formatSecondsToMinutes(getChapterDuration(chapter))}`}
                 index={chapter.position}
                 title={chapter.title}
               >
-                <div className="py-0 px-7" ref={listItems}>
-                  <ol className="relative">
+                <div className="py-1 px-0" ref={listItems}>
+                  <ol className="relative flex flex-col gap-0.5">
                     {chapter.lessons.map((lesson, i) => (
                       <li
                         key={lesson.id}
-                        className={`pb-4 p-1  border-s-2 pl-7 -ml-[2px] pt-3 ${checkDoneLesson(chapter.position, lesson.position, lesson.id) ? "border-[#015F43] dark:border-[#015F43] " : "border-zinc-200 dark:border-[#1f1f1f]/20"}`}
+                        className={`px-4 py-2.5 cursor:pointer  flex gap-2 w-full items-center justify-between text-zinc-600 rounded-md hover:bg-zinc-100 dark:hover:bg-[#363636] group ${checkDoneLesson(chapter.position, lesson.position, lesson.id) ? " " : ""}`}
                       >
                         <span
                           className={lessonStyle({
@@ -356,30 +370,43 @@ function ClassContent({
                           }
                         >
                           <span
-                            className={`text-xs text-[#015F43] dark:text-zinc-50 ${
+                            className={`text-xs ${
                               lesson.id === currentLesson.id &&
                               chapter.id === currentLesson.chapterId &&
-                              "text-zinc-50"
+                              ""
                             }`}
                           >
                             {i === lesseonIndexActive &&
                             index === indexActive ? (
-                              <IconEye className="w-3 h-3" />
+                              <IconEye className="size-5" />
                             ) : (
-                              i + 1
+                              <IconPresentation className="size-5" />
                             )}
                           </span>
                         </span>
                         <Link
                           href={`/watch/${course.id}/${lesson.id}`}
-                          className=""
+                          className="flex gap-2"
                         >
                           <h3
-                            className="flex items-center text-sm text-zinc-900 dark:text-white dark:hover:text-zinc-300"
+                            className={`${
+                              checkDoneLesson(
+                                chapter.position,
+                                lesson.position,
+                                lesson.id,
+                              )
+                                ? "text-green-500 hover:text-green-400"
+                                : lesson.id === currentLesson.id
+                                  ? "text-zinc-900 dark:text-zinc-50  dark:hover:text-zinc-300"
+                                  : "text-zinc-900 dark:text-zinc-400  dark:hover:text-zinc-300"
+                            }  max-w-[200px] min-w-[190px] truncate text-end  text-[13px] `}
                             onClick={() => markAsActive(index, i)}
                           >
                             {lesson.title}
                           </h3>
+                          <span className="text-zinc-400 pl-2">
+                            {formatSecondsToMinutes(lesson.video.duration)}
+                          </span>
                         </Link>
                       </li>
                     ))}

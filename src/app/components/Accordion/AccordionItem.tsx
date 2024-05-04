@@ -9,6 +9,7 @@ import { AccordionContext } from "./AccordionRoot";
 interface AccordionItemProps {
   children?: ReactNode;
   index: number;
+  className?: string;
   title: ReactNode | string;
   subtitle?: ReactNode | string;
   startContent?: ReactNode;
@@ -36,6 +37,7 @@ function AccordionItem({
   index,
   title,
   subtitle,
+  className,
   startContent: StartContent,
   isDisabled,
 }: AccordionItemProps) {
@@ -46,13 +48,24 @@ function AccordionItem({
     <div>
       <h2>
         <button
-          className={Item({ active: context.indexopen === index })}
+          className={Item({
+            active: context.indexopen === index,
+            class: className,
+          })}
           onClick={() => context.onClick(index)}
         >
           <div className="flex-shrink-0">{StartContent && StartContent}</div>
-          <div className="flex-1 flex flex-col text-start">
-            <span className="line-clamp-2">{title}</span>
-          </div>
+          {subtitle ? (
+            <div className="flex-1 text-sm flex flex-col text-start">
+              <span className="truncate">{title}</span>
+              <span className="truncate text-zinc-400">{subtitle}</span>
+            </div>
+          ) : (
+            <div className="flex-1 flex flex-col text-start">
+              <span className="line-clamp-2">{title}</span>
+            </div>
+          )}
+
           <div className="">
             <ChevronLeftIcon
               className={` w-5 h-5 transition-all transform duration-300 ${context.indexopen === index ? "-rotate-90" : ""}`}

@@ -50,7 +50,7 @@ export const courseRouter = router({
 
       const courses = await db.course.findMany({
         orderBy: {
-          createdAt: "desc",
+          updatedAt: "desc",
         },
         where: {
           userId: session?.user.id,

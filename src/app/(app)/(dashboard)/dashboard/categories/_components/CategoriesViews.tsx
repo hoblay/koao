@@ -1,4 +1,4 @@
-"use client";
+import { serverClient } from "@/app/_trpc/serverClient";
 import Avatar from "@/app/components/Avatar/Avatar";
 import { Breadcrumb } from "@/app/components/Breadcrumb";
 import Button from "@/app/components/Button/Button";
@@ -17,9 +17,8 @@ import {
   IconTable,
   IconTrash,
 } from "@tabler/icons-react";
-import { useState } from "react";
 
-export function CategoriesViews({ courses }: { courses: any[] }) {
+export function CategoriesViews({ categories }: { categories: any[] }) {
   return (
     <div className="flex flex-col pl-[256px]">
       <header className="w-full max-w-[1116px]  fixed z-10 top-[78px] bg-white dark:bg-[#2d2d2d] border-t p-4  border-r border-b border-[#1f1f1f]/10 dark:border-[#363636]">
@@ -59,12 +58,12 @@ export function CategoriesViews({ courses }: { courses: any[] }) {
             </tr>
           </thead>
 
-          {courses.length > 0 && (
+          {categories.length > 0 && (
             <tbody>
-              {courses.map((index) => (
+              {categories.map((category, index) => (
                 <tr
                   className="border border-[#1f1f1f]/10 dark:border-[#363636] "
-                  key={index}
+                  key={category.id}
                 >
                   <th
                     scope="row"
@@ -78,16 +77,16 @@ export function CategoriesViews({ courses }: { courses: any[] }) {
                       />
                       <div className="flex flex-col w-full py-4">
                         <span className="text-base w-full truncate overflow-ellipsis">
-                          Produção Musical
+                          {category.name}
                         </span>
                         <span className="text-sm text-zinc-500 truncate overflow-ellipsis">
-                          producao-musical
+                          {category.slug}
                         </span>
                       </div>
                     </div>
                   </th>
 
-                  <td className="px-12">23 cursos</td>
+                  <td className="px-12">{category.courses.length} cursos</td>
                   <td className="px-7 text-right ">
                     <Dropdown.Root>
                       <Dropdown.Trigger>

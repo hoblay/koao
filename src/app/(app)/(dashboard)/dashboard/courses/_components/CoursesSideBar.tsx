@@ -123,7 +123,7 @@ export function CoursesSidebar() {
           <FormProvider {...createCourseForm}>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col">
-                <div className="flex flex-col gap-1 border border-[#1f1f1f]/10 dark:border-[#363636] p-4">
+                <div className="flex flex-col gap-1 border-b border-[#1f1f1f]/10 dark:border-[#363636] p-4">
                   <h2 className=" text-[17px] font-semibold ">
                     Criar um curso
                   </h2>

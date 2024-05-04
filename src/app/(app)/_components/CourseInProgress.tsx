@@ -37,9 +37,9 @@ function CourseInProgress({
   return (
     <div className="mr-4 max-w-[100hh]">
       <Link href={`/course/${id}`} className="mr-4 ">
-        <Card.Root>
-          <div className="flex p-2">
-            <Card.Body className="max-w-24 p-1.5 max-h-24 flex w-full items-center color-inherit subpixel-antialiased gap-3 ">
+        <Card.Root className="h-[112px] border border-[#1f1f1f]/10 dark:border-[#363636] dark:bg-[#363636]/60">
+          <div className="flex p-2 items-center">
+            <Card.Body className="max-w-24 p-1.5 max-h-24  rounded-xl overflow-hidden flex w-full items-center color-inherit subpixel-antialiased gap-3 shadow-none ">
               <CourseIcon name={tag} />
             </Card.Body>
             <Card.Footer className=" px-2 flex dark:text-zinc-200 w-full items-center color-inherit subpixel-antialiased gap-3">

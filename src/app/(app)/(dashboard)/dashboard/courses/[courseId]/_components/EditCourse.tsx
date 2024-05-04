@@ -8,6 +8,7 @@ import { Form } from "@/app/components/Form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateChapterFront, TCreateChaptersFront } from "@/schemas";
 import { trpc } from "@/app/_trpc/client";
+import { useRouter } from "next/navigation";
 
 interface EditCourseProps {
   courseId: string;
@@ -16,6 +17,7 @@ interface EditCourseProps {
 }
 
 function EditCourse({ courseId, edit, setEdit }: EditCourseProps) {
+  const router = useRouter();
   const getCourse = trpc.course.getById.useQuery(courseId);
   const course = getCourse.data;
   const updateCourse = trpc.course.updateCourse.useMutation({
@@ -40,9 +42,15 @@ function EditCourse({ courseId, edit, setEdit }: EditCourseProps) {
   } = editCourseForm;
 
   const onSubmit = async (data: TCreateChaptersFront) => {
-    updateCourse.mutate({ ...data, courseId: courseId });
-
-    setEdit(false);
+    updateCourse.mutate(
+      { ...data, courseId: courseId },
+      {
+        onSettled: () => {
+          getCourse.refetch();
+          router.push(`/dashboard/courses/${courseId}`);
+        },
+      },
+    );
   };
 
   if (!edit) {

@@ -17,7 +17,7 @@ interface EditLessonProps {
 function EditLesson({ lessonId, edit }: EditLessonProps) {
   const getLesson = trpc.lesson.getById.useQuery(lessonId);
   const lesson = getLesson.data;
-  const updateLesson = trpc.lesson.updateLesson.useMutation({
+  const updateLesson = trpc.lesson.updateLessonTitle.useMutation({
     onSettled: () => {
       getLesson.refetch();
     },

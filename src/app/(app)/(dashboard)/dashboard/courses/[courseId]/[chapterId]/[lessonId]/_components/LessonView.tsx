@@ -81,7 +81,7 @@ export function LessonView({
               title={`${lesson.data.title}`}
             />
           </Breadcrumb.RootA>
-          <div className="flex gap-2">
+          <div className="flex gap-2 pr-4">
             <button disabled>
               <Tag
                 name="Adicionar mudanças"

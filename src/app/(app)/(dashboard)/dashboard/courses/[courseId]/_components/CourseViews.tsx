@@ -26,6 +26,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { CoursesViews } from "../../_components/CoursesViews";
 import CreateChapter from "./CreateChapter";
+import SelectVisibility from "./SelectVisibility";
 
 export function CourseViews({
   chapters,
@@ -56,7 +57,7 @@ export function CourseViews({
                 title={`${course.data.title}`}
               />
             </Breadcrumb.RootA>
-            <div className="flex gap-2 ">
+            <div className="flex gap-2 pr-4">
               <Modal.Root>
                 <Modal.Trigger>
                   <Tag
@@ -74,14 +75,13 @@ export function CourseViews({
                         Desejas eliminar o curso?
                       </h2>
                       <span className="text-zinc-500 text-sm text-pretty">
-                        Como medida preventiva, pedimos que digite o nome: Curso
-                        de fundamentos de inteligencia artificial.
+                        Como medida preventiva, pedimos que digite o nome:
+                        <p>{course.data.title}</p>
                       </span>
                       <input
                         type="text"
                         name="CourseName"
-                        placeholder="Curso de fundamentos de
-                    inteligencia artificial"
+                        placeholder={course.data.title}
                         className="max-h-12 text-sm w-full py-6 px-4 rounded-lg focus:ring-0 outline-none border border-[#1f1f1f]/10 dark:border-[#363636] p-2.5 justify-between font-normal relative flex items-center shadow-sm gap-3 dark:bg-[#1f1f1f] dark:hover:bg-[#2d2d2d] dark:focus:bg-[#2d2d2d]"
                       />
                       <Button fullWidth size="lg">
@@ -97,9 +97,9 @@ export function CourseViews({
                   startContent={<IconEdit className="text-zinc-500 w-5 h-5" />}
                 />
               </Link>
-              <Tag
-                name="Publicar"
-                startContent={<IconEye className="text-zinc-500 w-5 h-5" />}
+              <SelectVisibility
+                courseId={courseId}
+                published={course.data.isPublished ? "true" : "false"}
               />
             </div>
           </div>
@@ -289,21 +289,23 @@ export function CourseViews({
       </div>
       <div className="">
         <div
-          className={`${!drawerOpen ? "hidden" : ""} absolute z-30 bg-zinc-950/80 left-0 top-0 w-[100%] h-[100%] min-h-[100vh]  cursor-pointer`}
+          className={`${!drawerOpen ? "hidden" : ""} absolute z-30 bg-[#161616]/75 left-0 top-0 w-[100%] h-[100%] min-h-[100vh]  cursor-pointer`}
           onClick={() => setDrawerOpen(false)}
         ></div>
 
         <div
-          className={`z-40 fixed  w-full top-0 right-0 p-4 h-[100vh] bg-white dark:bg-[#2d2d2d] border-r border-r-zinc-800 md:max-w-[361px] transition-all duration-500 transform ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}
+          className={`z-40 fixed  w-full top-0 right-0 h-[100vh] bg-white border-b border-[#1f1f1f]/10 dark:border-[#363636] dark:bg-[#2d2d2d] border-r border-r-zinc-800 md:max-w-[361px] transition-all duration-500 transform ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}
         >
-          <div className="flex flex-col gap-3 p-4">
-            <div className="flex flex-col gap-1">
-              <h2 className="text-xl font-semibold">Criar um modulo</h2>
-              <span className="text-zinc-500 text-sm">
+          <div className="flex flex-col ">
+            <div className="flex flex-col gap-1 border border-[#1f1f1f]/10 dark:border-[#363636] p-4">
+              <h2 className=" text-[17px] font-semibold ">Criar um modulo</h2>
+              <h3 className="text-sm flex gap-2 items-center dark:text-zinc-300 text-zinc-500">
                 Os modulos servem para agrupar as aulas com conceitos similares.
-              </span>
+              </h3>
             </div>
-            <CreateChapter courseId={courseId} />
+            <div className="flex flex-col gap-1  p-4">
+              <CreateChapter courseId={courseId} />
+            </div>
           </div>
         </div>
       </div>

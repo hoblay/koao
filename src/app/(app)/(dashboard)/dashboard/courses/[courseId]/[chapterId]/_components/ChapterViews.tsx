@@ -19,6 +19,7 @@ import {
   IconEye,
   IconLayoutGrid,
   IconPresentation,
+  IconSlash,
   IconTable,
   IconTrash,
   IconUpload,
@@ -47,7 +48,6 @@ export function ChapterViews({
     const a = await deleteLesson(id);
     chapter.refetch();
   };
-  if (!course.data || !chapter.data) return null;
   return (
     <div className="flex flex-col pl-[256px]">
       <header
@@ -61,17 +61,34 @@ export function ChapterViews({
               title="Painel de controle"
             />
             <Breadcrumb.Item href="/dashboard/courses" title="Cursos" />
-            <Breadcrumb.Item
-              href={`/dashboard/courses/${courseId}`}
-              short
-              title={`${course.data.title}`}
-            />
-            <Breadcrumb.Item
-              href={`/dashboard/courses/${courseId}/${chapterId}`}
-              title={`${chapter.data.title}`}
-            />
+            {course.data ? (
+              <Breadcrumb.Item
+                href={`/dashboard/courses/${courseId}`}
+                short
+                title={`${course.data.title}`}
+              />
+            ) : (
+              <li className="inline-flex items-center gap-0.5 ">
+                <IconSlash className="size-5 -rotate-12 text-[#1f1f1f]/10 dark:text-[#363636]" />
+
+                <div className="h-4 bg-gray-300 rounded dark:bg-[#363636] w-36 animate-pulse"></div>
+              </li>
+            )}
+
+            {chapter.data ? (
+              <Breadcrumb.Item
+                href={`/dashboard/courses/${courseId}/${chapterId}`}
+                title={`${chapter.data.title}`}
+              />
+            ) : (
+              <li className="inline-flex items-center gap-0.5 ">
+                <IconSlash className="size-5 -rotate-12 text-[#1f1f1f]/10 dark:text-[#363636]" />
+
+                <div className="h-4 bg-gray-300 rounded dark:bg-[#363636] w-36 animate-pulse"></div>
+              </li>
+            )}
           </Breadcrumb.RootA>
-          <div className="flex gap-2">
+          <div className="flex gap-2 pr-4">
             {pathname === `/dashboard/courses/${courseId}/${chapterId}` && (
               <>
                 <Tag
@@ -113,7 +130,7 @@ export function ChapterViews({
 
       <div className="relative rounded-lg pt-[52px] w-full ">
         <>
-          {chapter.data.lessons.length > 0 ? (
+          {chapter.data?.lessons.length > 0 ? (
             <table className="w-full min-w-[1116px]  text-sm text-left rtl:text-right text-zinc-500 dark:text-zinc-400">
               <thead className="font-medium   bg-zinc-50  dark:bg-[#2a2a2a] z-10 sticky top-[131.5px] text-zinc-700 dark:text-zinc-100 border border-[#1f1f1f]/10 dark:border-[#363636]">
                 <tr className="items-center justify-center">
@@ -145,7 +162,7 @@ export function ChapterViews({
               </thead>
 
               <tbody>
-                {chapter.data.lessons.map((lesson, index) => (
+                {chapter.data?.lessons.map((lesson, index) => (
                   <tr
                     className="border border-[#1f1f1f]/10 dark:border-[#363636] "
                     key={lesson.id}

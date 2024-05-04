@@ -60,9 +60,9 @@ function CourseHeading({
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 backdrop-blur-md left-0 px-10 pb-10 pt-6 space-y-2 max-w-[100%]">
+      <div className="absolute w-full  bottom-0 backdrop-blur-md left-0 px-10 pb-10 pt-6 space-y-2 max-w-[100%]">
         <div className="flex gap-10">
-          <div className="flex flex-col gap-2 w-full">
+          <div className="flex flex-col gap-2 max-w-[300px]">
             {lastSeen.data ? (
               <Link
                 href={
@@ -96,8 +96,8 @@ function CourseHeading({
               </span>
             </Button>
           </div>
-          <div className="flex gap-4">
-            <div className="flex flex-col gap-4 text-zinc-200 ">
+          <div className="flex gap-4 w-full">
+            <div className="flex flex-col gap-4 text-zinc-200 w-full">
               <p className="text-zinc-200 text-sm text-[15px] line-clamp-2 md:line-clamp-3">
                 {description}
               </p>

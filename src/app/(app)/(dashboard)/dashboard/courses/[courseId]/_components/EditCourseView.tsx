@@ -47,15 +47,15 @@ export function EditCourseView({ courseId }: { courseId: string }) {
               title={`${course.data.title}`}
             />
           </Breadcrumb.RootA>
-          <div className="flex gap-2">
-            <Link href={`/dashboard/courses/${courseId}`}>
+          <div className="flex gap-2 pr-4">
+            <button type="submit" form="editCourse">
               <Tag
                 name="Adicionar mudanças"
                 startContent={
                   <IconEditCircle className="text-zinc-500 w-5 h-5" />
                 }
               />
-            </Link>
+            </button>
           </div>
         </div>
       </header>

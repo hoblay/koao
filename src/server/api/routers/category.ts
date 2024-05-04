@@ -1,4 +1,4 @@
-import { CreateCategorySchema } from "@/schemas";
+import { AddCategoryToCourseSchema, CreateCategorySchema } from "@/schemas";
 import { publicProcedure, router } from "@/server/api/trpc";
 import { authOptions } from "@/server/auth";
 import { db } from "@/server/db";
@@ -34,6 +34,29 @@ export const categoryRouter = router({
       );
     }
   }),
+  addtoCourse: publicProcedure
+    .input(AddCategoryToCourseSchema)
+    .mutation(async ({ input }) => {
+      try {
+        const session = await getServerSession(authOptions);
+
+        if (!session?.user) return null;
+
+        const category = await db.course.update({
+          where: { id: input.courseId },
+          data: {
+            categoryId: input.categoryId,
+          },
+        });
+        console.log("category: ", category);
+        return category;
+      } catch (error) {
+        return NextResponse.json(
+          { message: "Algo de errado não está certo", error },
+          { status: 500 },
+        );
+      }
+    }),
   getAll: publicProcedure.query(async ({ input }) => {
     try {
       const categories = await db.category.findMany({

@@ -22,11 +22,12 @@ import {
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import CreateChapter from "./CreateChapter";
+import TagIcon from "@/app/components/Tag/TagIcon";
+import SelectCategory from "./SelectCategory";
 
 export function CourseSidebar({ courseId }: { courseId: string }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const course = trpc.course.getById.useQuery(courseId);
-  if (!course.data) return null;
 
   return (
     <>
@@ -34,7 +35,11 @@ export function CourseSidebar({ courseId }: { courseId: string }) {
         <header className="w-full bg-white dark:bg-[#2d2d2d] max-w-[256px] py-3.5 px-4  border-r border-b border-[#1f1f1f]/10 dark:border-[#363636]">
           <div className="flex justify-between max-w-[250px] ">
             <div className="max-w-[250px] line-clamp-2 text-pretty overflow-hidden">
-              {course.data.title}
+              {course.data ? (
+                course.data.title
+              ) : (
+                <div className="h-4 bg-gray-300 rounded dark:bg-[#363636] w-36 animate-pulse"></div>
+              )}
             </div>
           </div>
         </header>
@@ -47,17 +52,11 @@ export function CourseSidebar({ courseId }: { courseId: string }) {
               }
             />
           </button>
-          {course.data.category ? (
-            <Tag name={course.data.category.name} />
-          ) : (
-            <Tag
-              name="Categoria"
-              className="border border-[#1f1f1f]/10 dark:border-[#363636]  border-dashed dark:bg-[#2a2a2a]"
-              startContent={
-                <IconTag className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-              }
-            />
-          )}
+          <SelectCategory
+            categoryId={course.data?.category?.id}
+            categoryName={course.data?.category?.name}
+            courseId={courseId}
+          />
 
           <form
             className={` relative w-full rounded-md border border-[#1f1f1f]/10 dark:border-[#363636] `}
@@ -92,7 +91,7 @@ export function CourseSidebar({ courseId }: { courseId: string }) {
         ></div>
 
         <div
-          className={`z-40 fixed  w-full top-0 right-0 h-[100vh] bg-white border border-[#1f1f1f]/10 dark:border-[#363636] dark:bg-[#2d2d2d] border-r border-r-zinc-800 md:max-w-[361px] transition-all duration-500 transform ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}
+          className={`z-40 fixed  w-full top-0 right-0 h-[100vh] bg-white border-b border-[#1f1f1f]/10 dark:border-[#363636] dark:bg-[#2d2d2d] border-r border-r-zinc-800 md:max-w-[361px] transition-all duration-500 transform ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}
         >
           <div className="flex flex-col ">
             <div className="flex flex-col gap-1 border border-[#1f1f1f]/10 dark:border-[#363636] p-4">
