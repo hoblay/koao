@@ -34,11 +34,9 @@ import { formatBytes } from "@/utils/format-bytes";
 export function ChapterViews({
   courseId,
   chapterId,
-  children,
 }: {
   courseId: string;
   chapterId: string;
-  children: ReactNode | ReactNode[];
 }) {
   const pathname = usePathname();
   const course = trpc.course.getById.useQuery(courseId);
@@ -130,7 +128,7 @@ export function ChapterViews({
 
       <div className="relative rounded-lg pt-[52px] w-full ">
         <>
-          {chapter.data?.lessons?.length > 0 ? (
+          {chapter.data && chapter.data.lessons.length > 0 ? (
             <table className="w-full min-w-[1116px]  text-sm text-left rtl:text-right text-zinc-500 dark:text-zinc-400">
               <thead className="font-medium   bg-zinc-50  dark:bg-[#2a2a2a] z-10 sticky top-[131.5px] text-zinc-700 dark:text-zinc-100 border border-[#1f1f1f]/10 dark:border-[#363636]">
                 <tr className="items-center justify-center">
