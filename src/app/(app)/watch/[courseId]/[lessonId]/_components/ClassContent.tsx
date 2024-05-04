@@ -399,7 +399,7 @@ function ClassContent({
                                 : lesson.id === currentLesson.id
                                   ? "text-zinc-900 dark:text-zinc-50  dark:hover:text-zinc-300"
                                   : "text-zinc-900 dark:text-zinc-400  dark:hover:text-zinc-300"
-                            }  max-w-[200px] min-w-[190px] truncate text-end  text-[13px] `}
+                            }  max-w-[230px]  truncate text-start  text-[13px] `}
                             onClick={() => markAsActive(index, i)}
                           >
                             {lesson.title}

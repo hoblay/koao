@@ -12,6 +12,7 @@ interface AccordionItemProps {
   className?: string;
   title: ReactNode | string;
   subtitle?: ReactNode | string;
+  textEnd?: boolean;
   startContent?: ReactNode;
   isDisabled?: boolean;
 }
@@ -37,6 +38,7 @@ function AccordionItem({
   index,
   title,
   subtitle,
+  textEnd,
   className,
   startContent: StartContent,
   isDisabled,
@@ -56,12 +58,16 @@ function AccordionItem({
         >
           <div className="flex-shrink-0">{StartContent && StartContent}</div>
           {subtitle ? (
-            <div className="flex-1 text-sm flex flex-col text-start">
+            <div
+              className={`${textEnd ? "text-end" : "text-start"} flex-1 text-sm flex flex-col `}
+            >
               <span className="truncate">{title}</span>
               <span className="truncate text-zinc-400">{subtitle}</span>
             </div>
           ) : (
-            <div className="flex-1 flex flex-col text-start">
+            <div
+              className={`${textEnd ? "text-end" : "text-start"} flex-1 flex flex-col `}
+            >
               <span className="line-clamp-2">{title}</span>
             </div>
           )}
