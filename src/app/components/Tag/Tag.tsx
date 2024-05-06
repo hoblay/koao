@@ -8,11 +8,11 @@ const TagStyle = tv({
     color: {
       base: "bg-[#363636]/10 text-zinc-500 dark:bg-[#363636]/60 border border-[#1f1f1f]/10 dark:border-[#363636] hover:bg-[#363636]/20 hover:dark:bg-[#2d2d2d] hover:text-[#363636] dark:hover:text-white dark:text-zinc-400",
       success:
-        "bg-emerald-100 dark:bg-emerald-950 border border-emerald-500 hover:bg-emerald-400 hover:dark:bg-emerald-900 hover:text-white dark:hover:text-white text-emerald-500 dark:text-emerald-500",
+        "bg-emerald-100 dark:bg-emerald-950/20 border border-emerald-500/20 hover:bg-emerald-400 hover:dark:bg-emerald-900/20 hover:text-white dark:hover:text-emerald-300 text-emerald-500 dark:text-emerald-500",
       warning:
-        "bg-amber-100 dark:bg-amber-950 border border-amber-500 hover:bg-amber-400 hover:dark:bg-amber-900 hover:text-white dark:hover:text-white text-amber-500 dark:text-amber-500",
+        "bg-amber-100 dark:bg-amber-950/20 border border-amber-500/20 hover:bg-amber-400 hover:dark:bg-amber-900/20 hover:text-white dark:hover:text-amber-300 text-amber-500 dark:text-amber-500",
       danger:
-        "bg-red-100 dark:bg-red-950 border border-red-500 hover:bg-red-400 hover:dark:bg-red-900 hover:text-white dark:hover:text-white text-red-500 dark:text-red-500",
+        "bg-red-100 dark:bg-red-950/20 border border-red-500/20 hover:bg-red-400 hover:dark:bg-red-900/20 hover:text-white dark:hover:text-red-300 text-red-500 dark:text-red-500",
     },
   },
   defaultVariants: {

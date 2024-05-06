@@ -32,6 +32,7 @@ import { formatSecondsToMinutes } from "@/utils/format-seconds";
 import { formatBytes } from "@/utils/format-bytes";
 import { useDisclosure } from "@/hooks/useDisclosure";
 import { DeleteContent } from "../../_components/DeleteContent";
+import { formatTime } from "@/utils/format-time";
 
 export function ChapterViews({
   courseId,
@@ -106,7 +107,7 @@ export function ChapterViews({
             <div className="flex gap-2 pr-4">
               <button
                 onClick={() =>
-                  removeContent(chapterId, `${chapter.data.title}`, "chapter")
+                  removeContent(chapterId, `${chapter.data?.title}`, "chapter")
                 }
               >
                 <Tag
@@ -221,7 +222,7 @@ export function ChapterViews({
                             size="xs"
                           />
                           <span className="text-xs text-zinc-500 dark:text-zinc-400 text-nowrap ">
-                            Atualizado há 50 minutos
+                            Atualizado {formatTime(new Date(lesson.updatedAt))}
                           </span>
                         </div>
                       </td>

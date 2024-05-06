@@ -94,7 +94,7 @@ export function UploadView({
         </div>
       </header>
 
-      <div className="relative rounded-lg pt-[52px] w-full ">{children}</div>
+      <div className="relative rounded-lg pt-[49px] w-full ">{children}</div>
     </div>
   );
 }

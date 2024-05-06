@@ -106,7 +106,7 @@ export default function Home({
       {files.length > 0 && (
         <div className="relative overflow-x-visible shadow-md rounded-lg ">
           <table className="w-full  text-sm text-left rtl:text-right text-zinc-500 dark:text-zinc-400">
-            <thead className="font-medium   bg-zinc-50  dark:bg-[#2a2a2a] z-10 sticky top-[131.5px] text-zinc-700 dark:text-zinc-100 border border-[#1f1f1f]/10 dark:border-[#363636]">
+            <thead className="font-medium   bg-zinc-50  dark:bg-[#2a2a2a] z-10 sticky top-[130px] text-zinc-700 dark:text-zinc-100 border border-[#1f1f1f]/10 dark:border-[#363636]">
               <tr>
                 <th scope="col" className="px-6 py-3">
                   Aula

@@ -93,7 +93,6 @@ function TableRow({
                   name="title"
                   sizes="xs"
                   type="text"
-                  bordered
                   className="max-w-[380px]"
                   onBlur={handleSubmit(onSubmit)}
                 />
@@ -101,7 +100,7 @@ function TableRow({
               <div className="flex">
                 <Tag
                   name="Recursos"
-                  className="border border-zinc-800 border-dashed dark:bg-zinc-950 text-xs items-center justify-center"
+                  className=" border-dashed dark:bg-[#2a2a2a] text-xs items-center justify-center"
                   startContent={
                     <IconFiles className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
                   }
@@ -120,7 +119,7 @@ function TableRow({
               name="Verificando"
               color="warning"
               startContent={
-                <IconLoader3 className="w-5 h-5 animate-spin text-amber-500 dark:text-zinc-300" />
+                <IconLoader3 className="w-5 h-5 animate-spin text-amber-500 dark:text-amber-500 group-hover:text-amber-300" />
               }
             />
           ) : (
@@ -128,7 +127,7 @@ function TableRow({
               name="Verificado"
               color="success"
               startContent={
-                <IconCircleCheck className="w-5 h-5 text-emerarl-500 dark:text-zinc-300" />
+                <IconCircleCheck className="w-5 h-5 text-emerald-500 dark:text-emerald-500 group-hover:text-emerald-300 " />
               }
             />
           )}
@@ -137,11 +136,11 @@ function TableRow({
       <td className="px-6 py-4 text-right">
         <Dropdown.Root>
           <Dropdown.Trigger>
-            <button className="p-2 border-zinc-800 border rounded-xl hover:bg-zinc-800/10">
+            <button className="p-2 border border-[#1f1f1f]/10 dark:border-[#363636] rounded-xl hover:bg-zinc-50 dark:hover:bg-[#363636]">
               <IconDots />
             </button>
           </Dropdown.Trigger>
-          <Dropdown.Menu className="-right-8">
+          <Dropdown.Menu className="-top-4 -left-52">
             <Dropdown.Section>
               <Dropdown.Item
                 title="Editar a aula"

@@ -22,7 +22,7 @@ const InputStyle = tv({
       true: "pl-[44px]",
     },
     bordered: {
-      true: "border-zinc-800 border focus:border-zinc-800 focus:border-dashed dark:focus:bg-zinc-950",
+      true: " focus:border-dashed dark:focus:bg-[#1f1f1f]",
     },
   },
   defaultVariants: {

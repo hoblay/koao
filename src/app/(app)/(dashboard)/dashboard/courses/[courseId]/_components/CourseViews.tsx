@@ -29,6 +29,7 @@ import CreateChapter from "./CreateChapter";
 import SelectVisibility from "./SelectVisibility";
 import { useDisclosure } from "@/hooks/useDisclosure";
 import { DeleteContent } from "./DeleteContent";
+import { formatTime } from "@/utils/format-time";
 
 export function CourseViews({
   chapters,
@@ -190,7 +191,7 @@ export function CourseViews({
                           size="xs"
                         />
                         <span className="text-xs text-zinc-500 dark:text-zinc-400 text-nowrap ">
-                          Atualizado há 50 minutos
+                          {course.data?.author.name}
                         </span>
                       </div>
                     </td>
