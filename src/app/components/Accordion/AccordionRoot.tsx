@@ -14,7 +14,7 @@ interface AccordionProps {
 }
 
 const Accordion = tv({
-  base: "p-2 flex flex-col gap-1 w-full max-w-[350px] rounded-lg",
+  base: "p-2 flex flex-col gap-1 w-full max-w-[350px] rounded-lg ",
   variants: {
     isDisabled: {
       true: "",
@@ -44,7 +44,7 @@ function AccordionRoot({
   isDisabled,
   selectionMode,
   className,
-  removable,
+  removable = false,
 
   indexOpen = 99999,
 }: AccordionProps) {

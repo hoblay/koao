@@ -1,4 +1,5 @@
 import {
+  CompleteLessonSchema,
   CreateChapterSchema,
   UpdateDurationSchema,
   UpdateLessonTitleSchema,
@@ -182,27 +183,30 @@ export const lessonRouter = router({
     return progress;
   }),
 
-  complete: publicProcedure.input(idSchema).mutation(async ({ input }) => {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) return null;
+  complete: publicProcedure
+    .input(CompleteLessonSchema)
+    .mutation(async ({ input }) => {
+      const session = await getServerSession(authOptions);
+      if (!session?.user) return null;
 
-    const progress = await db.userProgress.findFirst({
-      where: {
-        lessonId: input,
-        userId: session.user.id,
-      },
-    });
-
-    const completedProgress = await db.userProgress.update({
-      where: {
-        id: progress?.id,
-      },
-      data: {
-        isCompleted: true,
-      },
-    });
-    return completedProgress;
-  }),
+      const completedProgress = await db.userProgress.upsert({
+        where: {
+          userId_lessonId: {
+            lessonId: input.lessonId,
+            userId: session.user.id,
+          },
+        },
+        update: {
+          isCompleted: input.isCompleted,
+        },
+        create: {
+          lessonId: input.lessonId,
+          userId: session.user.id,
+          isCompleted: input.isCompleted,
+        },
+      });
+      return completedProgress;
+    }),
   getLastWatch: publicProcedure.query(async () => {
     try {
       const session = await getServerSession(authOptions);

@@ -125,3 +125,10 @@ export const AddCategoryToCourseSchema = z.object({
 export type TAddCategoryToCourseSchema = z.infer<
   typeof AddCategoryToCourseSchema
 >;
+
+export const CompleteLessonSchema = z.object({
+  lessonId: z.string(),
+  isCompleted: z.boolean(),
+});
+
+export type TCompleteLessonSchema = z.infer<typeof CompleteLessonSchema>;

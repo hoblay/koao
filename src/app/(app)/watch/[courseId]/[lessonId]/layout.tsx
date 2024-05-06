@@ -14,6 +14,7 @@ type Lesson = {
   isPublished: boolean;
   isFree: boolean;
   chapterId: string;
+  chapter?: any;
   video: any;
   createdAt: Date;
   updatedAt: Date;
