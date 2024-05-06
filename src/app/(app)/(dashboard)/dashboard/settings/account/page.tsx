@@ -18,6 +18,12 @@ export default async function Home() {
   const session = await getServerSession(authOptions);
   return (
     <div className="relative p-4 gap-4 flex flex-col">
+      <div className="flex px-2 flex-col text-start">
+        <h2 className=" text-[17px] font-semibold ">Meus dados</h2>
+        <h3 className="text-sm flex gap-2 items-center dark:text-zinc-300 text-zinc-500">
+          Contenos um pouco sobre você.
+        </h3>
+      </div>
       <div className="flex justify-between items-center min-w-[1084px] gap-4  rounded-lg w-full dark:bg-[#1f1f1f]/20 border border-[#1f1f1f]/10 dark:border-[#363636]">
         <div className="flex gap-4  px-6 py-6">
           <div className="flex relative">
@@ -59,96 +65,97 @@ export default async function Home() {
           <Button>Editar dados</Button>
         </div>
       </div>
-      <div className="flex flex-col min-w-[1084px] gap-4 items-start rounded-lg w-full dark:bg-[#1f1f1f]/20 border border-[#1f1f1f]/10 dark:border-[#363636]">
-        <div className="flex w-full items-center justify-between px-4 py-4 border-b border-[#1f1f1f]/10 dark:border-[#363636]">
-          <div className="flex flex-col text-start">
-            <h2 className=" text-[17px] font-semibold ">Conexões</h2>
-            <h3 className="text-sm flex gap-2 items-center dark:text-zinc-300 text-zinc-500">
-              Conecte a sua conta com as ferramentas que usas no teu dia a dia.
-            </h3>
-          </div>
+      <div className="my-4 flex flex-col gap-4">
+        <div className="flex px-2 flex-col text-start">
+          <h2 className=" text-[17px] font-semibold ">Conexões</h2>
+          <h3 className="text-sm flex gap-2 items-center dark:text-zinc-300 text-zinc-500">
+            Conecte a sua conta com as ferramentas que usas no teu dia a dia.
+          </h3>
         </div>
-        <div className="flex w-full items-center justify-between px-4 pb-4 border-b border-[#1f1f1f]/10 dark:border-[#363636]">
-          <div className="flex gap-4 items-center">
-            <div className="flex">
-              <IconBrandNotion className="size-20" />
+
+        <div className="flex flex-col min-w-[1084px] gap-4 items-start rounded-lg w-full dark:bg-[#1f1f1f]/20 border border-[#1f1f1f]/10 dark:border-[#363636]">
+          <div className="flex w-full items-center justify-between p-4 border-b border-[#1f1f1f]/10 dark:border-[#363636]">
+            <div className="flex gap-4 items-center">
+              <div className="flex">
+                <IconBrandNotion className="size-20" />
+              </div>
+              <div className="flex flex-col text-start">
+                <h2 className=" text-[17px] font-semibold ">Notion</h2>
+                <h3 className="text-sm flex gap-2 items-center dark:text-zinc-300 text-zinc-500">
+                  Conecte a sua conta com as ferramentas que usas no teu dia a
+                  dia.
+                </h3>
+              </div>
             </div>
-            <div className="flex flex-col text-start">
-              <h2 className=" text-[17px] font-semibold ">Notion</h2>
-              <h3 className="text-sm flex gap-2 items-center dark:text-zinc-300 text-zinc-500">
-                Conecte a sua conta com as ferramentas que usas no teu dia a
-                dia.
-              </h3>
-            </div>
+            <Tag
+              name="Conecte com Notion"
+              startContent={<IconBrandNotion className="size-5" />}
+            />
           </div>
-          <Tag
-            name="Conecte com Notion"
-            startContent={<IconBrandNotion className="size-5" />}
-          />
-        </div>
-        <div className="flex w-full items-center justify-between px-4 pb-4 border-b border-[#1f1f1f]/10 dark:border-[#363636]">
-          <div className="flex gap-4 items-center">
-            <div className="flex p-4 rounded-xl bg-[#1f1f1f]">
-              <IconBrandGithubFilled className="size-12 text-zinc-300" />
+          <div className="flex w-full items-center justify-between px-4 pb-4 border-b border-[#1f1f1f]/10 dark:border-[#363636]">
+            <div className="flex gap-4 items-center">
+              <div className="flex p-4 rounded-xl bg-[#1f1f1f]">
+                <IconBrandGithubFilled className="size-12 text-zinc-300" />
+              </div>
+              <div className="flex flex-col text-start">
+                <h2 className=" text-[17px] font-semibold ">Github</h2>
+                <h3 className="text-sm flex gap-2 items-center dark:text-zinc-300 text-zinc-500">
+                  Conecte a sua conta com as ferramentas que usas no teu dia a
+                  dia.
+                </h3>
+              </div>
             </div>
-            <div className="flex flex-col text-start">
-              <h2 className=" text-[17px] font-semibold ">Github</h2>
-              <h3 className="text-sm flex gap-2 items-center dark:text-zinc-300 text-zinc-500">
-                Conecte a sua conta com as ferramentas que usas no teu dia a
-                dia.
-              </h3>
-            </div>
+            <Tag
+              name="Conecte com Github"
+              startContent={<IconBrandGithub className="size-5" />}
+            />
           </div>
-          <Tag
-            name="Conecte com Github"
-            startContent={<IconBrandGithub className="size-5" />}
-          />
-        </div>
-        <div className="flex w-full items-center justify-between px-4 pb-4 border-b border-[#1f1f1f]/10 dark:border-[#363636]">
-          <div className="flex gap-4 items-center">
-            <div className="flex p-4 rounded-xl bg-[#1f1f1f]">
-              <IconBrandGoogleFilled className="size-12 text-zinc-300" />
+          <div className="flex w-full items-center justify-between px-4 pb-4 border-b border-[#1f1f1f]/10 dark:border-[#363636]">
+            <div className="flex gap-4 items-center">
+              <div className="flex p-4 rounded-xl bg-[#1f1f1f]">
+                <IconBrandGoogleFilled className="size-12 text-zinc-300" />
+              </div>
+              <div className="flex flex-col text-start">
+                <h2 className=" text-[17px] font-semibold ">Google</h2>
+                <h3 className="text-sm flex gap-2 items-center dark:text-zinc-300 text-zinc-500">
+                  Conecte a sua conta com as ferramentas que usas no teu dia a
+                  dia.
+                </h3>
+              </div>
             </div>
-            <div className="flex flex-col text-start">
-              <h2 className=" text-[17px] font-semibold ">Google</h2>
-              <h3 className="text-sm flex gap-2 items-center dark:text-zinc-300 text-zinc-500">
-                Conecte a sua conta com as ferramentas que usas no teu dia a
-                dia.
-              </h3>
-            </div>
+            <Tag
+              name="Conecte com Google"
+              startContent={<IconBrandGoogle className="size-5" />}
+            />
           </div>
-          <Tag
-            name="Conecte com Google"
-            startContent={<IconBrandGoogle className="size-5" />}
-          />
         </div>
       </div>
-      <div className="flex flex-col min-w-[1084px] gap-4 items-start rounded-lg w-full dark:bg-[#1f1f1f]/20 border border-[#1f1f1f]/10 dark:border-[#363636]">
-        <div className="flex w-full items-center justify-between px-4 py-4 border-b border-[#1f1f1f]/10 dark:border-[#363636]">
-          <div className="flex flex-col text-start">
-            <h2 className=" text-[17px] font-semibold ">Rutina</h2>
-            <h3 className="text-sm flex gap-2 items-center dark:text-zinc-300 text-zinc-500">
-              Conserve a sua rutina sincronizando os seus caledarios.
-            </h3>
-          </div>
+      <div className="flex flex-col gap-4">
+        <div className="flex px-2 flex-col text-start">
+          <h2 className=" text-[17px] font-semibold ">Rutina</h2>
+          <h3 className="text-sm flex gap-2 items-center dark:text-zinc-300 text-zinc-500">
+            Conserve a sua rutina sincronizando os seus caledarios.
+          </h3>
         </div>
-        <div className="flex w-full items-center justify-between px-4 pb-4 border-b border-[#1f1f1f]/10 dark:border-[#363636]">
-          <div className="flex gap-4 items-center">
-            <div className="flex p-4 rounded-xl bg-emerald-950">
-              <IconCalendar className="size-12 text-zinc-300" />
+        <div className="flex flex-col min-w-[1084px] gap-4 items-start rounded-lg w-full dark:bg-[#1f1f1f]/20 border border-[#1f1f1f]/10 dark:border-[#363636]">
+          <div className="flex w-full items-center justify-between p-4 border-b border-[#1f1f1f]/10 dark:border-[#363636]">
+            <div className="flex gap-4 items-center">
+              <div className="flex p-4 rounded-xl bg-emerald-950">
+                <IconCalendar className="size-12 text-zinc-300" />
+              </div>
+              <div className="flex flex-col text-start">
+                <h2 className=" text-[17px] font-semibold ">Google calendar</h2>
+                <h3 className="text-sm flex gap-2 items-center dark:text-zinc-300 text-zinc-500">
+                  Conecte a sua conta com as ferramentas que usas no teu dia a
+                  dia.
+                </h3>
+              </div>
             </div>
-            <div className="flex flex-col text-start">
-              <h2 className=" text-[17px] font-semibold ">Google calendar</h2>
-              <h3 className="text-sm flex gap-2 items-center dark:text-zinc-300 text-zinc-500">
-                Conecte a sua conta com as ferramentas que usas no teu dia a
-                dia.
-              </h3>
-            </div>
+            <Tag
+              name="Sincronize com Google Calendar"
+              startContent={<IconBrandGoogle className="size-5" />}
+            />
           </div>
-          <Tag
-            name="Sincronize com Google Calendar"
-            startContent={<IconBrandGoogle className="size-5" />}
-          />
         </div>
       </div>
     </div>
