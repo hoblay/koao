@@ -86,6 +86,9 @@ export const courseRouter = router({
         orderBy: {
           createdAt: "desc",
         },
+        where: {
+          isPublished: true,
+        },
         include: {
           category: true,
           author: {
