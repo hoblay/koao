@@ -1,4 +1,4 @@
-import { CreateChapterSchema } from "@/schemas";
+import { CreateChapterSchema, VisibilitySchema } from "@/schemas";
 import { publicProcedure, router } from "@/server/api/trpc";
 import { authOptions } from "@/server/auth";
 import { db } from "@/server/db";
@@ -100,6 +100,40 @@ export const chapterRouter = router({
           include: {
             video: true,
           },
+        },
+      },
+    });
+  }),
+  changeVisibility: publicProcedure
+    .input(VisibilitySchema)
+    .mutation(async ({ input }) => {
+      const session = await getServerSession(authOptions);
+      if (!session?.user) {
+        return null;
+      }
+
+      const chapter = await db.chapter.update({
+        where: {
+          id: input.id,
+          course: {
+            userId: session.user.id,
+          },
+        },
+        data: {
+          isPublished: input.isPublished,
+        },
+      });
+
+      return chapter;
+    }),
+  delete: publicProcedure.input(idSchema).mutation(async ({ input }) => {
+    const session = await getServerSession(authOptions);
+    if (!session) return null;
+    return await db.chapter.delete({
+      where: {
+        id: input,
+        course: {
+          userId: session.user.id,
         },
       },
     });

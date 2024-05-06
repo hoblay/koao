@@ -64,8 +64,8 @@ export default function ModalContent({
         open={context.isModalOpen}
       >
         <span
-          className="p-2    absolute top-2 left-2 cursor-pointer"
-          onClick={context.handleModal}
+          className="p-2    absolute top-2 right-2 cursor-pointer"
+          onClick={() => context.closeModal()}
         >
           <IconX className="size-6 text-[#1f1f1f] hover:opacity-80 dark:text-zinc-50" />
         </span>

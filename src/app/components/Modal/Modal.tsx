@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import LogoIcon from "../Icons/Logo";
 import { IconX } from "@tabler/icons-react";
 
-const Modal = () => {
-  const [openModal, setModal] = useState(false);
+const Modal = ({ isOpen, close }: { isOpen: boolean; close: () => void }) => {
+  const [openModal, setModal] = useState(isOpen);
   const handleModal = () => {
-    setModal(!openModal);
+    close(Link);
   };
   return (
     <div className="z-50">

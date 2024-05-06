@@ -67,18 +67,6 @@ export function UploadView({
             />
           </Breadcrumb.RootA>
           <div className="flex gap-2">
-            {pathname === `/dashboard/courses/${courseId}/${chapterId}` && (
-              <>
-                <Tag
-                  name="Eliminar"
-                  startContent={<IconTrash className="text-red-500 w-5 h-5" />}
-                />
-                <Tag
-                  name="Editar"
-                  startContent={<IconEdit className="text-zinc-500 w-5 h-5" />}
-                />
-              </>
-            )}
             {pathname ===
               `/dashboard/courses/${courseId}/${chapterId}/upload` && (
               <>

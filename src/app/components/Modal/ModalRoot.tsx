@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 import React from "react";
 import { tv } from "tailwind-variants";
 
@@ -20,15 +20,16 @@ const modalStyle = tv({
 });
 
 interface ModalRootProps {
-  children: ReactNode[];
+  children: ReactNode | ReactNode[];
   type?: "menu" | "listbox";
   trigger?: "press" | "longPress";
   isDisabled?: boolean;
   closeOnSelect?: boolean;
+  onClose: () => void;
+  isOpen: boolean;
 }
 interface ModalContextProps {
   isModalOpen: boolean;
-  handleModal: () => void;
   closeModal: () => void;
 }
 
@@ -40,20 +41,14 @@ function ModalRoot({
   trigger,
   isDisabled,
   closeOnSelect,
+  isOpen,
+  onClose,
 }: ModalRootProps) {
-  const [isModalOpen, setisModalOpen] = useState<boolean>(false);
-
-  const handleModal = () => {
-    setisModalOpen(!isModalOpen);
-  };
-
-  const closeModal = () => {
-    setisModalOpen(false);
-  };
-
   return (
     <div className="relative z-50">
-      <ModalContext.Provider value={{ isModalOpen, handleModal, closeModal }}>
+      <ModalContext.Provider
+        value={{ isModalOpen: isOpen, closeModal: onClose }}
+      >
         {children}
       </ModalContext.Provider>
     </div>

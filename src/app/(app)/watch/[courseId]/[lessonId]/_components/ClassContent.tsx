@@ -1,44 +1,15 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { tv } from "tailwind-variants";
 import Link from "next/link";
 
-import {
-  IconChevronDown,
-  IconEye,
-  IconPlayerPause,
-  IconPresentation,
-  IconX,
-} from "@tabler/icons-react";
+import { IconChevronDown, IconX } from "@tabler/icons-react";
 import { Accordion } from "@/app/components/Accordion";
 import CategoryIcon from "./CategoryIcon";
 import { trpc } from "@/app/_trpc/client";
-import { formatSecondsToMinutes } from "@/utils/format-seconds";
 import { ClassContentLesson } from "./ClassContentLesson";
 import { ClassContentChapter } from "./ClassContentChapter";
-
-const moduleCircle = tv({
-  base: " w-9 h-9 rounded-xl font-bold p-1 border-2 border-[#1f1f1f]/10 dark:border-[#363636] text-zinc-600 dark:text-zinc-200 bg-zinc-100 dark:bg-[#2a2a2a] items-center justify-center",
-  variants: {
-    active: {
-      true: "border-[#015F43] text-[#015F43]  dark:text-zinc-100 dark:border-[#015F43]",
-    },
-    done: {
-      true: "border-[#015F43] text-[#015F43] dark:text-zinc-100  dark:border-[#015F43] ",
-    },
-  },
-  defaultVariants: {
-    active: false,
-    done: false,
-  },
-});
-
-interface LessonsDoneProps {
-  index?: number;
-  name?: string;
-  lessons: { name?: string }[] | number[];
-}
 
 type Course = {
   id: string;

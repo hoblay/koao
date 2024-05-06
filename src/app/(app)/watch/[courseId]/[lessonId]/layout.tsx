@@ -5,7 +5,6 @@ import ClassContent from "./_components/ClassContent";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/server/auth";
-import { UserProgress } from "@prisma/client";
 type Lesson = {
   id: string;
   title: string;

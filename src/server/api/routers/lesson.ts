@@ -3,6 +3,7 @@ import {
   CreateChapterSchema,
   UpdateDurationSchema,
   UpdateLessonTitleSchema,
+  VisibilitySchema,
 } from "@/schemas";
 import { publicProcedure, router } from "@/server/api/trpc";
 import { authOptions } from "@/server/auth";
@@ -159,9 +160,38 @@ export const lessonRouter = router({
     return await db.lesson.delete({
       where: {
         id: input,
+        chapter: {
+          course: {
+            userId: session.user.id,
+          },
+        },
       },
     });
   }),
+  changeVisibility: publicProcedure
+    .input(VisibilitySchema)
+    .mutation(async ({ input }) => {
+      const session = await getServerSession(authOptions);
+      if (!session?.user) {
+        return null;
+      }
+
+      const lesson = await db.lesson.update({
+        where: {
+          id: input.id,
+          chapter: {
+            course: {
+              userId: session.user.id,
+            },
+          },
+        },
+        data: {
+          isPublished: input.isPublished,
+        },
+      });
+
+      return lesson;
+    }),
   enroll: publicProcedure.input(idSchema).mutation(async ({ input }) => {
     const session = await getServerSession(authOptions);
     if (!session?.user) return null;

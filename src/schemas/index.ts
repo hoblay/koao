@@ -132,3 +132,10 @@ export const CompleteLessonSchema = z.object({
 });
 
 export type TCompleteLessonSchema = z.infer<typeof CompleteLessonSchema>;
+
+export const VisibilitySchema = z.object({
+  id: z.string(),
+  isPublished: z.boolean(),
+});
+
+export type TVisibilitySchema = z.infer<typeof VisibilitySchema>;

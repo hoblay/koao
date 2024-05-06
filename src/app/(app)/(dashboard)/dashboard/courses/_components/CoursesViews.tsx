@@ -37,10 +37,19 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 import { CourseCard } from "./CourseCard";
+import { DeleteContent } from "../[courseId]/_components/DeleteContent";
+import { useDisclosure } from "@/hooks/useDisclosure";
 
 export function CoursesViews({ courses }: { courses: any[] }) {
   const [tableView, setTableView] = useState(false);
-
+  const [removableId, setRemovableId] = useState("");
+  const [removableTitle, setRemovableTitle] = useState("");
+  const [opened, { open, close }] = useDisclosure();
+  const deleteCourse = (id: string, title: string) => {
+    setRemovableId(id);
+    setRemovableTitle(title);
+    open();
+  };
   return (
     <>
       <div className="flex flex-col lg:pl-[256px]">
@@ -76,7 +85,11 @@ export function CoursesViews({ courses }: { courses: any[] }) {
             {courses.length > 0 ? (
               <div className=" px-4 grid lg:grid-cols-3 pt-[70px] md:grid-cols-2 py-4 gap-4">
                 {courses.map((course, index) => (
-                  <CourseCard key={course.id} course={course} />
+                  <CourseCard
+                    key={course.id}
+                    course={course}
+                    deleteCourse={deleteCourse}
+                  />
                 ))}
               </div>
             ) : (
@@ -193,6 +206,7 @@ export function CoursesViews({ courses }: { courses: any[] }) {
                             <Dropdown.Section>
                               <Dropdown.Item
                                 title="Previzualizar"
+                                href={`/dashboard/courses/${course.id}`}
                                 description={"Ver o curso "}
                                 startContent={
                                   <IconEye className="text-zinc-600" />
@@ -200,51 +214,22 @@ export function CoursesViews({ courses }: { courses: any[] }) {
                               />
                               <Dropdown.Item
                                 title="Editar o curso"
+                                href={`/dashboard/courses/${course.id}?edit=true`}
                                 description={"Aperte para editar"}
                                 startContent={
                                   <IconEdit className="text-zinc-600" />
                                 }
                               />
-                              <Modal.Root>
-                                <Modal.Trigger>
-                                  <div className="flex">
-                                    <Dropdown.Item
-                                      title="Eliminar o curso"
-                                      description={"Aperte para eliminar"}
-                                      startContent={
-                                        <IconTrash className="text-red-500" />
-                                      }
-                                    />
-                                  </div>
-                                </Modal.Trigger>
-                                <Modal.Content className="h-full p-0">
-                                  <IconBookOff className="size-8 text-red-600 absolute top-6 left-[200px]" />
-                                  <div className=" w-[400px] px-4 pb-4 pt-2 flex flex-col text-center gap-4">
-                                    <div className="flex flex-col gap-4 pt-4 relative">
-                                      <h2 className="text-2xl font-semibold ">
-                                        Desejas eliminar o curso?
-                                      </h2>
-                                      <span className="text-zinc-500 text-sm text-pretty">
-                                        Como medida preventiva, pedimos que
-                                        digite o nome: Curso de fundamentos de
-                                        inteligencia artificial.
-                                      </span>
-                                      <input
-                                        type="text"
-                                        name="CourseName"
-                                        placeholder="Curso de fundamentos de
-                                      inteligencia artificial"
-                                        className="max-h-12 text-sm w-full py-6 px-4 rounded-lg focus:ring-0 outline-none border border-[#1f1f1f]/10 dark:border-[#363636] p-2.5 justify-between font-normal relative flex items-center shadow-sm gap-3 dark:bg-[#1f1f1f] dark:hover:bg-[#2d2d2d] dark:focus:bg-[#2d2d2d]"
-                                      />
-                                      <Button fullWidth size="lg">
-                                        <span className="text-base">
-                                          Eliminar
-                                        </span>
-                                      </Button>
-                                    </div>
-                                  </div>
-                                </Modal.Content>
-                              </Modal.Root>
+                              <Dropdown.Item
+                                title="Eliminar o curso"
+                                onClick={() =>
+                                  deleteCourse(course.id, course.title)
+                                }
+                                description={"Aperte para eliminar"}
+                                startContent={
+                                  <IconTrash className="text-red-500" />
+                                }
+                              />
                             </Dropdown.Section>
                           </Dropdown.Menu>
                         </Dropdown.Root>
@@ -270,6 +255,15 @@ export function CoursesViews({ courses }: { courses: any[] }) {
           </div>
         )}
       </div>
+      <Modal.Root isOpen={opened} onClose={() => close()}>
+        <Modal.Content className="h-full p-0">
+          <DeleteContent
+            id={removableId}
+            title={removableTitle}
+            type="course"
+          />
+        </Modal.Content>
+      </Modal.Root>
     </>
   );
 }
