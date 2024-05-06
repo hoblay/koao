@@ -98,13 +98,13 @@ export function CourseCard({
                   startContent={<IconEye className="text-zinc-600" />}
                 />
                 <Dropdown.Item
-                  title="Editar o curso"
+                  title="Editar"
                   href={`/dashboard/courses/${course.id}?edit=true`}
                   description={"Aperte para editar"}
                   startContent={<IconEdit className="text-zinc-600" />}
                 />
                 <Dropdown.Item
-                  title="Eliminar o curso"
+                  title="Eliminar"
                   description={"Aperte para eliminar"}
                   onClick={() => deleteCourse(course.id, course.title)}
                   startContent={<IconTrash className="text-red-500" />}

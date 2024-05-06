@@ -41,7 +41,7 @@ export function CourseViews({
   const [removableId, setRemovableId] = useState("");
   const [removableTitle, setRemovableTitle] = useState("");
   const [removableType, setRemovableType] = useState<
-    "course" | "chapter" | "lesson"
+    "course" | "chapter" | "lesson" | "category"
   >("course");
   const searchParams = useSearchParams();
   const course = trpc.course.getById.useQuery(courseId);
@@ -50,7 +50,7 @@ export function CourseViews({
   const removeContent = (
     id: string,
     title: string,
-    type: "course" | "chapter" | "lesson",
+    type: "course" | "chapter" | "lesson" | "category",
   ) => {
     setRemovableId(id);
     setRemovableType(type);
@@ -211,14 +211,14 @@ export function CourseViews({
                               }
                             />
                             <Dropdown.Item
-                              title="Editar o modulo"
+                              title="Editar"
                               description={"Aperte para editar"}
                               startContent={
                                 <IconEdit className="text-zinc-600" />
                               }
                             />
                             <Dropdown.Item
-                              title="Eliminar o modulo"
+                              title="Eliminar"
                               description={"Aperte para eliminar"}
                               onClick={() =>
                                 removeContent(

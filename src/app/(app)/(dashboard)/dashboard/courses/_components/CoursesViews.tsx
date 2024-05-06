@@ -213,7 +213,7 @@ export function CoursesViews({ courses }: { courses: any[] }) {
                                 }
                               />
                               <Dropdown.Item
-                                title="Editar o curso"
+                                title="Editar"
                                 href={`/dashboard/courses/${course.id}?edit=true`}
                                 description={"Aperte para editar"}
                                 startContent={
@@ -221,7 +221,7 @@ export function CoursesViews({ courses }: { courses: any[] }) {
                                 }
                               />
                               <Dropdown.Item
-                                title="Eliminar o curso"
+                                title="Eliminar"
                                 onClick={() =>
                                   deleteCourse(course.id, course.title)
                                 }

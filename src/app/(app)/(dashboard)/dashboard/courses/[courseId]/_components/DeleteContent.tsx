@@ -5,6 +5,7 @@ import {
   IconBookOff,
   IconNotebookOff,
   IconPresentationOff,
+  IconTagOff,
 } from "@tabler/icons-react";
 import Button from "@/app/components/Button/Button";
 import { useRouter } from "next/navigation";
@@ -15,7 +16,7 @@ export function DeleteContent({
   id,
   title,
 }: {
-  type: "course" | "chapter" | "lesson";
+  type: "course" | "chapter" | "lesson" | "category";
   id: string;
   title: string;
 }) {
@@ -37,6 +38,13 @@ export function DeleteContent({
     },
   });
 
+  const deleteCategory = trpc.category.delete.useMutation({
+    onSettled: () => {
+      courses.refetch();
+      router.push("/dashboard/courses");
+    },
+  });
+
   const removeCourse = (courseId: string) => {
     deleteCourse.mutate(courseId);
   };
@@ -46,13 +54,18 @@ export function DeleteContent({
   const removeLesson = async (lessonId: string) => {
     await deleteLesson(lessonId);
   };
+  const removeCategory = (categoryId: string) => {
+    deleteCategory.mutate(categoryId);
+  };
   const deleteAction = () => {
     {
       type === "course"
         ? removeCourse(id)
         : type === "chapter"
           ? removeChapter(id)
-          : removeLesson(id);
+          : type === "lesson"
+            ? removeLesson(id)
+            : removeCategory(id);
     }
   };
 
@@ -66,8 +79,10 @@ export function DeleteContent({
         <IconBookOff className="size-8 text-red-600 absolute top-6 left-[200px]" />
       ) : type === "chapter" ? (
         <IconNotebookOff className="size-8 text-red-600 absolute top-6 left-[200px]" />
-      ) : (
+      ) : type === "lesson" ? (
         <IconPresentationOff className="size-8 text-red-600 absolute top-6 left-[200px]" />
+      ) : (
+        <IconTagOff className="size-8 text-red-600 absolute top-6 left-[200px]" />
       )}
       <div className=" w-[400px] px-4 pb-4 pt-2 flex flex-col text-center gap-4">
         <div className="flex flex-col gap-4 pt-4 relative">
@@ -77,7 +92,9 @@ export function DeleteContent({
               ? "o curso"
               : type === "chapter"
                 ? "o modulo"
-                : "a aula"}
+                : type === "lesson"
+                  ? "a aula"
+                  : "a categoria"}
             ?
           </h2>
           <span className="text-zinc-500 text-sm text-pretty">

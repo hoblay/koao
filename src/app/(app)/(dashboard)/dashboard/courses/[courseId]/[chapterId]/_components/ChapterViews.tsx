@@ -44,14 +44,14 @@ export function ChapterViews({
   const [removableId, setRemovableId] = useState("");
   const [removableTitle, setRemovableTitle] = useState("");
   const [removableType, setRemovableType] = useState<
-    "course" | "chapter" | "lesson"
+    "course" | "chapter" | "lesson" | "category"
   >("course");
   const [opened, { open, close }] = useDisclosure();
 
   const removeContent = (
     id: string,
     title: string,
-    type: "course" | "chapter" | "lesson",
+    type: "course" | "chapter" | "lesson" | "category",
   ) => {
     setRemovableId(id);
     setRemovableType(type);
@@ -242,14 +242,14 @@ export function ChapterViews({
                                 }
                               />
                               <Dropdown.Item
-                                title="Editar a aula"
+                                title="Editar"
                                 description={"Aperte para editar"}
                                 startContent={
                                   <IconEdit className="text-zinc-600" />
                                 }
                               />
                               <Dropdown.Item
-                                title="Eliminar a aula"
+                                title="Eliminar"
                                 onClick={() =>
                                   removeContent(
                                     lesson.id,
