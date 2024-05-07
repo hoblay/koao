@@ -37,7 +37,7 @@ function CourseResult({
   const pp = `w-[${progress}%]`;
   return (
     <Link href={`/course/${id}`} className="">
-      <Card.Root>
+      <Card.Root className="border border-[#1f1f1f]/10 dark:border-[#363636] dark:bg-[#363636]/40">
         <div className="flex gap-2">
           <Card.Body className="relative p-3 rounded-3xl">
             <Image

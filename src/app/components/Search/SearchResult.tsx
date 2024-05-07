@@ -36,7 +36,7 @@ export function SearchResult({
   return (
     <>
       {type === "user" && (
-        <div className="flex items-center space-x-2 relative p-2 rounded-xl hover:bg-zinc-100 hover:cursor-pointer  dark:text-zinc-50 dark:bg-[#363636]/20 dark:hover:bg-[#1f1f1f]">
+        <div className="flex items-center space-x-2 relative p-2 rounded-md hover:bg-zinc-100 hover:cursor-pointer  dark:text-zinc-50 dark:bg-[#363636]/20 dark:hover:bg-[#1f1f1f]">
           <Avatar
             name={user?.name}
             image={user?.image}
@@ -54,7 +54,7 @@ export function SearchResult({
       )}
 
       {type === "file" && (
-        <div className="flex items-center space-x-2 relative px-4 py-3 rounded-xl hover:bg-zinc-100 hover:cursor-pointer dark:text-zinc-50  dark:bg-[#363636]/20 dark:hover:bg-[#1f1f1f]">
+        <div className="flex items-center space-x-2 relative px-4 py-3 rounded-md hover:bg-zinc-100 hover:cursor-pointer dark:text-zinc-50  dark:bg-[#363636]/20 dark:hover:bg-[#1f1f1f]">
           <FileIcon className=" w-4 h-4" />
           <span className="text-sm text-zinc-700 dark:text-zinc-100">
             {name}
