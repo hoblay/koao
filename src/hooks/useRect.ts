@@ -1,6 +1,6 @@
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 
-export const useRect = <T extends HTMLElement>(): [
+export const useRect = <T extends HTMLDivElement>(): [
   DOMRect | undefined,
   MutableRefObject<T | null>,
 ] => {

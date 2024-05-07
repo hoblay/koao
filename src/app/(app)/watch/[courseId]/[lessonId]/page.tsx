@@ -109,7 +109,7 @@ export default function ClassPage({
   return (
     <>
       <div className="">
-        {lesson.data ? (
+        {lesson.data?.video?.commitUrl ? (
           <div className="flex relative rounded-2xl bg-zinc-950 w-[883px] h-[496.6875px] overflow-hidden ">
             <ReactPlayer
               controls
@@ -118,7 +118,7 @@ export default function ClassPage({
               className="absolute top-0 left-0"
               height={"100%"}
               playing
-              url={lesson.data?.video?.commitUrl}
+              url={lesson.data.video.commitUrl}
             />
           </div>
         ) : (
