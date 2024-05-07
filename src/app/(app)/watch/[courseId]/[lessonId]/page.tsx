@@ -109,19 +109,21 @@ export default function ClassPage({
   return (
     <>
       <div className="">
-        <div className="flex relative rounded-2xl bg-zinc-950 w-[883px] h-[496.6875px] overflow-hidden ">
-          <ReactPlayer
-            controls
-            width={"100%"}
-            onEnded={() => lesson.data && nextLesson()}
-            className="absolute top-0 left-0"
-            height={"100%"}
-            playing
-            url={
-              lesson.data?.video?.commitUrl ? lesson.data?.video?.commitUrl : ""
-            }
-          />
-        </div>
+        {lesson.data ? (
+          <div className="flex relative rounded-2xl bg-zinc-950 w-[883px] h-[496.6875px] overflow-hidden ">
+            <ReactPlayer
+              controls
+              width={"100%"}
+              onEnded={() => lesson.data && nextLesson()}
+              className="absolute top-0 left-0"
+              height={"100%"}
+              playing
+              url={lesson.data?.video?.commitUrl}
+            />
+          </div>
+        ) : (
+          <div className="flex relative rounded-2xl bg-zinc-950 w-[883px] h-[496.6875px] overflow-hidden "></div>
+        )}
 
         <div className=" max-w-[883px]">
           <div className="flex flex-col gap-2 px-1 py-4">
@@ -130,7 +132,7 @@ export default function ClassPage({
                 {lesson.data?.title}
               </h4>
             ) : (
-              <div className="h-6 bg-gray-300 rounded-lg dark:bg-[#363636] w-[600px] animate-pulse"></div>
+              <span className="h-6 bg-gray-300 rounded-lg dark:bg-[#363636] w-[600px] animate-pulse"></span>
             )}
 
             <div className="flex justify-between items-center">
@@ -142,7 +144,7 @@ export default function ClassPage({
                     image={lesson.data?.chapter.course.author.image}
                   />
                 ) : (
-                  <div className="size-[46px] bg-gray-300 rounded-full dark:bg-[#363636] animate-pulse"></div>
+                  <span className="size-[46px] bg-gray-300 rounded-full dark:bg-[#363636] animate-pulse"></span>
                 )}
 
                 {lesson.data ? (
@@ -156,9 +158,9 @@ export default function ClassPage({
                   </div>
                 ) : (
                   <div className="flex flex-col align-center justify-center gap-1">
-                    <div className="h-4 bg-gray-300 rounded dark:bg-[#363636] w-32 animate-pulse"></div>
+                    <span className="h-4 bg-gray-300 rounded dark:bg-[#363636] w-32 animate-pulse"></span>
 
-                    <div className="h-4 bg-gray-300 rounded dark:bg-[#363636] w-48 animate-pulse"></div>
+                    <span className="h-4 bg-gray-300 rounded dark:bg-[#363636] w-48 animate-pulse"></span>
                   </div>
                 )}
               </div>
