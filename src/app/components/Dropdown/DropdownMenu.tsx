@@ -60,7 +60,6 @@ export default function DropdownMenu({
   const [positionX, setPositionX] = useState<"left" | "right">("left");
 
   const ctx = context && context;
-  const [rect, ref] = useRect();
   useEffect(() => {
     if (ctx?.DropdownRect) {
       if (ctx.DropdownRect.bottom < 450) {
@@ -86,7 +85,7 @@ export default function DropdownMenu({
       })}
     >
       <div className="w-full relative flex flex-col gap-1 p-1">
-        <ul className="w-full flex flex-col gap-0.5 outline-none" ref={ref}>
+        <ul className="w-full flex flex-col gap-0.5 outline-none">
           {children}
         </ul>
       </div>

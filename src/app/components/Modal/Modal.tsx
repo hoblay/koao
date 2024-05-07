@@ -7,7 +7,7 @@ import { IconX } from "@tabler/icons-react";
 const Modal = ({ isOpen, close }: { isOpen: boolean; close: () => void }) => {
   const [openModal, setModal] = useState(isOpen);
   const handleModal = () => {
-    close(Link);
+    close();
   };
   return (
     <div className="z-50">

@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 
-export const useRect = <T extends Element>(): [
+export const useRect = <T extends HTMLElement>(): [
   DOMRect | undefined,
-  MutableRefObject<T | null>
+  MutableRefObject<T | null>,
 ] => {
   const ref = useRef<T>(null);
   const [rect, setRect] = useState<DOMRect>();
@@ -11,7 +11,7 @@ export const useRect = <T extends Element>(): [
 
   const useEffectInEvent = (
     event: "resize" | "scroll",
-    useCapture?: boolean
+    useCapture?: boolean,
   ) => {
     useEffect(() => {
       set();
@@ -24,3 +24,4 @@ export const useRect = <T extends Element>(): [
   useEffectInEvent("scroll", true);
 
   return [rect, ref];
+};
