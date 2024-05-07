@@ -46,10 +46,10 @@ const Icon = {
     <Flstudio className="size-20 drop-shadow-2xl  rounded-xl bg-indigo-950 p-2 max-h-[100%] overflow-hidden" />
   ),
   art: (
-    <Art className="size-24 drop-shadow-2xl  rounded-xl bg-purple-950 p-4 max-h-[100%] overflow-hidden" />
+    <Art className="size-20 drop-shadow-2xl  rounded-xl bg-purple-950 p-4 max-h-[100%] overflow-hidden" />
   ),
   cook: (
-    <Cook className="size-32 drop-shadow-2xl  rounded-xl bg-purple-950 p-6 max-h-[100%] overflow-hidden" />
+    <Cook className="size-20 drop-shadow-2xl  rounded-xl bg-purple-950 p-4 max-h-[100%] overflow-hidden" />
   ),
 };
 

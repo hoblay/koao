@@ -75,10 +75,10 @@ function LastSeenSection({
                   <div className="relative">
                     <Image
                       src={lesson.chapter.course.imageUrl || ""}
-                      className="object-cover rounded-xl w-full min-h-[100%]"
+                      className="object-cover rounded-xl w-full max-h-[152px] min-h-[152px]"
                       alt="course"
                       width={311}
-                      height={182.812}
+                      height={152}
                       style={{ objectFit: "cover" }}
                       unoptimized
                     />

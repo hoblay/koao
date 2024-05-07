@@ -1,6 +1,11 @@
 import { serverClient } from "@/app/_trpc/serverClient";
 import { Card } from "@/app/components/Card";
-import { IconNotebook } from "@tabler/icons-react";
+import {
+  IconBooks,
+  IconFileTypePdf,
+  IconFiles,
+  IconNotebook,
+} from "@tabler/icons-react";
 import ClassContent from "./_components/ClassContent";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
@@ -62,7 +67,7 @@ export default async function ClassLayout({
   return (
     <div className="relative flex gap-6 px-16 py-24 pb-8">
       <main className="w-full min-w-[883px]">{children}</main>
-      <aside className=" md:flex flex-col gap-4 overscroll-y-none overscroll-x-none max-w-[510px] max-h-[594px]">
+      <aside className=" md:flex flex-col gap-4 overscroll-y-none overscroll-x-none max-w-[510px]">
         <ClassContent
           course={course}
           nextLesson={getNextLesson(lesson)}
@@ -70,11 +75,11 @@ export default async function ClassLayout({
           chapterPosition={lesson.chapter.position}
           progress={pp}
         />
-        <Card.Root className="">
-          <Card.Header>
+        <Card.Root className="border-[#1f1f1f]/10 dark:border-[#363636] border p-1.5 gap-1 flex flex-col bg-zinc-100 dark:bg-[#313131] ">
+          <Card.Header className="bg-zinc-50 dark:bg-[#363636]/60 rounded-lg border-[#1f1f1f]/10  dark:border-[#363636]">
             <div className="py-4 px-4 flex gap-3 items-center">
-              <div className="p-3 rounded-xl bg-zinc-100 dark:bg-[#2b2b2b]">
-                <IconNotebook />
+              <div className="p-3 rounded-xl font-bold border-2 border-[#1f1f1f]/10 dark:border-[#363636] text-zinc-600 dark:text-zinc-200 bg-zinc-100 dark:bg-[#2a2a2a] items-center justify-center">
+                <IconBooks />
               </div>
               <div className="flex flex-col">
                 <h3 className="text-base">Material da aula</h3>
@@ -84,7 +89,42 @@ export default async function ClassLayout({
               </div>
             </div>
           </Card.Header>
-          <Card.Body></Card.Body>
+          <Card.Body
+            className={`px-2 py-2 rounded-lg border border-[#1f1f1f]/10 dark:border-[#363636]  rounded-b-xl  overscroll-x-none overscroll-y-none no-scrollbar flex flex-col gap-2`}
+          >
+            <div className="w-full gap-3 outline-none px-2 py-0 rounded-lg h-14 flex items-center text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-200 hover:bg-zinc-200/50 dark:hover:bg-[#363636]  group font-normal text-medium cursor-pointer">
+              <div className="w-9 h-9 rounded-xl font-bold p-1 border-2 border-[#1f1f1f]/10 dark:border-[#363636] text-zinc-600 dark:text-zinc-200 bg-zinc-100 dark:bg-[#2a2a2a] items-center justify-center">
+                <div className="flex items-center text-center justify-center">
+                  <IconFileTypePdf className="m-1 w-4 h-4" />
+                </div>
+              </div>
+              <div className="flex justify-between pr-1">
+                <div className={`   flex  gap-2 w-[210px] max-w-[80%]`}>
+                  <h3 className=" truncate text-sm ">Guia da aula</h3>
+                </div>
+                <span className="flex  text-sm pl-3 truncate text-zinc-400">
+                  Ficheiro PDF
+                </span>
+              </div>
+            </div>
+            <div className="w-full gap-3 outline-none px-2 py-0 rounded-lg h-14 flex items-center text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-200 hover:bg-zinc-200/50 dark:hover:bg-[#363636]  group font-normal text-medium cursor-pointer">
+              <div className="w-9 h-9 rounded-xl font-bold p-1 border-2 border-[#1f1f1f]/10 dark:border-[#363636] text-zinc-600 dark:text-zinc-200 bg-zinc-100 dark:bg-[#2a2a2a] items-center justify-center">
+                <div className="flex items-center text-center justify-center">
+                  <IconFileTypePdf className="m-1 w-4 h-4" />
+                </div>
+              </div>
+              <div className="flex justify-between pr-1">
+                <div className={`   flex  gap-2 w-[210px] max-w-[80%]`}>
+                  <h3 className=" truncate text-sm ">
+                    Apontamentos do professor
+                  </h3>
+                </div>
+                <span className="flex  text-sm pl-3 truncate text-zinc-400">
+                  Ficheiro PDF
+                </span>
+              </div>
+            </div>
+          </Card.Body>
         </Card.Root>
       </aside>
     </div>

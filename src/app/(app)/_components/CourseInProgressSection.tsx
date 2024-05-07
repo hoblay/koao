@@ -65,7 +65,7 @@ function CourseInProgressSection({
         <Section.Subtitle>{subtitle}</Section.Subtitle>
       </div>
       <Section.Content>
-        {!sliderOff && courses.length > 6 ? (
+        {!sliderOff && courses.length > 3 ? (
           <div className="">
             <Slider {...settings}>
               {courses.map((course, index) => (
@@ -76,7 +76,7 @@ function CourseInProgressSection({
                   img={`${course.imageUrl}`}
                   modules={course.chapters.length}
                   description={course.description}
-                  tag={course.tag || "art"}
+                  tag={course.tag || "cook"}
                   id={course.id}
                 />
               ))}

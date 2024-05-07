@@ -83,7 +83,7 @@ export function SearchRoot({ children, className }: SearchProps) {
 
   return (
     <form
-      className={`hidden sm:block relative max-w-lg rounded-xl ${className} ${isFocus ? "shadow-sm " : ""}`}
+      className={`group hidden sm:block relative max-w-lg rounded-xl    ${className} ${isFocus ? "shadow-sm" : " "}`}
       onFocus={() => handleFocus()}
       onBlur={() => handleBlur()}
       onSubmit={(e) => handleSubmit(e)}
@@ -100,7 +100,7 @@ export function SearchRoot({ children, className }: SearchProps) {
         <input
           type="search"
           value={value}
-          className={`peer block w-full p-4 ps-10 text-sm text-zinc-600 placeholder:text-zinc-500 bg-zinc-50 outline-none  dark:bg-[#363636] dark:hover:bg-[#1f1f1f] dark:focus:bg-[#1f1f1f] dark:border-zinc-800 dark:placeholder-zinc-400 dark:text-white  transition-[border-rounded] ease-in duration-75 ${isFocus ? "  rounded-t-xl" : "rounded-xl"}`}
+          className={`peer block w-full p-4 ps-10 border text-sm text-zinc-600 placeholder:text-zinc-500 bg-zinc-50 outline-none group-focus-within:dark:bg-[#1f1f1f]  dark:bg-[#363636]/70 dark:hover:bg-[#1f1f1f] dark:focus:bg-[#1f1f1f] dark:placeholder-zinc-400 dark:text-white border-[#1f1f1f]/10 dark:border-[#363636]  transition-[border-rounded] ease-in duration-75 ${isFocus ? "  rounded-t-xl" : "rounded-xl"}`}
           placeholder="Pesquisar cursos, docentes, colegas, materia..."
           onChange={(e) => type(e.target.value)}
         />
@@ -109,14 +109,14 @@ export function SearchRoot({ children, className }: SearchProps) {
         </div>
       </div>
       <div
-        className={`absolute z-40 md:block hidden overflow-hidden  justify-center subpixel-antialiased outline-none box-border  shadow-md bg-zinc-50 dark:bg-[#1f1f1f] dark:placeholder-zinc-400 dark:text-white w-full rounded-b-xl transition-[max-height] border-[#256a55]  dark:border-[#015F43] duration-150 ease-in-out ${!isFocus ? "max-h-0" : " max-h-max pb-1 border-t-2 "}`}
+        className={`absolute z-40 md:block hidden overflow-hidden  justify-center subpixel-antialiased outline-none box-border  shadow-md bg-zinc-50 dark:bg-[#1f1f1f] dark:placeholder-zinc-400 dark:text-white w-full rounded-b-xl transition-[max-height] border-[#1f1f1f]/10 dark:border-[#363636]  duration-150 ease-in-out ${!isFocus ? "max-h-0" : " max-h-max pb-1 border-x border-b "}`}
       >
-        <div className="p-4 space-y-1">
+        <div className="p-4 space-y-1 w-[510px]">
           <span className="text-zinc-500 dark:text-zinc-400 text-sm">
             Estou a procura de...
           </span>
           <Link href={"/results"}>
-            <div className="py-1 space-x-1 flex">
+            <div className="py-1 gap-1.5 flex">
               <Tag name="Cursos" />
               <Tag name="Materia" />
               <Tag name="Colegas" />

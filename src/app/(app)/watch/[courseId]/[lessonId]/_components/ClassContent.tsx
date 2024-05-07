@@ -168,14 +168,14 @@ function ClassContent({
             <div className="border border-[#1f1f1f]/10 dark:border-[#363636] bg-zinc-50 dark:bg-[#363636]/60  px-4 py-4 rounded-lg">
               <div className="flex gap-3 items-center">
                 {open && (
-                  <div className="p-3 rounded-xl bg-zinc-100 dark:bg-[#2b2b2b]">
+                  <div className="p-3 rounded-xl font-bold border-2 border-[#1f1f1f]/10 dark:border-[#363636] text-zinc-600 dark:text-zinc-200 bg-zinc-100 dark:bg-[#2a2a2a] items-center justify-center">
                     <CategoryIcon name={course?.category?.name} />
                   </div>
                 )}
                 {open ? (
                   <div className="flex gap-2 justify-between items-center">
                     <div className="flex">
-                      <h2 className={`text-base line-clamp-2`}>
+                      <h2 className={`text-base text-balance line-clamp-2`}>
                         {course.title}
                       </h2>
                     </div>
@@ -187,17 +187,17 @@ function ClassContent({
                     </button>
                   </div>
                 ) : (
-                  <div className="flex gap-2 justify-between items-center">
-                    <div className="flex flex-col w-full  pr-7">
+                  <div className="flex justify-between items-center">
+                    <div className="flex flex-col w-full max-w-[85%]">
                       <h2
-                        className={`text-base dark:text-zinc-200 font-semibold text-zinc-600 line-clamp-1`}
+                        className={`text-base dark:text-zinc-200 font-semibold text-zinc-600 truncate`}
                       >
                         {course.title}
                       </h2>
                       {nextLesson && (
                         <Link
                           href={`/watch/${course.id}/${nextLesson.id}`}
-                          className="text-sm dark:text-zinc-400 line-clamp-1 text-zinc-600 hover:dark:text-zinc-500 hover:text-zinc-500"
+                          className="text-sm dark:text-zinc-400 truncate   text-zinc-600 hover:dark:text-zinc-500 hover:text-zinc-500"
                         >
                           <span className="pr-1 font-semibold">A seguir: </span>
                           {nextLesson?.title} {currentLesson.position}/
@@ -251,7 +251,7 @@ function ClassContent({
                 duration={getChapterDuration(chapter)}
                 nLessons={chapter.lessons.length}
                 title={chapter.title}
-                position={chapter.position}
+                position={index + 1}
                 dones={checkDonesinChapter(chapter)}
               >
                 {chapter.lessons.map((lesson, i) => (

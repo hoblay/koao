@@ -55,12 +55,12 @@ export default function DropdownItem({
       >
         <li className={dropdownItemStyle({})} onClick={onClick}>
           {startContent && (
-            <div className="dark:text-zinc-400 dark:group-hover:text-zinc-50 text-xl pointer-events-none flex-shrink-0">
+            <div className="dark:text-zinc-400 dark:group-hover:text-zinc-400 text-xl pointer-events-none flex-shrink-0">
               {startContent}
             </div>
           )}
           <div className="w-full flex-1 flex flex-col items-start justify-center overflow-x-hidden">
-            <span className="flex-1 text-sm truncate text-zinc-600 dark:text-zinc-300 dark:group-hover:text-zinc-50">
+            <span className="flex-1 text-sm truncate text-zinc-600 dark:text-zinc-300 dark:group-hover:text-zinc-400">
               {title}
             </span>
             <span className="w-full text-xs text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-700 dark:group-hover:text-zinc-100 truncate text-start">
@@ -71,7 +71,7 @@ export default function DropdownItem({
           {endContent && endContent}
           {shortcut && (
             <div className="">
-              <span className="  px-1 py-0.5 rounded-md font-sans text-zinc-700 dark:text-zinc-500 text-xs bg-purple-300 dark:bg-zinc-800 group-hover:bg-purple-300 dark:group-hover:bg-zinc-400 group-hover:text-zinc-800">
+              <span className="  px-1 py-0.5 rounded-md font-sans text-zinc-700 dark:text-zinc-500 text-xs bg-purple-300 dark:bg-[#363636] group-hover:bg-purple-300 dark:group-hover:bg-[#2d2d2d] group-hover:text-zinc-800 dark:group-hover:text-zinc-400">
                 ⌘T
               </span>
             </div>
@@ -83,12 +83,12 @@ export default function DropdownItem({
   return (
     <li className={dropdownItemStyle({})} onClick={onClick}>
       {startContent && (
-        <div className="dark:text-zinc-400 dark:group-hover:text-zinc-50 text-xl pointer-events-none flex-shrink-0">
+        <div className="dark:text-zinc-400 dark:group-hover:text-zinc-400 text-xl pointer-events-none flex-shrink-0">
           {startContent}
         </div>
       )}
       <div className="w-full flex-1 flex flex-col items-start justify-center overflow-x-hidden">
-        <span className="flex-1 text-sm truncate text-zinc-600 dark:text-zinc-300 dark:group-hover:text-zinc-50">
+        <span className="flex-1 text-sm truncate text-zinc-600 dark:text-zinc-300 dark:group-hover:text-zinc-400">
           {title}
         </span>
         <span className="w-full text-xs text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-700 dark:group-hover:text-zinc-100 truncate text-start">
@@ -99,7 +99,7 @@ export default function DropdownItem({
       {endContent && endContent}
       {shortcut && (
         <div className="">
-          <span className="  px-1 py-0.5 rounded-md font-sans text-zinc-700 dark:text-zinc-500 text-xs bg-[#015f43]/40 dark:bg-zinc-800 group-hover:bg-[#015f43]/50 dark:group-hover:bg-zinc-400 group-hover:text-zinc-800">
+          <span className="  px-1 py-0.5 rounded-md font-sans text-zinc-700 dark:text-zinc-500 text-xs bg-[#015f43]/40 dark:bg-[#363636] group-hover:bg-[#015f43]/50 dark:group-hover:bg-[#2d2d2d] group-hover:text-zinc-800 dark:group-hover:text-zinc-400">
             ⌘T
           </span>
         </div>
