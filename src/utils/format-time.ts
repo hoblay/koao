@@ -32,7 +32,7 @@ export function formatTime(date: Date) {
   }
   interval = seconds / 60;
   if (interval > 1) {
-    return Math.floor(interval) + " minutos";
+    return "há " + Math.floor(interval) + " minutos";
   }
   if (interval === 1) {
     return "há 1 minuto";

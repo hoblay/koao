@@ -109,7 +109,7 @@ export function CategoriesViews({ categories }: { categories: any[] }) {
                             <IconDots />
                           </button>
                         </Dropdown.Trigger>
-                        <Dropdown.Menu className="-top-4 -left-52">
+                        <Dropdown.Menu>
                           <Dropdown.Section>
                             <Dropdown.Item
                               title="Previzualizar"

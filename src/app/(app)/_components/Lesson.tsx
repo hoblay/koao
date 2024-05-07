@@ -58,7 +58,7 @@ function Lesson({
                     <IconDots className="size-5" />
                   </button>
                 </Dropdown.Trigger>
-                <Dropdown.Menu className="top-14 left-24">
+                <Dropdown.Menu>
                   <Dropdown.Section>
                     <Dropdown.Item
                       title="Compartilhar"

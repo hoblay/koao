@@ -39,6 +39,7 @@ import { useState } from "react";
 import { CourseCard } from "./CourseCard";
 import { DeleteContent } from "../[courseId]/_components/DeleteContent";
 import { useDisclosure } from "@/hooks/useDisclosure";
+import { formatTime } from "@/utils/format-time";
 
 export function CoursesViews({ courses }: { courses: any[] }) {
   const [tableView, setTableView] = useState(false);
@@ -191,7 +192,7 @@ export function CoursesViews({ courses }: { courses: any[] }) {
                             size="xs"
                           />
                           <span className="text-xs text-zinc-500 dark:text-zinc-400 text-nowrap ">
-                            Atualizado há 50 minutos
+                            Atualizado {formatTime(new Date(course.updatedAt))}
                           </span>
                         </div>
                       </td>
@@ -202,7 +203,7 @@ export function CoursesViews({ courses }: { courses: any[] }) {
                               <IconDots />
                             </button>
                           </Dropdown.Trigger>
-                          <Dropdown.Menu className="-top-4 -left-52">
+                          <Dropdown.Menu>
                             <Dropdown.Section>
                               <Dropdown.Item
                                 title="Previzualizar"

@@ -24,34 +24,7 @@ export default function Home() {
   return (
     <div className=" py-[708px] flex flex-col gap-6">
       <Button onClick={() => open()}>Aperta</Button>
-      <div className="relative flex p-96">
-        <Dropdown.Root>
-          <Dropdown.Trigger>
-            <button className="p-2 border border-[#1f1f1f]/10 dark:border-[#363636] rounded-xl hover:bg-zinc-50 dark:hover:bg-[#363636]">
-              <IconDots />
-            </button>
-          </Dropdown.Trigger>
-          <Dropdown.Menu>
-            <Dropdown.Section>
-              <Dropdown.Item
-                title="Previzualizar"
-                description={"Ver o curso "}
-                startContent={<IconEye className="text-zinc-600" />}
-              />
-              <Dropdown.Item
-                title="Editar"
-                description={"Aperte para editar"}
-                startContent={<IconEdit className="text-zinc-600" />}
-              />
-              <Dropdown.Item
-                title="Eliminar"
-                description={"Aperte para eliminar"}
-                startContent={<IconTrash className="text-red-500" />}
-              />
-            </Dropdown.Section>
-          </Dropdown.Menu>
-        </Dropdown.Root>
-      </div>
+
       <Modal.Root isOpen={opened} onClose={() => close()}>
         <Modal.Content className="h-full p-0 justify-center items-center">
           <IconMessageReport className="size-8 text-red-600 absolute top-6 left-[200px]" />

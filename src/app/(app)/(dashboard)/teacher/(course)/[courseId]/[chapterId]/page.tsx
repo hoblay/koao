@@ -168,7 +168,7 @@ export default function ChapterIdPage({
                           <IconDots />
                         </button>
                       </Dropdown.Trigger>
-                      <Dropdown.Menu className="-right-[56px]">
+                      <Dropdown.Menu>
                         <Dropdown.Section>
                           <Dropdown.Item
                             title="Editar a aula"

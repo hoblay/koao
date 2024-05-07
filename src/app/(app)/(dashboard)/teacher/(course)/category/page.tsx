@@ -136,7 +136,7 @@ export default function Home() {
                         <IconDots />
                       </button>
                     </Dropdown.Trigger>
-                    <Dropdown.Menu className="right-16">
+                    <Dropdown.Menu>
                       <Dropdown.Section>
                         {category.courses.length > 0 && (
                           <Dropdown.Item

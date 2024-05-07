@@ -89,7 +89,7 @@ export function CourseCard({
                 <IconDots />
               </button>
             </Dropdown.Trigger>
-            <Dropdown.Menu className="top-10 -left-40">
+            <Dropdown.Menu>
               <Dropdown.Section>
                 <Dropdown.Item
                   title="Previzualizar"

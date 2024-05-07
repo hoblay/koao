@@ -141,7 +141,7 @@ function TableRow({
               <IconDots />
             </button>
           </Dropdown.Trigger>
-          <Dropdown.Menu className="-right-8">
+          <Dropdown.Menu>
             <Dropdown.Section>
               <Dropdown.Item
                 title="Editar a aula"

@@ -1,5 +1,6 @@
 "use client";
 import { useOnOutsideClick } from "@/hooks/useOnOutsideClick";
+import { useRect } from "@/hooks/useRect";
 import { ReactNode, createContext, useEffect, useRef, useState } from "react";
 import React from "react";
 import { tv } from "tailwind-variants";
@@ -31,6 +32,7 @@ interface DropdownContextProps {
   isDropdownOpen: boolean;
   handleDropdown: () => void;
   closeDropdown: () => void;
+  DropdownRect: DOMRect | undefined;
 }
 
 export const DropdownContext = createContext<DropdownContextProps | null>(null);
@@ -43,9 +45,10 @@ function DropdownRoot({
   closeOnSelect,
 }: DropdownRootProps) {
   const [isDropdownOpen, setisDropdownOpen] = useState<boolean>(false);
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  useOnOutsideClick(dropdownRef, () => {
+  const [rect, ref] = useRect();
+
+  useOnOutsideClick(ref, () => {
     if (isDropdownOpen) setisDropdownOpen(false);
   });
 
@@ -58,10 +61,15 @@ function DropdownRoot({
   };
 
   return (
-    <div className="relative flex items-center" ref={dropdownRef}>
+    <div className="relative flex items-center" ref={ref}>
       <div className="max-w-full w-full h-full scrollbar-hide overflow-x-scroll">
         <DropdownContext.Provider
-          value={{ isDropdownOpen, handleDropdown, closeDropdown }}
+          value={{
+            isDropdownOpen,
+            handleDropdown,
+            closeDropdown,
+            DropdownRect: rect,
+          }}
         >
           {children}
         </DropdownContext.Provider>

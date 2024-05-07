@@ -76,7 +76,7 @@ function Courses() {
                   <IconDots />
                 </button>
               </Dropdown.Trigger>
-              <Dropdown.Menu className="top-10 -right-20">
+              <Dropdown.Menu>
                 <Dropdown.Section>
                   <Dropdown.Item
                     title="Previzualizar"
